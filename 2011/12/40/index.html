@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>k1988</title>
+  <title>NAT穿之TCP | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="NAT穿之TCP"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,8 +200,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -219,77 +218,47 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-02-03T00:28:11.000Z"><a href="/2016/02/101/">2016-02-03</a></time>
+        <time datetime="2011-12-26T19:08:31.000Z"><a href="/2011/12/40/">2011-12-27</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/02/101/">使用SHA1、SHA2双证书进行微软签名</a></h1>
+    <h1 class="title">NAT穿之TCP</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>微软是第一个宣布了SHA-1弃用计划，在2016年之后Windows和IE将不再信任SHA-1证书。正好我们公司的数字签名也到期了，索性就重新申请了sha256和sha1的新数字证书，用来给产品签名。</p>
-<p>这时就要把用了多年的自动签名脚本改为支持sha256和sha1双证书的格式。公司原使用signcode.exe和SignTool.exe两种方式进行签名，其中signcode配合另外找的signcode-pwd.exe工具和pvk+spc文件可以不需要密码即可实现签名(不在此文中详诉)，SignTool是直接用pfx证书+密码来进行签名。于是分别寻找两种方式：<br>
+        <p>STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。<br>这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。<br><a id="more"></a><br>STUN#2 ： 只有一端发送SYN握手请求（低TTL）并且取消连接，此请求通过已方NAT后即被丢弃。并在相同的地址和端口创建一个被动的TCP套接字。然后，另一个终端初始化一个正常的TCP连接。<br>与STUN#1一样，终端需要挑选一个恰当的TTL，而且NAT也不能把ICMP错误当作致命错误。它也需要NAT在一个向外发的SYN后，接收一个向内发的SYN，但包的序号也不是普通的那种。</p>
+<p>NATBlaster ： 与第一种STUN方法类似但取消了IP欺骗需要的方法。每个终端发出一个低TTL的SYN，并记住协议栈所使用的TCP序号。与前面的类似，SYN包在网络中被丢弃。两台主机之间交换各自的序号，并且每台主机手工产生一个对方期望收到的SYNACK包。手工产生的包通过RAW socket注入网络。然而，这并不等同于欺骗，因为该包中的源地址与注入该包的终端地址匹配。一旦收到SYNACK，ACK就被交换了，从而完成了连接建立。与第一种STUNT方法一样，该方法也需要终端准确地选择TTL值，也需要NAT忽略ICMP错误和NAT改变SYN包序号的失败。而且，（该方法）也需要NAT允许一个外发的SYN之后紧跟一个外发的SYNACK——非正常的另一个序号的包。</p>
+<p>P2PNAT ：利用了TCP规范[13]中定义的同时打开方案，两个终端都通过发送SYN包来创建一个连接。如果SYN包在网络中交叉（穿过），这两个终端协议栈都用SYNACK包应答从而建立连接。如果在对方的SYN包离开它的NAT之前，一个终端的SYN包到达该终端的NAT而被丢弃，那么，第一个终端的协议栈会在TCP同时打开之后而结束（关闭），而另一个终端则会按照正常流程打开。接下来的情况，链路中的包看起来像第二种STUNT方法，没有底TTL，也没有相关的ICMP。然而，该方法并没有用端口预测，如果使用的话，该方法可以从中获益。与第二种STUNT方法一样，该方法需要NAT允许在一个外发的SYN之后紧跟一个内发的SYN，而且，该方法需要终端在一个循环中不停的尝试重连，直到超时。如果不是SYN包被丢弃，而是NAT返回一个TCP RST，那这种方法将陷入包泛滥的境地，直到超时。</p>
+
       
     </div>
     <footer>
       
         
-          <div class="alignleft">
-            <a href="/2016/02/101/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
+  <div class="categories">
+    <a href="/categories/net/">net</a>, <a href="/categories/net/P2P/">P2P</a>
   </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
+
+        
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
 </div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-08-13T00:49:20.000Z"><a href="/2015/08/99/">2015-08-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/08/99/">win10 系统下获取系统版本号为6.2的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。</span><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/08/99/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
       <div class="clearfix"></div>
     </footer>
   </div>
@@ -297,209 +266,39 @@
 
 
 
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
+ <nav id="pagination" >
     
-      <img src="">
+    <a href="/2012/04/43/" class="alignleft prev" >上一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-07-08T00:37:00.000Z"><a href="/2015/07/92/">2015-07-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/07/92/">另类方法制作android通用驱动</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。</p>
-<p>先在前面声明大纲，改造Android驱动只需要两点：</p>
-<ol>
-<li>驱动文件的<strong>inf文件</strong>中添加该手机对应的<strong>硬件id/兼容id</strong>。</li>
-<li>对更新后的inf和所有的原来的文件重新生成<strong>cat文件</strong>(安全目录)，并<strong>数字签名</strong>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/07/92/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
     
-      <img src="">
+    <a href="/2011/12/37/" class="alignright next" >下一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2011/12/40/" data-title="NAT穿之TCP" data-url="/2011/12/40/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-28T23:07:08.000Z"><a href="/2015/01/85/">2015-01-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/85/">32位程序在64位系统上获取系统安装时间</a></h1>
-  
+</section>
 
-    </header>
-    <div class="entry">
-      
-        <p>众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。<br>但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。<br>所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-19T18:40:48.000Z"><a href="/2014/11/82/">2014-11-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/82/">IE8崩溃在CElement::GetUpdatedLayoutWithContext</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/11/82/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-27T00:00:18.000Z"><a href="/2014/08/72/">2014-08-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/72/">DirectDraw程序截图</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>普通窗口截图可以直接PrintWindow，但是directDraw程序使用这种方法是黑屏。。<br>但奇怪的是，将这种程序的某部门拖动到屏幕外，则整个窗口就可以截图了。</p>
-<p>其它解决办法：
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/08/72/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-    <a href="/page/2/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">

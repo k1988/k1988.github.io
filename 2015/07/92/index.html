@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>另类方法制作android通用驱动 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="另类方法制作android通用驱动"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-07-08T00:37:00.000Z"><a href="/2015/07/92/">2015-07-08</a></time>
+      
+      
+  
+    <h1 class="title">另类方法制作android通用驱动</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。</p>
+<p>先在前面声明大纲，改造Android驱动只需要两点：</p>
+<ol>
+<li>驱动文件的<strong>inf文件</strong>中添加该手机对应的<strong>硬件id/兼容id</strong>。</li>
+<li>对更新后的inf和所有的原来的文件重新生成<strong>cat文件</strong>(安全目录)，并<strong>数字签名</strong><a id="more"></a>
+<h2 id="驱动常见格式"><a href="#驱动常见格式" class="headerlink" title="驱动常见格式"></a><strong>驱动常见格式</strong></h2></li>
+</ol>
+<p><span style="font-size: 16px; line-height: 24px;">先看一个从android网站上下载的一个官方驱动usb_driver_r04-windows.zip，解压后内部结构为下图所示:</span></p>
+<p><span style="font-size: 16px; line-height: 24px;"> <a href="http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l1.png" target="_blank" rel="external"><img src="http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l1-300x140.png" alt="" title="usb_driver_r04-windows 1层目录结构"></a><a href="http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l2.png" target="_blank" rel="external"><img src="http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l2-300x67.png" alt="" title="usb_driver_r04-windows 2层结构"></a></span></p>
+<p><span style="font-size: 16px; line-height: 24px;">其中inf文件的内容大致如下：</span></p>
+<blockquote>
+<p><span style="font-size: 16px; line-height: 24px;">;</span></p>
+<p>; Android WinUsb driver installation.</p>
+<p>;</p>
+<p>[Version]</p>
+<p>Signature           = “$Windows NT$”</p>
+<p>Class               = AndroidUsbDeviceClass</p>
+<p>ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}</p>
+<p>Provider            = %ProviderName%</p>
+<p>DriverVer           = 12/06/2010,4.0.0000.00000</p>
+<p>CatalogFile.NTx86   = androidwinusb86.cat</p>
+<p>CatalogFile.NTamd64 = androidwinusba64.cat</p>
+<p>;</p>
+<p>; This section seems to be required for WinUsb driver installation.</p>
+<p>; If this section is removed the installer will report an error</p>
+<p>; “Required section not found in INF file”.</p>
+<p>;</p>
+<p>[ClassInstall32]</p>
+<p>Addreg = AndroidWinUsbClassReg</p>
+<p>[AndroidWinUsbClassReg]</p>
+<p>HKR,,,0,%ClassName%</p>
+<p>HKR,,Icon,,-1</p>
+<p>[Manufacturer]</p>
+<p>%ProviderName% = Google, NTx86, NTamd64</p>
+<p><span style="color: #ff0000;">[Google.NTx86]</span></p>
+<p><span style="color: #ff0000;"> ; HTC Dream</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_0BB4&amp;PID_0C01</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;PID_0C02&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> %SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&amp;PID_0FFF</span></p>
+<p><span style="color: #ff0000;"> ; HTC Magic</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;PID_0C03&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> ;</span></p>
+<p><span style="color: #ff0000;"> ;Moto Sholes</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_22B8&amp;PID_41DB</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_22B8&amp;PID_41DB&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> ;</span></p>
+<p><span style="color: #ff0000;"> ;Google NexusOne</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;PID_0D02</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;PID_0D02&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;PID_4E11</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;PID_4E12&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;PID_4E22&amp;MI_01</span></p>
+<p><span style="color: #ff0000;">[Google.NTamd64]</span></p>
+<p><span style="color: #ff0000;"> ; HTC Dream</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_0BB4&amp;PID_0C01</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;PID_0C02&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> %SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&amp;PID_0FFF</span></p>
+<p><span style="color: #ff0000;"> ; HTC Magic</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;PID_0C03&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> ;</span></p>
+<p><span style="color: #ff0000;"> ;Moto Sholes</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_22B8&amp;PID_41DB</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_22B8&amp;PID_41DB&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> ;</span></p>
+<p><span style="color: #ff0000;"> ;Google NexusOne</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;PID_0D02</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;PID_0D02&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;PID_4E11</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;PID_4E12&amp;MI_01</span></p>
+<p><span style="color: #ff0000;"> %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;PID_4E22&amp;MI_01</span></p>
+<p>[USB_Install]</p>
+<p>Include = winusb.inf</p>
+<p>Needs   = WINUSB.NT</p>
+<p>[USB_Install.Services]</p>
+<p>Include     = winusb.inf</p>
+<p>AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall</p>
+<p>[WinUSB_ServiceInstall]</p>
+<p>DisplayName     = %WinUSB_SvcDesc%</p>
+<p>ServiceType     = 1</p>
+<p>StartType       = 3</p>
+<p>ErrorControl    = 1</p>
+<p>ServiceBinary   = %12%\WinUSB.sys</p>
+<p>[USB_Install.Wdf]</p>
+<p>KmdfService = WINUSB, WinUSB_Install</p>
+<p>[WinUSB_Install]</p>
+<p>KmdfLibraryVersion  = 1.9</p>
+<p>[USB_Install.HW]</p>
+<p>AddReg  = Dev_AddReg</p>
+<p>[Dev_AddReg]</p>
+<p>HKR,,DeviceInterfaceGUIDs,0x10000,”{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}”</p>
+<p>[USB_Install.CoInstallers]</p>
+<p>AddReg    = CoInstallers_AddReg</p>
+<p>CopyFiles = CoInstallers_CopyFiles</p>
+<p>[CoInstallers_AddReg]</p>
+<p>HKR,,CoInstallers32,0x00010000,”WdfCoInstaller01009.dll,WdfCoInstaller”,”WinUSBCoInstaller2.dll”</p>
+<p>[CoInstallers_CopyFiles]</p>
+<p>WinUSBCoInstaller2.dll</p>
+<p>WdfCoInstaller01009.dll</p>
+<p>[DestinationDirs]</p>
+<p>CoInstallers_CopyFiles=11</p>
+<p>[SourceDisksNames]</p>
+<p>1 = %DISK_NAME%,,,\i386</p>
+<p>2 = %DISK_NAME%,,,\amd64</p>
+<p>[SourceDisksFiles.x86]</p>
+<p>WinUSBCoInstaller2.dll  = 1</p>
+<p>WdfCoInstaller01009.dll = 1</p>
+<p>[SourceDisksFiles.amd64]</p>
+<p>WinUSBCoInstaller2.dll  = 2</p>
+<p>WdfCoInstaller01009.dll = 2</p>
+<p>[Strings]</p>
+<p>ProviderName                = “Google, Inc.”</p>
+<p>SingleAdbInterface          = “Android ADB Interface”</p>
+<p>CompositeAdbInterface       = “Android Composite ADB Interface”</p>
+<p>SingleBootLoaderInterface   = “Android Bootloader Interface”</p>
+<p>WinUSB_SvcDesc              = “Android USB Driver”</p>
+<p>DISK_NAME                   = “Android WinUsb installation disk”</p>
+<p>ClassName                   = “Android Phone”<br>上面这个inf中标为红色的地方就是这个驱动默认支持的所有设备的硬件id。</p>
+</blockquote>
+<h2 id="修改inf文件"><a href="#修改inf文件" class="headerlink" title="修改inf文件"></a><strong>修改inf文件</strong></h2><p><span style="line-height: 24px;"> 市面上的常见通用 驱动文件的修改大多是采用如谷歌原生驱动一样的方式，将想要支持的设备的硬件id加到inf文件，每多要支持一个系列的设备，就得修改一次inf文件并且重新发布驱动。这种方式简单粗暴，并且使用微软的inf2cat.exe能够正常生成安全目录。</span></p>
+<p><span style="line-height: 24px;"> 还有一种就是小米早期版本的驱动一样，直接使用硬件设备的兼容id，它改动过的inf如下：</span></p>
+<blockquote>
+<p><span style="line-height: 24px;">[Google.NTx86]</span></p>
+<p>;Xiaomi Mione</p>
+<p>%CompositeAdbInterface%     = <span style="color: #ff0000;">USB_Install, USB\Class_FF&amp;SubClass_42&amp;Prot_01</span></p>
+<p>%SingleAdbInterface% = <span style="color: #ff0000;">USB_Install, USB\Class_FF&amp;SubClass_42&amp;Prot_03</span></p>
+<p>[Google.NTamd64]</p>
+<p>;Xiaomi Mione</p>
+<p>%CompositeAdbInterface%     = USB_Install, USB\Class_FF&amp;SubClass_42&amp;Prot_01</p>
+<p>%SingleAdbInterface% = USB_Install, USB\Class_FF&amp;SubClass_42&amp;Prot_03<br>但是在研究中发现，在win7上安装驱动时驱动如果没有正确的cat文件和对cat数字签名，驱动是安装不上或者有警告。小米的驱动同样如此，所以估计这也是后来小米的新驱动一样使用上面添加硬件id列表的方式的原因之一吧。</p>
+</blockquote>
+<p>这里我们使用第二种方式，将inf里多余的硬件id全部删除，然后使用小米的这种方式将android手机通用的兼容id写入进去。</p>
+<h2 id="生成CAT文件"><a href="#生成CAT文件" class="headerlink" title="生成CAT文件"></a>生成CAT文件</h2><p>安装windows的驱动开发包(我使用的是WinDDK 7600.16385.1)，找到里面的bin\selfsign\Inf2Cat.exe，使用命令行Inf2Cat.exe /v /driver:<strong>驱动目录</strong> /OS:7_X64,7_X86进行编辑，如果是使用的硬件id，则会正常生成安装目录文件，但如果使用兼容id，则会报以下错误。</p>
+<p><a href="http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/无标题.png" target="_blank" rel="external"><img src="http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/无标题-300x130.png" alt="" title="inf2Cat错误提示"></a></p>
+<p>这个inf2cat程序经研究是c#语言开发的，于是，祭出神器<strong>JetBrains dotPeek 1.1 </strong>对它进行反编译，并且导出c#工程，然后改掉其中的判断错误的代码</p>
+<blockquote>
+<p>在bool flag = driverPackageInfo.TestSignability(out errors, out warnings);之后， 将flag强制赋值为true。<br>并且注释掉AssemblyInfo.cs中的//[assembly: AssemblyKeyFile(“\\DQBLD01\builds2\keys\whos.snk”)]，然后重新生成一个inf2cat程序，放在winddk的原目录。这样重新生成cat文件，虽然还是有错误提示，但是不要紧，cat文件正常的生成出来了。</p>
+</blockquote>
+<p>最后对生成出来的cat文件进行数字签名，注意要使用signtool.exe+证书文件的数字签名方法，使用signcode.exe的加密方式对于64位程序似乎系统不太认。</p>
+<p>这样，一个通用android驱动就完成了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/系统-工具/">系统/工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/android/">android</a>, <a href="/tags/android-驱动/">android 驱动</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2015/08/99/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2015/01/85/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2015/07/92/" data-title="另类方法制作android通用驱动" data-url="/2015/07/92/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>1</small></li>
+  
+    <li><a href="/categories/WEB/">WEB</a><small>1</small></li>
+  
+    <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>1</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>2</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>7</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>Theme: <a href="https://github.com/k1988/lightum">Lightum</a>
+<li>想交友的朋友请<a href="http://baba.zhaoxiuyuan.com/about">联系我</a>！</li>
+<li>QQ 号：1811132352</li>
+<font color="red">Hexo 交流群：287306637</font>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>k1988</title>
+  <title>vs的几种调试方法 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="vs的几种调试方法"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,8 +200,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -219,77 +218,71 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-02-03T00:28:11.000Z"><a href="/2016/02/101/">2016-02-03</a></time>
+        <time datetime="2013-11-11T19:40:58.000Z"><a href="/2013/11/67/">2013-11-12</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/02/101/">使用SHA1、SHA2双证书进行微软签名</a></h1>
+    <h1 class="title">vs的几种调试方法</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>微软是第一个宣布了SHA-1弃用计划，在2016年之后Windows和IE将不再信任SHA-1证书。正好我们公司的数字签名也到期了，索性就重新申请了sha256和sha1的新数字证书，用来给产品签名。</p>
-<p>这时就要把用了多年的自动签名脚本改为支持sha256和sha1双证书的格式。公司原使用signcode.exe和SignTool.exe两种方式进行签名，其中signcode配合另外找的signcode-pwd.exe工具和pvk+spc文件可以不需要密码即可实现签名(不在此文中详诉)，SignTool是直接用pfx证书+密码来进行签名。于是分别寻找两种方式：<br>
+        <p>作者：zhaohaiyang_1988@163.com (转载需保留)</p>
+<p>========================================================================================</p>
+<h1 id="进入调试的方法"><a href="#进入调试的方法" class="headerlink" title="进入调试的方法"></a>进入调试的方法</h1><p>1. F5，项目右键菜单-&gt;调试-&gt;启用新实例<br>    点击项目右键菜单-&gt;属性-&gt;配置属性-&gt;调试，可以设置调试的相关参数：<br>      1、命令：默认是$(TargetPath)，就是启动输出的可执行程序<br>      2、命令参数：启动被调试程序时使用的命令行参数。<br>      3、工作目录：启动被调试程序时使用的当前文件夹。影响GetCurrentDir,以及加载dll。<br>      4、附加：否-启动新进程 是-附加到已经存在的进程中<br>      其它参数不常用，有兴趣请百度之。<br><a id="more"></a><br>2. 打开 工具 –&gt; 附加到进程<br>3. 打开 任务管理器 –&gt; 右键进程，选择调试<br>4. DebugBreak附加：使用 DebugBreak()方式。<br>    这种方法适用于源代码量比较大，不容易定位问题的情况下。在程序执行到DebugBreak()时，会弹出一个提示框。然后点击取消会弹出选择调试器</p>
+<p>的对话框，而之后就可以按照常规的调试(单步、单函数等)进行调试了。这种方法一般能够快速的定位问题！<br>5. Windows错误后附加：内存访问、堆栈等系统错误在正确配置的机器和正确配置的程序错误模式下会弹出对话框，对话框中点取消后出弹出弹出选择</p>
+<p>调试器的对话框。<br>6. 断言附加：断言后，点击重试，会弹出选择调试器的对话框，先择调试器后即可调试。<br>7. 自己程序内弹出MessageBox后附加：在想要附加调试的代码之前先弹出任意消息对话框，并且设置断点，然后附加。（其实类似4）。</p>
+<p>=======================================================================================</p>
+<h1 id="开启远程调试。"><a href="#开启远程调试。" class="headerlink" title="开启远程调试。"></a>开启远程调试。</h1><p>打开vs2005的安装目录，可以发现有个目录为 Remote Debugger。此文件夹可以单独的copy出来进行远程调试。<br>或者在开始菜单中启动“\程序\Microsoft Visual Studio 2005\Visual Studio Tools\Visual Studio 2005 Remote Debugger””</p>
+<p>无身份验证模式<br>1、在调试目标机器中，打开远程调试器程序(msvsmon.exe)，win7下要使用管理员权限。<br>2、工具-&gt;选项-&gt;无身份验证-&gt;允许任何用户进行调试。<br>3、确定。如果弹出防火墙阻止调试什么的，尝试选择”取消xxxx的限制”，每个选项都试一下，直至能调试。或者关闭防火墙。</p>
+<p>有身份验证模式<br>  未使用过，不解释。</p>
+<p>也可使用 Visual Studio 2005 Remote Debugger配置向导进行配置（未使用过，不解释）。</p>
+<p>=======================================================================================</p>
+<h1 id="远程调试。"><a href="#远程调试。" class="headerlink" title="远程调试。"></a>远程调试。</h1><p>1、在vs里附加远程调试器：</p>
+<p>   #vs菜单：工具-&gt;附加到进程</p>
+<p>   #在附加对话框中选择“远程（无身份验证时只限本机）”</p>
+<p>   #在限定符中填写开启远程调试器的机器的ip和端口。例:192.168.0.100:4015, www.kuai8.com:4015</p>
+<p>   #回车键后应该可以看到“可用进程”，找到要调试的进程，点击“附加”或双击之，就可以附加上。</p>
+<p>   #然后其它调试步骤同本机调试。<br>2、也可以使用远程调试直接启动目标机器上的程序：</p>
+<p>   #项目右键菜单-&gt;属性-&gt;配置属性-&gt;调试</p>
+<p>   #更改“要启动的调试器”为“远程windows服务器”。</p>
+<p>   #远程命令：填写远程调试目标机器上要调试启动的程序的全路径。命令参数和工作目录类似本地调试，不多说明。</p>
+<p>   #远程服务器名称：远程调试目标机器的ip和调试器端口。例:192.168.0.100:4015, www.kuai8.com:4015</p>
+<p>   #连接：根据远程调试器开启的调试类型，选择“带windows身份验证的远程访问”或“不带windows身份验证的远程访问(仅限本机)”。</p>
+<p>   #然后F5，项目右键菜单-&gt;调试-&gt;启用新实例 进入调试。   </p>
+<p>=======================================================================================</p>
+<h1 id="dump文件调试。"><a href="#dump文件调试。" class="headerlink" title="dump文件调试。"></a>dump文件调试。</h1><p>1、使用vs打开dump文件，先看看模块中，想调试代码的模块的位置（比如：生成dump时，主程序位置是C:\test\abc.exe）<br>2、在对应位置上放上对应版本的应用程序(如：C:\test\abc.exe）和pdb信息(也可手动加载其它地方的pdb)。<br>3、F5执行之，不过能看到的内容多少跟dump文件里的内容多少有关。<br>4、执行过程中需要参看源码的时候，如果pdb里记录的源码目录和当前机器不一样，会弹出选择框提示选择。<br>推荐使用“HardLinkShellExt”或junction添加目录连接点，或者win7上直接添加源码文件夹映射，将自己机器上的源码目录，映射到pdb里记录的位置，方便调试。</p>
+<h1 id="定位问题的方法"><a href="#定位问题的方法" class="headerlink" title="定位问题的方法"></a>定位问题的方法</h1><p>1.断点： 在使用vs2005的时候，可以在右下方堆栈输出器中选择”新增断点”。这里有两种形式的断点。<br>  或者是使用F9添加断点，添加普通断点后可以给断点添加些特殊条件：<br>  断点管理器或者代码编辑器中，使用断点右键菜单：<br>    1、位置：调整断点在代码中的行数<br>    2、条件：可设置一些表达式<br>       比如：i==4<br>             this==0x00123456<br>             index &gt; 7<br>    3、命中次数：断点命中几次后才断下来调试。<br>    4、筛选器和命中条件：有需求时自行使用，不解释。</p>
+<p>2、基本调试窗口：局部变量、线程、调用堆栈、自动窗口、内存。（内急，不写了，有机会再说明）<br>3、其它：即时窗口、监视、寄存器等。。。 </p>
+
       
     </div>
     <footer>
       
         
-          <div class="alignleft">
-            <a href="/2016/02/101/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
+  <div class="categories">
+    <a href="/categories/C/">C++</a>
   </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
+
+        
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
 </div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-08-13T00:49:20.000Z"><a href="/2015/08/99/">2015-08-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/08/99/">win10 系统下获取系统版本号为6.2的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。</span><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/08/99/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
       <div class="clearfix"></div>
     </footer>
   </div>
@@ -297,209 +290,39 @@
 
 
 
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
+ <nav id="pagination" >
     
-      <img src="">
+    <a href="/2014/03/69/" class="alignleft prev" >上一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-07-08T00:37:00.000Z"><a href="/2015/07/92/">2015-07-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/07/92/">另类方法制作android通用驱动</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。</p>
-<p>先在前面声明大纲，改造Android驱动只需要两点：</p>
-<ol>
-<li>驱动文件的<strong>inf文件</strong>中添加该手机对应的<strong>硬件id/兼容id</strong>。</li>
-<li>对更新后的inf和所有的原来的文件重新生成<strong>cat文件</strong>(安全目录)，并<strong>数字签名</strong>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/07/92/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
     
-      <img src="">
+    <a href="/2013/04/63/" class="alignright next" >下一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2013/11/67/" data-title="vs的几种调试方法" data-url="/2013/11/67/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-28T23:07:08.000Z"><a href="/2015/01/85/">2015-01-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/85/">32位程序在64位系统上获取系统安装时间</a></h1>
-  
+</section>
 
-    </header>
-    <div class="entry">
-      
-        <p>众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。<br>但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。<br>所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-19T18:40:48.000Z"><a href="/2014/11/82/">2014-11-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/82/">IE8崩溃在CElement::GetUpdatedLayoutWithContext</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/11/82/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-27T00:00:18.000Z"><a href="/2014/08/72/">2014-08-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/72/">DirectDraw程序截图</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>普通窗口截图可以直接PrintWindow，但是directDraw程序使用这种方法是黑屏。。<br>但奇怪的是，将这种程序的某部门拖动到屏幕外，则整个窗口就可以截图了。</p>
-<p>其它解决办法：
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/08/72/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-    <a href="/page/2/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">

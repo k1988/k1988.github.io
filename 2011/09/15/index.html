@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>k1988</title>
+  <title>常见打包工具的静默安装 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="常见打包工具的静默安装"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,8 +200,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -219,77 +218,82 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-02-03T00:28:11.000Z"><a href="/2016/02/101/">2016-02-03</a></time>
+        <time datetime="2011-09-23T17:00:48.000Z"><a href="/2011/09/15/">2011-09-24</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/02/101/">使用SHA1、SHA2双证书进行微软签名</a></h1>
+    <h1 class="title">常见打包工具的静默安装</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>微软是第一个宣布了SHA-1弃用计划，在2016年之后Windows和IE将不再信任SHA-1证书。正好我们公司的数字签名也到期了，索性就重新申请了sha256和sha1的新数字证书，用来给产品签名。</p>
-<p>这时就要把用了多年的自动签名脚本改为支持sha256和sha1双证书的格式。公司原使用signcode.exe和SignTool.exe两种方式进行签名，其中signcode配合另外找的signcode-pwd.exe工具和pvk+spc文件可以不需要密码即可实现签名(不在此文中详诉)，SignTool是直接用pfx证书+密码来进行签名。于是分别寻找两种方式：<br>
+        <p>下面以不同的安装方式进行讨论：</p>
+<p>一、 Microsoft Windows Installer</p>
+<p>如果某个软件是用Windows Installer打包的，那你就应该能在文件夹中看到*.msi文件。</p>
+<p>这是最典型的特征，这些文件通常可以使用 /QB和 /QN参数进行自动安装。。</p>
+<p>/qb 会在窗口中显示一个基本的安装进程</p>
+<p>/qn 参数则不会显示任何窗口，直接在后台自动安装</p>
+<p>为了阻止某些程序安装成功后自动重启动（例如Kerio Personal Firewall 4），你可以在 /qn 或者 /qb参数后使用REBOOT=Suppress标记，例如：</p>
+<p>如安装虚拟光驱 DaemonTools：msiexec /i dtools.msi /qb REBOOT=SUPPRESS<br><a id="more"></a><br>二、 Windows 补丁包</p>
+<p>有两种情况，一种是类似IE增量补丁包的那种安装文件，要使之静默安装，只需要在执行文件后加上　/q:a /r:n　参数即可；一种是　Windows　常用的补丁文件，一般情况下加上 /U /N /Z 即可实现静默安装。</p>
+<p>(对于新的系统补丁，也可使用 /passive /norestart)。这通用大部分情况，但某些特定的补丁不能用此法进行静默安装。</p>
+<p>三、InstallShield</p>
+<p>a.要使用静默安装的方式安装用InstallShield技术打包的程序，首先要在现有的操作系统中创建一个setup.iss文件。</p>
+<p>在命令行窗口中使用 -R 参数（大小写敏感）运行安装程序。</p>
+<p>例如：Setup.exe -R</p>
+<p>b. 接着会显示常见的安装屏幕，并且询问你一些问题，例如要安装的目录等有一点是很重要的，在安装结束后你不能选择“立刻重启动计算机”的选项。如果你选了，在批处理文件中的其他命令就会因为计算机重启动而无法执行。</p>
+<p>c. 在安装程序运行完毕后，打开你的C:\Windows（或者C:\WINNT）目录,然后找到setup.iss文件，把这个文件和你将要静默安装的程序setup.exe保存在同一个目录中</p>
+<p>d. 用以下命令进行静默安装：setup.exe -s [-sms]</p>
+<p>我怎么知道哪个程序是使用InstallShield技术打包的？</p>
+<p>大部分这类程序的安装文件都可以被压缩软件解压缩，安装文件setup.exe的属性对话框中应该有“InstallShield (R) Setup Launcher”或者其他类似的字样。</p>
+<p>最后，如果你在保存安装文件的文件夹中看到了一个setup.iss文件，那么毫无疑问这是用InstallShield打包了！</p>
+<p>四、InstallShield with MSI</p>
+<p>InstallShield with MSI 制作的安装文件，请使用类似：setup.exe /s /v”/qb” 来安装</p>
+<p>五、WISE Installer</p>
+<p>用WISE技术打包的软件在安装的时候可以选择使用 /s参数进行自动安装：setup.exe /s</p>
+<p>六、Inno Setup</p>
+<p>Inno Setup 制作的安装文件，请使用：setup.exe /sp- /silent /norestart</p>
+<p>我怎么知道哪个安装程序是用Inno 技术打包的？</p>
+<p>这种软件安装时第一个界面一般如下图所示</p>
+<p>在窗口标题栏左侧的图标上点击鼠标左键，然后再探出菜单上点击“About Setup”可以看见安装类型[attach]138[/attach]</p>
+<p>七、NullSoft Installation System</p>
+<p>使用 NSIS (NullSoft Installation System) 制作的安装文件，可用 /S （注意大写）来进行静默安装。示例：setup.exe /S</p>
+<p>使用NSIS 打包的安装文件可以用 /S参数进行自动安装（“S”是大小写敏感的）：</p>
+<p>Setup.exe /S</p>
+<p>你也可以用 /D参数选择将要安装的目标分区和文件夹：</p>
+<p>Setup.exe /S /D=E:\Software\CDex</p>
+<p>像Winamp 和CDex这类的软件都会在安装结束后显示一个确认屏幕（CDex）或者一个设置文件关联方式的结束安装屏幕（Winamp）</p>
+<p>我怎么知道哪个程序是使用NSIS技术打包的？</p>
+<p>很多用NSIS打包的程序在安装的时候都有类似这样的窗口，例如Winamp 和CDex：[attach]139[/attach]</p>
+
       
     </div>
     <footer>
       
         
-          <div class="alignleft">
-            <a href="/2016/02/101/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
+  <div class="categories">
+    <a href="/categories/系统-工具/">系统/工具</a>
   </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
+
+        
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
 </div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-08-13T00:49:20.000Z"><a href="/2015/08/99/">2015-08-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/08/99/">win10 系统下获取系统版本号为6.2的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。</span><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/08/99/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
       <div class="clearfix"></div>
     </footer>
   </div>
@@ -297,209 +301,39 @@
 
 
 
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
+ <nav id="pagination" >
     
-      <img src="">
+    <a href="/2011/09/17/" class="alignleft prev" >上一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-07-08T00:37:00.000Z"><a href="/2015/07/92/">2015-07-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/07/92/">另类方法制作android通用驱动</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。</p>
-<p>先在前面声明大纲，改造Android驱动只需要两点：</p>
-<ol>
-<li>驱动文件的<strong>inf文件</strong>中添加该手机对应的<strong>硬件id/兼容id</strong>。</li>
-<li>对更新后的inf和所有的原来的文件重新生成<strong>cat文件</strong>(安全目录)，并<strong>数字签名</strong>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/07/92/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
     
-      <img src="">
+    <a href="/2011/07/4/" class="alignright next" >下一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2011/09/15/" data-title="常见打包工具的静默安装" data-url="/2011/09/15/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-28T23:07:08.000Z"><a href="/2015/01/85/">2015-01-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/85/">32位程序在64位系统上获取系统安装时间</a></h1>
-  
+</section>
 
-    </header>
-    <div class="entry">
-      
-        <p>众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。<br>但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。<br>所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-19T18:40:48.000Z"><a href="/2014/11/82/">2014-11-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/82/">IE8崩溃在CElement::GetUpdatedLayoutWithContext</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/11/82/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-27T00:00:18.000Z"><a href="/2014/08/72/">2014-08-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/72/">DirectDraw程序截图</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>普通窗口截图可以直接PrintWindow，但是directDraw程序使用这种方法是黑屏。。<br>但奇怪的是，将这种程序的某部门拖动到屏幕外，则整个窗口就可以截图了。</p>
-<p>其它解决办法：
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/08/72/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-    <a href="/page/2/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">

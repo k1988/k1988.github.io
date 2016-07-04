@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-06-08T07:43:25.123Z</updated>
+  <updated>2016-07-04T09:45:48.944Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -16,28 +16,814 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://baba.zhaoxiuyuan.com/2016/06/08/hello-world/"/>
-    <id>http://baba.zhaoxiuyuan.com/2016/06/08/hello-world/</id>
-    <published>2016-06-08T07:43:25.113Z</published>
-    <updated>2016-06-08T07:43:25.123Z</updated>
+    <title>使用SHA1、SHA2双证书进行微软签名</title>
+    <link href="http://baba.zhaoxiuyuan.com/2016/02/101/"/>
+    <id>http://baba.zhaoxiuyuan.com/2016/02/101/</id>
+    <published>2016-02-03T00:28:11.000Z</published>
+    <updated>2016-07-04T09:45:48.944Z</updated>
     
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;微软是第一个宣布了SHA-1弃用计划，在2016年之后Windows和IE将不再信任SHA-1证书。正好我们公司的数字签名也到期了，索性就重新申请了sha256和sha1的新数字证书，用来给产品签名。&lt;/p&gt;
+&lt;p&gt;这时就要把用了多年的自动签名脚本改为支持sha256和sha1双证书的格式。公司原使用signcode.exe和SignTool.exe两种方式进行签名，其中signcode配合另外找的signcode-pwd.exe工具和pvk+spc文件可以不需要密码即可实现签名(不在此文中详诉)，SignTool是直接用pfx证书+密码来进行签名。于是分别寻找两种方式：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;查阅signcode的&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/9sh96ycy.aspx?f=255&amp;amp;MSPPError=-2147217396&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文档&lt;/a&gt;发现，&lt;strong&gt;signcode&lt;/strong&gt;的命令行-a是用来指定数字签名的签名算法。试验了下，只支持sha1和md5，&lt;strong&gt;不支持sha256&lt;/strong&gt;。所以此方法废弃。&lt;/p&gt;
+&lt;p&gt;再查阅&lt;strong&gt;SignTool&lt;/strong&gt;的&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/8s9b9yaz(v=vs.110&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文档&lt;/a&gt;.aspx)，支持/fd来指定签名，试了md5、sha1、sha256均支持，所以直接在原来签名代码上添加个/&lt;strong&gt;sa /fd sha256&lt;/strong&gt;后如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;_SignTool.exe sign /v /as /ac /f D:\test\sign\sign_sha256\xxx.pfx /p xxxx /t &lt;a href=&quot;http://timestamp.wosign.com/timestamp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://timestamp.wosign.com/timestamp&lt;/a&gt; /fd sha256 “D:\test_double&lt;em&gt;signed.exe”&lt;/em&gt;&lt;br&gt;一开始出现/as选项不识别的问题，经研究是使用的&lt;span style=&quot;color: #ff0000;&quot;&gt;SignTool版本&lt;/span&gt;为6.0,因为自己机器上装了win10的sdk，于是使用了最新的C:\Program Files (x86)\Windows Kits\10\bin\x86\signtool.exe。ps：貌似只有win10带的才支持/as选项，但nnd这货依赖的ncrypt.dll，bcrypt.dll等dll只在vista及以上系统有，所以还在用xp的同学就不要用了。如果想拷贝到其它系统上使用，同时拷贝同目录下的：&lt;br&gt;appxpackaging.dll&lt;/p&gt;
+&lt;p&gt;appxsip.dll&lt;/p&gt;
+&lt;p&gt;mssign32.dll&lt;/p&gt;
+&lt;p&gt;opcservices.dll&lt;/p&gt;
+&lt;p&gt;signtool.exe&lt;/p&gt;
+&lt;p&gt;signtool.exe.manifest&lt;/p&gt;
+&lt;p&gt;wintrust.dll&lt;/p&gt;
+&lt;p&gt;wintrust.dll.ini&lt;/p&gt;
+&lt;p&gt;Microsoft.Windows.Build.Appx.AppxPackaging.dll.manifest&lt;/p&gt;
+&lt;p&gt;Microsoft.Windows.Build.Appx.AppxSip.dll.manifest&lt;/p&gt;
+&lt;p&gt;Microsoft.Windows.Build.Appx.OpcServices.dll.manifest&lt;/p&gt;
+&lt;p&gt;Microsoft.Windows.Build.Signing.mssign32.dll.manifest&lt;/p&gt;
+&lt;p&gt;Microsoft.Windows.Build.Signing.wintrust.dll.manifest&lt;br&gt;再试验出现以下错误：&lt;em&gt;SignTool Error: The /t option is incompatible with the /as option.SignTool Error: Specify the RFC 3161 timestamp server’s URL instead with /tr.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;尝试把/t换成/tr，但是出现错误：SignTool Error: The specified timestamp server either could not be reached orreturned an invalid response.&lt;/p&gt;
+&lt;p&gt;经过一番努力后，将&lt;a href=&quot;http://timestamp.wosign.com/timestamp替换成http://timestamp.wosign.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://timestamp.wosign.com/timestamp替换成http://timestamp.wosign.com/&lt;/a&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;rfc3161&lt;/span&gt;解决问题。&lt;a href=&quot;http://timestamp.wosign.com/rfc3161是较新的时间戳服务格式，兼容/t和&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://timestamp.wosign.com/rfc3161是较新的时间戳服务格式，兼容/t和&lt;/a&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;/tr&lt;/span&gt;，而&lt;a href=&quot;http://timestamp.wosign.com/timestamp只适用于/t。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://timestamp.wosign.com/timestamp只适用于/t。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最后将两个签名指令放到批处理文件里：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;set sign_folder=%~dp0%%sign_folder%\SignTool.exe sign /v /f %sign_folder%example.pfx /p examplepassword &lt;span style=&quot;color: #ff0000;&quot;&gt;/tr &lt;a href=&quot;http://timestamp.wosign.com/rfc3161&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://timestamp.wosign.com/rfc3161&lt;/a&gt; /fd sha1&lt;/span&gt; “%1”%sign_folder%\SignTool.exe sign /v &lt;span style=&quot;color: #ff0000;&quot;&gt;/as&lt;/span&gt; /f %sign_folder%example.pfx /p examplepassword&lt;span style=&quot;color: #ff0000;&quot;&gt; /tr &lt;a href=&quot;http://timestamp.wosign.com/rfc3161&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://timestamp.wosign.com/rfc3161&lt;/a&gt; /fd sha256&lt;/span&gt; “%1”&lt;br&gt;别的自动脚本里在想要签名文件时，只需要调用sign.bat “要签名的文件的全路径”即可&lt;/p&gt;
+&lt;/blockquote&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;微软是第一个宣布了SHA-1弃用计划，在2016年之后Windows和IE将不再信任SHA-1证书。正好我们公司的数字签名也到期了，索性就重新申请了sha256和sha1的新数字证书，用来给产品签名。&lt;/p&gt;
+&lt;p&gt;这时就要把用了多年的自动签名脚本改为支持sha256和sha1双证书的格式。公司原使用signcode.exe和SignTool.exe两种方式进行签名，其中signcode配合另外找的signcode-pwd.exe工具和pvk+spc文件可以不需要密码即可实现签名(不在此文中详诉)，SignTool是直接用pfx证书+密码来进行签名。于是分别寻找两种方式：&lt;br&gt;
     
     </summary>
+    
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="sha256" scheme="http://baba.zhaoxiuyuan.com/tags/sha256/"/>
+    
+      <category term="数字签名" scheme="http://baba.zhaoxiuyuan.com/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>win10 系统下获取系统版本号为6.2的问题</title>
+    <link href="http://baba.zhaoxiuyuan.com/2015/08/99/"/>
+    <id>http://baba.zhaoxiuyuan.com/2015/08/99/</id>
+    <published>2015-08-13T00:49:20.000Z</published>
+    <updated>2016-07-04T09:48:41.200Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;span style=&quot;font-family:Microsoft YaHei; font-size:14px&quot;&gt;&amp;nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。&lt;/span&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;    &lt;span style=&quot;font-family:Microsoft YaHei; font-size:14px&quot;&gt;&amp;nbsp; 在搜索一会儿之后，发现这是微软故意做的设定，&lt;span style=&quot;color:rgb(69,69,69)&quot;&gt;&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms724451(v=vs.85&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GetVersionEx&lt;/a&gt;.aspx)函数可能在Win8.1之后会取消，推荐程序员们使用&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/windows/desktop/dn424972(v=vs.85&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;span style=&quot;color:#00188f&quot;&gt;Version Helper APIs&lt;/span&gt;&lt;/a&gt;.aspx)&lt;/span&gt;&amp;nbsp;，所以在8.1之后的系统中此函数的行为改变了，如果程序没有加上正确的manifested以表明此程序兼容新系统，则只能得到6.2这个版本号。&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;font-family:Microsoft YaHei; font-size:14px&amp;quot;&amp;gt;&amp;amp;nbsp; 下面说说，需要如何添加一个正确的manifest，也可以去MSDN上直接看[原始文档](https://msdn.microsoft.com/en-us/library/windows/desktop/dn481241(v=vs.85).aspx)&amp;lt;/span&amp;gt;
+
+&amp;lt;span style=&amp;quot;font-family:Microsoft YaHei; font-size:14px&amp;quot;&amp;gt;&amp;amp;nbsp; &amp;amp;nbsp;首先，如果原来程序就已经设置了附加一个额外的manifest文件，则直接在原来的manifest里的assembly根节点里加一段兼容指示：&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt; &amp;lt;compatibility xmlns=&amp;quot;urn:schemas-microsoft-com:compatibility.v1&amp;quot;&amp;gt; 
+        &amp;lt;application&amp;gt; 
+            &amp;lt;!-- Windows 10 --&amp;gt; 
+            &amp;lt;supportedOS Id=&amp;quot;{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}&amp;quot;/&amp;gt;
+            &amp;lt;!-- Windows 8.1 --&amp;gt;
+            &amp;lt;supportedOS Id=&amp;quot;{1f676c76-80e1-4239-95bb-83d0f6d0da78}&amp;quot;/&amp;gt;
+            &amp;lt;!-- Windows Vista --&amp;gt;
+            &amp;lt;supportedOS Id=&amp;quot;{e2011457-1546-43c5-a5fe-008deee3d3f0}&amp;quot;/&amp;gt; 
+            &amp;lt;!-- Windows 7 --&amp;gt;
+            &amp;lt;supportedOS Id=&amp;quot;{35138b9a-5d96-4fbd-8e2d-a2440225f93a}&amp;quot;/&amp;gt;
+            &amp;lt;!-- Windows 8 --&amp;gt;
+            &amp;lt;supportedOS Id=&amp;quot;{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}&amp;quot;/&amp;gt;
+        &amp;lt;/application&amp;gt; 
+    &amp;lt;/compatibility&amp;gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-family:Microsoft YaHei; font-size:14px&quot;&gt;&amp;nbsp; 如果原来没有一个manifest文件，则可以在工程的某目录创建一个 xxx.manifest文件，里面写上以下内容，当然内容中的工程名称可以随意，并没有强制，只要确保compatibility节点的值不变就可以了：&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;br&gt;&amp;lt;assembly xmlns=&amp;quot;urn:schemas-microsoft-com:asm.v1&amp;quot; manifestVersion=&amp;quot;1.0&amp;quot;&amp;gt;&lt;br&gt;    &amp;lt;assemblyIdentity version=&amp;quot;1.5.0.0&amp;quot; processorArchitecture=&amp;quot;X86&amp;quot; name=&amp;quot;Microsoft.Windows.工程名称&amp;quot; type=&amp;quot;win32&amp;quot;/&amp;gt;&lt;br&gt;    &amp;lt;description&amp;gt;工程名称&amp;lt;/description&amp;gt;&lt;br&gt;    &amp;lt;compatibility xmlns=&amp;quot;urn:schemas-microsoft-com:compatibility.v1&amp;quot;&amp;gt;&lt;br&gt;        &amp;lt;application&amp;gt;&lt;br&gt;            &amp;lt;!– Windows 10 –&amp;gt;&lt;br&gt;            &amp;lt;supportedOS Id=&amp;quot;{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}&amp;quot;/&amp;gt;&lt;br&gt;            &amp;lt;!– Windows 8.1 –&amp;gt;&lt;br&gt;            &amp;lt;supportedOS Id=&amp;quot;{1f676c76-80e1-4239-95bb-83d0f6d0da78}&amp;quot;/&amp;gt;&lt;br&gt;            &amp;lt;!– Windows Vista –&amp;gt;&lt;br&gt;            &amp;lt;supportedOS Id=&amp;quot;{e2011457-1546-43c5-a5fe-008deee3d3f0}&amp;quot;/&amp;gt;&lt;br&gt;            &amp;lt;!– Windows 7 –&amp;gt;&lt;br&gt;            &amp;lt;supportedOS Id=&amp;quot;{35138b9a-5d96-4fbd-8e2d-a2440225f93a}&amp;quot;/&amp;gt;&lt;br&gt;            &amp;lt;!– Windows 8 –&amp;gt;&lt;br&gt;            &amp;lt;supportedOS Id=&amp;quot;{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}&amp;quot;/&amp;gt;&lt;br&gt;        &amp;lt;/application&amp;gt;&lt;br&gt;    &amp;lt;/compatibility&amp;gt;&lt;br&gt;&amp;lt;/assembly&amp;gt;&lt;br&gt;&lt;/pre&gt;&lt;br&gt;&lt;span style=&quot;font-family:Microsoft YaHei; font-size:14px&quot;&gt;&amp;nbsp; 然后在vs工程属性里找到“清单工具-&amp;gt;输入和输出-&amp;gt;附加清单文件”里填入manifest文件的相对路径，然后重新链接，你的程序就可以正常的使用GetVersionEx了。但出了新系统之后，估计还是要重新改下manifest以兼容新的系统。&lt;/span&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;span style=&quot;font-family:Microsoft YaHei; font-size:14px&quot;&gt;&amp;nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。&lt;/span&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="GetVersionEx" scheme="http://baba.zhaoxiuyuan.com/tags/GetVersionEx/"/>
+    
+      <category term="win10" scheme="http://baba.zhaoxiuyuan.com/tags/win10/"/>
+    
+      <category term="系统版本号" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>另类方法制作android通用驱动</title>
+    <link href="http://baba.zhaoxiuyuan.com/2015/07/92/"/>
+    <id>http://baba.zhaoxiuyuan.com/2015/07/92/</id>
+    <published>2015-07-08T00:37:00.000Z</published>
+    <updated>2016-07-04T09:46:28.696Z</updated>
+    
+    <content type="html">&lt;p&gt;绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。&lt;/p&gt;
+&lt;p&gt;先在前面声明大纲，改造Android驱动只需要两点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;驱动文件的&lt;strong&gt;inf文件&lt;/strong&gt;中添加该手机对应的&lt;strong&gt;硬件id/兼容id&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;对更新后的inf和所有的原来的文件重新生成&lt;strong&gt;cat文件&lt;/strong&gt;(安全目录)，并&lt;strong&gt;数字签名&lt;/strong&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;驱动常见格式&quot;&gt;&lt;a href=&quot;#驱动常见格式&quot; class=&quot;headerlink&quot; title=&quot;驱动常见格式&quot;&gt;&lt;/a&gt;&lt;strong&gt;驱动常见格式&lt;/strong&gt;&lt;/h2&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt;先看一个从android网站上下载的一个官方驱动usb_driver_r04-windows.zip，解压后内部结构为下图所示:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt; &lt;a href=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l1.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l1-300x140.png&quot; alt=&quot;&quot; title=&quot;usb_driver_r04-windows 1层目录结构&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l2.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l2-300x67.png&quot; alt=&quot;&quot; title=&quot;usb_driver_r04-windows 2层结构&quot;&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt;其中inf文件的内容大致如下：&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;; Android WinUsb driver installation.&lt;/p&gt;
+&lt;p&gt;;&lt;/p&gt;
+&lt;p&gt;[Version]&lt;/p&gt;
+&lt;p&gt;Signature           = “$Windows NT$”&lt;/p&gt;
+&lt;p&gt;Class               = AndroidUsbDeviceClass&lt;/p&gt;
+&lt;p&gt;ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}&lt;/p&gt;
+&lt;p&gt;Provider            = %ProviderName%&lt;/p&gt;
+&lt;p&gt;DriverVer           = 12/06/2010,4.0.0000.00000&lt;/p&gt;
+&lt;p&gt;CatalogFile.NTx86   = androidwinusb86.cat&lt;/p&gt;
+&lt;p&gt;CatalogFile.NTamd64 = androidwinusba64.cat&lt;/p&gt;
+&lt;p&gt;;&lt;/p&gt;
+&lt;p&gt;; This section seems to be required for WinUsb driver installation.&lt;/p&gt;
+&lt;p&gt;; If this section is removed the installer will report an error&lt;/p&gt;
+&lt;p&gt;; “Required section not found in INF file”.&lt;/p&gt;
+&lt;p&gt;;&lt;/p&gt;
+&lt;p&gt;[ClassInstall32]&lt;/p&gt;
+&lt;p&gt;Addreg = AndroidWinUsbClassReg&lt;/p&gt;
+&lt;p&gt;[AndroidWinUsbClassReg]&lt;/p&gt;
+&lt;p&gt;HKR,,,0,%ClassName%&lt;/p&gt;
+&lt;p&gt;HKR,,Icon,,-1&lt;/p&gt;
+&lt;p&gt;[Manufacturer]&lt;/p&gt;
+&lt;p&gt;%ProviderName% = Google, NTx86, NTamd64&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;[Google.NTx86]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Dream&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_0BB4&amp;amp;PID_0C01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&amp;amp;PID_0FFF&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Magic&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C03&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Moto Sholes&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Google NexusOne&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_4E11&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E12&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E22&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;[Google.NTamd64]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Dream&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_0BB4&amp;amp;PID_0C01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&amp;amp;PID_0FFF&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Magic&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C03&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Moto Sholes&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Google NexusOne&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_4E11&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E12&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E22&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;[USB_Install]&lt;/p&gt;
+&lt;p&gt;Include = winusb.inf&lt;/p&gt;
+&lt;p&gt;Needs   = WINUSB.NT&lt;/p&gt;
+&lt;p&gt;[USB_Install.Services]&lt;/p&gt;
+&lt;p&gt;Include     = winusb.inf&lt;/p&gt;
+&lt;p&gt;AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall&lt;/p&gt;
+&lt;p&gt;[WinUSB_ServiceInstall]&lt;/p&gt;
+&lt;p&gt;DisplayName     = %WinUSB_SvcDesc%&lt;/p&gt;
+&lt;p&gt;ServiceType     = 1&lt;/p&gt;
+&lt;p&gt;StartType       = 3&lt;/p&gt;
+&lt;p&gt;ErrorControl    = 1&lt;/p&gt;
+&lt;p&gt;ServiceBinary   = %12%\WinUSB.sys&lt;/p&gt;
+&lt;p&gt;[USB_Install.Wdf]&lt;/p&gt;
+&lt;p&gt;KmdfService = WINUSB, WinUSB_Install&lt;/p&gt;
+&lt;p&gt;[WinUSB_Install]&lt;/p&gt;
+&lt;p&gt;KmdfLibraryVersion  = 1.9&lt;/p&gt;
+&lt;p&gt;[USB_Install.HW]&lt;/p&gt;
+&lt;p&gt;AddReg  = Dev_AddReg&lt;/p&gt;
+&lt;p&gt;[Dev_AddReg]&lt;/p&gt;
+&lt;p&gt;HKR,,DeviceInterfaceGUIDs,0x10000,”{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}”&lt;/p&gt;
+&lt;p&gt;[USB_Install.CoInstallers]&lt;/p&gt;
+&lt;p&gt;AddReg    = CoInstallers_AddReg&lt;/p&gt;
+&lt;p&gt;CopyFiles = CoInstallers_CopyFiles&lt;/p&gt;
+&lt;p&gt;[CoInstallers_AddReg]&lt;/p&gt;
+&lt;p&gt;HKR,,CoInstallers32,0x00010000,”WdfCoInstaller01009.dll,WdfCoInstaller”,”WinUSBCoInstaller2.dll”&lt;/p&gt;
+&lt;p&gt;[CoInstallers_CopyFiles]&lt;/p&gt;
+&lt;p&gt;WinUSBCoInstaller2.dll&lt;/p&gt;
+&lt;p&gt;WdfCoInstaller01009.dll&lt;/p&gt;
+&lt;p&gt;[DestinationDirs]&lt;/p&gt;
+&lt;p&gt;CoInstallers_CopyFiles=11&lt;/p&gt;
+&lt;p&gt;[SourceDisksNames]&lt;/p&gt;
+&lt;p&gt;1 = %DISK_NAME%,,,\i386&lt;/p&gt;
+&lt;p&gt;2 = %DISK_NAME%,,,\amd64&lt;/p&gt;
+&lt;p&gt;[SourceDisksFiles.x86]&lt;/p&gt;
+&lt;p&gt;WinUSBCoInstaller2.dll  = 1&lt;/p&gt;
+&lt;p&gt;WdfCoInstaller01009.dll = 1&lt;/p&gt;
+&lt;p&gt;[SourceDisksFiles.amd64]&lt;/p&gt;
+&lt;p&gt;WinUSBCoInstaller2.dll  = 2&lt;/p&gt;
+&lt;p&gt;WdfCoInstaller01009.dll = 2&lt;/p&gt;
+&lt;p&gt;[Strings]&lt;/p&gt;
+&lt;p&gt;ProviderName                = “Google, Inc.”&lt;/p&gt;
+&lt;p&gt;SingleAdbInterface          = “Android ADB Interface”&lt;/p&gt;
+&lt;p&gt;CompositeAdbInterface       = “Android Composite ADB Interface”&lt;/p&gt;
+&lt;p&gt;SingleBootLoaderInterface   = “Android Bootloader Interface”&lt;/p&gt;
+&lt;p&gt;WinUSB_SvcDesc              = “Android USB Driver”&lt;/p&gt;
+&lt;p&gt;DISK_NAME                   = “Android WinUsb installation disk”&lt;/p&gt;
+&lt;p&gt;ClassName                   = “Android Phone”&lt;br&gt;上面这个inf中标为红色的地方就是这个驱动默认支持的所有设备的硬件id。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;修改inf文件&quot;&gt;&lt;a href=&quot;#修改inf文件&quot; class=&quot;headerlink&quot; title=&quot;修改inf文件&quot;&gt;&lt;/a&gt;&lt;strong&gt;修改inf文件&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;span style=&quot;line-height: 24px;&quot;&gt; 市面上的常见通用 驱动文件的修改大多是采用如谷歌原生驱动一样的方式，将想要支持的设备的硬件id加到inf文件，每多要支持一个系列的设备，就得修改一次inf文件并且重新发布驱动。这种方式简单粗暴，并且使用微软的inf2cat.exe能够正常生成安全目录。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;line-height: 24px;&quot;&gt; 还有一种就是小米早期版本的驱动一样，直接使用硬件设备的兼容id，它改动过的inf如下：&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&quot;line-height: 24px;&quot;&gt;[Google.NTx86]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;;Xiaomi Mione&lt;/p&gt;
+&lt;p&gt;%CompositeAdbInterface%     = &lt;span style=&quot;color: #ff0000;&quot;&gt;USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_01&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;%SingleAdbInterface% = &lt;span style=&quot;color: #ff0000;&quot;&gt;USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_03&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;[Google.NTamd64]&lt;/p&gt;
+&lt;p&gt;;Xiaomi Mione&lt;/p&gt;
+&lt;p&gt;%CompositeAdbInterface%     = USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_01&lt;/p&gt;
+&lt;p&gt;%SingleAdbInterface% = USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_03&lt;br&gt;但是在研究中发现，在win7上安装驱动时驱动如果没有正确的cat文件和对cat数字签名，驱动是安装不上或者有警告。小米的驱动同样如此，所以估计这也是后来小米的新驱动一样使用上面添加硬件id列表的方式的原因之一吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里我们使用第二种方式，将inf里多余的硬件id全部删除，然后使用小米的这种方式将android手机通用的兼容id写入进去。&lt;/p&gt;
+&lt;h2 id=&quot;生成CAT文件&quot;&gt;&lt;a href=&quot;#生成CAT文件&quot; class=&quot;headerlink&quot; title=&quot;生成CAT文件&quot;&gt;&lt;/a&gt;生成CAT文件&lt;/h2&gt;&lt;p&gt;安装windows的驱动开发包(我使用的是WinDDK 7600.16385.1)，找到里面的bin\selfsign\Inf2Cat.exe，使用命令行Inf2Cat.exe /v /driver:&lt;strong&gt;驱动目录&lt;/strong&gt; /OS:7_X64,7_X86进行编辑，如果是使用的硬件id，则会正常生成安装目录文件，但如果使用兼容id，则会报以下错误。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/无标题.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/无标题-300x130.png&quot; alt=&quot;&quot; title=&quot;inf2Cat错误提示&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这个inf2cat程序经研究是c#语言开发的，于是，祭出神器&lt;strong&gt;JetBrains dotPeek 1.1 &lt;/strong&gt;对它进行反编译，并且导出c#工程，然后改掉其中的判断错误的代码&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在bool flag = driverPackageInfo.TestSignability(out errors, out warnings);之后， 将flag强制赋值为true。&lt;br&gt;并且注释掉AssemblyInfo.cs中的//[assembly: AssemblyKeyFile(“\\DQBLD01\builds2\keys\whos.snk”)]，然后重新生成一个inf2cat程序，放在winddk的原目录。这样重新生成cat文件，虽然还是有错误提示，但是不要紧，cat文件正常的生成出来了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最后对生成出来的cat文件进行数字签名，注意要使用signtool.exe+证书文件的数字签名方法，使用signcode.exe的加密方式对于64位程序似乎系统不太认。&lt;/p&gt;
+&lt;p&gt;这样，一个通用android驱动就完成了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。&lt;/p&gt;
+&lt;p&gt;先在前面声明大纲，改造Android驱动只需要两点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;驱动文件的&lt;strong&gt;inf文件&lt;/strong&gt;中添加该手机对应的&lt;strong&gt;硬件id/兼容id&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;对更新后的inf和所有的原来的文件重新生成&lt;strong&gt;cat文件&lt;/strong&gt;(安全目录)，并&lt;strong&gt;数字签名&lt;/strong&gt;
+    
+    </summary>
+    
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android 驱动" scheme="http://baba.zhaoxiuyuan.com/tags/android-%E9%A9%B1%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>32位程序在64位系统上获取系统安装时间</title>
+    <link href="http://baba.zhaoxiuyuan.com/2015/01/85/"/>
+    <id>http://baba.zhaoxiuyuan.com/2015/01/85/</id>
+    <published>2015-01-28T23:07:08.000Z</published>
+    <updated>2016-07-04T09:12:54.615Z</updated>
+    
+    <content type="html">&lt;p&gt;众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。&lt;br&gt;但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。&lt;br&gt;所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。&lt;br&gt;但是在64位系统上有所不同（仅
+    
+    </summary>
+    
+      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>IE8崩溃在CElement::GetUpdatedLayoutWithContext</title>
+    <link href="http://baba.zhaoxiuyuan.com/2014/11/82/"/>
+    <id>http://baba.zhaoxiuyuan.com/2014/11/82/</id>
+    <published>2014-11-19T18:40:48.000Z</published>
+    <updated>2016-07-04T09:46:35.969Z</updated>
+    
+    <content type="html">&lt;p&gt;发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://images.cnitblog.com/blog/160770/201411/201042174372235.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;崩溃截图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/blog/160770/201411/201044121563221.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;测试并未找到崩溃的规律，最后经多种方式测试和查阅资料最终得出问题原因：&lt;/p&gt;
+&lt;div&gt;1、8.0.6001.19170 版本及之前的IE，在打开&lt;img src=&quot;file:///C:\Users\terry\AppData\Local\Temp\[5UQ[BL(6~BS2JV6W}N6[%S.png&quot; alt=&quot;&quot;&gt;&lt;a href=&quot;http://jzyf.ledu.com/网页后，右键菜单中点击刷新或直接刷新，基本上都会崩溃。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jzyf.ledu.com/网页后，右键菜单中点击刷新或直接刷新，基本上都会崩溃。&lt;/a&gt;&lt;br&gt;2、据说与网页中给body设置background图片有关。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;相关资料：&lt;/div&gt;&lt;br&gt;&lt;div&gt;1、&lt;a href=&quot;https://social.technet.microsoft.com/Forums/en-US/82144d88-ba2f-4042-8b69-61a8f84c2292/ie8-crashes-due-to-bug-in-mshtmldll-up-to-version-80600119170-null-pointer-access-in?forum=ieitprocurrentver&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://social.technet.microsoft.com/Forums/en-US/82144d88-ba2f-4042-8b69-61a8f84c2292/ie8-crashes-due-to-bug-in-mshtmldll-up-to-version-80600119170-null-pointer-access-in?forum=ieitprocurrentver&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;2、&lt;a href=&quot;http://answers.microsoft.com/en-us/ie/forum/ie8-windows_xp/bug-in-mshtmldll-version-80600119154-discovered/6895275e-b796-439b-a2f5-8a8b3655fa44&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://answers.microsoft.com/en-us/ie/forum/ie8-windows_xp/bug-in-mshtmldll-version-80600119154-discovered/6895275e-b796-439b-a2f5-8a8b3655fa44&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;3、&lt;a href=&quot;http://bugs.jquery.com/ticket/9823&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bugs.jquery.com/ticket/9823&lt;/a&gt;&lt;/div&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="GetUpdatedLayoutWithContext" scheme="http://baba.zhaoxiuyuan.com/tags/GetUpdatedLayoutWithContext/"/>
+    
+      <category term="IE8" scheme="http://baba.zhaoxiuyuan.com/tags/IE8/"/>
+    
+      <category term="崩溃" scheme="http://baba.zhaoxiuyuan.com/tags/%E5%B4%A9%E6%BA%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DirectDraw程序截图</title>
+    <link href="http://baba.zhaoxiuyuan.com/2014/08/72/"/>
+    <id>http://baba.zhaoxiuyuan.com/2014/08/72/</id>
+    <published>2014-08-27T00:00:18.000Z</published>
+    <updated>2016-07-04T09:46:52.591Z</updated>
+    
+    <content type="html">&lt;p&gt;普通窗口截图可以直接PrintWindow，但是directDraw程序使用这种方法是黑屏。。&lt;br&gt;但奇怪的是，将这种程序的某部门拖动到屏幕外，则整个窗口就可以截图了。&lt;/p&gt;
+&lt;p&gt;其它解决办法：&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;1、直接GetDC后BitBlt，但如果前面有其它窗口遮挡，则这部分图像使用的是其它窗口的内容。&lt;br&gt;2、hook directdraw，然后拦截绘制过程，或者获取后台buffer&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;普通窗口截图可以直接PrintWindow，但是directDraw程序使用这种方法是黑屏。。&lt;br&gt;但奇怪的是，将这种程序的某部门拖动到屏幕外，则整个窗口就可以截图了。&lt;/p&gt;
+&lt;p&gt;其它解决办法：
+    
+    </summary>
+    
+      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="directdraw 截图" scheme="http://baba.zhaoxiuyuan.com/tags/directdraw-%E6%88%AA%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用python编写svn钩子</title>
+    <link href="http://baba.zhaoxiuyuan.com/2014/04/75/"/>
+    <id>http://baba.zhaoxiuyuan.com/2014/04/75/</id>
+    <published>2014-04-09T02:56:28.000Z</published>
+    <updated>2016-07-04T09:46:39.280Z</updated>
+    
+    <content type="html">&lt;p&gt;同上一篇trac中安装插件的文章的出发点一样，感觉用文档和口头制定规则在执行上会有偏差并且需要经常引导新人去熟悉规则。&lt;/p&gt;
+&lt;p&gt;所以，又费了几个小时去琢磨怎么改进svn提交代码的钩子，现有的钩子的功能比较简单，只是验证提交时的日志字数有没有超过5个，而我想将其改进为验证是不是符合&amp;ldquo;问题修复：#1234 xxxx&amp;rdquo;的这种格式，这里处理的是 版本库/hooks/pre-commit.bat &amp;nbsp;这个钩子。&lt;/p&gt;
+&lt;p&gt;话不多说，svn钩子原理和规则不表，先上&lt;strong&gt;原钩子代码&lt;/strong&gt;：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;cnblogs_code&quot;&gt;&lt;br&gt;&lt;pre&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;@echo&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;off&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; SVN强制写注释的hooks脚本(Windows)&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;&lt;br&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 文件名是: pre-commit.bat,放到repository/hooks目录下&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;setlocal&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; SVN_BINDIR=”D:\service\Subversion\bin”&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; REPOS=&lt;span style=&quot;color: #800080;&quot;&gt;%1&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; TXN=&lt;span style=&quot;color: #800080;&quot;&gt;%2&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; check that logmessage contains at least 10 characters&lt;/span&gt;&lt;br&gt;%SVN_BINDIR%\svnlook log “%REPOS%” -t “%TXN%” | findstr “……” &amp;gt;&lt;span style=&quot;color: #000000;&quot;&gt; nul&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; err&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;exit&lt;/span&gt; 0&lt;br&gt;&lt;span style=&quot;color: #800000;&quot;&gt;:err&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;echo&lt;/span&gt; 提交时必须填写说明(Message)! 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;echo&lt;/span&gt; “%REPOS%” -t “%TXN%” 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;exit&lt;/span&gt; 1&lt;/pre&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;p&gt;一开始尝试使用直接修改bat，改进findstr来支持更复杂的正则表达式，但是遇到各种问题。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先是不太熟悉批处理的各种规则。&lt;/li&gt;
+&lt;li&gt;然后有些特殊字符在命令行上的不能使用。&lt;/li&gt;
+&lt;li&gt;再者就是使用在线工具验证过的正则表达式findstr匹配失败。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在测试过程中保留了下面这个奇葩的中间版本(不能正常工作的)。&lt;/p&gt;
+&lt;div class=&quot;cnblogs_code&quot; onclick=&quot;cnblogs_code_show(&#39;e65fe15e-f01f-41bb-aa17-aa928ce698d0&#39;)&quot;&gt;&lt;img src=&quot;http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif&quot; alt=&quot;&quot;&gt;&lt;img src=&quot;http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;div id=&quot;cnblogs_code_open_e65fe15e-f01f-41bb-aa17-aa928ce698d0&quot; class=&quot;cnblogs_code_hide&quot;&gt;&lt;br&gt;&lt;pre&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 1&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;@echo&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;off&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 2&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; SVN强制写注释的hooks脚本(Windows)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 3&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 文件名是: pre-commit.bat,放到repository/hooks目录下&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 4&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;setlocal&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 5&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; SVN_BINDIR=C:\Program &lt;span style=&quot;color: #0000ff;&quot;&gt;Files&lt;/span&gt;\TortoiseSVN\&lt;span style=&quot;color: #000000;&quot;&gt;bin&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 6&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; REPOS=&lt;span style=&quot;color: #800080;&quot;&gt;%1&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 7&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; TXN=&lt;span style=&quot;color: #800080;&quot;&gt;%2&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 8&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 9&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; check that logmessage contains at least 10 characters&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;10&lt;/span&gt; “%SVN_BINDIR%\svnlook” log “%REPOS%” -t “%TXN%” &amp;gt; t.&lt;span style=&quot;color: #000000;&quot;&gt;log&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;12&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:set&lt;/span&gt; disable=:;’^&amp;lt;^&amp;gt;,&lt;span style=&quot;color: #000000;&quot;&gt;。&amp;lsquo;&lt;em&gt;【】｛｝？?《》&lt;br&gt;&lt;/em&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;13&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; (#[0-9]+ )?[^#  允许带或不带ticket号开头，不支持非中文符号&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;15&lt;/span&gt; findstr “^问题修复：(#[0-9]+ )…” t.&lt;span style=&quot;color: #000000;&quot;&gt;log&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;16&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;@echo&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;17&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;not&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; success&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;18&lt;/span&gt; findstr “^功能开发：(#[0-9]+ )&lt;em&gt;[^#%disable%]&lt;/em&gt;$” t.log &amp;gt;&lt;span style=&quot;color: #000000;&quot;&gt; nul&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;19&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;not&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; success&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;20&lt;/span&gt; findstr “^功能改进：(#[0-9]+ )&lt;em&gt;[^#%disable%]&lt;/em&gt;$” t.log &amp;gt;&lt;span style=&quot;color: #000000;&quot;&gt; nul&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;21&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;not&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; success&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;22&lt;/span&gt; findstr “^功能优化：(#[0-9]+ )&lt;em&gt;[^#%disable%]&lt;/em&gt;$” t.log &amp;gt;&lt;span style=&quot;color: #000000;&quot;&gt; nul&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;23&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;not&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; success&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;24&lt;/span&gt; findstr “^代码优化：(#[0-9]+ )&lt;em&gt;[^#%disable%]&lt;/em&gt;$” t.log &amp;gt;&lt;span style=&quot;color: #000000;&quot;&gt; nul&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;25&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;not&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; success&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;27&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:err&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;28&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;echo&lt;/span&gt; 未遵循svn提交规范 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;29&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:echo&lt;/span&gt; “%REPOS%” -t “%TXN%” 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;30&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:rm&lt;/span&gt; t.&lt;span style=&quot;color: #000000;&quot;&gt;log&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;31&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;exit&lt;/span&gt; 1&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;33&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:success&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;34&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:rm&lt;/span&gt; t.&lt;span style=&quot;color: #000000;&quot;&gt;log&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;35&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;exit&lt;/span&gt; 1&lt;/pre&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;span class=&quot;cnblogs_code_collapse&quot;&gt;不成功的中间版本&lt;/span&gt;&lt;/div&gt;
+
+&lt;p&gt;可以看到，我无奈地将一个正则表达式一分为五，并且拆分成5个之后不会使用管道同时将参数传递(也不能吧？)给findstr，关键是我那么一大串在日志中禁用标点符号不知为何不能工作，反正断断续续(经常被人打断工作，去处理其它事)耗费了我3个小时去写测试的批处理和这个钩子批处理，还是搞不定。一念下，想起python这种神器，花了几分钟找到了正则表达式的match示例，又查阅了对于stdin输入的获取方法，然后直接写了个check.py去代替findstr来匹配正则表达式(其实这思路是上午查看trac的TracTicketValidatorPlugin插件时看代码得到的)，然后再花2分钟验证之，搞定，上代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;pre-commit.bat&lt;/p&gt;
+&lt;div class=&quot;cnblogs_code&quot;&gt;&lt;br&gt;&lt;pre&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 1&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;@echo&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;off&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 2&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; SVN强制写注释的hooks脚本(Windows)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 3&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 文件名是: pre-commit.bat,放到repository/hooks目录下&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 4&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;setlocal&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 5&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; SVN_BINDIR=”C:\Program Files\TortoiseSVN\bin”&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 6&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; REPOS=&lt;span style=&quot;color: #800080;&quot;&gt;%1&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 7&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;set&lt;/span&gt; TXN=&lt;span style=&quot;color: #800080;&quot;&gt;%2&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 8&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 9&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;rem&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; check that logmessage contains at least 10 characters&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;10&lt;/span&gt; %SVN_BINDIR%\svnlook log “%REPOS%” -t “%TXN%” | python check.py “……” 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;11&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; %&lt;span style=&quot;color: #0000ff;&quot;&gt;errorlevel&lt;/span&gt;% gtr 0 &lt;span style=&quot;color: #0000ff;&quot;&gt;goto&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; err&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;12&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;exit&lt;/span&gt; 0&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;14&lt;/span&gt; &lt;span style=&quot;color: #800000;&quot;&gt;:err&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;15&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;echo&lt;/span&gt; 未遵循svn提交规范! 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;16&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;echo&lt;/span&gt; “%REPOS%” -t “%TXN%” 1&amp;gt;&amp;amp;2&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;17&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;exit&lt;/span&gt; 1&lt;/pre&gt;&lt;br&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;check.py (2014/04/10修正，使用unicode字符串以对全角符号进行正确匹配)&lt;/p&gt;
+&lt;div class=&quot;cnblogs_code&quot;&gt;&lt;br&gt;&lt;pre&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 1&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; coding=gbk&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 2&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;import&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; re&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 3&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;import&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; sys&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 4&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 5&lt;/span&gt; input_file =&lt;span style=&quot;color: #000000;&quot;&gt; sys.stdin&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 6&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 7&lt;/span&gt; &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 如果不用unicode模式则在有全角字符的情况下匹配不成功&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 8&lt;/span&gt; restr=u&lt;span style=&quot;color: #800000;&quot;&gt;‘&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;^((问题修复)|(功能开发)|(功能改进)|(功能优化)|(代码优化))：(#[0-9]+ )?[^#:;\’&amp;lt;&amp;gt;,。&amp;lsquo;*【】｛｝？?《》\n\r]+$&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;‘&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 9&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; s &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; input_file:&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;10&lt;/span&gt;     &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;先解码为unicode字符串&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: #008080;&quot;&gt;11&lt;/span&gt;     u = s.decode(&lt;span style=&quot;color: #800000;&quot;&gt;‘&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;GBK&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;‘&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;)&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;12&lt;/span&gt;     &lt;span style=&quot;color: #0000ff;&quot;&gt;print&lt;/span&gt;(u&lt;span style=&quot;color: #800000;&quot;&gt;“&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;验证字符串:&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;“&lt;/span&gt; +&lt;span style=&quot;color: #000000;&quot;&gt; u)&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;13&lt;/span&gt;     &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; re.match(restr, u) !=&lt;span style=&quot;color: #000000;&quot;&gt; None:&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;14&lt;/span&gt;         &lt;span style=&quot;color: #0000ff;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #800000;&quot;&gt;“&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;匹配成功&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;“&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;)&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;15&lt;/span&gt; &lt;span style=&quot;color: #000000;&quot;&gt;        exit(0)&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;16&lt;/span&gt;     &lt;span style=&quot;color: #0000ff;&quot;&gt;else&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;:&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: #008080;&quot;&gt;17&lt;/span&gt;         exit(1)&lt;/pre&gt;&lt;br&gt;&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;ps：&lt;/p&gt;
+&lt;p&gt;哎，用几年批处理，依然被诸如：启动进程进获取打印信息，字符串截取，字符串拼装等一些简单操作给难倒，感觉每次写批处理都是在 拼凑-&amp;gt;试一下 的无限循环，不学点新东西就落后了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;同上一篇trac中安装插件的文章的出发点一样，感觉用文档和口头制定规则在执行上会有偏差并且需要经常引导新人去熟悉规则。&lt;/p&gt;
+&lt;p&gt;所以，又费了几个小时去琢磨怎么改进svn提交代码的钩子，现有的钩子的功能比较简单，只是验证提交时的日志字数有没有超过5个，而我想将其改进为验证是不是符合&amp;ldquo;问题修复：#1234 xxxx&amp;rdquo;的这种格式，这里处理的是 版本库/hooks/pre-commit.bat &amp;nbsp;这个钩子。&lt;/p&gt;
+&lt;p&gt;话不多说，svn钩子原理和规则不表，先上&lt;strong&gt;原钩子代码&lt;/strong&gt;：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://baba.zhaoxiuyuan.com/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://baba.zhaoxiuyuan.com/tags/python/"/>
+    
+      <category term="svn" scheme="http://baba.zhaoxiuyuan.com/tags/svn/"/>
+    
+      <category term="钩子" scheme="http://baba.zhaoxiuyuan.com/tags/%E9%92%A9%E5%AD%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给trac的ticket添加提交时字段验证</title>
+    <link href="http://baba.zhaoxiuyuan.com/2014/04/73/"/>
+    <id>http://baba.zhaoxiuyuan.com/2014/04/73/</id>
+    <published>2014-04-08T21:25:00.000Z</published>
+    <updated>2016-07-04T09:46:43.328Z</updated>
+    
+    <content type="html">&lt;p&gt;我们在项目管理中使用了trac系统，并且对于ticket添加了以下自定义字段并且对它们的格式都有一定要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;svn版本号：格式为 r1234。多个版本号之间使用半角逗号隔开。如：r1234,r5678&lt;/li&gt;
+&lt;li&gt;完成日期：yyyy-mm-dd的格式&lt;/li&gt;
+&lt;li&gt;开发周期：表示开发功能所耗费的时间，格式为数字或者一位小数后面跟上单位h或者d。&lt;/li&gt;
+&lt;li&gt;测试版本号：v开头的标准版本号，如：v2.3.1.5098&lt;br&gt;但是在实际操作中，很多开发人员不去阅读规范文档或者压根记不起来格式规范，随意填写，很是苦恼。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;今天就先试图给完成日期添加一个&lt;a href=&quot;http://trac-hacks.org/wiki/DateFieldPlugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;日期插件&lt;/a&gt;让开发人员直接使用日期对话框来选择日期，同时发现它已经自带了格式验证，然后在寻找这个插件的同时发现了一个好用的格式验证插件&lt;a href=&quot;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;如何安装此插件就不在这里描述，直奔主题看看如何实现配置trac使插件生效。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先要在trac的管理-插件里勾选tracticketvalidator 0.1里的所有组件(实际上只有一个&lt;span class=&quot;trac-name&quot;&gt;TicketsValidator&lt;/span&gt;)。&lt;a href=&quot;http://trac.kuai8.com/kuai8/admin/general/plugin#no7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;
+&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;手动打开在trac.ini，修改[ticketvalidator]段里的内容。&lt;/li&gt;
+&lt;li&gt;添加以下配置&lt;span style=&quot;font-size: 14px;&quot;&gt;，注意的是&lt;span style=&quot;font-family: &#39;Courier New&#39;; line-height: 1.5;&quot;&gt;validates项指定了要对哪些字段进行验证，这些字段名都是添加的Custom Fields的名称。每一个字段都配置一个rule和tip。rule配置项是一个正则表达式，是插件用来对修改ticket时提交的信息进行验证的(插件源码里是这样写的 re.match(rule, fieldValue) )。而tip是在验证出错之后，给用户的警告信息里显示的内容。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;div class=&quot;cnblogs_Highlighter&quot;&gt;&lt;br&gt;&lt;pre class=&quot;brush:python;gutter:true;&quot;&gt;svn.rule = ^(r[0-9]+)(,r[0-9]+)*$&lt;br&gt;svn.tip = svn号请使用r开头的版本号，并且以半角逗号分割，例:r1234,r5678&lt;br&gt;needtime.rule = ^[0-9]+(.[0-9])?[h|d]$&lt;br&gt;needtime.tip = 完成时间格式：以整数或一位小数开头，以h或d结束(分别表示小时和天).示例：3.1d 或 4h&lt;br&gt;testversion.rule = ^v[0-9]+(.[0-9]+){4}$&lt;br&gt;testversion.tip = 版本号格式: vnn.nn.nn.nn, 例v2.3.1.5098&lt;br&gt;validates = svn,needtime,testversion&lt;/pre&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然后重启http服务器，配置就生效了，我们尝试以错误的格式修改ticket：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/i/160770/201404/091313546063992.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击“提交变更”后显示错误警告，以及在页面顶部显示出配置的错误提示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/i/160770/201404/091313282002526.jpg&quot; alt=&quot;&quot;&gt;&lt;img src=&quot;http://images.cnitblog.com/i/160770/201404/091314563561860.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们在项目管理中使用了trac系统，并且对于ticket添加了以下自定义字段并且对它们的格式都有一定要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;svn版本号：格式为 r1234。多个版本号之间使用半角逗号隔开。如：r1234,r5678&lt;/li&gt;
+&lt;li&gt;完成日期：yyyy-mm-dd的格式&lt;/li&gt;
+&lt;li&gt;开发周期：表示开发功能所耗费的时间，格式为数字或者一位小数后面跟上单位h或者d。&lt;/li&gt;
+&lt;li&gt;测试版本号：v开头的标准版本号，如：v2.3.1.5098&lt;br&gt;但是在实际操作中，很多开发人员不去阅读规范文档或者压根记不起来格式规范，随意填写，很是苦恼。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;今天就先试图给完成日期添加一个&lt;a href=&quot;http://trac-hacks.org/wiki/DateFieldPlugin&quot;&gt;日期插件&lt;/a&gt;让开发人员直接使用日期对话框来选择日期，同时发现它已经自带了格式验证，然后在寻找这个插件的同时发现了一个好用的格式验证插件&lt;a href=&quot;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&quot;&gt;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;如何安装此插件就不在这里描述，直奔主题看看如何实现配置trac使插件生效。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用__declspec(dllimport)与否的区别</title>
+    <link href="http://baba.zhaoxiuyuan.com/2014/03/69/"/>
+    <id>http://baba.zhaoxiuyuan.com/2014/03/69/</id>
+    <published>2014-03-07T21:51:52.000Z</published>
+    <updated>2016-07-04T09:46:58.801Z</updated>
+    
+    <content type="html">&lt;p&gt;按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;不使用 &lt;strong&gt;declspec(dllimport) 也能正确编译代码，但使用 &lt;/strong&gt;declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。&lt;/em&gt; &amp;nbsp;&lt;/strong&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;假设dll导出了一个函数：&lt;br&gt;　　extern “C” __declspec(dllexport) void fun();&lt;/p&gt;
+&lt;p&gt;一、如果程序中声明不加__declspec(dllimport)，查看调用fun()函数的汇编代码：&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt; 004010AD&amp;nbsp;&amp;nbsp;&amp;nbsp; call&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; fun (004010d8)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;　　其中fun被定义为一个标号(label)，如下：&lt;br&gt;&lt;strong&gt;fun:&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 004010D8&amp;nbsp;&amp;nbsp;&amp;nbsp; jmp&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dword ptr [&lt;strong&gt;imp&lt;/strong&gt;fun (0040e0e8)]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp; &amp;nbsp; 上面的符号&lt;strong&gt;imp&lt;/strong&gt;fun指向的地址为fun()函数在exe中的导入节。&lt;/p&gt;
+&lt;p&gt;二、当声明加上__declspec(dllimport)后，查看调用fun()函数的汇编代码：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 004010AB&amp;nbsp;&amp;nbsp;&amp;nbsp; call&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dword ptr [&lt;strong&gt;imp&lt;/strong&gt;fun (0040e0e8)]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;从上面可以看出，加上__declspec(dllimport)，编译器链接dll将省略一条jmp语句。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;这是因为：&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;1。如果导出函数的声明没有用__declspec(dllimport) 修饰的话，编译器并不知道这个函数是由DLL导出的，所以编译器就把这个函数当作普通的外部引用来对待，产生一个外部引用的符号等着链接器解析。当链接器工作的时候，它是不能修改编译器生成的结果，所以会将该符号解析为对相应函数调入节的间接调用。&lt;/p&gt;
+&lt;p&gt;2。如果导出函数的声明用__declspec(dllimport) 修饰的话，编译器一开始就知道这个函数是DLL导出函数，直接编译成对调入节的调用。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;不使用 &lt;strong&gt;declspec(dllimport) 也能正确编译代码，但使用 &lt;/strong&gt;declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。&lt;/em&gt; &amp;nbsp;&lt;/strong&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vs的几种调试方法</title>
+    <link href="http://baba.zhaoxiuyuan.com/2013/11/67/"/>
+    <id>http://baba.zhaoxiuyuan.com/2013/11/67/</id>
+    <published>2013-11-11T19:40:58.000Z</published>
+    <updated>2016-07-04T09:47:02.800Z</updated>
+    
+    <content type="html">&lt;p&gt;作者：zhaohaiyang_1988@163.com (转载需保留)&lt;/p&gt;
+&lt;p&gt;========================================================================================&lt;/p&gt;
+&lt;h1 id=&quot;进入调试的方法&quot;&gt;&lt;a href=&quot;#进入调试的方法&quot; class=&quot;headerlink&quot; title=&quot;进入调试的方法&quot;&gt;&lt;/a&gt;进入调试的方法&lt;/h1&gt;&lt;p&gt;1. F5，项目右键菜单-&amp;gt;调试-&amp;gt;启用新实例&lt;br&gt;    点击项目右键菜单-&amp;gt;属性-&amp;gt;配置属性-&amp;gt;调试，可以设置调试的相关参数：&lt;br&gt;      1、命令：默认是$(TargetPath)，就是启动输出的可执行程序&lt;br&gt;      2、命令参数：启动被调试程序时使用的命令行参数。&lt;br&gt;      3、工作目录：启动被调试程序时使用的当前文件夹。影响GetCurrentDir,以及加载dll。&lt;br&gt;      4、附加：否-启动新进程 是-附加到已经存在的进程中&lt;br&gt;      其它参数不常用，有兴趣请百度之。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;2. 打开 工具 –&amp;gt; 附加到进程&lt;br&gt;3. 打开 任务管理器 –&amp;gt; 右键进程，选择调试&lt;br&gt;4. DebugBreak附加：使用 DebugBreak()方式。&lt;br&gt;    这种方法适用于源代码量比较大，不容易定位问题的情况下。在程序执行到DebugBreak()时，会弹出一个提示框。然后点击取消会弹出选择调试器&lt;/p&gt;
+&lt;p&gt;的对话框，而之后就可以按照常规的调试(单步、单函数等)进行调试了。这种方法一般能够快速的定位问题！&lt;br&gt;5. Windows错误后附加：内存访问、堆栈等系统错误在正确配置的机器和正确配置的程序错误模式下会弹出对话框，对话框中点取消后出弹出弹出选择&lt;/p&gt;
+&lt;p&gt;调试器的对话框。&lt;br&gt;6. 断言附加：断言后，点击重试，会弹出选择调试器的对话框，先择调试器后即可调试。&lt;br&gt;7. 自己程序内弹出MessageBox后附加：在想要附加调试的代码之前先弹出任意消息对话框，并且设置断点，然后附加。（其实类似4）。&lt;/p&gt;
+&lt;p&gt;=======================================================================================&lt;/p&gt;
+&lt;h1 id=&quot;开启远程调试。&quot;&gt;&lt;a href=&quot;#开启远程调试。&quot; class=&quot;headerlink&quot; title=&quot;开启远程调试。&quot;&gt;&lt;/a&gt;开启远程调试。&lt;/h1&gt;&lt;p&gt;打开vs2005的安装目录，可以发现有个目录为 Remote Debugger。此文件夹可以单独的copy出来进行远程调试。&lt;br&gt;或者在开始菜单中启动“\程序\Microsoft Visual Studio 2005\Visual Studio Tools\Visual Studio 2005 Remote Debugger””&lt;/p&gt;
+&lt;p&gt;无身份验证模式&lt;br&gt;1、在调试目标机器中，打开远程调试器程序(msvsmon.exe)，win7下要使用管理员权限。&lt;br&gt;2、工具-&amp;gt;选项-&amp;gt;无身份验证-&amp;gt;允许任何用户进行调试。&lt;br&gt;3、确定。如果弹出防火墙阻止调试什么的，尝试选择”取消xxxx的限制”，每个选项都试一下，直至能调试。或者关闭防火墙。&lt;/p&gt;
+&lt;p&gt;有身份验证模式&lt;br&gt;  未使用过，不解释。&lt;/p&gt;
+&lt;p&gt;也可使用 Visual Studio 2005 Remote Debugger配置向导进行配置（未使用过，不解释）。&lt;/p&gt;
+&lt;p&gt;=======================================================================================&lt;/p&gt;
+&lt;h1 id=&quot;远程调试。&quot;&gt;&lt;a href=&quot;#远程调试。&quot; class=&quot;headerlink&quot; title=&quot;远程调试。&quot;&gt;&lt;/a&gt;远程调试。&lt;/h1&gt;&lt;p&gt;1、在vs里附加远程调试器：&lt;/p&gt;
+&lt;p&gt;   #vs菜单：工具-&amp;gt;附加到进程&lt;/p&gt;
+&lt;p&gt;   #在附加对话框中选择“远程（无身份验证时只限本机）”&lt;/p&gt;
+&lt;p&gt;   #在限定符中填写开启远程调试器的机器的ip和端口。例:192.168.0.100:4015, www.kuai8.com:4015&lt;/p&gt;
+&lt;p&gt;   #回车键后应该可以看到“可用进程”，找到要调试的进程，点击“附加”或双击之，就可以附加上。&lt;/p&gt;
+&lt;p&gt;   #然后其它调试步骤同本机调试。&lt;br&gt;2、也可以使用远程调试直接启动目标机器上的程序：&lt;/p&gt;
+&lt;p&gt;   #项目右键菜单-&amp;gt;属性-&amp;gt;配置属性-&amp;gt;调试&lt;/p&gt;
+&lt;p&gt;   #更改“要启动的调试器”为“远程windows服务器”。&lt;/p&gt;
+&lt;p&gt;   #远程命令：填写远程调试目标机器上要调试启动的程序的全路径。命令参数和工作目录类似本地调试，不多说明。&lt;/p&gt;
+&lt;p&gt;   #远程服务器名称：远程调试目标机器的ip和调试器端口。例:192.168.0.100:4015, www.kuai8.com:4015&lt;/p&gt;
+&lt;p&gt;   #连接：根据远程调试器开启的调试类型，选择“带windows身份验证的远程访问”或“不带windows身份验证的远程访问(仅限本机)”。&lt;/p&gt;
+&lt;p&gt;   #然后F5，项目右键菜单-&amp;gt;调试-&amp;gt;启用新实例 进入调试。   &lt;/p&gt;
+&lt;p&gt;=======================================================================================&lt;/p&gt;
+&lt;h1 id=&quot;dump文件调试。&quot;&gt;&lt;a href=&quot;#dump文件调试。&quot; class=&quot;headerlink&quot; title=&quot;dump文件调试。&quot;&gt;&lt;/a&gt;dump文件调试。&lt;/h1&gt;&lt;p&gt;1、使用vs打开dump文件，先看看模块中，想调试代码的模块的位置（比如：生成dump时，主程序位置是C:\test\abc.exe）&lt;br&gt;2、在对应位置上放上对应版本的应用程序(如：C:\test\abc.exe）和pdb信息(也可手动加载其它地方的pdb)。&lt;br&gt;3、F5执行之，不过能看到的内容多少跟dump文件里的内容多少有关。&lt;br&gt;4、执行过程中需要参看源码的时候，如果pdb里记录的源码目录和当前机器不一样，会弹出选择框提示选择。&lt;br&gt;推荐使用“HardLinkShellExt”或junction添加目录连接点，或者win7上直接添加源码文件夹映射，将自己机器上的源码目录，映射到pdb里记录的位置，方便调试。&lt;/p&gt;
+&lt;h1 id=&quot;定位问题的方法&quot;&gt;&lt;a href=&quot;#定位问题的方法&quot; class=&quot;headerlink&quot; title=&quot;定位问题的方法&quot;&gt;&lt;/a&gt;定位问题的方法&lt;/h1&gt;&lt;p&gt;1.断点： 在使用vs2005的时候，可以在右下方堆栈输出器中选择”新增断点”。这里有两种形式的断点。&lt;br&gt;  或者是使用F9添加断点，添加普通断点后可以给断点添加些特殊条件：&lt;br&gt;  断点管理器或者代码编辑器中，使用断点右键菜单：&lt;br&gt;    1、位置：调整断点在代码中的行数&lt;br&gt;    2、条件：可设置一些表达式&lt;br&gt;       比如：i==4&lt;br&gt;             this==0x00123456&lt;br&gt;             index &amp;gt; 7&lt;br&gt;    3、命中次数：断点命中几次后才断下来调试。&lt;br&gt;    4、筛选器和命中条件：有需求时自行使用，不解释。&lt;/p&gt;
+&lt;p&gt;2、基本调试窗口：局部变量、线程、调用堆栈、自动窗口、内存。（内急，不写了，有机会再说明）&lt;br&gt;3、其它：即时窗口、监视、寄存器等。。。 &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作者：zhaohaiyang_1988@163.com (转载需保留)&lt;/p&gt;
+&lt;p&gt;========================================================================================&lt;/p&gt;
+&lt;h1 id=&quot;进入调试的方法&quot;&gt;&lt;a href=&quot;#进入调试的方法&quot; class=&quot;headerlink&quot; title=&quot;进入调试的方法&quot;&gt;&lt;/a&gt;进入调试的方法&lt;/h1&gt;&lt;p&gt;1. F5，项目右键菜单-&amp;gt;调试-&amp;gt;启用新实例&lt;br&gt;    点击项目右键菜单-&amp;gt;属性-&amp;gt;配置属性-&amp;gt;调试，可以设置调试的相关参数：&lt;br&gt;      1、命令：默认是$(TargetPath)，就是启动输出的可执行程序&lt;br&gt;      2、命令参数：启动被调试程序时使用的命令行参数。&lt;br&gt;      3、工作目录：启动被调试程序时使用的当前文件夹。影响GetCurrentDir,以及加载dll。&lt;br&gt;      4、附加：否-启动新进程 是-附加到已经存在的进程中&lt;br&gt;      其它参数不常用，有兴趣请百度之。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏</title>
+    <link href="http://baba.zhaoxiuyuan.com/2013/04/63/"/>
+    <id>http://baba.zhaoxiuyuan.com/2013/04/63/</id>
+    <published>2013-04-28T02:32:29.000Z</published>
+    <updated>2016-07-04T09:47:11.791Z</updated>
+    
+    <content type="html">&lt;p&gt;众所周之，使用下面的代码可以设置文件为稀疏文件。&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;amp;temp, 0);&lt;/p&gt;
+&lt;p&gt;使用这段代码清除稀疏文件标志(vista及以后才有效)&lt;br&gt;DWORD temp;&lt;br&gt;FILE_SET_SPARSE_BUFFER b;&lt;br&gt;b.SetSparse = FALSE;&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;amp;b, sizeof(b), 0, 0, &amp;amp;temp, 0));&lt;/p&gt;
+&lt;p&gt;但，&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;在使用libtorrent 1.6.0的代码时遇到问题，对于一个较大文件的下载时，可能有一块内存数据未写入&lt;br&gt;到物理文件中时就清除了SPARSE属性，然后下载完成的文件被损坏。以写模式访问会返回错误码5，&lt;br&gt;拷贝该文件到一定进度会失败，删除也不能删除。&lt;/p&gt;
+&lt;p&gt;解决办法是，将该文件重新设置为稀疏文件。&lt;/p&gt;
+&lt;p&gt;所以，在清除稀疏标志之前，必须判断是否还有hole(稀疏的部分)。&lt;/p&gt;
+&lt;p&gt;bool HasSparseRegion(HANDLE file)&lt;br&gt;{&lt;br&gt;    LARGE_INTEGER fileSize;&lt;br&gt;    if (!GetFileSizeEx(file, &amp;amp;fileSize))&lt;br&gt;    {&lt;br&gt;        return true;&lt;br&gt;    }&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FILE_ALLOCATED_RANGE_BUFFER in;
+in.FileOffset.QuadPart = 0;
+in.Length.QuadPart = fileSize.QuadPart;
+
+FILE_ALLOCATED_RANGE_BUFFER out[2];
+
+DWORD processedSize = 0;
+BOOL ret = DeviceIoControl(file,
+                           FSCTL_QUERY_ALLOCATED_RANGES,
+                           (void*)&amp;amp;in,
+                           sizeof(in),
+                           out,
+                           sizeof(out),
+                           &amp;amp;processedSize,
+                           NULL);
+if (ret == FALSE)
+{
+    return true;
+}
+
+// if we only have a single range in the file, we&amp;apos;re not sparse
+return processedSize != sizeof(FILE_ALLOCATED_RANGE_BUFFER);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;众所周之，使用下面的代码可以设置文件为稀疏文件。&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;amp;temp, 0);&lt;/p&gt;
+&lt;p&gt;使用这段代码清除稀疏文件标志(vista及以后才有效)&lt;br&gt;DWORD temp;&lt;br&gt;FILE_SET_SPARSE_BUFFER b;&lt;br&gt;b.SetSparse = FALSE;&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;amp;b, sizeof(b), 0, 0, &amp;amp;temp, 0));&lt;/p&gt;
+&lt;p&gt;但，
+    
+    </summary>
+    
+      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>微软数字签名和长度和位移</title>
+    <link href="http://baba.zhaoxiuyuan.com/2013/03/58/"/>
+    <id>http://baba.zhaoxiuyuan.com/2013/03/58/</id>
+    <published>2013-03-18T23:38:45.000Z</published>
+    <updated>2016-07-04T09:32:10.395Z</updated>
+    
+    <content type="html">&lt;p&gt;原来微软数字签名的内容是直接追加在文件末尾的，这导致了原来的根据PE头的Sections的最后一个段的位移和大小确定文件末尾的方法对于有签名的程序不适用。还好，有OptionHeader中的结构可以获取数字签名的长度。&lt;br&gt;ntHeaders.OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_SECURITY] &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原来微软数字签名的内容是直接追加在文件末尾的，这导致了原来的根据PE头的Sections的最后一个段的位移和大小确定文件末尾的方法对于有签名的程序不适用。还好，有OptionHeader中的结构可以获取数字签名的长度。&lt;br&gt;ntHeaders.OptionalHeader
+    
+    </summary>
+    
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++静态库中使用_declspec(dllexport) 不能导出函数的问题</title>
+    <link href="http://baba.zhaoxiuyuan.com/2013/02/59/"/>
+    <id>http://baba.zhaoxiuyuan.com/2013/02/59/</id>
+    <published>2013-02-16T01:03:49.000Z</published>
+    <updated>2016-07-04T09:47:17.223Z</updated>
+    
+    <content type="html">&lt;p&gt;在某项目中，有一些静态库，这些静态库中有类型命名的函数GET_XXX。在一次项目结构调整的时候，我想将调用这静态库的代码编译成DLL，并且将这些Get函数导出，我就直接就这些函数前面添加了_declspec(dllexport)，&lt;/p&gt;
+&lt;p&gt;然后代码结构就成为：&lt;/p&gt;
+&lt;p&gt;静态库A: 包括很多 _declspec(dllexport) GET_XXX 函数。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;动态库B：未直接调用 GET_XXX&lt;/p&gt;
+&lt;p&gt;调用B的应用程序C：动态Load动态库B，然后使用GetProcAddress获取函数地址后使用。&lt;/p&gt;
+&lt;p&gt;但是很不幸编译出来的中一直没有这些函数。&lt;/p&gt;
+&lt;p&gt;   百思不得其解，最后在网上发现下面的信息（from：&lt;a href=&quot;http://support.microsoft.com/kb/141459）：&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://support.microsoft.com/kb/141459）：&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When you build a DLL from component libraries (.lib files) that have functions declared with _declspec(dllexport) to export them from the DLL, the functions aren’t exported or even included in the DLL.&lt;/p&gt;
+&lt;p&gt;解决方案：&lt;/p&gt;
+&lt;p&gt;1、DEF文件或者是在LInk时添加/export:func.&lt;/p&gt;
+&lt;p&gt;2、在其它地方强引用。&lt;/p&gt;
+&lt;p&gt;3、把GET等函数所在源码直接放到dll代码里编译。&lt;/p&gt;
+&lt;p&gt;对于我的工程，1、2不适合，所以我使用了3.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在某项目中，有一些静态库，这些静态库中有类型命名的函数GET_XXX。在一次项目结构调整的时候，我想将调用这静态库的代码编译成DLL，并且将这些Get函数导出，我就直接就这些函数前面添加了_declspec(dllexport)，&lt;/p&gt;
+&lt;p&gt;然后代码结构就成为：&lt;/p&gt;
+&lt;p&gt;静态库A: 包括很多 _declspec(dllexport) GET_XXX 函数。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP+SVN访问速度慢的问题</title>
+    <link href="http://baba.zhaoxiuyuan.com/2013/01/55/"/>
+    <id>http://baba.zhaoxiuyuan.com/2013/01/55/</id>
+    <published>2013-01-28T19:04:35.000Z</published>
+    <updated>2016-07-04T09:47:26.319Z</updated>
+    
+    <content type="html">&lt;pre&gt;&lt;code&gt;我的机器上配置了Apache和SVN，由于项目需要经常有同事从我的机器上访问我的svn，所以就配置了HTTP版本的SVN，但访问时如果以授权方式访问速度就奇慢无比(刷个日志要1分钟)，如果以非授权方式访问速度就好很多。
+今天apache莫名奇妙地启动不起来，最后查明&amp;lt;!--more--&amp;gt;是需要在TCP/IP属性-&amp;amp;gt;wins下面导入LMHOSTS，把apache主程序导入，但这个还没有深究到底是什么意思，也还不知道为会什么会发生这种情况。但在排除这个错误时，无意中发现了以前配置的apache限速模块mod_bw.dll，于是想着是否是这个模块导致的http+svn访问速度慢。
+我前面设置的参数是：
+BandWidthModule On
+ForceBandWidthModule On
+BandWidth all 40000000
+
+反复做测试发现要么去掉选项ForceBandWidthModule On，要么把BandWidth all 40000000改成BandWidth all 0才能使用访问速度正常，即使是把BandWidth all设定一个超大的值也不能加快svn访问速度。查看模块说明中
+ForceBandWidthModule [On|Off] 这个 module 预设不会过滤每个需求。如果您开启他，他将处理过滤每个需求。
+Example :(正常的使用下，仅会过滤 text/html test/plain) AddOutputFilterByType MOD_BW text/html text/plain
+
+BandWidth [From] [bytes/s]
+From 是限制来源的位置，也就是该位置受限制。他可以是完整的 hostname、网域名称或 IP。可搭配遮罩使用，例如 192.168.0.0/24 or 192.168.0.0/255.255.255.0 。另一个参数是限制的速率，以 bytes 每秒为单位；假如为 0，则不受限制。
+也就是说，http访问svn时的请求都是非text/html和text/plain方式（只需要在有时间时捕获一下HTTP请求头就可以确定），但为什么bandwith设置较大的限速值不能解决svn访问缓慢问题？留待以后解决吧，上班还是少干点工作之外的事。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;我的机器上配置了Apache和SVN，由于项目需要经常有同事从我的机器上访问我的svn，所以就配置了HTTP版本的SVN，但访问时如果以授权方式访问速度就奇慢无比(刷个日志要1分钟)，如果以非授权方式访问速度就好很多。
+今天apache莫名奇妙地启动不起来，
+    
+    </summary>
+    
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++位域的限制</title>
+    <link href="http://baba.zhaoxiuyuan.com/2012/11/49/"/>
+    <id>http://baba.zhaoxiuyuan.com/2012/11/49/</id>
+    <published>2012-11-26T23:40:44.000Z</published>
+    <updated>2016-07-04T09:32:16.978Z</updated>
+    
+    <content type="html">&lt;p&gt;写代码时想节省空间，将成员声明成了位域。&lt;/p&gt;
+&lt;p&gt;然后在使用时发现。。对位域取地址和引用都是无效的。。。这意味着位域不能做为带引用的形参传递给参数。不能取指针。。算了，我还是取消位域吧。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;写代码时想节省空间，将成员声明成了位域。&lt;/p&gt;
+&lt;p&gt;然后在使用时发现。。对位域取地址和引用都是无效的。。。这意味着位域不能做为带引用的形参传递给参数。不能取指针。。算了，我还是取消位域吧。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>windows上UPNP/DLNA服务器软件测试</title>
+    <link href="http://baba.zhaoxiuyuan.com/2012/05/46/"/>
+    <id>http://baba.zhaoxiuyuan.com/2012/05/46/</id>
+    <published>2012-05-16T07:36:27.000Z</published>
+    <updated>2016-07-04T09:47:32.733Z</updated>
+    
+    <content type="html">&lt;p&gt;有两个移动客户端支持DLNA，于是将视频图片音乐等资源想通过服务器软件来实现共享给移动终端来观看。&lt;/p&gt;
+&lt;p&gt;使用客户端：&lt;/p&gt;
+&lt;p&gt;new ipad+AirAV,Huaiwei ascend p1 + 系统自带DLNA。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;服务器软件：Windows Media Player 12, TVMOBILI, Asset UPnP, FreeMi, XBMC, TVersity, Wild Media Server, TwonkyMediaServer&lt;/p&gt;
+&lt;p&gt;TVersity, Wild Media Server, TwonkyMediaServer收费，所以未测试。&lt;/p&gt;
+&lt;p&gt;Asset UPnP号称支持音乐UPNP服务，但实测未成功，浏览列表为空。&lt;/p&gt;
+&lt;p&gt;Windows Media Player 12, TVMOBILI ,FreeMi成功。&lt;/p&gt;
+&lt;p&gt;其中FreeMi很小，浏览时反应速度快，还能全盘支持浏览。但是界面语言是法语，并且视频格式支持不完整，很多视频不能seek或太慢。&lt;/p&gt;
+&lt;p&gt;Windows Media Player 12浏览速度较慢，但优点在于视频格式支持比较完整，seek之类操作也还不错。部分视频seek不成功。&lt;/p&gt;
+&lt;p&gt;TVMOBILI比较中庸，使用网页做为配置界面，操作性较差(但未测试使用移动终端直接设置，如果能够支持这功能，那操作方便程度就大大增加)。视频体验和freeMi差不多。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有两个移动客户端支持DLNA，于是将视频图片音乐等资源想通过服务器软件来实现共享给移动终端来观看。&lt;/p&gt;
+&lt;p&gt;使用客户端：&lt;/p&gt;
+&lt;p&gt;new ipad+AirAV,Huaiwei ascend p1 + 系统自带DLNA。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="软件" scheme="http://baba.zhaoxiuyuan.com/categories/%E8%BD%AF%E4%BB%B6/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>QQ2012多客户端在线状态以及消息接收之简单研究</title>
+    <link href="http://baba.zhaoxiuyuan.com/2012/04/43/"/>
+    <id>http://baba.zhaoxiuyuan.com/2012/04/43/</id>
+    <published>2012-04-27T06:21:25.000Z</published>
+    <updated>2016-07-04T09:47:46.959Z</updated>
+    
+    <content type="html">&lt;div&gt;上次说的，有时间时稍微研究一下QQ的多客户端共存的一些规则&lt;strong&gt; ，今天就抽空做了一点点实验。&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;实验环境：&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;Lenovo Y450 ,window 7系统 ，QQ2012 Beta1 (4145)&lt;/div&gt;&lt;br&gt;&lt;div&gt;Apple new ipad 一只，ios5.1系统，安装有QQ HD V2.8(ipad), iphone QQ 2012 V2.0.0.1808。&lt;/div&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;div&gt;Huawei Ascend P1一只，android 4.0系统，安装QQ 2012 for android 1.0.0.0130.&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt; &lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;在线状态&lt;/strong&gt;：&lt;/div&gt;&lt;br&gt;&lt;div&gt;只要PC上运行了QQ，在好友的qq中显示的就是PC QQ的状态。如果没有登录PC QQ，就以最后一个登录的移动平台QQ的状态为主(iphone在线，手机在线，或者隐身）。&lt;/div&gt;&lt;br&gt;&lt;div&gt;在QQ2012中可以查看多客户端qq登录状态，其中同一台电脑只能是ipad qq在线或者是iphone qq在线。&lt;/div&gt;&lt;br&gt;&lt;div&gt;如果ipad QQ没有开启后台在线，那么ipad qq一旦切换到后台，ipad qq在线状态立刻消失。过一段时间后iphone qq在线状态出现。在开启后台在线的情况下，ipad qq切换到后台时，qq在线状态管理中依然显示QQ在线。&lt;/div&gt;&lt;br&gt;&lt;div&gt;android QQ在退出后，QQ的多客户端登录状态里android QQ在线立即消失。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;消息接收&lt;/strong&gt;:&lt;/div&gt;&lt;br&gt;&lt;div&gt;PC电脑上只要开了QQ肯定能够接收到QQ消息。&lt;br&gt;多个移动平台时，只有最后做了登录帐户动作(ipad qq似乎只要激活/切换隐身状态，就做了登录动作)的QQ能够在qq软件中收到消息(不含推送),此时其它保持QQ界面的QQ只能发送消息而不能接收消息了。&lt;/div&gt;&lt;br&gt;&lt;div&gt;ipad qq / iphone qq还在线(或者后台在线)时，不在线的andorid QQ无法接收到推送消息。&lt;br&gt;android qq在线 +　ipad qq后台在线(未切换到前台)时，android qq接收到消息，ipad qq也可以接收到推送消息。&lt;br&gt;在线的android qq能和ipad qq的推送同时接收到消息。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;在ipad上同时使用ipadqq和iphone qq&lt;/strong&gt;时：&lt;br&gt;在iphone QQ和ipad qq之间切换，消息只会发给ipad qq(1、iphone qq在线 + ipad qq在后台状态,此时QQ消息进行ipad qq推送；2、iphone QQ后台+ipad qq前台，此时ipad qq直接接收到消息)，但iphone qq能够向外发送消息，但接收不到消息。如果想要抵消掉ipad qq的在线状态，iphone qq必须重新登录。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;android QQ&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;想要android QQ能够接收到消息，就需要android QQ是最后一个做登录动作(此时，ipad QQ的推送服务有效，但切换成ipad qq会阻塞 android qq的消息，登录iphone qq以及切换到ipad qq均会阻塞android qq的消息)。&lt;br&gt;当在ipad上使用任意qq时，不在线的android甭想接收到推送消息。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;总结&lt;/strong&gt;：&lt;/div&gt;&lt;br&gt;&lt;div&gt;PC端的QQ是老大，拥有最全面的消息权限。&lt;/div&gt;&lt;br&gt;&lt;div&gt;移动平台的QQ对于接收消息会相互干扰，并且可能根据腾迅的版本升级而导致表现不一致，所以拥有多个移动设备的情况下，最好只保持一个设备上登录qq，否则有可能会觉得收不到消息会奇怪。&lt;/div&gt;&lt;br&gt;&lt;div&gt;Android QQ最不受待见。。。抢消息，以及消息推送等都没有ipad qq和iphone qq给力。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;申明：&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;以上乃业余兴趣之研究，仅供参考，如有纰漏，请指正.&lt;/div&gt;&lt;br&gt;&lt;div&gt;由于时间和精力原因，对于ipad qq和iphone qq在关闭后台在线，关闭推送等情况下与android qq之间的相互影响没有测试。&lt;/div&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;div&gt;上次说的，有时间时稍微研究一下QQ的多客户端共存的一些规则&lt;strong&gt; ，今天就抽空做了一点点实验。&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;实验环境：&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;Lenovo Y450 ,window 7系统 ，QQ2012 Beta1 (4145)&lt;/div&gt;&lt;br&gt;&lt;div&gt;Apple new ipad 一只，ios5.1系统，安装有QQ HD V2.8(ipad), iphone QQ 2012 V2.0.0.1808。&lt;/div&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="软件" scheme="http://baba.zhaoxiuyuan.com/categories/%E8%BD%AF%E4%BB%B6/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>NAT穿之TCP</title>
+    <link href="http://baba.zhaoxiuyuan.com/2011/12/40/"/>
+    <id>http://baba.zhaoxiuyuan.com/2011/12/40/</id>
+    <published>2011-12-26T19:08:31.000Z</published>
+    <updated>2016-07-04T09:47:51.032Z</updated>
+    
+    <content type="html">&lt;p&gt;STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。&lt;br&gt;这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;STUN#2 ： 只有一端发送SYN握手请求（低TTL）并且取消连接，此请求通过已方NAT后即被丢弃。并在相同的地址和端口创建一个被动的TCP套接字。然后，另一个终端初始化一个正常的TCP连接。&lt;br&gt;与STUN#1一样，终端需要挑选一个恰当的TTL，而且NAT也不能把ICMP错误当作致命错误。它也需要NAT在一个向外发的SYN后，接收一个向内发的SYN，但包的序号也不是普通的那种。&lt;/p&gt;
+&lt;p&gt;NATBlaster ： 与第一种STUN方法类似但取消了IP欺骗需要的方法。每个终端发出一个低TTL的SYN，并记住协议栈所使用的TCP序号。与前面的类似，SYN包在网络中被丢弃。两台主机之间交换各自的序号，并且每台主机手工产生一个对方期望收到的SYNACK包。手工产生的包通过RAW socket注入网络。然而，这并不等同于欺骗，因为该包中的源地址与注入该包的终端地址匹配。一旦收到SYNACK，ACK就被交换了，从而完成了连接建立。与第一种STUNT方法一样，该方法也需要终端准确地选择TTL值，也需要NAT忽略ICMP错误和NAT改变SYN包序号的失败。而且，（该方法）也需要NAT允许一个外发的SYN之后紧跟一个外发的SYNACK——非正常的另一个序号的包。&lt;/p&gt;
+&lt;p&gt;P2PNAT ：利用了TCP规范[13]中定义的同时打开方案，两个终端都通过发送SYN包来创建一个连接。如果SYN包在网络中交叉（穿过），这两个终端协议栈都用SYNACK包应答从而建立连接。如果在对方的SYN包离开它的NAT之前，一个终端的SYN包到达该终端的NAT而被丢弃，那么，第一个终端的协议栈会在TCP同时打开之后而结束（关闭），而另一个终端则会按照正常流程打开。接下来的情况，链路中的包看起来像第二种STUNT方法，没有底TTL，也没有相关的ICMP。然而，该方法并没有用端口预测，如果使用的话，该方法可以从中获益。与第二种STUNT方法一样，该方法需要NAT允许在一个外发的SYN之后紧跟一个内发的SYN，而且，该方法需要终端在一个循环中不停的尝试重连，直到超时。如果不是SYN包被丢弃，而是NAT返回一个TCP RST，那这种方法将陷入包泛滥的境地，直到超时。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。&lt;br&gt;这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="net" scheme="http://baba.zhaoxiuyuan.com/categories/net/"/>
+    
+      <category term="P2P" scheme="http://baba.zhaoxiuyuan.com/categories/net/P2P/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title> Google Chrome Frame一个神奇的东东</title>
+    <link href="http://baba.zhaoxiuyuan.com/2011/12/37/"/>
+    <id>http://baba.zhaoxiuyuan.com/2011/12/37/</id>
+    <published>2011-12-05T22:33:20.000Z</published>
+    <updated>2016-07-04T09:32:52.091Z</updated>
+    
+    <content type="html">&lt;p&gt; Google Chrome Frame是一个神奇的东东&lt;/p&gt;
+&lt;p&gt;只需要在网站中写上,&amp;lt;meta http-equiv=”X-UA-Compatible” content=”chrome=1”&amp;gt;,然后安装了 Google Chrome Frame插件的用户就可以使用IE外壳,使用Chome内核来浏览网页.&lt;/p&gt;
+&lt;p&gt;如果用户希望ie默认启动Chrome Frame浏览网页,可以按照&lt;a href=&quot;http://baike.baidu.com/view/2831140.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;百度百科&lt;/a&gt;上面的说明来做.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; Google Chrome Frame是一个神奇的东东&lt;/p&gt;
+&lt;p&gt;只需要在网站中写上,&amp;lt;meta http-equiv=”X-UA-Compatible” content=”chrome=1”&amp;gt;,然后安装了 Google Chrome Frame插件的用户
+    
+    </summary>
+    
+      <category term="WEB" scheme="http://baba.zhaoxiuyuan.com/categories/WEB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MAME0.144编译</title>
+    <link href="http://baba.zhaoxiuyuan.com/2011/12/34/"/>
+    <id>http://baba.zhaoxiuyuan.com/2011/12/34/</id>
+    <published>2011-12-05T01:24:35.000Z</published>
+    <updated>2016-07-04T09:47:56.576Z</updated>
+    
+    <content type="html">&lt;p&gt;按照&lt;a href=&quot;http://mameworld.info/mrdo/compile.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mameworld.info/mrdo/compile.html&lt;/a&gt;的指导方法进行GCC版本的MAME编译没有任何问题,顺利编译通过.&lt;/p&gt;
+&lt;p&gt;但是使用&lt;a href=&quot;http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers&lt;/a&gt;上的方法进行VC++2005版本的编译时出现了一些问题,比如,提示:objvwindowsdbuildvconv.exe找不到, 还有 MTD,EHsc等是是无效的命令等.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;最后发现将我机器上装的另一版本的Mingw和mysys从系统环境变量path中除去,使用MAME指定的版本进行编译,再在src/osd/windows/windows.mak中将CC = @$(VCONV) gcc -I修改成CC = @$(VCONV) gcc,将”CCOMFLAGS += -include $(WINSRC)/winprefix.h”修改成”CCOMFLAGS += -include winprefix.h”,然后编译通过.&lt;/p&gt;
+&lt;p&gt;如果是生成tiny版本,第一次编译到devlist.c时会失败,因为msvc不支持定义空数组初使化,所以需要修改devlist.c后再进行编译,将const device_type &lt;em&gt;s_devices_sorted[]={};更改成const device_type &lt;/em&gt;s_devices_sorted[]={NULL};即可&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;按照&lt;a href=&quot;http://mameworld.info/mrdo/compile.html&quot;&gt;http://mameworld.info/mrdo/compile.html&lt;/a&gt;的指导方法进行GCC版本的MAME编译没有任何问题,顺利编译通过.&lt;/p&gt;
+&lt;p&gt;但是使用&lt;a href=&quot;http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers&quot;&gt;http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers&lt;/a&gt;上的方法进行VC++2005版本的编译时出现了一些问题,比如,提示:objvwindowsdbuildvconv.exe找不到, 还有 MTD,EHsc等是是无效的命令等.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="开源项目" scheme="http://baba.zhaoxiuyuan.com/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     
   </entry>

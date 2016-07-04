@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>k1988</title>
+  <title>windows上UPNP/DLNA服务器软件测试 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="windows上UPNP/DLNA服务器软件测试"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,8 +200,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -219,77 +218,54 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-02-03T00:28:11.000Z"><a href="/2016/02/101/">2016-02-03</a></time>
+        <time datetime="2012-05-16T07:36:27.000Z"><a href="/2012/05/46/">2012-05-16</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/02/101/">使用SHA1、SHA2双证书进行微软签名</a></h1>
+    <h1 class="title">windows上UPNP/DLNA服务器软件测试</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>微软是第一个宣布了SHA-1弃用计划，在2016年之后Windows和IE将不再信任SHA-1证书。正好我们公司的数字签名也到期了，索性就重新申请了sha256和sha1的新数字证书，用来给产品签名。</p>
-<p>这时就要把用了多年的自动签名脚本改为支持sha256和sha1双证书的格式。公司原使用signcode.exe和SignTool.exe两种方式进行签名，其中signcode配合另外找的signcode-pwd.exe工具和pvk+spc文件可以不需要密码即可实现签名(不在此文中详诉)，SignTool是直接用pfx证书+密码来进行签名。于是分别寻找两种方式：<br>
+        <p>有两个移动客户端支持DLNA，于是将视频图片音乐等资源想通过服务器软件来实现共享给移动终端来观看。</p>
+<p>使用客户端：</p>
+<p>new ipad+AirAV,Huaiwei ascend p1 + 系统自带DLNA。<br><a id="more"></a><br>服务器软件：Windows Media Player 12, TVMOBILI, Asset UPnP, FreeMi, XBMC, TVersity, Wild Media Server, TwonkyMediaServer</p>
+<p>TVersity, Wild Media Server, TwonkyMediaServer收费，所以未测试。</p>
+<p>Asset UPnP号称支持音乐UPNP服务，但实测未成功，浏览列表为空。</p>
+<p>Windows Media Player 12, TVMOBILI ,FreeMi成功。</p>
+<p>其中FreeMi很小，浏览时反应速度快，还能全盘支持浏览。但是界面语言是法语，并且视频格式支持不完整，很多视频不能seek或太慢。</p>
+<p>Windows Media Player 12浏览速度较慢，但优点在于视频格式支持比较完整，seek之类操作也还不错。部分视频seek不成功。</p>
+<p>TVMOBILI比较中庸，使用网页做为配置界面，操作性较差(但未测试使用移动终端直接设置，如果能够支持这功能，那操作方便程度就大大增加)。视频体验和freeMi差不多。</p>
+<p>&nbsp;</p>
+
       
     </div>
     <footer>
       
         
-          <div class="alignleft">
-            <a href="/2016/02/101/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
+  <div class="categories">
+    <a href="/categories/软件/">软件</a>
   </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
+
+        
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
 </div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-08-13T00:49:20.000Z"><a href="/2015/08/99/">2015-08-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/08/99/">win10 系统下获取系统版本号为6.2的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。</span><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/08/99/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
       <div class="clearfix"></div>
     </footer>
   </div>
@@ -297,209 +273,39 @@
 
 
 
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
+ <nav id="pagination" >
     
-      <img src="">
+    <a href="/2012/11/49/" class="alignleft prev" >上一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-07-08T00:37:00.000Z"><a href="/2015/07/92/">2015-07-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/07/92/">另类方法制作android通用驱动</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。</p>
-<p>先在前面声明大纲，改造Android驱动只需要两点：</p>
-<ol>
-<li>驱动文件的<strong>inf文件</strong>中添加该手机对应的<strong>硬件id/兼容id</strong>。</li>
-<li>对更新后的inf和所有的原来的文件重新生成<strong>cat文件</strong>(安全目录)，并<strong>数字签名</strong>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/07/92/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
     
-      <img src="">
+    <a href="/2012/04/43/" class="alignright next" >下一页</a>
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2012/05/46/" data-title="windows上UPNP/DLNA服务器软件测试" data-url="/2012/05/46/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-28T23:07:08.000Z"><a href="/2015/01/85/">2015-01-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/85/">32位程序在64位系统上获取系统安装时间</a></h1>
-  
+</section>
 
-    </header>
-    <div class="entry">
-      
-        <p>众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。<br>但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。<br>所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-19T18:40:48.000Z"><a href="/2014/11/82/">2014-11-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/82/">IE8崩溃在CElement::GetUpdatedLayoutWithContext</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/11/82/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-08-27T00:00:18.000Z"><a href="/2014/08/72/">2014-08-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/08/72/">DirectDraw程序截图</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>普通窗口截图可以直接PrintWindow，但是directDraw程序使用这种方法是黑屏。。<br>但奇怪的是，将这种程序的某部门拖动到屏幕外，则整个窗口就可以截图了。</p>
-<p>其它解决办法：
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/08/72/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-    <a href="/page/2/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
