@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-07-06T09:57:35.506Z</updated>
+  <updated>2016-07-19T07:45:49.214Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://baba.zhaoxiuyuan.com/2016/07/libtorrent%E6%89%93%E6%B4%9E%E5%88%86%E6%9E%90/"/>
+    <id>http://baba.zhaoxiuyuan.com/2016/07/libtorrent打洞分析/</id>
+    <published>2016-07-19T07:46:10.220Z</published>
+    <updated>2016-07-19T07:45:49.214Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;���ر���&quot;&gt;&lt;a href=&quot;#���ر���&quot; class=&quot;headerlink&quot; title=&quot;���ر���&quot;&gt;&lt;/a&gt;���ر���&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;torrent_peer::supports_holepunch&lt;/code&gt;��torrent_peer����ÿ��peer���������ϣ�����&lt;code&gt;supports_holepunch&lt;/code&gt;�����Ƿ�֧�ִ򶴣�Ĭ��ֵ��&lt;code&gt;false&lt;/code&gt;��&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bt_peer_connection::m_holepunch_id&lt;/code&gt;: �Է�peer�����ģ�����֧�ֵĴ�����Ϣ����Ϣid��&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;������Դ&quot;&gt;&lt;a href=&quot;#������Դ&quot; class=&quot;headerlink&quot; title=&quot;������Դ&quot;&gt;&lt;/a&gt;������Դ&lt;/h1&gt;&lt;p&gt;����peer�����̣�&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;torrent::add_peer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::add_i2p_peer`��`peer_list::add_peer` &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::insert_peer`��`peer_list::update_peer`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;����flags��������`flag_holepunch`ʱ��������`torrent_peer::supports_holepunch`Ϊtrue���������е���add_peer�ĵط���Լ��������Դ��&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* ��resume�ļ�������peer(�ϴο������񱣴���)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* dht��ʽ�ӻ������еõ�����&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* tracker�ӻ��������õ�����&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* lsd��ʽ�ӱ��������õ�����&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* pex��ʽ�ӻ��������õ�����&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;����ֻ�д�pex��ʽ�õ����������ӵĵ�������ʹ��flags������&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# �ж��Ƿ�֧�ִ�����Ϣ&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;�ں���һ��peer��������ʱ��ʹ��bt_peer_connection�࣬qԭ����Ա����bt_peer_connection::m_supports_extensionsĬ��ֵΪfalse����ʾ��֧��bt��չЭ�顣&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;��bt_peer_connection������ʱ���ᷢ���Ƿ�֧����չЭ���ı�־���Լ�֧����Щ��չ��&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;��ȷ������Ҳ֧����չʱ��������չ��handshake���������з��ͳ�ȥ��becode�ṹ�У��м����¸����α���upload_only��ut_holepunch��lt_donthave�����ǾͶ�Ӧ�ű�peer������3��֪ͨʱʹ�õ���Ϣid���͡�&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;���������õ��˶Է����õ�ut_holepunchʱ����ֵ����Ա����m_holepunch_id,��ʱ�����ӵĺ���supports_holepunch�ͷ�����trueֵ����ʾ֧�ִ򶴡�&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;bool bt_peer_connection::supports_holepunch() const { return m_holepunch_id != 0; }&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;��bt_peer_connection��supports_holepunch()����trueֻ��˵����peer֧�ִ򶴣���������Ҫ�����������������ģ����εõ��м��������أ����½ڡ�&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# �м�������&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;�����ᵽ��������Դ��pex��ʽ��&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;��session������ut_pex����ʱ(`session_handle::add_extension(&amp;amp;libtorrent::create_ut_pex_plugin)`)����ut_pex_peer_plugin::tick()�л�ʹ��send_ut_peer_list��send_ut_peer_diff������������peer�����Լ�ӵ�е����ӡ�����`bt_peer_connection* p = static_cast&amp;lt;bt_peer_connection*&amp;gt;(peer); ... flags |= p-&amp;gt;supports_holepunch() ? 8 : 0;`��peer��Ϣ���͸�����һ��peerʱ����������֧�ִ򶴵�flags��Ȼ�����շ��õ�peer������torrent������peerʱ��`torrent_peer::supports_holepunch`��ֵ�ͻ���true�ˡ�&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;�����Լ���peer A����peer B���ֺ�֪��B��֧�ִ�����Ϣ�ģ��ں�peer C����ʱ��ʹ��pex��չЭ����peer C����peerʱ������peer B��ip���˿ڡ���־����peer C��peer C�õ�B���������˴򶴵���������ΪA��B������ͨ�ţ�A��CҲ������ͨ�ţ�B��C�Ϳ���ʹ���м���A�����д򶴡�&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# ʲôʱ�����Դ���&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;������ĳ��peerʧ��ʱ��������������ʱ�����Խ�������ģʽ����`void peer_connection::connect_failed(error_code const&amp;amp; e)`�У�&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;if ((!is_utp(&lt;em&gt;m_socket)&lt;br&gt;        || !m_settings.get_bool(settings_pack::enable_outgoing_tcp))&lt;br&gt;    &amp;amp;&amp;amp; m_peer_info&lt;br&gt;    &amp;amp;&amp;amp; m_peer_info-&amp;gt;supports_holepunch&lt;br&gt;    &amp;amp;&amp;amp; !m_holepunch_mode)&lt;br&gt;{&lt;br&gt;    // see if we can try a holepunch&lt;br&gt;    bt_peer_connection&lt;/em&gt; p = t-&amp;gt;find_introducer(remote());&lt;br&gt;    if (p)&lt;br&gt;        p-&amp;gt;write_holepunch_msg(bt_peer_connection::hp_rendezvous, remote(), 0);&lt;br&gt;}&lt;br&gt;```&lt;br&gt;�������δ�����peer C�Ļ��������У�Ҳ����C��A�õ�B����Ϣ����ֱ������Bʧ���ˣ����ж����ڲ���utp���߽�ֹtcp���ӡ�����֧�ִ�����Ϣ����ǰ���Ǵ���ģʽ�����ҵ����м�������(�������ᵽ��A)������A������Ϣ�����������̡�&lt;/p&gt;
+&lt;p&gt;������&lt;code&gt;bt_peer_connection::hp_rendezvous&lt;/code&gt;��������������˼��rendezvous��Լ���ص�����˼����Ȼ������ֻ��һ����Ϣ���ͣ�remote()��B��ip��ַ��Ϣ��&lt;/p&gt;
+&lt;p&gt;A���յ�C���͵������򶴣�����Լ�ᣩ��Ϣ�������Լ���peer���ҵ���B�����ӣ�������B���͸�������Ϣ&lt;code&gt;p-&amp;gt;write_holepunch_msg(hp_connect, remote(), 0);&lt;/code&gt;��ͬʱ��CҲ�ظ�һ��������Ϣ&lt;code&gt;write_holepunch_msg(hp_connect, ep, 0);&lt;/code&gt;�������ͽ��Լ���B��C������ʱʹ�õ�ip��ַ�Ͷ˿�֪ͨ��C��B��&lt;/p&gt;
+&lt;p&gt;B��C���յ�����Ϊhp_connect����Ϣ�󣬽�torrent_peer::supports_utp��Ϊtrue����bt_peer_connection��m_holepunch_mode����Ϊtrue��Ȼ��ͬʱ��ʼ�������ӶԷ�����ʱ����������һ���������̣���������NAT�����ԣ���һ���ɹ��������ο�NAT�ʹ���ԭ����&lt;/p&gt;
+&lt;p&gt;#�ܽ�&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A��trcker�õ�peer B��peer C����B��C��������ʱ��֪����B��C֧�ִ�����Ϣ��&lt;/li&gt;
+&lt;li&gt;A��C����pex���ӽ�������B���ݸ�C����ʱB��pex���ݵ�flags֪��C�ܹ�ͨ��A�򶴡�&lt;/li&gt;
+&lt;li&gt;B��������C����(����Ҫ����)���������ӡ�&lt;/li&gt;
+&lt;li&gt;B��������Cʧ�ܣ��ͳ���ͨ��A�򶴡�������A�����˴���������&lt;/li&gt;
+&lt;li&gt;A���յ�BҪ��C���ӵĴ������󣬾͸�B��C�����˻������ӵĴ�����Ϣ��&lt;/li&gt;
+&lt;li&gt;B��C�������������໥������Ϣ�����ܻ���ͨNAT��&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;���ر���&quot;&gt;&lt;a href=&quot;#���ر���&quot; class=&quot;headerlink&quot; title=&quot;���ر���&quot;&gt;&lt;/a&gt;���ر���&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;torrent_peer::supports_holepunch&lt;/code
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>java重新入坑</title>
@@ -806,30 +845,6 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
       <category term="net" scheme="http://baba.zhaoxiuyuan.com/categories/net/"/>
     
       <category term="P2P" scheme="http://baba.zhaoxiuyuan.com/categories/net/P2P/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title> Google Chrome Frame一个神奇的东东</title>
-    <link href="http://baba.zhaoxiuyuan.com/2011/12/37/"/>
-    <id>http://baba.zhaoxiuyuan.com/2011/12/37/</id>
-    <published>2011-12-05T22:33:20.000Z</published>
-    <updated>2016-07-04T09:32:52.091Z</updated>
-    
-    <content type="html">&lt;p&gt; Google Chrome Frame是一个神奇的东东&lt;/p&gt;
-&lt;p&gt;只需要在网站中写上,&amp;lt;meta http-equiv=”X-UA-Compatible” content=”chrome=1”&amp;gt;,然后安装了 Google Chrome Frame插件的用户就可以使用IE外壳,使用Chome内核来浏览网页.&lt;/p&gt;
-&lt;p&gt;如果用户希望ie默认启动Chrome Frame浏览网页,可以按照&lt;a href=&quot;http://baike.baidu.com/view/2831140.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;百度百科&lt;/a&gt;上面的说明来做.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; Google Chrome Frame是一个神奇的东东&lt;/p&gt;
-&lt;p&gt;只需要在网站中写上,&amp;lt;meta http-equiv=”X-UA-Compatible” content=”chrome=1”&amp;gt;,然后安装了 Google Chrome Frame插件的用户
-    
-    </summary>
-    
-      <category term="WEB" scheme="http://baba.zhaoxiuyuan.com/categories/WEB/"/>
     
     
   </entry>
