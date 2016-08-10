@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-07-19T07:54:29.294Z</updated>
+  <updated>2016-08-10T10:32:35.535Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -16,25 +16,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>通过修改fontconfig.properties文件来改变IDE字体</title>
+    <link href="http://baba.zhaoxiuyuan.com/2016/08/fontconfig.properties/"/>
+    <id>http://baba.zhaoxiuyuan.com/2016/08/fontconfig.properties/</id>
+    <published>2016-08-10T10:29:28.000Z</published>
+    <updated>2016-08-10T10:32:35.535Z</updated>
+    
+    <content type="html">&lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。&lt;/p&gt;
+&lt;p&gt;经过一翻努力研究，发现只有在我的机器上对于中文+某些字体的组合不能设置成16以上字号，在别的机器上是正常的。&lt;/p&gt;
+&lt;p&gt;顺便发现了可以使用fontconfig.properties这个文件来改变基于java的程序的字体映射。&lt;/p&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://my.oschina.net/Tyrfing/blog/681278&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://my.oschina.net/Tyrfing/blog/681278&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/jinuxwu/article/details/5933316&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/jinuxwu/article/details/5933316&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/quantumpo/article/details/10274079&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/quantumpo/article/details/10274079&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://jingyan.baidu.com/article/48a42057c293d9a924250481.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jingyan.baidu.com/article/48a42057c293d9a924250481.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。&lt;/p&gt;
+&lt;p&gt;经过一翻努力研究，发现只有在我的机器上对于中文
+    
+    </summary>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="ide" scheme="http://baba.zhaoxiuyuan.com/tags/ide/"/>
+    
+  </entry>
+  
+  <entry>
     <title>libtorrent打洞分析</title>
     <link href="http://baba.zhaoxiuyuan.com/2016/07/libtorrent%E6%89%93%E6%B4%9E%E5%88%86%E6%9E%90/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/07/libtorrent打洞分析/</id>
     <published>2016-07-17T07:49:48.000Z</published>
-    <updated>2016-07-19T07:54:29.294Z</updated>
+    <updated>2016-07-19T07:57:34.205Z</updated>
     
     <content type="html">&lt;h1 id=&quot;相关变量&quot;&gt;&lt;a href=&quot;#相关变量&quot; class=&quot;headerlink&quot; title=&quot;相关变量&quot;&gt;&lt;/a&gt;相关变量&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;torrent_peer::supports_holepunch&lt;/code&gt;：torrent_peer类是每个peer的特征集合，其中&lt;code&gt;supports_holepunch&lt;/code&gt;代表是否支持打洞，默认值是&lt;code&gt;false&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;bt_peer_connection::m_holepunch_id&lt;/code&gt;: 对方peer申明的，它所支持的打洞消息的消息id。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;种子来源&quot;&gt;&lt;a href=&quot;#种子来源&quot; class=&quot;headerlink&quot; title=&quot;种子来源&quot;&gt;&lt;/a&gt;种子来源&lt;/h1&gt;&lt;p&gt;添加peer的流程：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;torrent::add_peer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::add_i2p_peer`或`peer_list::add_peer` &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::insert_peer`或`peer_list::update_peer`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。查找所有调用add_peer的地方，约有以下来源：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 从resume文件里获得peer(上次开启任务保存的)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* dht方式从互联网中得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* tracker从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* lsd方式从本地网络得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* pex方式从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其中只有从pex方式得到互联网种子的调用语句使用flags参数，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 判断是否支持打洞消息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;torrent::add_peer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::add_i2p_peer`或`peer_list::add_peer` &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::insert_peer`或`peer_list::update_peer`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。&amp;lt;!--more--&amp;gt;查找所有调用add_peer的地方，约有以下来源：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 从resume文件里获得peer(上次开启任务保存的)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* dht方式从互联网中得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* tracker从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* lsd方式从本地网络得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* pex方式从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其中只有从pex方式得到互联网种子的调用语句使用flags参数，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 判断是否支持打洞消息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;bool bt_peer_connection::supports_holepunch() const { return m_holepunch_id != 0; }&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;但bt_peer_connection的supports_holepunch()返回true只能说明此peer支持打洞，打洞是需要第三方服务器介入的，如何得到中间介绍人呢，见下节。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 中间介绍人&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;上文提到，种子来源有pex方式。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当session开启了ut_pex插件时(`session_handle::add_extension(&amp;amp;libtorrent::create_ut_pex_plugin)`)，在ut_pex_peer_plugin::tick()中会使用send_ut_peer_list和send_ut_peer_diff函数来向其它peer发送自己拥有的种子。其中`bt_peer_connection* p = static_cast&amp;lt;bt_peer_connection*&amp;gt;(peer); ... flags |= p-&amp;gt;supports_holepunch() ? 8 : 0;`将peer信息发送给另外一个peer时，会带上了支持打洞的flags，然后接收方拿到peer后，向torrent里添加peer时，`torrent_peer::supports_holepunch`的值就会是true了。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;假设自己是peer A，和peer B握手后知道B是支持打洞消息的，在和peer C连接时，使用pex扩展协议和peer C交换peer时，会把peer B的ip、端口、标志传递peer C，peer C拿到B后就满足了打洞的条件，因为A和B能正常通信，A和C也能正常通信，B和C就可以使用中间人A来进行打洞。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 什么时候尝试打洞&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在连接某个peer失败时，并且满足条件时，尝试进入打洞模式。见`void peer_connection::connect_failed(error_code const&amp;amp; e)`中，&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;if ((!is_utp(&lt;em&gt;m_socket)&lt;br&gt;        || !m_settings.get_bool(settings_pack::enable_outgoing_tcp))&lt;br&gt;    &amp;amp;&amp;amp; m_peer_info&lt;br&gt;    &amp;amp;&amp;amp; m_peer_info-&amp;gt;supports_holepunch&lt;br&gt;    &amp;amp;&amp;amp; !m_holepunch_mode)&lt;br&gt;{&lt;br&gt;    // see if we can try a holepunch&lt;br&gt;    bt_peer_connection&lt;/em&gt; p = t-&amp;gt;find_introducer(remote());&lt;br&gt;    if (p)&lt;br&gt;        p-&amp;gt;write_holepunch_msg(bt_peer_connection::hp_rendezvous, remote(), 0);&lt;br&gt;}&lt;br&gt;```&lt;br&gt;假设这段代码是peer C的机器上运行，也就是C从A拿到B的信息后，直接连接B失败了，就判断现在不是utp或者禁止tcp连接、并且支持打洞消息、当前不是打洞模式并且找到了中间介绍人(上文中提到的A)，则向A发送消息开启打洞流程。&lt;/p&gt;
 &lt;p&gt;参数中&lt;code&gt;bt_peer_connection::hp_rendezvous&lt;/code&gt;这个变量很有意思，rendezvous是约会地点的意思，当然在这里只是一个消息类型，remote()是B的ip地址信息。&lt;/p&gt;
 &lt;p&gt;A接收到C发送的请求打洞（介绍约会）消息后，在自己的peer里找到和B的连接，并且向B发送个打洞消息&lt;code&gt;p-&amp;gt;write_holepunch_msg(hp_connect, remote(), 0);&lt;/code&gt;，同时向C也回复一个打洞消息&lt;code&gt;write_holepunch_msg(hp_connect, ep, 0);&lt;/code&gt;，这里就将自己和B、C的连接时使用的ip地址和端口通知给C、B。&lt;/p&gt;
 &lt;p&gt;B和C接收到类型为hp_connect的消息后，将torrent_peer::supports_utp置为true，将bt_peer_connection的m_holepunch_mode设置为true。然后同时开始尝试连接对方，这时，就完成了一个打洞流程，但是由于NAT的特性，不一定成功，具体参考NAT和打洞原理。&lt;/p&gt;
-&lt;p&gt;#总结&lt;/p&gt;
-&lt;ol&gt;
+&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;A从trcker拿到peer B和peer C，和B和C进行连接时，知道了B和C支持打洞消息。&lt;/li&gt;
 &lt;li&gt;A和C进行pex种子交换，将B传递给C，此时B由pex传递的flags知道C能够通过A打洞。&lt;/li&gt;
 &lt;li&gt;B如果连接C正常(不需要打洞)则正常连接。&lt;/li&gt;
@@ -824,31 +858,6 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
     </summary>
     
       <category term="软件" scheme="http://baba.zhaoxiuyuan.com/categories/%E8%BD%AF%E4%BB%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>NAT穿之TCP</title>
-    <link href="http://baba.zhaoxiuyuan.com/2011/12/40/"/>
-    <id>http://baba.zhaoxiuyuan.com/2011/12/40/</id>
-    <published>2011-12-26T19:08:31.000Z</published>
-    <updated>2016-07-04T09:47:51.032Z</updated>
-    
-    <content type="html">&lt;p&gt;STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。&lt;br&gt;这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;STUN#2 ： 只有一端发送SYN握手请求（低TTL）并且取消连接，此请求通过已方NAT后即被丢弃。并在相同的地址和端口创建一个被动的TCP套接字。然后，另一个终端初始化一个正常的TCP连接。&lt;br&gt;与STUN#1一样，终端需要挑选一个恰当的TTL，而且NAT也不能把ICMP错误当作致命错误。它也需要NAT在一个向外发的SYN后，接收一个向内发的SYN，但包的序号也不是普通的那种。&lt;/p&gt;
-&lt;p&gt;NATBlaster ： 与第一种STUN方法类似但取消了IP欺骗需要的方法。每个终端发出一个低TTL的SYN，并记住协议栈所使用的TCP序号。与前面的类似，SYN包在网络中被丢弃。两台主机之间交换各自的序号，并且每台主机手工产生一个对方期望收到的SYNACK包。手工产生的包通过RAW socket注入网络。然而，这并不等同于欺骗，因为该包中的源地址与注入该包的终端地址匹配。一旦收到SYNACK，ACK就被交换了，从而完成了连接建立。与第一种STUNT方法一样，该方法也需要终端准确地选择TTL值，也需要NAT忽略ICMP错误和NAT改变SYN包序号的失败。而且，（该方法）也需要NAT允许一个外发的SYN之后紧跟一个外发的SYNACK——非正常的另一个序号的包。&lt;/p&gt;
-&lt;p&gt;P2PNAT ：利用了TCP规范[13]中定义的同时打开方案，两个终端都通过发送SYN包来创建一个连接。如果SYN包在网络中交叉（穿过），这两个终端协议栈都用SYNACK包应答从而建立连接。如果在对方的SYN包离开它的NAT之前，一个终端的SYN包到达该终端的NAT而被丢弃，那么，第一个终端的协议栈会在TCP同时打开之后而结束（关闭），而另一个终端则会按照正常流程打开。接下来的情况，链路中的包看起来像第二种STUNT方法，没有底TTL，也没有相关的ICMP。然而，该方法并没有用端口预测，如果使用的话，该方法可以从中获益。与第二种STUNT方法一样，该方法需要NAT允许在一个外发的SYN之后紧跟一个内发的SYN，而且，该方法需要终端在一个循环中不停的尝试重连，直到超时。如果不是SYN包被丢弃，而是NAT返回一个TCP RST，那这种方法将陷入包泛滥的境地，直到超时。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。&lt;br&gt;这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="net" scheme="http://baba.zhaoxiuyuan.com/categories/net/"/>
-    
-      <category term="P2P" scheme="http://baba.zhaoxiuyuan.com/categories/net/P2P/"/>
     
     
   </entry>
