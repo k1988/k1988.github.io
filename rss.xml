@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-08-12T02:45:01.460Z</updated>
+  <updated>2016-08-12T02:53:23.195Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/08/102/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/08/102/</id>
     <published>2016-08-12T02:44:28.000Z</published>
-    <updated>2016-08-12T02:45:01.460Z</updated>
+    <updated>2016-08-12T02:53:23.195Z</updated>
     
     <content type="html">&lt;h1 id=&quot;配置文件&quot;&gt;&lt;a href=&quot;#配置文件&quot; class=&quot;headerlink&quot; title=&quot;配置文件&quot;&gt;&lt;/a&gt;配置文件&lt;/h1&gt;&lt;p&gt;%mc%.minecraft\servers.dat里存放着所有的服务器地址、名称、图标、介绍等信息。其中服务器地址和名称可以通过mc的主菜单-&amp;gt;多人游戏-&amp;gt;添加服务器进行添加。&lt;/p&gt;
 &lt;h1 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h1&gt;&lt;p&gt;也可以通过命令行 –server mc.ymdcyy.com –port 25565 来启动mc，使之直接连接到服务器。&lt;/p&gt;
@@ -52,7 +52,9 @@
     
     </summary>
     
-      <category term="java minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java-minecraft/"/>
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
