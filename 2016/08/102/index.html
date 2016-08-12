@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MAME0.144编译 | k1988</title>
+  <title>minecraft联机知识点 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="MAME0.144编译"/>
+  <meta property="og:title" content="minecraft联机知识点"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -218,19 +218,36 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2011-12-05T01:24:35.000Z"><a href="/2011/12/34/">2011-12-05</a></time>
+        <time datetime="2016-08-12T02:44:28.000Z"><a href="/2016/08/102/">2016-08-12</a></time>
       
       
   
-    <h1 class="title">MAME0.144编译</h1>
+    <h1 class="title">minecraft联机知识点</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>按照<a href="http://mameworld.info/mrdo/compile.html" target="_blank" rel="external">http://mameworld.info/mrdo/compile.html</a>的指导方法进行GCC版本的MAME编译没有任何问题,顺利编译通过.</p>
-<p>但是使用<a href="http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers" target="_blank" rel="external">http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers</a>上的方法进行VC++2005版本的编译时出现了一些问题,比如,提示:objvwindowsdbuildvconv.exe找不到, 还有 MTD,EHsc等是是无效的命令等.<br><a id="more"></a><br>最后发现将我机器上装的另一版本的Mingw和mysys从系统环境变量path中除去,使用MAME指定的版本进行编译,再在src/osd/windows/windows.mak中将CC = @$(VCONV) gcc -I修改成CC = @$(VCONV) gcc,将”CCOMFLAGS += -include $(WINSRC)/winprefix.h”修改成”CCOMFLAGS += -include winprefix.h”,然后编译通过.</p>
-<p>如果是生成tiny版本,第一次编译到devlist.c时会失败,因为msvc不支持定义空数组初使化,所以需要修改devlist.c后再进行编译,将const device_type <em>s_devices_sorted[]={};更改成const device_type </em>s_devices_sorted[]={NULL};即可</p>
+        <h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>%mc%.minecraft\servers.dat里存放着所有的服务器地址、名称、图标、介绍等信息。其中服务器地址和名称可以通过mc的主菜单-&gt;多人游戏-&gt;添加服务器进行添加。</p>
+<h1 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h1><p>也可以通过命令行 –server mc.ymdcyy.com –port 25565 来启动mc，使之直接连接到服务器。</p>
+<h1 id="架设服务器"><a href="#架设服务器" class="headerlink" title="架设服务器"></a>架设服务器</h1><p>通过<a id="more"></a> <a href="https://minecraft.net/en/download/server" target="_blank" rel="external">https://minecraft.net/en/download/server</a> 页面下载<a href="https://s3.amazonaws.com/Minecraft.Download/versions/1.10/minecraft_server.1.10.jar" target="_blank" rel="external">minecraft_server.1.10.jar</a>,再使用命令行<code>java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui</code>可以启动mincraft服务器。</p>
+<p>第一次启动时，会生成<code>eula.txt</code>、<code>server.properties</code>文件，然后报错失败。</p>
+<p>这时需要打开<code>eula.txt</code>将<code>eula=false</code>改为<code>eula=true</code>表示同意协议，再次运行命令行在弹出几个错误后会建立成功服务器。这时server.properties里自动生成了一些属性，<code>server-port=25565</code>这行就是默认使用的端口，也可以改成其它端口后重启。</p>
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">#Minecraft server properties 服务器设置文件 此类型文件不支持中文，本内容仅供作为说明，true代表执行，false代表不执行</span><br><span class="line">#Sun Mar 11 18:24:34 CST 2012 此为文件生成时间</span><br><span class="line">#是否开启地狱，不开启话地狱门将无效</span><br><span class="line">allow-nether=true</span><br><span class="line">#地图文件夹名称，下界与末路之地将会自动以nether,ender加上并用下划线隔开</span><br><span class="line">level-name=world</span><br><span class="line">#是否开启GameSpy4协议服务器监听器，用于获取服务器信息。目测国内用不上。</span><br><span class="line">enable-query=false</span><br><span class="line">#是否允许飞行</span><br><span class="line">allow-flight=false</span><br><span class="line">#远程访问服务器的密码，此项可以留空或删除</span><br><span class="line">rcon.password=</span><br><span class="line">#服务器端口（25565为默认端口，联机时无需输入）</span><br><span class="line">server-port=25565</span><br><span class="line">#第5行对应功能的端口</span><br><span class="line">query.port=25565</span><br><span class="line">#地图类型，Default=默认，FLAT=超平坦，LARGEBIOMES=巨型生物群系</span><br><span class="line">level-type=DEFAULT</span><br><span class="line">#是否开启远程访问服务器控制台。技术人员可选。</span><br><span class="line">enable-rcon=false</span><br><span class="line">#地图种子，在生成地图文件夹之前填入此项，可生成特定的地图</span><br><span class="line">level-seed=</span><br><span class="line">#服务器IP，不输入则为默认IP，内网用户的话请填内网IP</span><br><span class="line">server-ip=</span><br><span class="line">#最大建筑高度，上限是256，因为Chunk的高度最大值是256</span><br><span class="line">max-build-height=256</span><br><span class="line">#是否生成NPC</span><br><span class="line">spawn-npcs=true</span><br><span class="line">#是否开启白名单，没有白名单的玩家尝试进入服务器会被自动拒绝</span><br><span class="line">white-list=false</span><br><span class="line">#是否生成动物</span><br><span class="line">spawn-animals=true</span><br><span class="line">#此处填写服务器默认材质下载链接，链接必须以.zip结尾</span><br><span class="line">texture-pack=</span><br><span class="line">#用于给http://snoop.minecraft.net网站发送服务器数据，这样玩家可以从客户端上获取服务器信息，目测也没人看，推荐关闭</span><br><span class="line">snooper-enabled=false</span><br><span class="line">#是否开启极限模式，玩家死亡将自动被ban</span><br><span class="line">hardcore=false</span><br><span class="line">#是否开启联网模式（正版专用，盗版必改为false！！！！！！！！！）</span><br><span class="line">online-mode=false</span><br><span class="line">#是否开启PVP，不是战争服就不要开了</span><br><span class="line">pvp=false</span><br><span class="line">#游戏难度，与单机相同</span><br><span class="line">difficulty=1</span><br><span class="line">#玩家第一次进入游戏时的游戏模式</span><br><span class="line">gamemode=0</span><br><span class="line">#同时在线的最大玩家数</span><br><span class="line">max-players=20</span><br><span class="line">#远程访问服务器的端口号，此项可以留空或删除</span><br><span class="line">rcon.port=25575</span><br><span class="line">#是否生成怪物</span><br><span class="line">spawn-monsters=true</span><br><span class="line">#是否生成建筑物（包括村庄和地牢）</span><br><span class="line">generate-structures=true</span><br><span class="line">#可见距离，最大值为10</span><br><span class="line">view-distance=10</span><br><span class="line">#服务器欢迎信息（显示在玩家联机页面），中文需中文补丁支持和转码（yy的补丁可用（也需要旧版服务器），ICE未知），推荐EmEditor文本编辑器，自带转码功能</span><br><span class="line">motd=A Minecraft Server</span><br></pre></td></tr></table></figure>
+<h1 id="客户端ping"><a href="#客户端ping" class="headerlink" title="客户端ping"></a>客户端ping</h1><p>MC在打开网络时，会对每一个保存的服务器进行ping来获取服务器描述信息和图片文件，支持的客户端版本号及在线人数等信息，使用的协议参考</p>
+<ul>
+<li><a href="http://wiki.vg/Server_List_Ping" target="_blank" rel="external">http://wiki.vg/Server_List_Ping</a></li>
+<li><a href="http://wiki.vg/Query" target="_blank" rel="external">http://wiki.vg/Query</a></li>
+</ul>
+<h1 id="测试服务器列表"><a href="#测试服务器列表" class="headerlink" title="测试服务器列表"></a>测试服务器列表</h1><ul>
+<li>five.mengcraft.com:18233</li>
+<li>龙腾盛世 <ul>
+<li>mc.ymdcyy.com:25565</li>
+<li>官网：www.ymdcyy.com</li>
+<li>版本 1.7.10</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -239,10 +256,15 @@
         
   
   <div class="categories">
-    <a href="/categories/开源项目/">开源项目</a>
+    <a href="/categories/java-minecraft/">java minecraft</a>
   </div>
 
         
+  
+  <div class="tags">
+    <a href="/tags/minecraft/">minecraft</a>
+  </div>
+
 <!-- Baidu Button BEGIN -->
 <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
 <a class="bds_qzone"></a>
@@ -268,10 +290,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2011/12/37/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2011/11/31/" class="alignright next" >下一页</a>
+    <a href="/2016/08/fontconfig.properties/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -279,7 +299,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <section id="comment">
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/2011/12/34/" data-title="MAME0.144编译" data-url="/2011/12/34/"></div>
+	<div class="ds-thread" data-thread-key="/2016/08/102/" data-title="minecraft联机知识点" data-url="/2016/08/102/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

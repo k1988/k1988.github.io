@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-08-10T10:32:35.535Z</updated>
+  <updated>2016-08-12T02:45:01.460Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -16,13 +16,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>minecraft联机知识点</title>
+    <link href="http://baba.zhaoxiuyuan.com/2016/08/102/"/>
+    <id>http://baba.zhaoxiuyuan.com/2016/08/102/</id>
+    <published>2016-08-12T02:44:28.000Z</published>
+    <updated>2016-08-12T02:45:01.460Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;配置文件&quot;&gt;&lt;a href=&quot;#配置文件&quot; class=&quot;headerlink&quot; title=&quot;配置文件&quot;&gt;&lt;/a&gt;配置文件&lt;/h1&gt;&lt;p&gt;%mc%.minecraft\servers.dat里存放着所有的服务器地址、名称、图标、介绍等信息。其中服务器地址和名称可以通过mc的主菜单-&amp;gt;多人游戏-&amp;gt;添加服务器进行添加。&lt;/p&gt;
+&lt;h1 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h1&gt;&lt;p&gt;也可以通过命令行 –server mc.ymdcyy.com –port 25565 来启动mc，使之直接连接到服务器。&lt;/p&gt;
+&lt;h1 id=&quot;架设服务器&quot;&gt;&lt;a href=&quot;#架设服务器&quot; class=&quot;headerlink&quot; title=&quot;架设服务器&quot;&gt;&lt;/a&gt;架设服务器&lt;/h1&gt;&lt;p&gt;通过&lt;a id=&quot;more&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://minecraft.net/en/download/server&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://minecraft.net/en/download/server&lt;/a&gt; 页面下载&lt;a href=&quot;https://s3.amazonaws.com/Minecraft.Download/versions/1.10/minecraft_server.1.10.jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;minecraft_server.1.10.jar&lt;/a&gt;,再使用命令行&lt;code&gt;java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui&lt;/code&gt;可以启动mincraft服务器。&lt;/p&gt;
+&lt;p&gt;第一次启动时，会生成&lt;code&gt;eula.txt&lt;/code&gt;、&lt;code&gt;server.properties&lt;/code&gt;文件，然后报错失败。&lt;/p&gt;
+&lt;p&gt;这时需要打开&lt;code&gt;eula.txt&lt;/code&gt;将&lt;code&gt;eula=false&lt;/code&gt;改为&lt;code&gt;eula=true&lt;/code&gt;表示同意协议，再次运行命令行在弹出几个错误后会建立成功服务器。这时server.properties里自动生成了一些属性，&lt;code&gt;server-port=25565&lt;/code&gt;这行就是默认使用的端口，也可以改成其它端口后重启。&lt;/p&gt;
+&lt;h2 id=&quot;参数说明&quot;&gt;&lt;a href=&quot;#参数说明&quot; class=&quot;headerlink&quot; title=&quot;参数说明&quot;&gt;&lt;/a&gt;参数说明&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#Minecraft server properties 服务器设置文件 此类型文件不支持中文，本内容仅供作为说明，true代表执行，false代表不执行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#Sun Mar 11 18:24:34 CST 2012 此为文件生成时间&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启地狱，不开启话地狱门将无效&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;allow-nether=true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#地图文件夹名称，下界与末路之地将会自动以nether,ender加上并用下划线隔开&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;level-name=world&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启GameSpy4协议服务器监听器，用于获取服务器信息。目测国内用不上。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;enable-query=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否允许飞行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;allow-flight=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#远程访问服务器的密码，此项可以留空或删除&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcon.password=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#服务器端口（25565为默认端口，联机时无需输入）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;server-port=25565&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#第5行对应功能的端口&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.port=25565&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#地图类型，Default=默认，FLAT=超平坦，LARGEBIOMES=巨型生物群系&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;level-type=DEFAULT&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启远程访问服务器控制台。技术人员可选。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;enable-rcon=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#地图种子，在生成地图文件夹之前填入此项，可生成特定的地图&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;level-seed=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#服务器IP，不输入则为默认IP，内网用户的话请填内网IP&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;server-ip=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#最大建筑高度，上限是256，因为Chunk的高度最大值是256&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;max-build-height=256&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否生成NPC&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;spawn-npcs=true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启白名单，没有白名单的玩家尝试进入服务器会被自动拒绝&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;white-list=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否生成动物&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;spawn-animals=true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#此处填写服务器默认材质下载链接，链接必须以.zip结尾&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;texture-pack=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#用于给http://snoop.minecraft.net网站发送服务器数据，这样玩家可以从客户端上获取服务器信息，目测也没人看，推荐关闭&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;snooper-enabled=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启极限模式，玩家死亡将自动被ban&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;hardcore=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启联网模式（正版专用，盗版必改为false！！！！！！！！！）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;online-mode=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否开启PVP，不是战争服就不要开了&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pvp=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#游戏难度，与单机相同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;difficulty=1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#玩家第一次进入游戏时的游戏模式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gamemode=0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#同时在线的最大玩家数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;max-players=20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#远程访问服务器的端口号，此项可以留空或删除&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcon.port=25575&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否生成怪物&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;spawn-monsters=true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#是否生成建筑物（包括村庄和地牢）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;generate-structures=true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#可见距离，最大值为10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;view-distance=10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#服务器欢迎信息（显示在玩家联机页面），中文需中文补丁支持和转码（yy的补丁可用（也需要旧版服务器），ICE未知），推荐EmEditor文本编辑器，自带转码功能&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;motd=A Minecraft Server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;客户端ping&quot;&gt;&lt;a href=&quot;#客户端ping&quot; class=&quot;headerlink&quot; title=&quot;客户端ping&quot;&gt;&lt;/a&gt;客户端ping&lt;/h1&gt;&lt;p&gt;MC在打开网络时，会对每一个保存的服务器进行ping来获取服务器描述信息和图片文件，支持的客户端版本号及在线人数等信息，使用的协议参考&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.vg/Server_List_Ping&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://wiki.vg/Server_List_Ping&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.vg/Query&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://wiki.vg/Query&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;测试服务器列表&quot;&gt;&lt;a href=&quot;#测试服务器列表&quot; class=&quot;headerlink&quot; title=&quot;测试服务器列表&quot;&gt;&lt;/a&gt;测试服务器列表&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;five.mengcraft.com:18233&lt;/li&gt;
+&lt;li&gt;龙腾盛世 &lt;ul&gt;
+&lt;li&gt;mc.ymdcyy.com:25565&lt;/li&gt;
+&lt;li&gt;官网：www.ymdcyy.com&lt;/li&gt;
+&lt;li&gt;版本 1.7.10&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;配置文件&quot;&gt;&lt;a href=&quot;#配置文件&quot; class=&quot;headerlink&quot; title=&quot;配置文件&quot;&gt;&lt;/a&gt;配置文件&lt;/h1&gt;&lt;p&gt;%mc%.minecraft\servers.dat里存放着所有的服务器地址、名称、图标、介绍等信息。其中服务器地址和名称可以通过mc的主菜单-&amp;gt;多人游戏-&amp;gt;添加服务器进行添加。&lt;/p&gt;
+&lt;h1 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h1&gt;&lt;p&gt;也可以通过命令行 –server mc.ymdcyy.com –port 25565 来启动mc，使之直接连接到服务器。&lt;/p&gt;
+&lt;h1 id=&quot;架设服务器&quot;&gt;&lt;a href=&quot;#架设服务器&quot; class=&quot;headerlink&quot; title=&quot;架设服务器&quot;&gt;&lt;/a&gt;架设服务器&lt;/h1&gt;&lt;p&gt;通过
+    
+    </summary>
+    
+      <category term="java minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java-minecraft/"/>
+    
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
+    
+  </entry>
+  
+  <entry>
     <title>通过修改fontconfig.properties文件来改变IDE字体</title>
     <link href="http://baba.zhaoxiuyuan.com/2016/08/fontconfig.properties/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/08/fontconfig.properties/</id>
     <published>2016-08-10T10:29:28.000Z</published>
-    <updated>2016-08-10T10:32:35.535Z</updated>
+    <updated>2016-08-11T01:35:05.062Z</updated>
     
-    <content type="html">&lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。&lt;/p&gt;
+    <content type="html">&lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; &lt;/p&gt;
 &lt;p&gt;经过一翻努力研究，发现只有在我的机器上对于中文+某些字体的组合不能设置成16以上字号，在别的机器上是正常的。&lt;/p&gt;
 &lt;p&gt;顺便发现了可以使用fontconfig.properties这个文件来改变基于java的程序的字体映射。&lt;/p&gt;
 &lt;p&gt;参考：&lt;/p&gt;
@@ -36,17 +80,12 @@
     
     <summary type="html">
     
-      &lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。&lt;/p&gt;
-&lt;p&gt;经过一翻努力研究，发现只有在我的机器上对于中文
+      &lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。
     
     </summary>
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
     
-    
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
-    
-      <category term="ide" scheme="http://baba.zhaoxiuyuan.com/tags/ide/"/>
     
   </entry>
   
@@ -55,7 +94,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/07/libtorrent%E6%89%93%E6%B4%9E%E5%88%86%E6%9E%90/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/07/libtorrent打洞分析/</id>
     <published>2016-07-17T07:49:48.000Z</published>
-    <updated>2016-07-19T07:57:34.205Z</updated>
+    <updated>2016-08-11T01:27:08.686Z</updated>
     
     <content type="html">&lt;h1 id=&quot;相关变量&quot;&gt;&lt;a href=&quot;#相关变量&quot; class=&quot;headerlink&quot; title=&quot;相关变量&quot;&gt;&lt;/a&gt;相关变量&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;torrent_peer::supports_holepunch&lt;/code&gt;：torrent_peer类是每个peer的特征集合，其中&lt;code&gt;supports_holepunch&lt;/code&gt;代表是否支持打洞，默认值是&lt;code&gt;false&lt;/code&gt;。&lt;/li&gt;
@@ -85,7 +124,9 @@
     
     </summary>
     
-      <category term="-p2p" scheme="http://baba.zhaoxiuyuan.com/categories/p2p/"/>
+      <category term="net" scheme="http://baba.zhaoxiuyuan.com/categories/net/"/>
+    
+      <category term="P2P" scheme="http://baba.zhaoxiuyuan.com/categories/net/P2P/"/>
     
     
       <category term="p2p" scheme="http://baba.zhaoxiuyuan.com/tags/p2p/"/>
@@ -97,7 +138,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/07/java%E9%87%8D%E6%96%B0%E5%85%A5%E5%9D%91/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/07/java重新入坑/</id>
     <published>2016-07-06T09:49:48.000Z</published>
-    <updated>2016-07-06T09:57:35.506Z</updated>
+    <updated>2016-08-11T01:31:33.269Z</updated>
     
     <content type="html">&lt;p&gt;毕业八年了，从毕业后就没有写过java代码，仅平常看看android相关的资讯和博客及时不时编译下Android工程，以前学过的java早忘光了。&lt;/p&gt;
 &lt;p&gt;最近因工作需要要重新学习下java，结果上来就踩一坑。&lt;/p&gt;
@@ -115,7 +156,7 @@
     
     </summary>
     
-      <category term="-java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
     
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
@@ -834,26 +875,6 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
       &lt;p&gt;有两个移动客户端支持DLNA，于是将视频图片音乐等资源想通过服务器软件来实现共享给移动终端来观看。&lt;/p&gt;
 &lt;p&gt;使用客户端：&lt;/p&gt;
 &lt;p&gt;new ipad+AirAV,Huaiwei ascend p1 + 系统自带DLNA。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="软件" scheme="http://baba.zhaoxiuyuan.com/categories/%E8%BD%AF%E4%BB%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>QQ2012多客户端在线状态以及消息接收之简单研究</title>
-    <link href="http://baba.zhaoxiuyuan.com/2012/04/43/"/>
-    <id>http://baba.zhaoxiuyuan.com/2012/04/43/</id>
-    <published>2012-04-27T06:21:25.000Z</published>
-    <updated>2016-07-04T09:47:46.959Z</updated>
-    
-    <content type="html">&lt;div&gt;上次说的，有时间时稍微研究一下QQ的多客户端共存的一些规则&lt;strong&gt; ，今天就抽空做了一点点实验。&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;实验环境：&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;Lenovo Y450 ,window 7系统 ，QQ2012 Beta1 (4145)&lt;/div&gt;&lt;br&gt;&lt;div&gt;Apple new ipad 一只，ios5.1系统，安装有QQ HD V2.8(ipad), iphone QQ 2012 V2.0.0.1808。&lt;/div&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;div&gt;Huawei Ascend P1一只，android 4.0系统，安装QQ 2012 for android 1.0.0.0130.&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt; &lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;在线状态&lt;/strong&gt;：&lt;/div&gt;&lt;br&gt;&lt;div&gt;只要PC上运行了QQ，在好友的qq中显示的就是PC QQ的状态。如果没有登录PC QQ，就以最后一个登录的移动平台QQ的状态为主(iphone在线，手机在线，或者隐身）。&lt;/div&gt;&lt;br&gt;&lt;div&gt;在QQ2012中可以查看多客户端qq登录状态，其中同一台电脑只能是ipad qq在线或者是iphone qq在线。&lt;/div&gt;&lt;br&gt;&lt;div&gt;如果ipad QQ没有开启后台在线，那么ipad qq一旦切换到后台，ipad qq在线状态立刻消失。过一段时间后iphone qq在线状态出现。在开启后台在线的情况下，ipad qq切换到后台时，qq在线状态管理中依然显示QQ在线。&lt;/div&gt;&lt;br&gt;&lt;div&gt;android QQ在退出后，QQ的多客户端登录状态里android QQ在线立即消失。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;消息接收&lt;/strong&gt;:&lt;/div&gt;&lt;br&gt;&lt;div&gt;PC电脑上只要开了QQ肯定能够接收到QQ消息。&lt;br&gt;多个移动平台时，只有最后做了登录帐户动作(ipad qq似乎只要激活/切换隐身状态，就做了登录动作)的QQ能够在qq软件中收到消息(不含推送),此时其它保持QQ界面的QQ只能发送消息而不能接收消息了。&lt;/div&gt;&lt;br&gt;&lt;div&gt;ipad qq / iphone qq还在线(或者后台在线)时，不在线的andorid QQ无法接收到推送消息。&lt;br&gt;android qq在线 +　ipad qq后台在线(未切换到前台)时，android qq接收到消息，ipad qq也可以接收到推送消息。&lt;br&gt;在线的android qq能和ipad qq的推送同时接收到消息。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;在ipad上同时使用ipadqq和iphone qq&lt;/strong&gt;时：&lt;br&gt;在iphone QQ和ipad qq之间切换，消息只会发给ipad qq(1、iphone qq在线 + ipad qq在后台状态,此时QQ消息进行ipad qq推送；2、iphone QQ后台+ipad qq前台，此时ipad qq直接接收到消息)，但iphone qq能够向外发送消息，但接收不到消息。如果想要抵消掉ipad qq的在线状态，iphone qq必须重新登录。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;android QQ&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;想要android QQ能够接收到消息，就需要android QQ是最后一个做登录动作(此时，ipad QQ的推送服务有效，但切换成ipad qq会阻塞 android qq的消息，登录iphone qq以及切换到ipad qq均会阻塞android qq的消息)。&lt;br&gt;当在ipad上使用任意qq时，不在线的android甭想接收到推送消息。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;总结&lt;/strong&gt;：&lt;/div&gt;&lt;br&gt;&lt;div&gt;PC端的QQ是老大，拥有最全面的消息权限。&lt;/div&gt;&lt;br&gt;&lt;div&gt;移动平台的QQ对于接收消息会相互干扰，并且可能根据腾迅的版本升级而导致表现不一致，所以拥有多个移动设备的情况下，最好只保持一个设备上登录qq，否则有可能会觉得收不到消息会奇怪。&lt;/div&gt;&lt;br&gt;&lt;div&gt;Android QQ最不受待见。。。抢消息，以及消息推送等都没有ipad qq和iphone qq给力。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;申明：&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;以上乃业余兴趣之研究，仅供参考，如有纰漏，请指正.&lt;/div&gt;&lt;br&gt;&lt;div&gt;由于时间和精力原因，对于ipad qq和iphone qq在关闭后台在线，关闭推送等情况下与android qq之间的相互影响没有测试。&lt;/div&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;div&gt;上次说的，有时间时稍微研究一下QQ的多客户端共存的一些规则&lt;strong&gt; ，今天就抽空做了一点点实验。&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;strong&gt;实验环境：&lt;/strong&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;Lenovo Y450 ,window 7系统 ，QQ2012 Beta1 (4145)&lt;/div&gt;&lt;br&gt;&lt;div&gt;Apple new ipad 一只，ios5.1系统，安装有QQ HD V2.8(ipad), iphone QQ 2012 V2.0.0.1808。&lt;/div&gt;&lt;br&gt;
     
     </summary>
     
