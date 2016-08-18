@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-08-12T02:53:23.195Z</updated>
+  <updated>2016-08-18T03:46:52.995Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Annotation(Java注解)</title>
+    <link href="http://baba.zhaoxiuyuan.com/2016/08/103_java%20Annotation(%E6%B3%A8%E8%A7%A3)/"/>
+    <id>http://baba.zhaoxiuyuan.com/2016/08/103_java Annotation(注解)/</id>
+    <published>2016-08-18T03:44:28.000Z</published>
+    <updated>2016-08-18T03:46:52.995Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Java注解的基础知识点&quot;&gt;&lt;a href=&quot;#Java注解的基础知识点&quot; class=&quot;headerlink&quot; title=&quot;Java注解的基础知识点&quot;&gt;&lt;/a&gt;Java注解的基础知识点&lt;/h2&gt;&lt;!--![123](./images/annotation.jpg)--&gt;
+&lt;img title=&quot;Java注解的基础知识点&quot; alt=&quot;Java注解的基础知识点&quot; src=&quot;http://o9tn2674s.bkt.clouddn.com/static/images/annotation.jpg-baba.zhaoxiuyuan.com&quot;&gt; 
+&lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://swiftlet.net/archives/1906&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;注解系列知识总结&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入理解Java：注解（Annotation）自定义注解入门&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/duo2005duo/article/details/50505884&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java注解（1）-基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/duo2005duo/article/details/50511476&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java注解（2）-运行时框架&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/duo2005duo/article/details/50541281&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Java注解（3）-源码级框架&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入理解Java：注解（Annotation）自定义注解入门&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;深入理解Java：注解（Annotation）--注解处理器&quot;&gt;深入理解Java：注解（Annotation）–注解处理器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Java注解的基础知识点&quot;&gt;&lt;a href=&quot;#Java注解的基础知识点&quot; class=&quot;headerlink&quot; title=&quot;Java注解的基础知识点&quot;&gt;&lt;/a&gt;Java注解的基础知识点&lt;/h2&gt;&lt;!--![123](./images/annotation.jp
+    
+    </summary>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>minecraft联机知识点</title>
@@ -96,14 +129,13 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/07/libtorrent%E6%89%93%E6%B4%9E%E5%88%86%E6%9E%90/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/07/libtorrent打洞分析/</id>
     <published>2016-07-17T07:49:48.000Z</published>
-    <updated>2016-08-11T01:27:08.686Z</updated>
+    <updated>2016-08-12T05:30:58.757Z</updated>
     
     <content type="html">&lt;h1 id=&quot;相关变量&quot;&gt;&lt;a href=&quot;#相关变量&quot; class=&quot;headerlink&quot; title=&quot;相关变量&quot;&gt;&lt;/a&gt;相关变量&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;torrent_peer::supports_holepunch&lt;/code&gt;：torrent_peer类是每个peer的特征集合，其中&lt;code&gt;supports_holepunch&lt;/code&gt;代表是否支持打洞，默认值是&lt;code&gt;false&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;bt_peer_connection::m_holepunch_id&lt;/code&gt;: 对方peer申明的，它所支持的打洞消息的消息id。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&quot;种子来源&quot;&gt;&lt;a href=&quot;#种子来源&quot; class=&quot;headerlink&quot; title=&quot;种子来源&quot;&gt;&lt;/a&gt;种子来源&lt;/h1&gt;&lt;p&gt;添加peer的流程：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;torrent::add_peer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::add_i2p_peer`或`peer_list::add_peer` &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`peer_list::insert_peer`或`peer_list::update_peer`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。&amp;lt;!--more--&amp;gt;查找所有调用add_peer的地方，约有以下来源：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 从resume文件里获得peer(上次开启任务保存的)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* dht方式从互联网中得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* tracker从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* lsd方式从本地网络得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* pex方式从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其中只有从pex方式得到互联网种子的调用语句使用flags参数，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 判断是否支持打洞消息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;种子来源&quot;&gt;&lt;a href=&quot;#种子来源&quot; class=&quot;headerlink&quot; title=&quot;种子来源&quot;&gt;&lt;/a&gt;种子来源&lt;/h1&gt;&lt;p&gt;添加peer的流程：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;torrent::add_peer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;peer_list::add_i2p_peer或peer_list::add_peer &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;---&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;peer_list::insert_peer或peer_list::update_peer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。&amp;lt;!--more--&amp;gt;查找所有调用add_peer的地方，约有以下来源：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 从resume文件里获得peer(上次开启任务保存的)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* dht方式从互联网中得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* tracker从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* lsd方式从本地网络得到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* pex方式从互联网中拿到种子&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其中只有从pex方式得到互联网种子的调用语句使用flags参数，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 判断是否支持打洞消息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;bool bt_peer_connection::supports_holepunch() const { return m_holepunch_id != 0; }&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;但bt_peer_connection的supports_holepunch()返回true只能说明此peer支持打洞，打洞是需要第三方服务器介入的，如何得到中间介绍人呢，见下节。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 中间介绍人&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;上文提到，种子来源有pex方式。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;当session开启了ut_pex插件时(`session_handle::add_extension(&amp;amp;libtorrent::create_ut_pex_plugin)`)，在ut_pex_peer_plugin::tick()中会使用send_ut_peer_list和send_ut_peer_diff函数来向其它peer发送自己拥有的种子。其中`bt_peer_connection* p = static_cast&amp;lt;bt_peer_connection*&amp;gt;(peer); ... flags |= p-&amp;gt;supports_holepunch() ? 8 : 0;`将peer信息发送给另外一个peer时，会带上了支持打洞的flags，然后接收方拿到peer后，向torrent里添加peer时，`torrent_peer::supports_holepunch`的值就会是true了。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;假设自己是peer A，和peer B握手后知道B是支持打洞消息的，在和peer C连接时，使用pex扩展协议和peer C交换peer时，会把peer B的ip、端口、标志传递peer C，peer C拿到B后就满足了打洞的条件，因为A和B能正常通信，A和C也能正常通信，B和C就可以使用中间人A来进行打洞。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 什么时候尝试打洞&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在连接某个peer失败时，并且满足条件时，尝试进入打洞模式。见`void peer_connection::connect_failed(error_code const&amp;amp; e)`中，&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;if ((!is_utp(&lt;em&gt;m_socket)&lt;br&gt;        || !m_settings.get_bool(settings_pack::enable_outgoing_tcp))&lt;br&gt;    &amp;amp;&amp;amp; m_peer_info&lt;br&gt;    &amp;amp;&amp;amp; m_peer_info-&amp;gt;supports_holepunch&lt;br&gt;    &amp;amp;&amp;amp; !m_holepunch_mode)&lt;br&gt;{&lt;br&gt;    // see if we can try a holepunch&lt;br&gt;    bt_peer_connection&lt;/em&gt; p = t-&amp;gt;find_introducer(remote());&lt;br&gt;    if (p)&lt;br&gt;        p-&amp;gt;write_holepunch_msg(bt_peer_connection::hp_rendezvous, remote(), 0);&lt;br&gt;}&lt;br&gt;```&lt;br&gt;假设这段代码是peer C的机器上运行，也就是C从A拿到B的信息后，直接连接B失败了，就判断现在不是utp或者禁止tcp连接、并且支持打洞消息、当前不是打洞模式并且找到了中间介绍人(上文中提到的A)，则向A发送消息开启打洞流程。&lt;/p&gt;
 &lt;p&gt;参数中&lt;code&gt;bt_peer_connection::hp_rendezvous&lt;/code&gt;这个变量很有意思，rendezvous是约会地点的意思，当然在这里只是一个消息类型，remote()是B的ip地址信息。&lt;/p&gt;
@@ -849,38 +881,6 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
     </summary>
     
       <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>windows上UPNP/DLNA服务器软件测试</title>
-    <link href="http://baba.zhaoxiuyuan.com/2012/05/46/"/>
-    <id>http://baba.zhaoxiuyuan.com/2012/05/46/</id>
-    <published>2012-05-16T07:36:27.000Z</published>
-    <updated>2016-07-04T09:47:32.733Z</updated>
-    
-    <content type="html">&lt;p&gt;有两个移动客户端支持DLNA，于是将视频图片音乐等资源想通过服务器软件来实现共享给移动终端来观看。&lt;/p&gt;
-&lt;p&gt;使用客户端：&lt;/p&gt;
-&lt;p&gt;new ipad+AirAV,Huaiwei ascend p1 + 系统自带DLNA。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;服务器软件：Windows Media Player 12, TVMOBILI, Asset UPnP, FreeMi, XBMC, TVersity, Wild Media Server, TwonkyMediaServer&lt;/p&gt;
-&lt;p&gt;TVersity, Wild Media Server, TwonkyMediaServer收费，所以未测试。&lt;/p&gt;
-&lt;p&gt;Asset UPnP号称支持音乐UPNP服务，但实测未成功，浏览列表为空。&lt;/p&gt;
-&lt;p&gt;Windows Media Player 12, TVMOBILI ,FreeMi成功。&lt;/p&gt;
-&lt;p&gt;其中FreeMi很小，浏览时反应速度快，还能全盘支持浏览。但是界面语言是法语，并且视频格式支持不完整，很多视频不能seek或太慢。&lt;/p&gt;
-&lt;p&gt;Windows Media Player 12浏览速度较慢，但优点在于视频格式支持比较完整，seek之类操作也还不错。部分视频seek不成功。&lt;/p&gt;
-&lt;p&gt;TVMOBILI比较中庸，使用网页做为配置界面，操作性较差(但未测试使用移动终端直接设置，如果能够支持这功能，那操作方便程度就大大增加)。视频体验和freeMi差不多。&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有两个移动客户端支持DLNA，于是将视频图片音乐等资源想通过服务器软件来实现共享给移动终端来观看。&lt;/p&gt;
-&lt;p&gt;使用客户端：&lt;/p&gt;
-&lt;p&gt;new ipad+AirAV,Huaiwei ascend p1 + 系统自带DLNA。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="软件" scheme="http://baba.zhaoxiuyuan.com/categories/%E8%BD%AF%E4%BB%B6/"/>
     
     
   </entry>

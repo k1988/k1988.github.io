@@ -219,6 +219,64 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-01-28T19:04:35.000Z"><a href="/2013/01/55/">2013-01-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/01/55/">HTTP+SVN访问速度慢的问题</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <pre><code>我的机器上配置了Apache和SVN，由于项目需要经常有同事从我的机器上访问我的svn，所以就配置了HTTP版本的SVN，但访问时如果以授权方式访问速度就奇慢无比(刷个日志要1分钟)，如果以非授权方式访问速度就好很多。
+今天apache莫名奇妙地启动不起来，最后查明&lt;!--more--&gt;是需要在TCP/IP属性-&amp;gt;wins下面导入LMHOSTS，把apache主程序导入，但这个还没有深究到底是什么意思，也还不知道为会什么会发生这种情况。但在排除这个错误时，无意中发现了以前配置的apache限速模块mod_bw.dll，于是想着是否是这个模块导致的http+svn访问速度慢。
+我前面设置的参数是：
+BandWidthModule On
+ForceBandWidthModule On
+BandWidth all 40000000
+
+反复做测试发现要么去掉选项ForceBandWidthModule On，要么把BandWidth all 40000000改成BandWidth all 0才能使用访问速度正常，即使是把BandWidth all设定一个超大的值也不能加快svn访问速度。查看模块说明中
+ForceBandWidthModule [On|Off] 这个 module 预设不会过滤每个需求。如果您开启他，他将处理过滤每个需求。
+Example :(正常的使用下，仅会过滤 text/html test/plain) AddOutputFilterByType MOD_BW text/html text/plain
+
+BandWidth [From] [bytes/s]
+From 是限制来源的位置，也就是该位置受限制。他可以是完整的 hostname、网域名称或 IP。可搭配遮罩使用，例如 192.168.0.0/24 or 192.168.0.0/255.255.255.0 。另一个参数是限制的速率，以 bytes 每秒为单位；假如为 0，则不受限制。
+也就是说，http访问svn时的请求都是非text/html和text/plain方式（只需要在有时间时捕获一下HTTP请求头就可以确定），但为什么bandwith设置较大的限速值不能解决svn访问缓慢问题？留待以后解决吧，上班还是少干点工作之外的事。
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-11-26T23:40:44.000Z"><a href="/2012/11/49/">2012-11-27</a></time>
       
       
@@ -440,55 +498,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-12-05T01:24:35.000Z"><a href="/2011/12/34/">2011-12-05</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/12/34/">MAME0.144编译</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>按照<a href="http://mameworld.info/mrdo/compile.html">http://mameworld.info/mrdo/compile.html</a>的指导方法进行GCC版本的MAME编译没有任何问题,顺利编译通过.</p>
-<p>但是使用<a href="http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers">http://mamedev.org/devwiki/index.php/Building_MAME_using_Microsoft_Visual_Studio_compilers</a>上的方法进行VC++2005版本的编译时出现了一些问题,比如,提示:objvwindowsdbuildvconv.exe找不到, 还有 MTD,EHsc等是是无效的命令等.<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2011/12/34/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -520,7 +529,7 @@
   
     <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
   
-    <li><a href="/categories/java/">java</a><small>3</small></li>
+    <li><a href="/categories/java/">java</a><small>4</small></li>
   
     <li><a href="/categories/java/minecraft/">minecraft</a><small>1</small></li>
   

@@ -219,6 +219,61 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-08-18T03:44:28.000Z"><a href="/2016/08/103_java Annotation(注解)/">2016-08-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/08/103_java Annotation(注解)/">Java Annotation(Java注解)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Java注解的基础知识点"><a href="#Java注解的基础知识点" class="headerlink" title="Java注解的基础知识点"></a>Java注解的基础知识点</h2><!--![123](./images/annotation.jpg)-->
+<img title="Java注解的基础知识点" alt="Java注解的基础知识点" src="http://o9tn2674s.bkt.clouddn.com/static/images/annotation.jpg-baba.zhaoxiuyuan.com"> 
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://swiftlet.net/archives/1906" target="_blank" rel="external">注解系列知识总结</a></li>
+<li><a href="http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html" target="_blank" rel="external">深入理解Java：注解（Annotation）自定义注解入门</a></li>
+<li><a href="http://blog.csdn.net/duo2005duo/article/details/50505884" target="_blank" rel="external">Java注解（1）-基础</a></li>
+<li><a href="http://blog.csdn.net/duo2005duo/article/details/50511476" target="_blank" rel="external">Java注解（2）-运行时框架</a></li>
+<li><a href="http://blog.csdn.net/duo2005duo/article/details/50541281" target="_blank" rel="external"> Java注解（3）-源码级框架</a></li>
+<li><a href="http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html" target="_blank" rel="external">深入理解Java：注解（Annotation）自定义注解入门</a></li>
+<li><a href="深入理解Java：注解（Annotation）--注解处理器">深入理解Java：注解（Annotation）–注解处理器</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-08-12T02:44:28.000Z"><a href="/2016/08/102/">2016-08-12</a></time>
       
       
@@ -331,8 +386,7 @@
 <li><code>torrent_peer::supports_holepunch</code>：torrent_peer类是每个peer的特征集合，其中<code>supports_holepunch</code>代表是否支持打洞，默认值是<code>false</code>。</li>
 <li><code>bt_peer_connection::m_holepunch_id</code>: 对方peer申明的，它所支持的打洞消息的消息id。</li>
 </ul>
-<h1 id="种子来源"><a href="#种子来源" class="headerlink" title="种子来源"></a>种子来源</h1><p>添加peer的流程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">torrent::add_peer</span><br><span class="line">---&gt;</span><br><span class="line">`peer_list::add_i2p_peer`或`peer_list::add_peer` </span><br><span class="line">---&gt;</span><br><span class="line">`peer_list::insert_peer`或`peer_list::update_peer`</span><br><span class="line">```            </span><br><span class="line"></span><br><span class="line">如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。&lt;!--more--&gt;查找所有调用add_peer的地方，约有以下来源：</span><br><span class="line"></span><br><span class="line">* 从resume文件里获得peer(上次开启任务保存的)</span><br><span class="line">* dht方式从互联网中得到种子</span><br><span class="line">* tracker从互联网中拿到种子</span><br><span class="line">* lsd方式从本地网络得到种子</span><br><span class="line">* pex方式从互联网中拿到种子</span><br><span class="line"></span><br><span class="line">其中只有从pex方式得到互联网种子的调用语句使用flags参数，</span><br><span class="line"></span><br><span class="line"># 判断是否支持打洞消息</span><br><span class="line">在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。</span><br><span class="line"></span><br><span class="line">在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。</span><br><span class="line">当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。</span><br><span class="line"></span><br><span class="line">当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。</span><br></pre></td></tr></table></figure>
+<h1 id="种子来源"><a href="#种子来源" class="headerlink" title="种子来源"></a>种子来源</h1><p>添加peer的流程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">torrent::add_peer</span><br><span class="line">---&gt;</span><br><span class="line">peer_list::add_i2p_peer或peer_list::add_peer </span><br><span class="line">---&gt;</span><br><span class="line">peer_list::insert_peer或peer_list::update_peer</span><br><span class="line"></span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。&lt;!--more--&gt;查找所有调用add_peer的地方，约有以下来源：</span><br><span class="line"></span><br><span class="line">* 从resume文件里获得peer(上次开启任务保存的)</span><br><span class="line">* dht方式从互联网中得到种子</span><br><span class="line">* tracker从互联网中拿到种子</span><br><span class="line">* lsd方式从本地网络得到种子</span><br><span class="line">* pex方式从互联网中拿到种子</span><br><span class="line"></span><br><span class="line">其中只有从pex方式得到互联网种子的调用语句使用flags参数，</span><br><span class="line"></span><br><span class="line"># 判断是否支持打洞消息</span><br><span class="line">在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。</span><br><span class="line"></span><br><span class="line">在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。</span><br><span class="line">当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。</span><br><span class="line"></span><br><span class="line">当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。</span><br></pre></td></tr></table></figure></p>
 <p>bool bt_peer_connection::supports_holepunch() const { return m_holepunch_id != 0; }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">但bt_peer_connection的supports_holepunch()返回true只能说明此peer支持打洞，打洞是需要第三方服务器介入的，如何得到中间介绍人呢，见下节。</span><br><span class="line"></span><br><span class="line"># 中间介绍人</span><br><span class="line">上文提到，种子来源有pex方式。</span><br><span class="line"></span><br><span class="line">当session开启了ut_pex插件时(`session_handle::add_extension(&amp;libtorrent::create_ut_pex_plugin)`)，在ut_pex_peer_plugin::tick()中会使用send_ut_peer_list和send_ut_peer_diff函数来向其它peer发送自己拥有的种子。其中`bt_peer_connection* p = static_cast&lt;bt_peer_connection*&gt;(peer); ... flags |= p-&gt;supports_holepunch() ? 8 : 0;`将peer信息发送给另外一个peer时，会带上了支持打洞的flags，然后接收方拿到peer后，向torrent里添加peer时，`torrent_peer::supports_holepunch`的值就会是true了。</span><br><span class="line"></span><br><span class="line">假设自己是peer A，和peer B握手后知道B是支持打洞消息的，在和peer C连接时，使用pex扩展协议和peer C交换peer时，会把peer B的ip、端口、标志传递peer C，peer C拿到B后就满足了打洞的条件，因为A和B能正常通信，A和C也能正常通信，B和C就可以使用中间人A来进行打洞。</span><br><span class="line"></span><br><span class="line"># 什么时候尝试打洞</span><br><span class="line">在连接某个peer失败时，并且满足条件时，尝试进入打洞模式。见`void peer_connection::connect_failed(error_code const&amp; e)`中，</span><br></pre></td></tr></table></figure></p>
 <p>if ((!is_utp(<em>m_socket)<br>        || !m_settings.get_bool(settings_pack::enable_outgoing_tcp))<br>    &amp;&amp; m_peer_info<br>    &amp;&amp; m_peer_info-&gt;supports_holepunch<br>    &amp;&amp; !m_holepunch_mode)<br>{<br>    // see if we can try a holepunch<br>    bt_peer_connection</em> p = t-&gt;find_introducer(remote());<br>    if (p)<br>        p-&gt;write_holepunch_msg(bt_peer_connection::hp_rendezvous, remote(), 0);<br>}<br>```<br>假设这段代码是peer C的机器上运行，也就是C从A拿到B的信息后，直接连接B失败了，就判断现在不是utp或者禁止tcp连接、并且支持打洞消息、当前不是打洞模式并且找到了中间介绍人(上文中提到的A)，则向A发送消息开启打洞流程。</p>
 <p>参数中<code>bt_peer_connection::hp_rendezvous</code>这个变量很有意思，rendezvous是约会地点的意思，当然在这里只是一个消息类型，remote()是B的ip地址信息。</p>
@@ -461,54 +515,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-08-13T00:49:20.000Z"><a href="/2015/08/99/">2015-08-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/08/99/">win10 系统下获取系统版本号为6.2的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; 近期赶时髦升级了win10，用着挺爽。但是某天在测试一个bug时发现要对win10做特殊处理，于是直接调用了GetVersionEx，并取出版本号进行判断，但是发现得到的版本竟然是6.2。当时就被雷到了，然后看了我们的其它产品中相关功能，皆获取的是6.2。</span><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/08/99/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -538,7 +544,7 @@
   
     <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
   
-    <li><a href="/categories/java/">java</a><small>3</small></li>
+    <li><a href="/categories/java/">java</a><small>4</small></li>
   
     <li><a href="/categories/java/minecraft/">minecraft</a><small>1</small></li>
   
