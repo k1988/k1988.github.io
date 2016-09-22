@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java Annotation(Java注解) | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java Annotation(Java注解)"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-09-22T05:58:28.000Z"><a href="/2016/09/104_IE控件在flash跨域时回调接口无效/">2016-09-22</a></time>
+      
+      
+  
+    <h1 class="title">Java Annotation(Java注解)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="IE控件在flash跨域时回调接口无效的问题研究"><a href="#IE控件在flash跨域时回调接口无效的问题研究" class="headerlink" title="IE控件在flash跨域时回调接口无效的问题研究"></a>IE控件在flash跨域时回调接口无效的问题研究</h1><p>问题是这样的，我们公司的产品《UU页游戏助手》中是使用了IE浏览器的ActiveX控件来运行网页游戏，其中创建代码是这样的：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">hr = ::CoCreateInstance(&quot;&#123;8856F961-340A-11D0-A96B-00C04FD705A2&#125;&quot;, NULL, CLSCTX_ALL, IID_IOleControl, (LPVOID*)&amp;pOleControl);</span><br><span class="line"> GAMEMGR_ASSERT(SUCCEEDED(hr));</span><br><span class="line">    if (FAILED(hr) || pOleControl == NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">    pOleControl-&gt;QueryInterface(IID_IOleObject, (LPVOID*) &amp;m_pUnk);</span><br><span class="line">    pOleControl-&gt;Release();</span><br><span class="line">    if (m_pUnk == NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">    // Create the host too</span><br><span class="line">    m_pControl = new GMActiveXCtrl();</span><br><span class="line">    m_pControl-&gt;SetOwner(this);</span><br><span class="line">    // More control creation stuff</span><br><span class="line">    DWORD dwMiscStatus = 0;</span><br><span class="line">    m_pUnk-&gt;GetMiscStatus(DVASPECT_CONTENT, &amp;dwMiscStatus);</span><br><span class="line">    IOleClientSite* pOleClientSite = NULL;</span><br><span class="line">    m_pControl-&gt;QueryInterface(IID_IOleClientSite, (LPVOID*) &amp;pOleClientSite);</span><br><span class="line">    GMSafeRelease&lt;IOleClientSite&gt; RefOleClientSite = pOleClientSite;</span><br><span class="line">    // Initialize control</span><br><span class="line">    if ((dwMiscStatus &amp; OLEMISC_SETCLIENTSITEFIRST) != 0)</span><br><span class="line">	&#123;</span><br><span class="line">		m_pUnk-&gt;SetClientSite(pOleClientSite);</span><br><span class="line">	&#125;</span><br><span class="line">    IPersistStreamInit* pPersistStreamInit = NULL;</span><br><span class="line">    m_pUnk-&gt;QueryInterface(IID_IPersistStreamInit, (LPVOID*) &amp;pPersistStreamInit);</span><br><span class="line">    if (pPersistStreamInit != NULL)</span><br><span class="line">	&#123;</span><br><span class="line">        hr = pPersistStreamInit-&gt;InitNew();</span><br><span class="line">        pPersistStreamInit-&gt;Release();</span><br><span class="line">    &#125;</span><br><span class="line">    if (FAILED(hr))</span><br><span class="line">	&#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">    if ((dwMiscStatus &amp; OLEMISC_SETCLIENTSITEFIRST) == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		m_pUnk-&gt;SetClientSite(pOleClientSite);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在使用这个IE控件时，经常有诸多问题，很多行为和IE不一致。需要去注册表添加不同的选项，最经典和常见的问题莫过于IE兼容性的问题，需要在<code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION</code>中添加注册表键来强行指定兼容版本。</p>
+<h2 id="问题来了"><a href="#问题来了" class="headerlink" title="问题来了"></a>问题来了</h2><p>然而 在前不久和今天都有客户反映他们的 <strong>flash</strong>广告页面（是那种打开后是个flash页面，然后 <strong>点击flash里的按钮/图像</strong>就弹出注册登录的 <strong>html小浮层</strong>的页面）在我们的浏览器上有问题，用户第一次打开页面能正常弹出小浮层，但后面再打开就不显示了。</p>
+<p>第一次粗略的研究下，发现清除ie缓存后再打开页面后表现正常，经过调试js也没有发现明显的问题，就让客户在请求swf的链接上添加<code>?t=当前时间戳</code>的方式避免缓存。但今天再遇到了，就想彻底的研究下到底在什么情况下会出现这个问题。</p>
+<p>使用vs2015使用 <strong>脚本模式</strong> 附加到我们的程序上，打开解决方案管理器进行调试。多次跟踪代码和对比发现在html这边初使化flash的流程是一样的，所以问题不是在这边。而初使化之后，无缓存的情况下点击flash，js中的函数能被调用，而有缓存的情况下点击flash，js中的函数无法被调用。</p>
+<p>在无缓存的情况下，在js函数中下断点，然后回溯堆栈，发现上层调用者是动态生成的代码”eval code”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try &#123; __flash__toXML(sayHello((&#123;code:1,description:&quot;Parameter test&quot;&#125;))) ; &#125; catch (e) &#123; &quot;&lt;undefined/&gt;&quot;; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为有过一段as的编码经验，所以知道这是ie和flash生成的支持swf文件里的action script调用js的函数，那么问题来了，为什么在有缓存的情况下没有自动生成这些代码？</p>
+<img title="堆栈截图" alt="堆栈截图" src="http://o9tn2674s.bkt.clouddn.com/static/images/104_1.png-k1988"> 
+<h2 id="模拟重现问题"><a href="#模拟重现问题" class="headerlink" title="模拟重现问题"></a>模拟重现问题</h2><p>由于原网页过于复杂，我首先想将这个问题用简单的代码复现，就找到了以前用来测试actionscript和js交互时制作的demo，将其直接布署在我的本地测试机器上。</p>
+<ol>
+<li>我以ip访问测试页面，多次刷新页面，再点击flash按钮，可以正常工作。</li>
+<li>对比发现广告页面是动态插入的flash，于是将demo改成动态插入，但还是无异常。 </li>
+<li>绑定个域名到本机，然后使用域名访问，多次刷新后点击，可以正常工作。</li>
+<li>将swf放在另一个域名，然后多次刷新后点击，不工作。但是这种情况，是无论有无缓存，都不正常工作。</li>
+<li>对比发现demo中的flash节点中<code>allowScriptAccess=&quot;sameDomain&quot;</code>，而网页的节点属性是<code>allowScriptAccess=&quot;always&quot;</code>，所以是flash属性导致的。</li>
+<li>去除该属性后再多次刷新对比，成功模拟环境。</li>
+</ol>
+<p>在 <strong>IE控件</strong>中打开的页面中，如果是从 <strong>缓存中加载的swf文件</strong>，在 <strong>跨域</strong>的情况下 <strong>未能正常生成</strong>flash的相关 <strong>动态js代码</strong>，导致flash中的actionscript不能调用javascript函数。</p>
+<p>但是，在ie浏览器中，无论是否从缓存中加载swf，均能正常生成动态js代码。</p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>尝试使用跨域文件，无效。</p>
+<p><strong>未能解决此问题，留待以后继续研究吧。。</strong></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/ie/">ie</a>, <a href="/categories/ie/flash/">flash</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/ie-flash/">ie flash</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2016/08/103_java Annotation(注解)/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2016/09/104_IE控件在flash跨域时回调接口无效/" data-title="Java Annotation(Java注解)" data-url="/2016/09/104_IE控件在flash跨域时回调接口无效/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/WEB/">WEB</a><small>1</small></li>
+  
+    <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
+  
+    <li><a href="/categories/ie/flash/">flash</a><small>1</small></li>
+  
+    <li><a href="/categories/ie/">ie</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>4</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>1</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>2</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>7</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>早期博客：<a href="http://blog.csdn.net/k1988/">CSDN博客</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

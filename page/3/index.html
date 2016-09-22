@@ -219,6 +219,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-04-09T02:56:28.000Z"><a href="/2014/04/75/">2014-04-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/04/75/">使用python编写svn钩子</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>同上一篇trac中安装插件的文章的出发点一样，感觉用文档和口头制定规则在执行上会有偏差并且需要经常引导新人去熟悉规则。</p>
+<p>所以，又费了几个小时去琢磨怎么改进svn提交代码的钩子，现有的钩子的功能比较简单，只是验证提交时的日志字数有没有超过5个，而我想将其改进为验证是不是符合&ldquo;问题修复：#1234 xxxx&rdquo;的这种格式，这里处理的是 版本库/hooks/pre-commit.bat &nbsp;这个钩子。</p>
+<p>话不多说，svn钩子原理和规则不表，先上<strong>原钩子代码</strong>：<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/04/75/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-04-08T21:25:00.000Z"><a href="/2014/04/73/">2014-04-09</a></time>
       
       
@@ -451,56 +501,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-02-16T01:03:49.000Z"><a href="/2013/02/59/">2013-02-16</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/02/59/">C++静态库中使用_declspec(dllexport) 不能导出函数的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在某项目中，有一些静态库，这些静态库中有类型命名的函数GET_XXX。在一次项目结构调整的时候，我想将调用这静态库的代码编译成DLL，并且将这些Get函数导出，我就直接就这些函数前面添加了_declspec(dllexport)，</p>
-<p>然后代码结构就成为：</p>
-<p>静态库A: 包括很多 _declspec(dllexport) GET_XXX 函数。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/02/59/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -531,6 +531,10 @@
     <li><a href="/categories/WEB/">WEB</a><small>1</small></li>
   
     <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
+  
+    <li><a href="/categories/ie/flash/">flash</a><small>1</small></li>
+  
+    <li><a href="/categories/ie/">ie</a><small>1</small></li>
   
     <li><a href="/categories/java/">java</a><small>4</small></li>
   
