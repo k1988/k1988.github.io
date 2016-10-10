@@ -219,6 +219,54 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2011-12-26T19:08:31.000Z"><a href="/2011/12/40/">2011-12-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/12/40/">NAT穿之TCP</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。<br>这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2011/12/40/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2011-12-05T22:33:20.000Z"><a href="/2011/12/37/">2011-12-06</a></time>
       
       
@@ -440,52 +488,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-09-28T23:54:48.000Z"><a href="/2011/09/17/">2011-09-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/09/17/">windows注册表文件</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>今天用到注册表文件时，稍微分析了一下：<br>XP上的注册表文件为REG5版本，另外似乎有REG4版本。<br>REG5版本的REG文件一定要是ansi编码或者是Unicode little endian编码，其它编码一概不支持，并且文本内容第一行中一定要有“Windows Registry Editor Version 5.00”这串文本，前面有几个半角空格无所谓但是不能有其它任何字符（包括回车）的存在。</p>
-<p>详细说明可见：<br><a href="http://en.wikipedia.org/wiki/Windows_Registry" target="_blank" rel="external">http://en.wikipedia.org/wiki/Windows_Registry</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -521,9 +523,9 @@
   
     <li><a href="/categories/ie/">ie</a><small>1</small></li>
   
-    <li><a href="/categories/java/">java</a><small>4</small></li>
+    <li><a href="/categories/java/">java</a><small>5</small></li>
   
-    <li><a href="/categories/java/minecraft/">minecraft</a><small>1</small></li>
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>2</small></li>
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   

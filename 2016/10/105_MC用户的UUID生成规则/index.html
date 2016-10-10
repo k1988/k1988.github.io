@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>sinaapp + wordpress = 赵海洋的博客 | k1988</title>
+  <title>我的世界服务器玩家UUID生成规则 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="sinaapp + wordpress = 赵海洋的博客"/>
+  <meta property="og:title" content="我的世界服务器玩家UUID生成规则"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -218,24 +218,45 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2011-07-13T19:07:48.000Z"><a href="/2011/07/4/">2011-07-14</a></time>
+        <time datetime="2016-10-10T04:20:28.000Z"><a href="/2016/10/105_MC用户的UUID生成规则/">2016-10-10</a></time>
       
       
   
-    <h1 class="title">sinaapp + wordpress = 赵海洋的博客</h1>
+    <h1 class="title">我的世界服务器玩家UUID生成规则</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>首次建立的第一个自己博客网站~~</p>
+        <p>由于业务需要，研究一下如何将离线版(盗版)minecraft服务器的玩家数据迁移到在线版我的世界服务器上去。</p>
+<p>查看minecraft的服务器代码(反编译)，如果是在线模式就连接用户验证服务器去获取玩家的uuid，否则就根据规则自动生成。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//代码片断from: net.minecraft.server.NameReferencingFileConverter</span><br><span class="line"></span><br><span class="line">if (minecraftserver.getOnlineMode() || org.spigotmc.SpigotConfig.bungee) &#123; </span><br><span class="line">    // Spigot: bungee = online mode, for now.</span><br><span class="line">    minecraftserver.getGameProfileRepository().findProfilesByNames(astring, Agent.MINECRAFT, profilelookupcallback);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    String[] astring1 = astring;</span><br><span class="line">    int i = astring.length;</span><br><span class="line"></span><br><span class="line">    for (int j = 0; j &lt; i; ++j) &#123;</span><br><span class="line">        String s = astring1[j];</span><br><span class="line">        UUID uuid = EntityHuman.a(new GameProfile((UUID) null, s));</span><br><span class="line">        GameProfile gameprofile = new GameProfile(uuid, s);</span><br><span class="line"></span><br><span class="line">        profilelookupcallback.onProfileLookupSucceeded(gameprofile);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//from：net.minecraft.server.EntityHuman</span><br><span class="line">public static UUID a(GameProfile gameprofile) &#123;</span><br><span class="line">    UUID uuid = gameprofile.getId();</span><br><span class="line"></span><br><span class="line">    if (uuid == null) &#123;</span><br><span class="line">        uuid = b(gameprofile.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return uuid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static UUID b(String s) &#123;</span><br><span class="line">    return UUID.nameUUIDFromBytes((&quot;OfflinePlayer:&quot; + s).getBytes(Charsets.UTF_8));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>生成算法是在用户昵称前面加上“OfflinePlayer:”后使用java函数nameUUIDFromBytes来生成。</p>
+<p>nameUUIDFromBytes函数代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// from: java.util.UUID.java</span><br><span class="line">public static UUID nameUUIDFromBytes(byte[] name) &#123;</span><br><span class="line">    MessageDigest md;</span><br><span class="line">    try &#123;</span><br><span class="line">        md = MessageDigest.getInstance(&quot;MD5&quot;);</span><br><span class="line">    &#125; catch (NoSuchAlgorithmException nsae) &#123;</span><br><span class="line">        throw new InternalError(&quot;MD5 not supported&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    byte[] md5Bytes = md.digest(name);</span><br><span class="line">    md5Bytes[6]  &amp;= 0x0f;  /* clear version        */</span><br><span class="line">    md5Bytes[6]  |= 0x30;  /* set to version 3     */</span><br><span class="line">    md5Bytes[8]  &amp;= 0x3f;  /* clear variant        */</span><br><span class="line">    md5Bytes[8]  |= 0x80;  /* set to IETF variant  */</span><br><span class="line">    return new UUID(md5Bytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1、计算出MD5    </p>
+<p><code>OfflinePlayer:k1988</code> -&gt; MD5: <code>08D699BB6400555E581B678C9441FA75</code></p>
+<p>2、MD5的值和生成的uuid文件名对比</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">08d699bb-6400-555e-581b-678c9441fa75</span><br><span class="line">08d699bb-6400-355e-981b-678c9441fa75</span><br></pre></td></tr></table></figure>
+<p>== 解析法 ==</p>
+<p>还有一种方法就是枚举minecraft服务器中的world\playerdata目录，这个目录下每个文件对应着一个玩家，文件名(不含后缀)就是一个玩家的uuid，文件使用NBT方式储存着一些用户信息，包括用户上一次使用的昵称(可见，在线版服务器是方便更改昵称的)，及其它信息。</p>
+<p>我fork了一个NBT解析的python代码，并在里面添加了一个python脚本用来枚举playerdata下的所有文件，fork后的代码在<a href="https://github.com/k1988/NBT" target="_blank" rel="external">https://github.com/k1988/NBT</a> ，脚本在examples/player_print.py，使用时直接<code>player_print.py &lt;playerdata目录路径&gt;</code>即可，效果如下图：<br><img title="截图" alt="截图" src="http://o9tn2674s.bkt.clouddn.com/static/images/105_1.png-k1988"> </p>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>, <a href="/categories/java/minecraft/">minecraft</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/minecraft-flash/">minecraft flash</a>
+  </div>
+
 <!-- Baidu Button BEGIN -->
 <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
 <a class="bds_qzone"></a>
@@ -261,8 +282,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2011/09/15/" class="alignleft prev" >上一页</a>
     
+    <a href="/2016/09/104_IE控件在flash跨域时回调接口无效/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -270,7 +291,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <section id="comment">
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/2011/07/4/" data-title="sinaapp + wordpress = 赵海洋的博客" data-url="/2011/07/4/"></div>
+	<div class="ds-thread" data-thread-key="/2016/10/105_MC用户的UUID生成规则/" data-title="我的世界服务器玩家UUID生成规则" data-url="/2016/10/105_MC用户的UUID生成规则/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
