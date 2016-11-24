@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-11-10T07:57:22.160Z</updated>
+  <updated>2016-11-24T07:06:31.809Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用百度输入法时程序崩溃</title>
+    <link href="http://baba.zhaoxiuyuan.com/2016/11/107_baidupingyin_crash/"/>
+    <id>http://baba.zhaoxiuyuan.com/2016/11/107_baidupingyin_crash/</id>
+    <published>2016-11-24T06:20:28.000Z</published>
+    <updated>2016-11-24T07:06:31.809Z</updated>
+    
+    <content type="html">&lt;p&gt;使用4.0.3187.0版本的百度拼音输入法时，启动我司的快吧游戏软件，再退出快吧，程序崩溃。查看消息结构体，窗口目标句柄在spy++里已经搜索不到，崩溃地址在某台机器上是0x690eb410。&lt;/p&gt;
+&lt;p&gt;重启后加汇编断点后发现，该模块地址是百度的uipfull.dll中，父调用者是user32.dll!__InternalCallWinProc@20()。而该窗口的类名是CMessenger_Wnd，样式是CS_IME。&lt;/p&gt;
+&lt;p&gt;猜测在某种环境下，&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;百度输入法在uipfull模板释放时，并未将输入法窗口的WndProc修改成原来的函数，并且还触发了自定义消息？&lt;br&gt;导致分发消息时，试图尝试调用窗口的wndProc属性指定的消息处理函数，导致崩溃。&lt;/p&gt;
+&lt;img title=&quot;程序崩溃&quot; alt=&quot;程序崩溃&quot; src=&quot;http://o9tn2674s.bkt.clouddn.com/static/images/107_crash.png-k1988&quot;&gt; </content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用4.0.3187.0版本的百度拼音输入法时，启动我司的快吧游戏软件，再退出快吧，程序崩溃。查看消息结构体，窗口目标句柄在spy++里已经搜索不到，崩溃地址在某台机器上是0x690eb410。&lt;/p&gt;
+&lt;p&gt;重启后加汇编断点后发现，该模块地址是百度的uipfull.dll中，父调用者是user32.dll!__InternalCallWinProc@20()。而该窗口的类名是CMessenger_Wnd，样式是CS_IME。&lt;/p&gt;
+&lt;p&gt;猜测在某种环境下，
+    
+    </summary>
+    
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/windows/"/>
+    
+    
+      <category term="windows shell" scheme="http://baba.zhaoxiuyuan.com/tags/windows-shell/"/>
+    
+  </entry>
   
   <entry>
     <title>windows托盘图标检测</title>
@@ -897,27 +924,6 @@ return processedSize != sizeof(FILE_ALLOCATED_RANGE_BUFFER);
     </summary>
     
       <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>微软数字签名和长度和位移</title>
-    <link href="http://baba.zhaoxiuyuan.com/2013/03/58/"/>
-    <id>http://baba.zhaoxiuyuan.com/2013/03/58/</id>
-    <published>2013-03-18T23:38:45.000Z</published>
-    <updated>2016-07-04T09:32:10.395Z</updated>
-    
-    <content type="html">&lt;p&gt;原来微软数字签名的内容是直接追加在文件末尾的，这导致了原来的根据PE头的Sections的最后一个段的位移和大小确定文件末尾的方法对于有签名的程序不适用。还好，有OptionHeader中的结构可以获取数字签名的长度。&lt;br&gt;ntHeaders.OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_SECURITY] &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原来微软数字签名的内容是直接追加在文件末尾的，这导致了原来的根据PE头的Sections的最后一个段的位移和大小确定文件末尾的方法对于有签名的程序不适用。还好，有OptionHeader中的结构可以获取数字签名的长度。&lt;br&gt;ntHeaders.OptionalHeader
-    
-    </summary>
-    
-      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
     
     
   </entry>

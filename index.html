@@ -219,6 +219,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-11-24T06:20:28.000Z"><a href="/2016/11/107_baidupingyin_crash/">2016-11-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/11/107_baidupingyin_crash/">使用百度输入法时程序崩溃</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>使用4.0.3187.0版本的百度拼音输入法时，启动我司的快吧游戏软件，再退出快吧，程序崩溃。查看消息结构体，窗口目标句柄在spy++里已经搜索不到，崩溃地址在某台机器上是0x690eb410。</p>
+<p>重启后加汇编断点后发现，该模块地址是百度的uipfull.dll中，父调用者是user32.dll!__InternalCallWinProc@20()。而该窗口的类名是CMessenger_Wnd，样式是CS_IME。</p>
+<p>猜测在某种环境下，
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/11/107_baidupingyin_crash/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-11-10T07:20:28.000Z"><a href="/2016/11/106_windows托盘图标检测/">2016-11-10</a></time>
       
       
@@ -453,54 +503,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-08-10T10:29:28.000Z"><a href="/2016/08/fontconfig.properties/">2016-08-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/08/fontconfig.properties/">通过修改fontconfig.properties文件来改变IDE字体</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/08/fontconfig.properties/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -542,7 +544,7 @@
   
     <li><a href="/categories/python/">python</a><small>1</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>1</small></li>
+    <li><a href="/categories/windows/">windows</a><small>2</small></li>
   
     <li><a href="/categories/工具/">工具</a><small>1</small></li>
   
