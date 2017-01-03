@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2016-11-24T07:06:31.809Z</updated>
+  <updated>2017-01-03T12:48:42.901Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>那些想哭的bug（一）</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/</id>
+    <published>2017-01-03T12:00:28.000Z</published>
+    <updated>2017-01-03T12:48:42.901Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某天在查找其它问题/添加新的功能/优化代码/睡觉时，突然发现/想到根本原因之后，简直想哭。。问题可能出现在一个很不起眼/一扫而过/觉得100%不会有问题的地方。&lt;/p&gt;
+&lt;p&gt;今天就遇到一个这样的bug，无语的让我想专门开个类别存放这类bug。&lt;/p&gt;
+&lt;p&gt;前提条件是这样的，主程序A在运行过程中，会从服务器上拉取一些推(la)荐(ji)信(guang)息(gao),然后在不同的条件下启动程序B来显示。A和B都经常多年多个版本的迭代，加了不同类型的广告，有2种最常用的是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;弹窗推荐：A启动后，拉取推荐信息，下载资源，指定时间点或指定分钟数后，启动B在右下角弹窗推荐我们软件中的游戏。&lt;/li&gt;
+&lt;li&gt;托盘推荐：A启动后，拉取推荐信息，下载资源，指定时间点或指定分钟数后，启动B在在托盘区域弹窗显示个图标，点击后打开我们软件中的游戏。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有一个版本，boss看到别的程序经常在退出后还会再弹出一个窗口来推荐信息（如免费版本的winrar），就拍板添加了个功能： A启动后，拉取推荐信息，下载资源，在 &lt;strong&gt;A程序退出后&lt;/strong&gt;居中显示一张图片（有关闭按钮，倒计时），用户点击图片后打开我们推荐的网址。&lt;/p&gt;
+&lt;p&gt;我们的各种推荐的到达率都是有数据统计的，点击转换率也是有数据统计的，但这个功能上线后发现居然有 &lt;em&gt;50%左右&lt;/em&gt; 的用户请求了广告，但是没有显示出来退出广告。于是乎各种分析A程序的流程（推荐信息是否拉取失败，信息解析是否可能失败，需要显示的图片资源是否可能失败，启动B程序是否可能失败，是否有安全软件拦截）、统计服务器的统计代码、统计分析服务器的代码都没有发现原因；在测试部门测试、复测时也没有发现请求了广告但是退出时不显示的问题。&lt;/p&gt;
+&lt;p&gt;在其它广告的数据中，也偶有丢失个10%左右的情况，但这种50%级别的丢失，实在是难以想像哪儿出了问题，百思不得其解后，也只能先暂停掉这个类型的推荐信息。然后几个月过去了，这事儿就抛在脑后了。&lt;/p&gt;
+&lt;h1 id=&quot;神之复现&quot;&gt;&lt;a href=&quot;#神之复现&quot; class=&quot;headerlink&quot; title=&quot;神之复现&quot;&gt;&lt;/a&gt;神之复现&lt;/h1&gt;&lt;p&gt;在今天，因为有个产品，我们将A和B复制并改动出了C和D，然后在走测试流程。有一个测试在测试时向我汇报，她机器上的这种类型的推荐信息偶尔不显示。&lt;br&gt;由于程序员普遍的自负心理，我想我就是A和B简单的复制，稍微改动成的C和D，怎么可能这个功能有问题呢，肯定是测试她自己在测试环境上配置错了，或者某些条件不满足。然后很不耐烦地过去瞅瞅状况，经过她几次反复的演示，我觉得至少在她那儿是有些什么情况，确实是有不显示的问题。&lt;br&gt;先一一排除掉A的信息拉取（WireShark抓包没有问题）正常，资源下载正常（资源目录里有图片），配置后台中的其它信息也一一验证是合法的，然后用 &lt;code&gt;ProcMon.exe&lt;/code&gt; 监控发现不显示广告时，D程序都是创建后很快就退出了。&lt;/p&gt;
+&lt;p&gt;于是将命令行拷贝到我测试机上，然后用VS Debug运行，发现一切又很正常。&lt;/p&gt;
+&lt;h1 id=&quot;神之谜底&quot;&gt;&lt;a href=&quot;#神之谜底&quot; class=&quot;headerlink&quot; title=&quot;神之谜底&quot;&gt;&lt;/a&gt;神之谜底&lt;/h1&gt;&lt;p&gt;经过几分钟的测试，在Debug和Release、及发行版本的行为对比，发现了一处代码是问题的根源。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;在B的入口处：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// 查找A程序主窗口&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	HWND hWnd = FindWindow(A程序主窗口类名, A程序标题);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (!hWnd)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifndef _DEBUG&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return FALSE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif // _DEBUG&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;因为之前的广告的行为基本上都是A启动B，B就单独存在，当用户点击推荐信息时，将动作发送给A，让A来执行。如果A不存在了，就使用命令行启动A来处理。&lt;br&gt;但新加的那个退出推荐的逻辑是，在A的主窗口的&lt;code&gt;OnClose&lt;/code&gt;事件里启动B程序来显示广告信息，但执行顺序存在随机性，有可能是B先启动，然后走到FindWindow，也有可能是A程序的窗口先OnDestory掉，B再走到FindWindow。所以，在所有的用户环境那边，就出现了50%左右的丢失率（如果两边的执行代码区别再大一些，可能是别的百分比）。&lt;/p&gt;
+&lt;p&gt;而解决办法显而易见，退出推荐时根本不需要检测A窗口是否存在，后续的用户行为反应也是不需要再启动A来执行的。在if (!hWnd) 条件中再加上广告类型的判断即可解决。&lt;/p&gt;
+&lt;h1 id=&quot;迷之羞愧&quot;&gt;&lt;a href=&quot;#迷之羞愧&quot; class=&quot;headerlink&quot; title=&quot;迷之羞愧&quot;&gt;&lt;/a&gt;迷之羞愧&lt;/h1&gt;&lt;p&gt;如果倒着看这个博客，一定会嗤之以鼻：如此简单的问题都找不到。 但反想一下，这个bug是一个随机现象，且不能稳定重现，且bug触发的原因隐藏在多年表现正常的的代码中，这都导致了问题没有很快的解决（ &lt;em&gt;甩锅干脆利落&lt;/em&gt;）。&lt;/p&gt;
+&lt;p&gt;其实嘛，经过多年的项目经验，确实印证了一句话 &lt;strong&gt;事出反常必有妖&lt;/strong&gt;，就是当用户出现了不正常的情况，虽然大部分情况下会不由自主的指责别人使用方法不对，但往确实是自己的程序出现了或多或少的考虑不周或者是隐藏的问题导致的。只不过，有些bug换种使用流程和环境就绕过去了（比如：万能的重启），有些bug总是会在不经意间蹦出来咬你一口。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某
+    
+    </summary>
+    
+      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/categories/bugs/"/>
+    
+    
+      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/tags/bugs/"/>
+    
+  </entry>
   
   <entry>
     <title>使用百度输入法时程序崩溃</title>
@@ -873,57 +913,6 @@
     </summary>
     
       <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏</title>
-    <link href="http://baba.zhaoxiuyuan.com/2013/04/63/"/>
-    <id>http://baba.zhaoxiuyuan.com/2013/04/63/</id>
-    <published>2013-04-28T02:32:29.000Z</published>
-    <updated>2016-07-04T09:47:11.791Z</updated>
-    
-    <content type="html">&lt;p&gt;众所周之，使用下面的代码可以设置文件为稀疏文件。&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;amp;temp, 0);&lt;/p&gt;
-&lt;p&gt;使用这段代码清除稀疏文件标志(vista及以后才有效)&lt;br&gt;DWORD temp;&lt;br&gt;FILE_SET_SPARSE_BUFFER b;&lt;br&gt;b.SetSparse = FALSE;&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;amp;b, sizeof(b), 0, 0, &amp;amp;temp, 0));&lt;/p&gt;
-&lt;p&gt;但，&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;在使用libtorrent 1.6.0的代码时遇到问题，对于一个较大文件的下载时，可能有一块内存数据未写入&lt;br&gt;到物理文件中时就清除了SPARSE属性，然后下载完成的文件被损坏。以写模式访问会返回错误码5，&lt;br&gt;拷贝该文件到一定进度会失败，删除也不能删除。&lt;/p&gt;
-&lt;p&gt;解决办法是，将该文件重新设置为稀疏文件。&lt;/p&gt;
-&lt;p&gt;所以，在清除稀疏标志之前，必须判断是否还有hole(稀疏的部分)。&lt;/p&gt;
-&lt;p&gt;bool HasSparseRegion(HANDLE file)&lt;br&gt;{&lt;br&gt;    LARGE_INTEGER fileSize;&lt;br&gt;    if (!GetFileSizeEx(file, &amp;amp;fileSize))&lt;br&gt;    {&lt;br&gt;        return true;&lt;br&gt;    }&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;FILE_ALLOCATED_RANGE_BUFFER in;
-in.FileOffset.QuadPart = 0;
-in.Length.QuadPart = fileSize.QuadPart;
-
-FILE_ALLOCATED_RANGE_BUFFER out[2];
-
-DWORD processedSize = 0;
-BOOL ret = DeviceIoControl(file,
-                           FSCTL_QUERY_ALLOCATED_RANGES,
-                           (void*)&amp;amp;in,
-                           sizeof(in),
-                           out,
-                           sizeof(out),
-                           &amp;amp;processedSize,
-                           NULL);
-if (ret == FALSE)
-{
-    return true;
-}
-
-// if we only have a single range in the file, we&amp;apos;re not sparse
-return processedSize != sizeof(FILE_ALLOCATED_RANGE_BUFFER);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;众所周之，使用下面的代码可以设置文件为稀疏文件。&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;amp;temp, 0);&lt;/p&gt;
-&lt;p&gt;使用这段代码清除稀疏文件标志(vista及以后才有效)&lt;br&gt;DWORD temp;&lt;br&gt;FILE_SET_SPARSE_BUFFER b;&lt;br&gt;b.SetSparse = FALSE;&lt;br&gt;::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;amp;b, sizeof(b), 0, 0, &amp;amp;temp, 0));&lt;/p&gt;
-&lt;p&gt;但，
-    
-    </summary>
-    
-      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
     
     
   </entry>
