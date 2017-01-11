@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2017/1 | k1988</title>
+  <title>java重新入坑 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="java重新入坑"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,42 +200,121 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2017/1</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-01-11T09:49:48.000Z"><a href="/2017/01/java重新入坑/">2017-01-11</a></time>
+      
+      
+  
+    <h1 class="title">java重新入坑</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>毕业八年了，从毕业后就没有写过java代码，仅平常看看android相关的资讯和博客及时不时编译下Android工程，以前学过的java早忘光了。</p>
+<p>最近因工作需要要重新学习下java，结果上来就踩一坑。</p>
+<h1 id="第一坑"><a href="#第一坑" class="headerlink" title="第一坑"></a>第一坑</h1><p>更新于：2016-07-06</p>
+<p>很简单一事，随便抄了个<code>Property.java</code>，想着怎么执行呢，按着<code>python、lua、php、nodejs</code>类型的方式<code>java Property.java</code>,呕妹糕，<code>找不到或无法加载主类 Property.java</code>。</p>
+<p>查询网站，原谅我已经忘记了命令行执行java程序是需要先编译一下下的，找到<code>javac.exe</code>执行后生成了<code>Property.class</code>，然后<code>java Propery</code>，又报错<code>找不到或无法加载主类 Property</code>。</p>
+<p>why？why？都有class了还不给执行？<a id="more"></a>查访网络后发现虽然我机器上被各种情况装了各种java环境，可是PATH和CLASS_PATH都没有正确的被设置。</p>
+<p>添加环境变量<code>CLASSPATH=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</code>及<code>PATH=%PATH%;.;%JAVA_HOME%\bin;</code>后再执行，终于正常了。   </p>
+<h1 id="jar中没有主清单属性"><a href="#jar中没有主清单属性" class="headerlink" title="jar中没有主清单属性"></a>jar中没有主清单属性</h1><p>ref: <a href="http://jingyan.baidu.com/article/db55b60990f6084ba30a2fb8.html" target="_blank" rel="external">http://jingyan.baidu.com/article/db55b60990f6084ba30a2fb8.html</a></p>
+<p>验证一个java特性instrument时，将代码打包成jar包，在<code>manifest.md</code>里只使用了<code>Premain-Class</code>属性。但是在随后尝试直接启动时，未添加<code>Main-Class</code>属性。</p>
+<h1 id="第二坑"><a href="#第二坑" class="headerlink" title="第二坑"></a>第二坑</h1><p>windows上正常的java程序，放到linux上编译失败。报错<code>error: unmappable character for encoding ASCII</code><br>原因是windows上默认编码是我中文系统的gbk编码，而linux上出现编码不一致时需要在命令行中指定:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编译时：javac -encoding gbk test.java</span><br><span class="line">运行时：java  -Dfile.encoding=gbk test</span><br></pre></td></tr></table></figure>
+<p>当然，编码视不同情况可指定为utf-8等其它编码。</p>
+<p>如果编码统一，则可以在环境变量中指定<code>export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8</code>,如果在在~/.bashrc文件里添加,就不用每次手动再改了!</p>
+<h1 id="第三坑-Could-not-reserve-enough-space"><a href="#第三坑-Could-not-reserve-enough-space" class="headerlink" title="第三坑 Could not reserve enough space"></a>第三坑 Could not reserve enough space</h1><p>2017-01-11更新</p>
+<p>编译某一项目时，该项目编译时提示错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Error:Unable to start the daemon process.</span><br><span class="line">This problem might be caused by incorrect configuration of the daemon.</span><br><span class="line">For example, an unrecognized jvm option is used.</span><br><span class="line">Please refer to the user guide chapter on the daemon at https://docs.gradle.org/3.1/userguide/gradle_daemon.html</span><br><span class="line">Please read the following process output to find out more:</span><br><span class="line">-----------------------</span><br><span class="line">Error occurred during initialization of VM</span><br><span class="line">Could not reserve enough space for 2621440KB object heap</span><br><span class="line">Java HotSpot(TM) Client VM warning: ignoring option MaxPermSize=1024m; support was removed in 8.0</span><br></pre></td></tr></table></figure>
+<p>是因为<code>gradle.properties</code>中有一行<code>org.gradle.jvmargs=-Xmx2560m -XX:MaxPermSize=1024m</code>，导致构建时java.exe报错。<br>直接使用命令行<code>java -Xmx(n)M -version</code>测试，发现在我的机器上最大只能到<code>java -Xmx1256M -version</code>，再研究研究，发现这是个32位的java，换用 <strong>64位jdk</strong>解决之。</p>
+<h1 id="其它坑待更新"><a href="#其它坑待更新" class="headerlink" title="其它坑待更新"></a>其它坑待更新</h1>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
 
-  <div class="archive">
+
+ <nav id="pagination" >
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-11T09:49:48.000Z"><a href="/2017/01/java重新入坑/">2017-01-11</a></time>
-            
-              <h1 class="title"><a href="/2017/01/java重新入坑/">java重新入坑</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-03T12:00:28.000Z"><a href="/2017/01/108_human_bug_1/">2017-01-03</a></time>
-            
-              <h1 class="title"><a href="/2017/01/108_human_bug_1/">那些想哭的bug（一）</a></h1>
-            
-          </header>
-        </div>
-      </article>
+    <a href="/2017/01/108_human_bug_1/" class="alignright next" >下一页</a>
     
-  </div>  
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 </nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2017/01/java重新入坑/" data-title="java重新入坑" data-url="/2017/01/java重新入坑/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
