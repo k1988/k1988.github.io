@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-01-11T07:37:35.031Z</updated>
+  <updated>2017-02-14T06:30:26.742Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSIS 3.0 System Call 失败问题</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/02/109_NSIS3_system_call/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/02/109_NSIS3_system_call/</id>
+    <published>2017-02-03T12:00:28.000Z</published>
+    <updated>2017-02-14T06:30:26.742Z</updated>
+    
+    <content type="html">&lt;p&gt;以前一直用的是NSIS 2.x，但这些版本的NSIS打出来的安装包没有加声明系统兼容性的manifest，也不好用软件在打好的安装包上加manifest，所以就换用了最新版本的NSIS 3.0。&lt;/p&gt;
+&lt;p&gt;换用3.0后之前正常的一些System::Call “xxx:xxx”函数失效了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先怀疑NSIS 3.0的System插件有问题，换成2.x的System插件，也还是解决不了问题。并且未能找到System.dll的源码。并且IDA反编译之，也未发现两者有什么关于加载库的区别。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;又怀疑是不是System语法问题，之前使用时直接没有加各种参数原型说明，也没有像文档一样使用参数列表和原型列表分开的调用方式。于是写了个Hello.dll,里面定义了个简单的Init函数，以及另外一个和MessageBox函数格式相同的 MyMessageBox函数。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用与调用 user32::MessageBox 相同的格式调用Hello:: MyMessageBox 依然未成功。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用ApiMonitor监控，发现LoadLibrary(“hello”)返回错误码126，即“模块未找到”。尝试将hello分别放在与 安装包同目录，系统目录，在环境变量PATH里的非系统目录，结果只有放在系统目录下才调用成功。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用不同的系统来测试，win7、xp无此问题。win8与win10一样有此问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用c++编写一个简单的代码测试来加载NSIS加载不了的dll，也是可以加载的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后使用全路径临时解决此问题。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Function .onInit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  StrCpy $InstallSuccess 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Call CheckMutex&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  InitPluginsDir&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  SetOutPath $PLUGINSDIR&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  System::Call &amp;apos;user32::MessageBox(p, t, t, i) i (0, &amp;quot;123&amp;quot;, &amp;quot;System Example 2&amp;quot;, $&amp;#123;MB_OKCANCEL&amp;#125;)&amp;apos; &amp;quot;$7&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  file &amp;quot;hello.dll&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  System::Call &amp;apos;hello::Init()&amp;apos; # 失败&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  System::Call /NOUNLOAD &amp;apos;hello::Init()&amp;apos; # 失败&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  System::Call &amp;apos;$PLUGINSDIR\hello::MyMessageBox(p, t, t, i) i (0, &amp;quot;123&amp;quot;, &amp;quot;System Example 2&amp;quot;, $&amp;#123;MB_OKCANCEL&amp;#125;)&amp;apos; &amp;quot;$7&amp;quot; #成功&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以前一直用的是NSIS 2.x，但这些版本的NSIS打出来的安装包没有加声明系统兼容性的manifest，也不好用软件在打好的安装包上加manifest，所以就换用了最新版本的NSIS 3.0。&lt;/p&gt;
+&lt;p&gt;换用3.0后之前正常的一些System::Call “xxx:xxx”函数失效了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先怀疑NSIS 3.0的System插件有问题，换成2.x的System插件，也还是解决不了问题。并且未能找到System.dll的源码。并且IDA反编译之，也未发现两者有什么关于加载库的区别。
+    
+    </summary>
+    
+      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/categories/bugs/"/>
+    
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/bugs/windows/"/>
+    
+    
+      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/tags/bugs/"/>
+    
+  </entry>
   
   <entry>
     <title>java重新入坑</title>
@@ -64,7 +107,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/</id>
     <published>2017-01-03T12:00:28.000Z</published>
-    <updated>2017-01-03T12:49:27.174Z</updated>
+    <updated>2017-02-14T06:28:37.095Z</updated>
     
     <content type="html">&lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某天在查找其它问题/添加新的功能/优化代码/睡觉时，突然发现/想到根本原因之后，简直想哭。。问题可能出现在一个很不起眼/一扫而过/觉得100%不会有问题的地方。&lt;/p&gt;
 &lt;p&gt;今天就遇到一个这样的bug，无语的让我想专门开个类别存放这类bug。&lt;/p&gt;
@@ -106,7 +149,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/11/107_baidupingyin_crash/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/11/107_baidupingyin_crash/</id>
     <published>2016-11-24T06:20:28.000Z</published>
-    <updated>2016-11-24T07:06:31.809Z</updated>
+    <updated>2017-02-14T06:28:40.454Z</updated>
     
     <content type="html">&lt;p&gt;使用4.0.3187.0版本的百度拼音输入法时，启动我司的快吧游戏软件，再退出快吧，程序崩溃。查看消息结构体，窗口目标句柄在spy++里已经搜索不到，崩溃地址在某台机器上是0x690eb410。&lt;/p&gt;
 &lt;p&gt;重启后加汇编断点后发现，该模块地址是百度的uipfull.dll中，父调用者是user32.dll!__InternalCallWinProc@20()。而该窗口的类名是CMessenger_Wnd，样式是CS_IME。&lt;/p&gt;
@@ -868,55 +911,6 @@
     
       &lt;p&gt;按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;不使用 &lt;strong&gt;declspec(dllimport) 也能正确编译代码，但使用 &lt;/strong&gt;declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。&lt;/em&gt; &amp;nbsp;&lt;/strong&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vs的几种调试方法</title>
-    <link href="http://baba.zhaoxiuyuan.com/2013/11/67/"/>
-    <id>http://baba.zhaoxiuyuan.com/2013/11/67/</id>
-    <published>2013-11-11T19:40:58.000Z</published>
-    <updated>2016-07-04T09:47:02.800Z</updated>
-    
-    <content type="html">&lt;p&gt;作者：zhaohaiyang_1988@163.com (转载需保留)&lt;/p&gt;
-&lt;p&gt;========================================================================================&lt;/p&gt;
-&lt;h1 id=&quot;进入调试的方法&quot;&gt;&lt;a href=&quot;#进入调试的方法&quot; class=&quot;headerlink&quot; title=&quot;进入调试的方法&quot;&gt;&lt;/a&gt;进入调试的方法&lt;/h1&gt;&lt;p&gt;1. F5，项目右键菜单-&amp;gt;调试-&amp;gt;启用新实例&lt;br&gt;    点击项目右键菜单-&amp;gt;属性-&amp;gt;配置属性-&amp;gt;调试，可以设置调试的相关参数：&lt;br&gt;      1、命令：默认是$(TargetPath)，就是启动输出的可执行程序&lt;br&gt;      2、命令参数：启动被调试程序时使用的命令行参数。&lt;br&gt;      3、工作目录：启动被调试程序时使用的当前文件夹。影响GetCurrentDir,以及加载dll。&lt;br&gt;      4、附加：否-启动新进程 是-附加到已经存在的进程中&lt;br&gt;      其它参数不常用，有兴趣请百度之。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;2. 打开 工具 –&amp;gt; 附加到进程&lt;br&gt;3. 打开 任务管理器 –&amp;gt; 右键进程，选择调试&lt;br&gt;4. DebugBreak附加：使用 DebugBreak()方式。&lt;br&gt;    这种方法适用于源代码量比较大，不容易定位问题的情况下。在程序执行到DebugBreak()时，会弹出一个提示框。然后点击取消会弹出选择调试器&lt;/p&gt;
-&lt;p&gt;的对话框，而之后就可以按照常规的调试(单步、单函数等)进行调试了。这种方法一般能够快速的定位问题！&lt;br&gt;5. Windows错误后附加：内存访问、堆栈等系统错误在正确配置的机器和正确配置的程序错误模式下会弹出对话框，对话框中点取消后出弹出弹出选择&lt;/p&gt;
-&lt;p&gt;调试器的对话框。&lt;br&gt;6. 断言附加：断言后，点击重试，会弹出选择调试器的对话框，先择调试器后即可调试。&lt;br&gt;7. 自己程序内弹出MessageBox后附加：在想要附加调试的代码之前先弹出任意消息对话框，并且设置断点，然后附加。（其实类似4）。&lt;/p&gt;
-&lt;p&gt;=======================================================================================&lt;/p&gt;
-&lt;h1 id=&quot;开启远程调试。&quot;&gt;&lt;a href=&quot;#开启远程调试。&quot; class=&quot;headerlink&quot; title=&quot;开启远程调试。&quot;&gt;&lt;/a&gt;开启远程调试。&lt;/h1&gt;&lt;p&gt;打开vs2005的安装目录，可以发现有个目录为 Remote Debugger。此文件夹可以单独的copy出来进行远程调试。&lt;br&gt;或者在开始菜单中启动“\程序\Microsoft Visual Studio 2005\Visual Studio Tools\Visual Studio 2005 Remote Debugger””&lt;/p&gt;
-&lt;p&gt;无身份验证模式&lt;br&gt;1、在调试目标机器中，打开远程调试器程序(msvsmon.exe)，win7下要使用管理员权限。&lt;br&gt;2、工具-&amp;gt;选项-&amp;gt;无身份验证-&amp;gt;允许任何用户进行调试。&lt;br&gt;3、确定。如果弹出防火墙阻止调试什么的，尝试选择”取消xxxx的限制”，每个选项都试一下，直至能调试。或者关闭防火墙。&lt;/p&gt;
-&lt;p&gt;有身份验证模式&lt;br&gt;  未使用过，不解释。&lt;/p&gt;
-&lt;p&gt;也可使用 Visual Studio 2005 Remote Debugger配置向导进行配置（未使用过，不解释）。&lt;/p&gt;
-&lt;p&gt;=======================================================================================&lt;/p&gt;
-&lt;h1 id=&quot;远程调试。&quot;&gt;&lt;a href=&quot;#远程调试。&quot; class=&quot;headerlink&quot; title=&quot;远程调试。&quot;&gt;&lt;/a&gt;远程调试。&lt;/h1&gt;&lt;p&gt;1、在vs里附加远程调试器：&lt;/p&gt;
-&lt;p&gt;   #vs菜单：工具-&amp;gt;附加到进程&lt;/p&gt;
-&lt;p&gt;   #在附加对话框中选择“远程（无身份验证时只限本机）”&lt;/p&gt;
-&lt;p&gt;   #在限定符中填写开启远程调试器的机器的ip和端口。例:192.168.0.100:4015, www.kuai8.com:4015&lt;/p&gt;
-&lt;p&gt;   #回车键后应该可以看到“可用进程”，找到要调试的进程，点击“附加”或双击之，就可以附加上。&lt;/p&gt;
-&lt;p&gt;   #然后其它调试步骤同本机调试。&lt;br&gt;2、也可以使用远程调试直接启动目标机器上的程序：&lt;/p&gt;
-&lt;p&gt;   #项目右键菜单-&amp;gt;属性-&amp;gt;配置属性-&amp;gt;调试&lt;/p&gt;
-&lt;p&gt;   #更改“要启动的调试器”为“远程windows服务器”。&lt;/p&gt;
-&lt;p&gt;   #远程命令：填写远程调试目标机器上要调试启动的程序的全路径。命令参数和工作目录类似本地调试，不多说明。&lt;/p&gt;
-&lt;p&gt;   #远程服务器名称：远程调试目标机器的ip和调试器端口。例:192.168.0.100:4015, www.kuai8.com:4015&lt;/p&gt;
-&lt;p&gt;   #连接：根据远程调试器开启的调试类型，选择“带windows身份验证的远程访问”或“不带windows身份验证的远程访问(仅限本机)”。&lt;/p&gt;
-&lt;p&gt;   #然后F5，项目右键菜单-&amp;gt;调试-&amp;gt;启用新实例 进入调试。   &lt;/p&gt;
-&lt;p&gt;=======================================================================================&lt;/p&gt;
-&lt;h1 id=&quot;dump文件调试。&quot;&gt;&lt;a href=&quot;#dump文件调试。&quot; class=&quot;headerlink&quot; title=&quot;dump文件调试。&quot;&gt;&lt;/a&gt;dump文件调试。&lt;/h1&gt;&lt;p&gt;1、使用vs打开dump文件，先看看模块中，想调试代码的模块的位置（比如：生成dump时，主程序位置是C:\test\abc.exe）&lt;br&gt;2、在对应位置上放上对应版本的应用程序(如：C:\test\abc.exe）和pdb信息(也可手动加载其它地方的pdb)。&lt;br&gt;3、F5执行之，不过能看到的内容多少跟dump文件里的内容多少有关。&lt;br&gt;4、执行过程中需要参看源码的时候，如果pdb里记录的源码目录和当前机器不一样，会弹出选择框提示选择。&lt;br&gt;推荐使用“HardLinkShellExt”或junction添加目录连接点，或者win7上直接添加源码文件夹映射，将自己机器上的源码目录，映射到pdb里记录的位置，方便调试。&lt;/p&gt;
-&lt;h1 id=&quot;定位问题的方法&quot;&gt;&lt;a href=&quot;#定位问题的方法&quot; class=&quot;headerlink&quot; title=&quot;定位问题的方法&quot;&gt;&lt;/a&gt;定位问题的方法&lt;/h1&gt;&lt;p&gt;1.断点： 在使用vs2005的时候，可以在右下方堆栈输出器中选择”新增断点”。这里有两种形式的断点。&lt;br&gt;  或者是使用F9添加断点，添加普通断点后可以给断点添加些特殊条件：&lt;br&gt;  断点管理器或者代码编辑器中，使用断点右键菜单：&lt;br&gt;    1、位置：调整断点在代码中的行数&lt;br&gt;    2、条件：可设置一些表达式&lt;br&gt;       比如：i==4&lt;br&gt;             this==0x00123456&lt;br&gt;             index &amp;gt; 7&lt;br&gt;    3、命中次数：断点命中几次后才断下来调试。&lt;br&gt;    4、筛选器和命中条件：有需求时自行使用，不解释。&lt;/p&gt;
-&lt;p&gt;2、基本调试窗口：局部变量、线程、调用堆栈、自动窗口、内存。（内急，不写了，有机会再说明）&lt;br&gt;3、其它：即时窗口、监视、寄存器等。。。 &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;作者：zhaohaiyang_1988@163.com (转载需保留)&lt;/p&gt;
-&lt;p&gt;========================================================================================&lt;/p&gt;
-&lt;h1 id=&quot;进入调试的方法&quot;&gt;&lt;a href=&quot;#进入调试的方法&quot; class=&quot;headerlink&quot; title=&quot;进入调试的方法&quot;&gt;&lt;/a&gt;进入调试的方法&lt;/h1&gt;&lt;p&gt;1. F5，项目右键菜单-&amp;gt;调试-&amp;gt;启用新实例&lt;br&gt;    点击项目右键菜单-&amp;gt;属性-&amp;gt;配置属性-&amp;gt;调试，可以设置调试的相关参数：&lt;br&gt;      1、命令：默认是$(TargetPath)，就是启动输出的可执行程序&lt;br&gt;      2、命令参数：启动被调试程序时使用的命令行参数。&lt;br&gt;      3、工作目录：启动被调试程序时使用的当前文件夹。影响GetCurrentDir,以及加载dll。&lt;br&gt;      4、附加：否-启动新进程 是-附加到已经存在的进程中&lt;br&gt;      其它参数不常用，有兴趣请百度之。&lt;br&gt;
     
     </summary>
     
