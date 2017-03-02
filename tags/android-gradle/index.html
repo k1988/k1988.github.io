@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用__declspec(dllimport)与否的区别 | k1988</title>
+  <title>android gradle | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="使用__declspec(dllimport)与否的区别"/>
+  
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,112 +200,30 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">android gradle</h2>
+
+
+  <div class="archive">
+    
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon"></div>
+            <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/110_as_templates/">2017-02-03</a></time>
+            
+              <h1 class="title"><a href="/2017/02/110_as_templates/">Android Studio 使用技巧：修改默认build.gradle</a></h1>
+            
+          </header>
+        </div>
+      </article>
+    
+  </div>  
+  <nav id="pagination">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-03-07T21:51:52.000Z"><a href="/2014/03/69/">2014-03-08</a></time>
-      
-      
-  
-    <h1 class="title">使用__declspec(dllimport)与否的区别</h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？</p>
-<p><strong><em>不使用 <strong>declspec(dllimport) 也能正确编译代码，但使用 </strong>declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。</em> &nbsp;</strong><br><a id="more"></a><br>假设dll导出了一个函数：<br>　　extern “C” __declspec(dllexport) void fun();</p>
-<p>一、如果程序中声明不加__declspec(dllimport)，查看调用fun()函数的汇编代码：<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong> 004010AD&nbsp;&nbsp;&nbsp; call&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fun (004010d8)</strong></p>
-<p>　　其中fun被定义为一个标号(label)，如下：<br><strong>fun:</strong><br><strong>&nbsp;&nbsp;&nbsp;&nbsp; 004010D8&nbsp;&nbsp;&nbsp; jmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dword ptr [<strong>imp</strong>fun (0040e0e8)]</strong></p>
-<p>&nbsp; &nbsp; 上面的符号<strong>imp</strong>fun指向的地址为fun()函数在exe中的导入节。</p>
-<p>二、当声明加上__declspec(dllimport)后，查看调用fun()函数的汇编代码：</p>
-<p><strong>&nbsp;&nbsp;&nbsp;&nbsp; 004010AB&nbsp;&nbsp;&nbsp; call&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dword ptr [<strong>imp</strong>fun (0040e0e8)]</strong></p>
-<p>&nbsp;&nbsp; &nbsp;从上面可以看出，加上__declspec(dllimport)，编译器链接dll将省略一条jmp语句。</p>
-<p><em>这是因为：</em></p>
-<p>1。如果导出函数的声明没有用__declspec(dllimport) 修饰的话，编译器并不知道这个函数是由DLL导出的，所以编译器就把这个函数当作普通的外部引用来对待，产生一个外部引用的符号等着链接器解析。当链接器工作的时候，它是不能修改编译器生成的结果，所以会将该符号解析为对相应函数调入节的间接调用。</p>
-<p>2。如果导出函数的声明用__declspec(dllimport) 修饰的话，编译器一开始就知道这个函数是DLL导出函数，直接编译成对调入节的调用。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-  
-  <div class="categories">
-    <a href="/categories/C/">C++</a>
-  </div>
-
-        
-<!-- Baidu Button BEGIN -->
-<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
-<a class="bds_qzone"></a>
-<a class="bds_tsina"></a>
-<a class="bds_tqq"></a>
-<a class="bds_renren"></a>
-<a class="bds_t163"></a>
-<span class="bds_more"></span>
-<a class="shareCount"></a>
-</div>
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script>
-<!-- Baidu Button END -->      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
- <nav id="pagination" >
-    
-    <a href="/2014/04/73/" class="alignleft prev" >上一页</a>
-    
-    
-    <a href="/2013/11/67/" class="alignright next" >下一页</a>
-    
-    <div class="clearfix"></div>
+  <div class="clearfix"></div>
 </nav>
-
-<section id="comment">
-
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/2014/03/69/" data-title="使用__declspec(dllimport)与否的区别" data-url="/2014/03/69/"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"k1988"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
-
-  
-</section>
-
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

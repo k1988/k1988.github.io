@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用__declspec(dllimport)与否的区别 | k1988</title>
+  <title>Android Studio 使用技巧：修改默认build.gradle | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="使用__declspec(dllimport)与否的区别"/>
+  <meta property="og:title" content="Android Studio 使用技巧：修改默认build.gradle"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -218,27 +218,23 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-03-07T21:51:52.000Z"><a href="/2014/03/69/">2014-03-08</a></time>
+        <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/110_as_templates/">2017-02-03</a></time>
       
       
   
-    <h1 class="title">使用__declspec(dllimport)与否的区别</h1>
+    <h1 class="title">Android Studio 使用技巧：修改默认build.gradle</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？</p>
-<p><strong><em>不使用 <strong>declspec(dllimport) 也能正确编译代码，但使用 </strong>declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。</em> &nbsp;</strong><br><a id="more"></a><br>假设dll导出了一个函数：<br>　　extern “C” __declspec(dllexport) void fun();</p>
-<p>一、如果程序中声明不加__declspec(dllimport)，查看调用fun()函数的汇编代码：<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong> 004010AD&nbsp;&nbsp;&nbsp; call&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fun (004010d8)</strong></p>
-<p>　　其中fun被定义为一个标号(label)，如下：<br><strong>fun:</strong><br><strong>&nbsp;&nbsp;&nbsp;&nbsp; 004010D8&nbsp;&nbsp;&nbsp; jmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dword ptr [<strong>imp</strong>fun (0040e0e8)]</strong></p>
-<p>&nbsp; &nbsp; 上面的符号<strong>imp</strong>fun指向的地址为fun()函数在exe中的导入节。</p>
-<p>二、当声明加上__declspec(dllimport)后，查看调用fun()函数的汇编代码：</p>
-<p><strong>&nbsp;&nbsp;&nbsp;&nbsp; 004010AB&nbsp;&nbsp;&nbsp; call&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dword ptr [<strong>imp</strong>fun (0040e0e8)]</strong></p>
-<p>&nbsp;&nbsp; &nbsp;从上面可以看出，加上__declspec(dllimport)，编译器链接dll将省略一条jmp语句。</p>
-<p><em>这是因为：</em></p>
-<p>1。如果导出函数的声明没有用__declspec(dllimport) 修饰的话，编译器并不知道这个函数是由DLL导出的，所以编译器就把这个函数当作普通的外部引用来对待，产生一个外部引用的符号等着链接器解析。当链接器工作的时候，它是不能修改编译器生成的结果，所以会将该符号解析为对相应函数调入节的间接调用。</p>
-<p>2。如果导出函数的声明用__declspec(dllimport) 修饰的话，编译器一开始就知道这个函数是DLL导出函数，直接编译成对调入节的调用。</p>
+        <p>在项目中发现一些好用的插件和库，就想默认在每个工程里使用，就想到了找找如何直接修改默认工程的build.gradle文件，经过多方面查找资料，可以使用下面的方法来改。</p>
+<p>比如说有一个好用的butterKnife这个库，需要添加buildscript的dependencies和compile的dependencies。</p>
+<p>我们先找到<code>Android Studio\plugins\android\lib\templates\gradle-projects</code>，然后看名称就知道<code>NewAndroidProject</code>目录下的就是创建android工程时默认使用的模板。</p>
+<p>然后我们打开<code>root</code><br><a id="more"></a>中的<code>build.gradle.ftl</code>，看起来和一个默认项目里的结构一模一样，我们首先把<code>classpath &#39;com.jakewharton:butterknife-gradle-plugin:8.5.1&#39;</code>添加在<code>buildscript.dependencies</code>的最后面。同时，添加一个版本号字义(这一步也可以省略，如果省略，后面在app的gradle里就直接指定版本的<code>butterknife</code>)以供在app的gradle里使用版本号变量来指定<code>butterknife</code>，如下文中的<code>ext</code>结点。</p>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">&lt;#if mavenUrl != &quot;mavenCentral&quot;&gt;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &apos;$&#123;mavenUrl&#125;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">&lt;/#if&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &apos;com.android.tools.build:gradle:$&#123;gradlePluginVersion&#125;&apos;</span><br><span class="line"></span><br><span class="line">        // NOTE: Do not place your application dependencies here; they belong</span><br><span class="line">        // in the individual module build.gradle files</span><br><span class="line">        classpath &apos;com.jakewharton:butterknife-gradle-plugin:8.5.1&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Define versions in a single place</span><br><span class="line">ext &#123;</span><br><span class="line"></span><br><span class="line">  // App dependencies</span><br><span class="line">  butterKnifeVersion = &apos;8.5.1&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是我们在NewAndroidProject目录里并没有找到新建工程后的app目录里的那个build.gradle对应的模板，看名称找到了<code>NewAndroidModule</code>目录，同样的步骤打开<code>root\build.gradle.ftl</code>然后在<code>dependencies</code>节点添加两行，结果见：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</span><br><span class="line">    androidTestCompile(&apos;com.android.support.test.espresso:espresso-core:$&#123;espressoVersion!&quot;2.0&quot;&#125;&apos;, &#123;</span><br><span class="line">        exclude group: &apos;com.android.support&apos;, module: &apos;support-annotations&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;#if WearprojectName?has_content &amp;&amp; NumberOfEnabledFormFactors?has_content &amp;&amp; NumberOfEnabledFormFactors gt 1 &amp;&amp; Wearincluded&gt;</span><br><span class="line">    wearApp project(&apos;:$&#123;WearprojectName&#125;&apos;)</span><br><span class="line">    compile &apos;com.google.android.gms:play-services:+&apos;</span><br><span class="line">&lt;/#if&gt;</span><br><span class="line"></span><br><span class="line">    // code generator for view(这3行是新增的)</span><br><span class="line">    compile &quot;com.jakewharton:butterknife:$rootProject.butterKnifeVersion&quot;</span><br><span class="line">    annotationProcessor &quot;com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后保存文件，打开Android Stuido 新建工程。</p>
 
       
     </div>
@@ -247,10 +243,15 @@
         
   
   <div class="categories">
-    <a href="/categories/C/">C++</a>
+    <a href="/categories/android/">android</a>
   </div>
 
         
+  
+  <div class="tags">
+    <a href="/tags/android-gradle/">android gradle</a>
+  </div>
+
 <!-- Baidu Button BEGIN -->
 <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
 <a class="bds_qzone"></a>
@@ -276,10 +277,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2014/04/73/" class="alignleft prev" >上一页</a>
+    <a href="/2017/02/109_NSIS3_system_call/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2013/11/67/" class="alignright next" >下一页</a>
+    <a href="/2017/01/java重新入坑/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -287,7 +288,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <section id="comment">
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/2014/03/69/" data-title="使用__declspec(dllimport)与否的区别" data-url="/2014/03/69/"></div>
+	<div class="ds-thread" data-thread-key="/2017/02/110_as_templates/" data-title="Android Studio 使用技巧：修改默认build.gradle" data-url="/2017/02/110_as_templates/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

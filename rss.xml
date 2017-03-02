@@ -59,6 +59,38 @@
   </entry>
   
   <entry>
+    <title>Android Studio 使用技巧：修改默认build.gradle</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/02/110_as_templates/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/02/110_as_templates/</id>
+    <published>2017-02-03T12:00:28.000Z</published>
+    <updated>2017-02-24T08:11:44.315Z</updated>
+    
+    <content type="html">&lt;p&gt;在项目中发现一些好用的插件和库，就想默认在每个工程里使用，就想到了找找如何直接修改默认工程的build.gradle文件，经过多方面查找资料，可以使用下面的方法来改。&lt;/p&gt;
+&lt;p&gt;比如说有一个好用的butterKnife这个库，需要添加buildscript的dependencies和compile的dependencies。&lt;/p&gt;
+&lt;p&gt;我们先找到&lt;code&gt;Android Studio\plugins\android\lib\templates\gradle-projects&lt;/code&gt;，然后看名称就知道&lt;code&gt;NewAndroidProject&lt;/code&gt;目录下的就是创建android工程时默认使用的模板。&lt;/p&gt;
+&lt;p&gt;然后我们打开&lt;code&gt;root&lt;/code&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;中的&lt;code&gt;build.gradle.ftl&lt;/code&gt;，看起来和一个默认项目里的结构一模一样，我们首先把&lt;code&gt;classpath &amp;#39;com.jakewharton:butterknife-gradle-plugin:8.5.1&amp;#39;&lt;/code&gt;添加在&lt;code&gt;buildscript.dependencies&lt;/code&gt;的最后面。同时，添加一个版本号字义(这一步也可以省略，如果省略，后面在app的gradle里就直接指定版本的&lt;code&gt;butterknife&lt;/code&gt;)以供在app的gradle里使用版本号变量来指定&lt;code&gt;butterknife&lt;/code&gt;，如下文中的&lt;code&gt;ext&lt;/code&gt;结点。&lt;/p&gt;
+&lt;p&gt;如：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildscript &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    repositories &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        jcenter()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;#if mavenUrl != &amp;quot;mavenCentral&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        maven &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            url &amp;apos;$&amp;#123;mavenUrl&amp;#125;&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/#if&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        classpath &amp;apos;com.android.tools.build:gradle:$&amp;#123;gradlePluginVersion&amp;#125;&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // NOTE: Do not place your application dependencies here; they belong&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // in the individual module build.gradle files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        classpath &amp;apos;com.jakewharton:butterknife-gradle-plugin:8.5.1&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// Define versions in a single place&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ext &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  // App dependencies&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  butterKnifeVersion = &amp;apos;8.5.1&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;但是我们在NewAndroidProject目录里并没有找到新建工程后的app目录里的那个build.gradle对应的模板，看名称找到了&lt;code&gt;NewAndroidModule&lt;/code&gt;目录，同样的步骤打开&lt;code&gt;root\build.gradle.ftl&lt;/code&gt;然后在&lt;code&gt;dependencies&lt;/code&gt;节点添加两行，结果见：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile fileTree(dir: &amp;apos;libs&amp;apos;, include: [&amp;apos;*.jar&amp;apos;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    androidTestCompile(&amp;apos;com.android.support.test.espresso:espresso-core:$&amp;#123;espressoVersion!&amp;quot;2.0&amp;quot;&amp;#125;&amp;apos;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        exclude group: &amp;apos;com.android.support&amp;apos;, module: &amp;apos;support-annotations&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;#if WearprojectName?has_content &amp;amp;&amp;amp; NumberOfEnabledFormFactors?has_content &amp;amp;&amp;amp; NumberOfEnabledFormFactors gt 1 &amp;amp;&amp;amp; Wearincluded&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    wearApp project(&amp;apos;:$&amp;#123;WearprojectName&amp;#125;&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;apos;com.google.android.gms:play-services:+&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/#if&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // code generator for view(这3行是新增的)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;quot;com.jakewharton:butterknife:$rootProject.butterKnifeVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    annotationProcessor &amp;quot;com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后保存文件，打开Android Stuido 新建工程。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在项目中发现一些好用的插件和库，就想默认在每个工程里使用，就想到了找找如何直接修改默认工程的build.gradle文件，经过多方面查找资料，可以使用下面的方法来改。&lt;/p&gt;
+&lt;p&gt;比如说有一个好用的butterKnife这个库，需要添加buildscript的dependencies和compile的dependencies。&lt;/p&gt;
+&lt;p&gt;我们先找到&lt;code&gt;Android Studio\plugins\android\lib\templates\gradle-projects&lt;/code&gt;，然后看名称就知道&lt;code&gt;NewAndroidProject&lt;/code&gt;目录下的就是创建android工程时默认使用的模板。&lt;/p&gt;
+&lt;p&gt;然后我们打开&lt;code&gt;root&lt;/code&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
+    
+    
+      <category term="android gradle" scheme="http://baba.zhaoxiuyuan.com/tags/android-gradle/"/>
+    
+  </entry>
+  
+  <entry>
     <title>java重新入坑</title>
     <link href="http://baba.zhaoxiuyuan.com/2017/01/java%E9%87%8D%E6%96%B0%E5%85%A5%E5%9D%91/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/01/java重新入坑/</id>
@@ -883,38 +915,6 @@
     </summary>
     
       <category term="工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用__declspec(dllimport)与否的区别</title>
-    <link href="http://baba.zhaoxiuyuan.com/2014/03/69/"/>
-    <id>http://baba.zhaoxiuyuan.com/2014/03/69/</id>
-    <published>2014-03-07T21:51:52.000Z</published>
-    <updated>2016-07-04T09:46:58.801Z</updated>
-    
-    <content type="html">&lt;p&gt;按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;不使用 &lt;strong&gt;declspec(dllimport) 也能正确编译代码，但使用 &lt;/strong&gt;declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。&lt;/em&gt; &amp;nbsp;&lt;/strong&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;假设dll导出了一个函数：&lt;br&gt;　　extern “C” __declspec(dllexport) void fun();&lt;/p&gt;
-&lt;p&gt;一、如果程序中声明不加__declspec(dllimport)，查看调用fun()函数的汇编代码：&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt; 004010AD&amp;nbsp;&amp;nbsp;&amp;nbsp; call&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; fun (004010d8)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;　　其中fun被定义为一个标号(label)，如下：&lt;br&gt;&lt;strong&gt;fun:&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 004010D8&amp;nbsp;&amp;nbsp;&amp;nbsp; jmp&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dword ptr [&lt;strong&gt;imp&lt;/strong&gt;fun (0040e0e8)]&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp; &amp;nbsp; 上面的符号&lt;strong&gt;imp&lt;/strong&gt;fun指向的地址为fun()函数在exe中的导入节。&lt;/p&gt;
-&lt;p&gt;二、当声明加上__declspec(dllimport)后，查看调用fun()函数的汇编代码：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 004010AB&amp;nbsp;&amp;nbsp;&amp;nbsp; call&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dword ptr [&lt;strong&gt;imp&lt;/strong&gt;fun (0040e0e8)]&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;从上面可以看出，加上__declspec(dllimport)，编译器链接dll将省略一条jmp语句。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;这是因为：&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;1。如果导出函数的声明没有用__declspec(dllimport) 修饰的话，编译器并不知道这个函数是由DLL导出的，所以编译器就把这个函数当作普通的外部引用来对待，产生一个外部引用的符号等着链接器解析。当链接器工作的时候，它是不能修改编译器生成的结果，所以会将该符号解析为对相应函数调入节的间接调用。&lt;/p&gt;
-&lt;p&gt;2。如果导出函数的声明用__declspec(dllimport) 修饰的话，编译器一开始就知道这个函数是DLL导出函数，直接编译成对调入节的调用。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;不使用 &lt;strong&gt;declspec(dllimport) 也能正确编译代码，但使用 &lt;/strong&gt;declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。&lt;/em&gt; &amp;nbsp;&lt;/strong&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="C++" scheme="http://baba.zhaoxiuyuan.com/categories/C/"/>
     
     
   </entry>
