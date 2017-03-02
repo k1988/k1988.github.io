@@ -219,27 +219,27 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/109_NSIS3_system_call/">2017-02-03</a></time>
+        <time datetime="2017-02-14T12:00:28.000Z"><a href="/2017/02/110_as_templates/">2017-02-14</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/02/109_NSIS3_system_call/">NSIS 3.0 System Call 失败问题</a></h1>
+    <h1 class="title"><a href="/2017/02/110_as_templates/">Android Studio 使用技巧：修改默认build.gradle</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>以前一直用的是NSIS 2.x，但这些版本的NSIS打出来的安装包没有加声明系统兼容性的manifest，也不好用软件在打好的安装包上加manifest，所以就换用了最新版本的NSIS 3.0。</p>
-<p>换用3.0后之前正常的一些System::Call “xxx:xxx”函数失效了。</p>
-<ul>
-<li>先怀疑NSIS 3.0的System插件有问题，换成2.x的System插件，也还是解决不了问题。并且未能找到System.dll的源码。并且IDA反编译之，也未发现两者有什么关于加载库的区别。
+        <p>在项目中发现一些好用的插件和库，就想默认在每个工程里使用，就想到了找找如何直接修改默认工程的build.gradle文件，经过多方面查找资料，可以使用下面的方法来改。</p>
+<p>比如说有一个好用的butterKnife这个库，需要添加buildscript的dependencies和compile的dependencies。</p>
+<p>我们先找到<code>Android Studio\plugins\android\lib\templates\gradle-projects</code>，然后看名称就知道<code>NewAndroidProject</code>目录下的就是创建android工程时默认使用的模板。</p>
+<p>然后我们打开<code>root</code><br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/02/109_NSIS3_system_call/#more" class="more-link">阅读全文</a>
+            <a href="/2017/02/110_as_templates/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -270,27 +270,27 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/110_as_templates/">2017-02-03</a></time>
+        <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/109_NSIS3_system_call/">2017-02-03</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/02/110_as_templates/">Android Studio 使用技巧：修改默认build.gradle</a></h1>
+    <h1 class="title"><a href="/2017/02/109_NSIS3_system_call/">NSIS 3.0 System Call 失败问题</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>在项目中发现一些好用的插件和库，就想默认在每个工程里使用，就想到了找找如何直接修改默认工程的build.gradle文件，经过多方面查找资料，可以使用下面的方法来改。</p>
-<p>比如说有一个好用的butterKnife这个库，需要添加buildscript的dependencies和compile的dependencies。</p>
-<p>我们先找到<code>Android Studio\plugins\android\lib\templates\gradle-projects</code>，然后看名称就知道<code>NewAndroidProject</code>目录下的就是创建android工程时默认使用的模板。</p>
-<p>然后我们打开<code>root</code><br>
+        <p>以前一直用的是NSIS 2.x，但这些版本的NSIS打出来的安装包没有加声明系统兼容性的manifest，也不好用软件在打好的安装包上加manifest，所以就换用了最新版本的NSIS 3.0。</p>
+<p>换用3.0后之前正常的一些System::Call “xxx:xxx”函数失效了。</p>
+<ul>
+<li>先怀疑NSIS 3.0的System插件有问题，换成2.x的System插件，也还是解决不了问题。并且未能找到System.dll的源码。并且IDA反编译之，也未发现两者有什么关于加载库的区别。
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/02/110_as_templates/#more" class="more-link">阅读全文</a>
+            <a href="/2017/02/109_NSIS3_system_call/#more" class="more-link">阅读全文</a>
           </div>
         
         
