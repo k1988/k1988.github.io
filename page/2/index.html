@@ -219,6 +219,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-11-10T07:20:28.000Z"><a href="/2016/11/106_windows托盘图标检测/">2016-11-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/11/106_windows托盘图标检测/">windows托盘图标检测</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>由于业务需要，研究一下如何用程序判断右下角拖盘中某图标在什么时候隐藏到溢出区。经过多方资料查找，最终输出可用代码。支持windows xp至windows 10的32位和64位下的图标检测。</p>
+<p>32位程序中读取64位explorer进程中的信息时，网上大多只给出了32位的结构体定义，所以根据调试时查看内存分布，调整了下64位的结构体。</p>
+<p>代码如下：<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/11/106_windows托盘图标检测/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-10-10T04:20:28.000Z"><a href="/2016/10/105_MC用户的UUID生成规则/">2016-10-10</a></time>
       
       
@@ -451,68 +501,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-07-17T07:49:48.000Z"><a href="/2016/07/libtorrent打洞分析/">2016-07-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/07/libtorrent打洞分析/">libtorrent打洞分析</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="相关变量"><a href="#相关变量" class="headerlink" title="相关变量"></a>相关变量</h1><ul>
-<li><code>torrent_peer::supports_holepunch</code>：torrent_peer类是每个peer的特征集合，其中<code>supports_holepunch</code>代表是否支持打洞，默认值是<code>false</code>。</li>
-<li><code>bt_peer_connection::m_holepunch_id</code>: 对方peer申明的，它所支持的打洞消息的消息id。</li>
-</ul>
-<h1 id="种子来源"><a href="#种子来源" class="headerlink" title="种子来源"></a>种子来源</h1><p>添加peer的流程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">torrent::add_peer</span><br><span class="line">---&gt;</span><br><span class="line">peer_list::add_i2p_peer或peer_list::add_peer </span><br><span class="line">---&gt;</span><br><span class="line">peer_list::insert_peer或peer_list::update_peer</span><br><span class="line"></span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">如果flags参数包含`flag_holepunch`时，才设置`torrent_peer::supports_holepunch`为true。&lt;!--more--&gt;查找所有调用add_peer的地方，约有以下来源：</span><br><span class="line"></span><br><span class="line">* 从resume文件里获得peer(上次开启任务保存的)</span><br><span class="line">* dht方式从互联网中得到种子</span><br><span class="line">* tracker从互联网中拿到种子</span><br><span class="line">* lsd方式从本地网络得到种子</span><br><span class="line">* pex方式从互联网中拿到种子</span><br><span class="line"></span><br><span class="line">其中只有从pex方式得到互联网种子的调用语句使用flags参数，</span><br><span class="line"></span><br><span class="line"># 判断是否支持打洞消息</span><br><span class="line">在和另一个peer建立连接时，使用bt_peer_connection类，q原来成员变量bt_peer_connection::m_supports_extensions默认值为false，表示不支持bt扩展协议。</span><br><span class="line"></span><br><span class="line">在bt_peer_connection的握手时，会发送是否支持扩展协议的标志，以及支持哪些扩展。</span><br><span class="line">当确定对面也支持扩展时，进行扩展的handshake操作，其中发送出去的becode结构中，有几以下个整形变量upload_only、ut_holepunch、lt_donthave，他们就对应着本peer接收这3种通知时使用的消息id类型。</span><br><span class="line"></span><br><span class="line">当从握手拿到了对方设置的ut_holepunch时，赋值给成员变量m_holepunch_id,此时此连接的函数supports_holepunch就返回了true值，表示支持打洞。</span><br></pre></td></tr></table></figure></p>
-<p>bool bt_peer_connection::supports_holepunch() const { return m_holepunch_id != 0; }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">但bt_peer_connection的supports_holepunch()返回true只能说明此peer支持打洞，打洞是需要第三方服务器介入的，如何得到中间介绍人呢，见下节。</span><br><span class="line"></span><br><span class="line"># 中间介绍人</span><br><span class="line">上文提到，种子来源有pex方式。</span><br><span class="line"></span><br><span class="line">当session开启了ut_pex插件时(`session_handle::add_extension(&amp;libtorrent::create_ut_pex_plugin)`)，在ut_pex_peer_plugin::tick()中会使用send_ut_peer_list和send_ut_peer_diff函数来向其它peer发送自己拥有的种子。其中`bt_peer_connection* p = static_cast&lt;bt_peer_connection*&gt;(peer); ... flags |= p-&gt;supports_holepunch() ? 8 : 0;`将peer信息发送给另外一个peer时，会带上了支持打洞的flags，然后接收方拿到peer后，向torrent里添加peer时，`torrent_peer::supports_holepunch`的值就会是true了。</span><br><span class="line"></span><br><span class="line">假设自己是peer A，和peer B握手后知道B是支持打洞消息的，在和peer C连接时，使用pex扩展协议和peer C交换peer时，会把peer B的ip、端口、标志传递peer C，peer C拿到B后就满足了打洞的条件，因为A和B能正常通信，A和C也能正常通信，B和C就可以使用中间人A来进行打洞。</span><br><span class="line"></span><br><span class="line"># 什么时候尝试打洞</span><br><span class="line">在连接某个peer失败时，并且满足条件时，尝试进入打洞模式。见`void peer_connection::connect_failed(error_code const&amp; e)`中，</span><br></pre></td></tr></table></figure></p>
-<p>if ((!is_utp(<em>m_socket)<br>        || !m_settings.get_bool(settings_pack::enable_outgoing_tcp))<br>    &amp;&amp; m_peer_info<br>    &amp;&amp; m_peer_info-&gt;supports_holepunch<br>    &amp;&amp; !m_holepunch_mode)<br>{<br>    // see if we can try a holepunch<br>    bt_peer_connection</em> p = t-&gt;find_introducer(remote());<br>    if (p)<br>        p-&gt;write_holepunch_msg(bt_peer_connection::hp_rendezvous, remote(), 0);<br>}<br>```<br>假设这段代码是peer C的机器上运行，也就是C从A拿到B的信息后，直接连接B失败了，就判断现在不是utp或者禁止tcp连接、并且支持打洞消息、当前不是打洞模式并且找到了中间介绍人(上文中提到的A)，则向A发送消息开启打洞流程。</p>
-<p>参数中<code>bt_peer_connection::hp_rendezvous</code>这个变量很有意思，rendezvous是约会地点的意思，当然在这里只是一个消息类型，remote()是B的ip地址信息。</p>
-<p>A接收到C发送的请求打洞（介绍约会）消息后，在自己的peer里找到和B的连接，并且向B发送个打洞消息<code>p-&gt;write_holepunch_msg(hp_connect, remote(), 0);</code>，同时向C也回复一个打洞消息<code>write_holepunch_msg(hp_connect, ep, 0);</code>，这里就将自己和B、C的连接时使用的ip地址和端口通知给C、B。</p>
-<p>B和C接收到类型为hp_connect的消息后，将torrent_peer::supports_utp置为true，将bt_peer_connection的m_holepunch_mode设置为true。然后同时开始尝试连接对方，这时，就完成了一个打洞流程，但是由于NAT的特性，不一定成功，具体参考NAT和打洞原理。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>A从trcker拿到peer B和peer C，和B和C进行连接时，知道了B和C支持打洞消息。</li>
-<li>A和C进行pex种子交换，将B传递给C，此时B由pex传递的flags知道C能够通过A打洞。</li>
-<li>B如果连接C正常(不需要打洞)则正常连接。</li>
-<li>B如果连接C失败，就尝试通过A打洞。于是向A发送了打洞请求。</li>
-<li>A接收到B要向C连接的打洞请求，就给B和C发送了互相连接的打洞消息。</li>
-<li>B和C接收请求后，相互发送消息，可能会打通NAT。</li>
-</ol>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -560,9 +548,9 @@
   
     <li><a href="/categories/python/">python</a><small>1</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>2</small></li>
-  
     <li><a href="/categories/bugs/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>2</small></li>
   
     <li><a href="/categories/工具/">工具</a><small>1</small></li>
   
@@ -570,7 +558,7 @@
   
     <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
   
-    <li><a href="/categories/系统-工具/">系统/工具</a><small>7</small></li>
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>8</small></li>
   
     <li><a href="/categories/软件/">软件</a><small>2</small></li>
   

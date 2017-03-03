@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-03-02T08:10:09.000Z</updated>
+  <updated>2017-03-03T03:48:58.567Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>svn使用技巧：使用命令行添加忽略文件和目录</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/03/111_svn_ignore/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/03/111_svn_ignore/</id>
+    <published>2017-03-03T03:40:28.000Z</published>
+    <updated>2017-03-03T03:48:58.567Z</updated>
+    
+    <content type="html">&lt;p&gt;之前一直在团队中推荐自己在&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;ignore pattern```中定义排除规则。比如，我一直用的是```*.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store [Tt]humbs.db```。但有些人就不喜欢用，而且随着项目类型的转换，比如新的android团队需要定义不同的规则，这时就得重新在群里发新的规则比较麻烦。&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;想到git项目中有.gitignore文件，就想svn中是否有一样的文件，寻找了一圈发现应该是没有类型的文件可以用，仅仅是在项目的svn Propertys设置对话框中在Edit时可以Load一个文件，这个文件的规则和.gitignore类似。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;顺便看到更改项目的svn:global-ignores和svn:ignore的命令行，就直接写了个批处理，外加三个规则文件&amp;lt;--more--&amp;gt;，在批处理里分别导入三个规则文件到svn属性里，然后在工程根目录执行后提交svn即可，然后同事们再add时就不容易带入垃圾文件了。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;批处理如下：&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;@echo off&lt;br&gt;rem 此批处理的用途&lt;/p&gt;
+&lt;p&gt;rem 参考链接：&lt;a href=&quot;http://stackoverflow.com/questions/17298668/svn-ignore-like-gitignore&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/17298668/svn-ignore-like-gitignore&lt;/a&gt;&lt;br&gt;rem 参考命令行&lt;br&gt;rem svn propset svn:ignore -RF /root/svn-ignore.txt . [dot for current dir]&lt;br&gt;rem 各语言通用&lt;/p&gt;
+&lt;p&gt;set txt_path=%~dp0%&lt;br&gt;svn propset svn:global-ignores -F “%txt_path%svn_ignored_common.txt” %cd%&lt;/p&gt;
+&lt;p&gt;rem java开发&lt;br&gt;svn propset svn:global-ignores -F “%txt_path%\svn_ignored_java.txt” %cd%&lt;/p&gt;
+&lt;p&gt;rem android studio&lt;br&gt;svn propset svn:ignore -F “%txt_path%\svn_ignored_android_studio.txt” %cd%&lt;br&gt;pause&lt;br&gt;```&lt;/p&gt;
+&lt;p&gt;具体的几个规则文件由于可能会经常变更，并且不同项目有不同的需求，在这里就只放个链接了，&lt;a href=&quot;https://github.com/k1988/win_mini_tool/tree/master/bats&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/k1988/win_mini_tool/tree/master/bats&lt;/a&gt;。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前一直在团队中推荐自己在&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;ignore pattern```中定义排除规则。比如，我一直用的是```*.o *.lo *.la *.al .libs *.so *.so.[0
+    
+    </summary>
+    
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="系统/工具 svn" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7-svn/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Studio 使用技巧：修改默认build.gradle</title>
@@ -868,54 +897,6 @@
       <category term="svn" scheme="http://baba.zhaoxiuyuan.com/tags/svn/"/>
     
       <category term="钩子" scheme="http://baba.zhaoxiuyuan.com/tags/%E9%92%A9%E5%AD%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>给trac的ticket添加提交时字段验证</title>
-    <link href="http://baba.zhaoxiuyuan.com/2014/04/73/"/>
-    <id>http://baba.zhaoxiuyuan.com/2014/04/73/</id>
-    <published>2014-04-08T21:25:00.000Z</published>
-    <updated>2016-07-04T09:46:43.328Z</updated>
-    
-    <content type="html">&lt;p&gt;我们在项目管理中使用了trac系统，并且对于ticket添加了以下自定义字段并且对它们的格式都有一定要求：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;svn版本号：格式为 r1234。多个版本号之间使用半角逗号隔开。如：r1234,r5678&lt;/li&gt;
-&lt;li&gt;完成日期：yyyy-mm-dd的格式&lt;/li&gt;
-&lt;li&gt;开发周期：表示开发功能所耗费的时间，格式为数字或者一位小数后面跟上单位h或者d。&lt;/li&gt;
-&lt;li&gt;测试版本号：v开头的标准版本号，如：v2.3.1.5098&lt;br&gt;但是在实际操作中，很多开发人员不去阅读规范文档或者压根记不起来格式规范，随意填写，很是苦恼。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;今天就先试图给完成日期添加一个&lt;a href=&quot;http://trac-hacks.org/wiki/DateFieldPlugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;日期插件&lt;/a&gt;让开发人员直接使用日期对话框来选择日期，同时发现它已经自带了格式验证，然后在寻找这个插件的同时发现了一个好用的格式验证插件&lt;a href=&quot;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;如何安装此插件就不在这里描述，直奔主题看看如何实现配置trac使插件生效。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;首先要在trac的管理-插件里勾选tracticketvalidator 0.1里的所有组件(实际上只有一个&lt;span class=&quot;trac-name&quot;&gt;TicketsValidator&lt;/span&gt;)。&lt;a href=&quot;http://trac.kuai8.com/kuai8/admin/general/plugin#no7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;
-&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;手动打开在trac.ini，修改[ticketvalidator]段里的内容。&lt;/li&gt;
-&lt;li&gt;添加以下配置&lt;span style=&quot;font-size: 14px;&quot;&gt;，注意的是&lt;span style=&quot;font-family: &#39;Courier New&#39;; line-height: 1.5;&quot;&gt;validates项指定了要对哪些字段进行验证，这些字段名都是添加的Custom Fields的名称。每一个字段都配置一个rule和tip。rule配置项是一个正则表达式，是插件用来对修改ticket时提交的信息进行验证的(插件源码里是这样写的 re.match(rule, fieldValue) )。而tip是在验证出错之后，给用户的警告信息里显示的内容。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;div class=&quot;cnblogs_Highlighter&quot;&gt;&lt;br&gt;&lt;pre class=&quot;brush:python;gutter:true;&quot;&gt;svn.rule = ^(r[0-9]+)(,r[0-9]+)*$&lt;br&gt;svn.tip = svn号请使用r开头的版本号，并且以半角逗号分割，例:r1234,r5678&lt;br&gt;needtime.rule = ^[0-9]+(.[0-9])?[h|d]$&lt;br&gt;needtime.tip = 完成时间格式：以整数或一位小数开头，以h或d结束(分别表示小时和天).示例：3.1d 或 4h&lt;br&gt;testversion.rule = ^v[0-9]+(.[0-9]+){4}$&lt;br&gt;testversion.tip = 版本号格式: vnn.nn.nn.nn, 例v2.3.1.5098&lt;br&gt;validates = svn,needtime,testversion&lt;/pre&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&amp;nbsp;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;然后重启http服务器，配置就生效了，我们尝试以错误的格式修改ticket：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/i/160770/201404/091313546063992.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;点击“提交变更”后显示错误警告，以及在页面顶部显示出配置的错误提示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/i/160770/201404/091313282002526.jpg&quot; alt=&quot;&quot;&gt;&lt;img src=&quot;http://images.cnitblog.com/i/160770/201404/091314563561860.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们在项目管理中使用了trac系统，并且对于ticket添加了以下自定义字段并且对它们的格式都有一定要求：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;svn版本号：格式为 r1234。多个版本号之间使用半角逗号隔开。如：r1234,r5678&lt;/li&gt;
-&lt;li&gt;完成日期：yyyy-mm-dd的格式&lt;/li&gt;
-&lt;li&gt;开发周期：表示开发功能所耗费的时间，格式为数字或者一位小数后面跟上单位h或者d。&lt;/li&gt;
-&lt;li&gt;测试版本号：v开头的标准版本号，如：v2.3.1.5098&lt;br&gt;但是在实际操作中，很多开发人员不去阅读规范文档或者压根记不起来格式规范，随意填写，很是苦恼。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;今天就先试图给完成日期添加一个&lt;a href=&quot;http://trac-hacks.org/wiki/DateFieldPlugin&quot;&gt;日期插件&lt;/a&gt;让开发人员直接使用日期对话框来选择日期，同时发现它已经自带了格式验证，然后在寻找这个插件的同时发现了一个好用的格式验证插件&lt;a href=&quot;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&quot;&gt;https://trac-hacks.org/wiki/TracTicketValidatorPlugin&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;如何安装此插件就不在这里描述，直奔主题看看如何实现配置trac使插件生效。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
     
   </entry>
   

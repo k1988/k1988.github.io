@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档 | k1988</title>
+  <title>svn使用技巧：使用命令行添加忽略文件和目录 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="svn使用技巧：使用命令行添加忽略文件和目录"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,92 +200,111 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">归档</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-03T03:40:28.000Z"><a href="/2017/03/111_svn_ignore/">2017-03-03</a></time>
+      
+      
+  
+    <h1 class="title">svn使用技巧：使用命令行添加忽略文件和目录</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>之前一直在团队中推荐自己在<figure class="highlight plain"><figcaption><span>ignore pattern```中定义排除规则。比如，我一直用的是```*.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store [Tt]humbs.db```。但有些人就不喜欢用，而且随着项目类型的转换，比如新的android团队需要定义不同的规则，这时就得重新在群里发新的规则比较麻烦。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">想到git项目中有.gitignore文件，就想svn中是否有一样的文件，寻找了一圈发现应该是没有类型的文件可以用，仅仅是在项目的svn Propertys设置对话框中在Edit时可以Load一个文件，这个文件的规则和.gitignore类似。</span><br><span class="line"></span><br><span class="line">顺便看到更改项目的svn:global-ignores和svn:ignore的命令行，就直接写了个批处理，外加三个规则文件&lt;--more--&gt;，在批处理里分别导入三个规则文件到svn属性里，然后在工程根目录执行后提交svn即可，然后同事们再add时就不容易带入垃圾文件了。</span><br><span class="line"></span><br><span class="line">批处理如下：</span><br></pre></td></tr></table></figure></p>
+<p>@echo off<br>rem 此批处理的用途</p>
+<p>rem 参考链接：<a href="http://stackoverflow.com/questions/17298668/svn-ignore-like-gitignore" target="_blank" rel="external">http://stackoverflow.com/questions/17298668/svn-ignore-like-gitignore</a><br>rem 参考命令行<br>rem svn propset svn:ignore -RF /root/svn-ignore.txt . [dot for current dir]<br>rem 各语言通用</p>
+<p>set txt_path=%~dp0%<br>svn propset svn:global-ignores -F “%txt_path%svn_ignored_common.txt” %cd%</p>
+<p>rem java开发<br>svn propset svn:global-ignores -F “%txt_path%\svn_ignored_java.txt” %cd%</p>
+<p>rem android studio<br>svn propset svn:ignore -F “%txt_path%\svn_ignored_android_studio.txt” %cd%<br>pause<br>```</p>
+<p>具体的几个规则文件由于可能会经常变更，并且不同项目有不同的需求，在这里就只放个链接了，<a href="https://github.com/k1988/win_mini_tool/tree/master/bats" target="_blank" rel="external">https://github.com/k1988/win_mini_tool/tree/master/bats</a>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/系统-工具/">系统/工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/系统-工具-svn/">系统/工具 svn</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
 
-  <div class="archive">
+
+ <nav id="pagination" >
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-03T03:40:28.000Z"><a href="/2017/03/111_svn_ignore/">2017-03-03</a></time>
-            
-              <h1 class="title"><a href="/2017/03/111_svn_ignore/">svn使用技巧：使用命令行添加忽略文件和目录</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-02-14T12:00:28.000Z"><a href="/2017/02/110_as_templates/">2017-02-14</a></time>
-            
-              <h1 class="title"><a href="/2017/02/110_as_templates/">Android Studio 使用技巧：修改默认build.gradle</a></h1>
-            
-          </header>
-        </div>
-      </article>
+    <a href="/2017/02/110_as_templates/" class="alignright next" >下一页</a>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/109_NSIS3_system_call/">2017-02-03</a></time>
-            
-              <h1 class="title"><a href="/2017/02/109_NSIS3_system_call/">NSIS 3.0 System Call 失败问题</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-11T09:49:48.000Z"><a href="/2017/01/java重新入坑/">2017-01-11</a></time>
-            
-              <h1 class="title"><a href="/2017/01/java重新入坑/">java重新入坑</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-01-03T12:00:28.000Z"><a href="/2017/01/108_human_bug_1/">2017-01-03</a></time>
-            
-              <h1 class="title"><a href="/2017/01/108_human_bug_1/">那些想哭的bug（一）</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-11-24T06:20:28.000Z"><a href="/2016/11/107_baidupingyin_crash/">2016-11-24</a></time>
-            
-              <h1 class="title"><a href="/2016/11/107_baidupingyin_crash/">使用百度输入法时程序崩溃</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-  </div>  
-  <nav id="pagination">
-  
-  
-    <a href="/archives/page/2/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 </nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/2017/03/111_svn_ignore/" data-title="svn使用技巧：使用命令行添加忽略文件和目录" data-url="/2017/03/111_svn_ignore/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
