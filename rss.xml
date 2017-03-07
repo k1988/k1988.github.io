@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-03-07T02:24:42.730Z</updated>
+  <updated>2017-03-07T02:37:08.015Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/03/112_bat_merge/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/03/112_bat_merge/</id>
     <published>2017-03-07T02:23:28.000Z</published>
-    <updated>2017-03-07T02:24:42.730Z</updated>
+    <updated>2017-03-07T02:37:08.015Z</updated>
     
     <content type="html">&lt;p&gt;我有一堆小txt文本，想放在手机上阅读，但是在阅读器中切换文件比较烦，就写了个批处理把他们合并在一起成一个txt文件。&lt;/p&gt;
 &lt;p&gt;示例中：将小文件全部放在&lt;code&gt;D:\mini&lt;/code&gt;文件夹中，然后将所有txt合并到&lt;code&gt;D:\mini_10k.txt&lt;/code&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@echo off&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set dest=D:\mini_10k.txt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set src=D:\mini&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo &amp;gt;%dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for /r &amp;quot;%src%&amp;quot; %%i in (*.txt) do (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rem 添加分割线&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo --------------------------------------- &amp;gt;&amp;gt; %dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rem 输出文件路径&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo %%i &amp;gt;&amp;gt; %dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rem 输出文件内容&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;type &amp;quot;%%i&amp;quot; &amp;gt;&amp;gt; %dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -36,7 +36,9 @@
       <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="系统/工具 bat" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7-bat/"/>
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="bat" scheme="http://baba.zhaoxiuyuan.com/tags/bat/"/>
     
   </entry>
   
@@ -45,7 +47,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/03/111_svn_ignore/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/03/111_svn_ignore/</id>
     <published>2017-03-03T03:40:28.000Z</published>
-    <updated>2017-03-03T03:50:11.469Z</updated>
+    <updated>2017-03-07T02:40:12.360Z</updated>
     
     <content type="html">&lt;p&gt;之前一直在团队中推荐自己在&lt;code&gt;TortoiseSVN&lt;/code&gt;的&lt;code&gt;Setting-&amp;gt;General-&amp;gt;Global ignore pattern&lt;/code&gt;中定义排除规则。比如，我一直用的是&lt;code&gt;*.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store [Tt]humbs.db&lt;/code&gt;。但有些人就不喜欢用，而且随着项目类型的转换，比如新的android团队需要定义不同的规则，这时就得重新在群里发新的规则比较麻烦。&lt;/p&gt;
 &lt;p&gt;想到git项目中有.gitignore文件，就想svn中是否有一样的文件，寻找了一圈发现应该是没有类型的文件可以用，仅仅是在项目的svn Propertys设置对话框中在Edit时可以Load一个文件，这个文件的规则和.gitignore类似。&lt;/p&gt;
@@ -66,7 +68,9 @@
       <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="系统/工具 svn" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7-svn/"/>
+      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="svn" scheme="http://baba.zhaoxiuyuan.com/tags/svn/"/>
     
   </entry>
   
@@ -75,7 +79,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/02/110_as_templates/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/02/110_as_templates/</id>
     <published>2017-02-14T12:00:28.000Z</published>
-    <updated>2017-03-02T08:10:09.000Z</updated>
+    <updated>2017-03-07T02:40:07.544Z</updated>
     
     <content type="html">&lt;p&gt;在项目中发现一些好用的插件和库，就想默认在每个工程里使用，就想到了找找如何直接修改默认工程的build.gradle文件，经过多方面查找资料，可以使用下面的方法来改。&lt;/p&gt;
 &lt;p&gt;比如说有一个好用的butterKnife这个库，需要添加buildscript的dependencies和compile的dependencies。&lt;/p&gt;
@@ -98,7 +102,11 @@
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
     
     
-      <category term="android gradle" scheme="http://baba.zhaoxiuyuan.com/tags/android-gradle/"/>
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="gradle" scheme="http://baba.zhaoxiuyuan.com/tags/gradle/"/>
+    
+      <category term="Android Studio" scheme="http://baba.zhaoxiuyuan.com/tags/Android-Studio/"/>
     
   </entry>
   
@@ -107,7 +115,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/02/109_NSIS3_system_call/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/02/109_NSIS3_system_call/</id>
     <published>2017-02-03T12:00:28.000Z</published>
-    <updated>2017-02-14T06:30:26.742Z</updated>
+    <updated>2017-03-07T02:39:48.415Z</updated>
     
     <content type="html">&lt;p&gt;以前一直用的是NSIS 2.x，但这些版本的NSIS打出来的安装包没有加声明系统兼容性的manifest，也不好用软件在打好的安装包上加manifest，所以就换用了最新版本的NSIS 3.0。&lt;/p&gt;
 &lt;p&gt;换用3.0后之前正常的一些System::Call “xxx:xxx”函数失效了。&lt;/p&gt;
@@ -136,12 +144,10 @@
     
     </summary>
     
-      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/categories/bugs/"/>
-    
-      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/bugs/windows/"/>
-    
     
       <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/tags/bugs/"/>
+    
+      <category term="NSIS" scheme="http://baba.zhaoxiuyuan.com/tags/NSIS/"/>
     
   </entry>
   
@@ -194,7 +200,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/</id>
     <published>2017-01-03T12:00:28.000Z</published>
-    <updated>2017-02-14T06:28:37.095Z</updated>
+    <updated>2017-03-07T02:39:33.169Z</updated>
     
     <content type="html">&lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某天在查找其它问题/添加新的功能/优化代码/睡觉时，突然发现/想到根本原因之后，简直想哭。。问题可能出现在一个很不起眼/一扫而过/觉得100%不会有问题的地方。&lt;/p&gt;
 &lt;p&gt;今天就遇到一个这样的bug，无语的让我想专门开个类别存放这类bug。&lt;/p&gt;
@@ -236,7 +242,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/11/107_baidupingyin_crash/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/11/107_baidupingyin_crash/</id>
     <published>2016-11-24T06:20:28.000Z</published>
-    <updated>2017-02-14T06:28:40.454Z</updated>
+    <updated>2017-03-07T02:39:27.719Z</updated>
     
     <content type="html">&lt;p&gt;使用4.0.3187.0版本的百度拼音输入法时，启动我司的快吧游戏软件，再退出快吧，程序崩溃。查看消息结构体，窗口目标句柄在spy++里已经搜索不到，崩溃地址在某台机器上是0x690eb410。&lt;/p&gt;
 &lt;p&gt;重启后加汇编断点后发现，该模块地址是百度的uipfull.dll中，父调用者是user32.dll!__InternalCallWinProc@20()。而该窗口的类名是CMessenger_Wnd，样式是CS_IME。&lt;/p&gt;
@@ -254,7 +260,9 @@
       <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/windows/"/>
     
     
-      <category term="windows shell" scheme="http://baba.zhaoxiuyuan.com/tags/windows-shell/"/>
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
+    
+      <category term="shell" scheme="http://baba.zhaoxiuyuan.com/tags/shell/"/>
     
   </entry>
   
@@ -263,7 +271,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/11/106_windows%E6%89%98%E7%9B%98%E5%9B%BE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/11/106_windows托盘图标检测/</id>
     <published>2016-11-10T07:20:28.000Z</published>
-    <updated>2016-11-10T07:57:22.160Z</updated>
+    <updated>2017-03-07T02:39:24.288Z</updated>
     
     <content type="html">&lt;p&gt;由于业务需要，研究一下如何用程序判断右下角拖盘中某图标在什么时候隐藏到溢出区。经过多方资料查找，最终输出可用代码。支持windows xp至windows 10的32位和64位下的图标检测。&lt;/p&gt;
 &lt;p&gt;32位程序中读取64位explorer进程中的信息时，网上大多只给出了32位的结构体定义，所以根据调试时查看内存分布，调整了下64位的结构体。&lt;/p&gt;
@@ -290,7 +298,9 @@
       <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/windows/"/>
     
     
-      <category term="windows shell" scheme="http://baba.zhaoxiuyuan.com/tags/windows-shell/"/>
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
+    
+      <category term="shell" scheme="http://baba.zhaoxiuyuan.com/tags/shell/"/>
     
   </entry>
   
@@ -299,7 +309,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/10/105_MC%E7%94%A8%E6%88%B7%E7%9A%84UUID%E7%94%9F%E6%88%90%E8%A7%84%E5%88%99/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/10/105_MC用户的UUID生成规则/</id>
     <published>2016-10-10T04:20:28.000Z</published>
-    <updated>2016-10-10T04:49:14.236Z</updated>
+    <updated>2017-03-07T02:39:16.951Z</updated>
     
     <content type="html">&lt;p&gt;由于业务需要，研究一下如何将离线版(盗版)minecraft服务器的玩家数据迁移到在线版我的世界服务器上去。&lt;/p&gt;
 &lt;p&gt;查看minecraft的服务器代码(反编译)，如果是在线模式就连接用户验证服务器去获取玩家的uuid，否则就根据规则自动生成。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//代码片断from: net.minecraft.server.NameReferencingFileConverter&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (minecraftserver.getOnlineMode() || org.spigotmc.SpigotConfig.bungee) &amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // Spigot: bungee = online mode, for now.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    minecraftserver.getGameProfileRepository().findProfilesByNames(astring, Agent.MINECRAFT, profilelookupcallback);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    String[] astring1 = astring;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int i = astring.length;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    for (int j = 0; j &amp;lt; i; ++j) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        String s = astring1[j];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        UUID uuid = EntityHuman.a(new GameProfile((UUID) null, s));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        GameProfile gameprofile = new GameProfile(uuid, s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        profilelookupcallback.onProfileLookupSucceeded(gameprofile);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//from：net.minecraft.server.EntityHuman&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static UUID a(GameProfile gameprofile) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    UUID uuid = gameprofile.getId();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (uuid == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        uuid = b(gameprofile.getName());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return uuid;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static UUID b(String s) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return UUID.nameUUIDFromBytes((&amp;quot;OfflinePlayer:&amp;quot; + s).getBytes(Charsets.UTF_8));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -327,7 +337,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft flash" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft-flash/"/>
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
   </entry>
   
@@ -336,7 +348,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/09/104_IE%E6%8E%A7%E4%BB%B6%E5%9C%A8flash%E8%B7%A8%E5%9F%9F%E6%97%B6%E5%9B%9E%E8%B0%83%E6%8E%A5%E5%8F%A3%E6%97%A0%E6%95%88/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/09/104_IE控件在flash跨域时回调接口无效/</id>
     <published>2016-09-22T05:58:28.000Z</published>
-    <updated>2016-10-10T04:28:44.628Z</updated>
+    <updated>2017-03-07T02:39:01.287Z</updated>
     
     <content type="html">&lt;p&gt;问题是这样的，我们公司的产品《UU页游戏助手》中是使用了IE浏览器的ActiveX控件来运行网页游戏，其中创建代码是这样的：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hr = ::CoCreateInstance(&amp;quot;&amp;#123;8856F961-340A-11D0-A96B-00C04FD705A2&amp;#125;&amp;quot;, NULL, CLSCTX_ALL, IID_IOleControl, (LPVOID*)&amp;amp;pOleControl);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; GAMEMGR_ASSERT(SUCCEEDED(hr));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (FAILED(hr) || pOleControl == NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pOleControl-&amp;gt;QueryInterface(IID_IOleObject, (LPVOID*) &amp;amp;m_pUnk);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pOleControl-&amp;gt;Release();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (m_pUnk == NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // Create the host too&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    m_pControl = new GMActiveXCtrl();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    m_pControl-&amp;gt;SetOwner(this);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // More control creation stuff&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    DWORD dwMiscStatus = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    m_pUnk-&amp;gt;GetMiscStatus(DVASPECT_CONTENT, &amp;amp;dwMiscStatus);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    IOleClientSite* pOleClientSite = NULL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    m_pControl-&amp;gt;QueryInterface(IID_IOleClientSite, (LPVOID*) &amp;amp;pOleClientSite);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    GMSafeRelease&amp;lt;IOleClientSite&amp;gt; RefOleClientSite = pOleClientSite;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // Initialize control&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if ((dwMiscStatus &amp;amp; OLEMISC_SETCLIENTSITEFIRST) != 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		m_pUnk-&amp;gt;SetClientSite(pOleClientSite);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    IPersistStreamInit* pPersistStreamInit = NULL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    m_pUnk-&amp;gt;QueryInterface(IID_IPersistStreamInit, (LPVOID*) &amp;amp;pPersistStreamInit);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (pPersistStreamInit != NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        hr = pPersistStreamInit-&amp;gt;InitNew();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        pPersistStreamInit-&amp;gt;Release();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (FAILED(hr))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if ((dwMiscStatus &amp;amp; OLEMISC_SETCLIENTSITEFIRST) == 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		m_pUnk-&amp;gt;SetClientSite(pOleClientSite);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;在使用这个IE控件时，经常有诸多问题，很多行为和IE不一致。需要去注册表添加不同的选项，最经典和常见的问题莫过于IE兼容性的问题，需要在&lt;code&gt;HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION&lt;/code&gt;中添加注册表键来强行指定兼容版本。&lt;/p&gt;
@@ -376,7 +388,9 @@
       <category term="flash" scheme="http://baba.zhaoxiuyuan.com/categories/ie/flash/"/>
     
     
-      <category term="ie flash" scheme="http://baba.zhaoxiuyuan.com/tags/ie-flash/"/>
+      <category term="ie" scheme="http://baba.zhaoxiuyuan.com/tags/ie/"/>
+    
+      <category term="flash" scheme="http://baba.zhaoxiuyuan.com/tags/flash/"/>
     
   </entry>
   
