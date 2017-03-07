@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-03-07T02:23:36.282Z</updated>
+  <updated>2017-03-07T02:24:42.730Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/03/112_bat_merge/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/03/112_bat_merge/</id>
     <published>2017-03-07T02:23:28.000Z</published>
-    <updated>2017-03-07T02:23:36.282Z</updated>
+    <updated>2017-03-07T02:24:42.730Z</updated>
     
     <content type="html">&lt;p&gt;我有一堆小txt文本，想放在手机上阅读，但是在阅读器中切换文件比较烦，就写了个批处理把他们合并在一起成一个txt文件。&lt;/p&gt;
 &lt;p&gt;示例中：将小文件全部放在&lt;code&gt;D:\mini&lt;/code&gt;文件夹中，然后将所有txt合并到&lt;code&gt;D:\mini_10k.txt&lt;/code&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@echo off&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set dest=D:\mini_10k.txt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set src=D:\mini&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo &amp;gt;%dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for /r &amp;quot;%src%&amp;quot; %%i in (*.txt) do (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rem 添加分割线&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo --------------------------------------- &amp;gt;&amp;gt; %dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rem 输出文件路径&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo %%i &amp;gt;&amp;gt; %dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rem 输出文件内容&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;type &amp;quot;%%i&amp;quot; &amp;gt;&amp;gt; %dest%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
