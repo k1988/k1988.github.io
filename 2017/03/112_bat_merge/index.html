@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏 | k1988</title>
+  <title>bat实例：用windows批处理合并txt文件 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏"/>
+  <meta property="og:title" content="bat实例：用windows批处理合并txt文件"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -218,45 +218,18 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-04-28T02:32:29.000Z"><a href="/2013/04/63/">2013-04-28</a></time>
+        <time datetime="2017-03-07T02:23:28.000Z"><a href="/2017/03/112_bat_merge/">2017-03-07</a></time>
       
       
   
-    <h1 class="title">win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏</h1>
+    <h1 class="title">bat实例：用windows批处理合并txt文件</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>众所周之，使用下面的代码可以设置文件为稀疏文件。<br>::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;temp, 0);</p>
-<p>使用这段代码清除稀疏文件标志(vista及以后才有效)<br>DWORD temp;<br>FILE_SET_SPARSE_BUFFER b;<br>b.SetSparse = FALSE;<br>::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;b, sizeof(b), 0, 0, &amp;temp, 0));</p>
-<p>但，<a id="more"></a>在使用libtorrent 1.6.0的代码时遇到问题，对于一个较大文件的下载时，可能有一块内存数据未写入<br>到物理文件中时就清除了SPARSE属性，然后下载完成的文件被损坏。以写模式访问会返回错误码5，<br>拷贝该文件到一定进度会失败，删除也不能删除。</p>
-<p>解决办法是，将该文件重新设置为稀疏文件。</p>
-<p>所以，在清除稀疏标志之前，必须判断是否还有hole(稀疏的部分)。</p>
-<p>bool HasSparseRegion(HANDLE file)<br>{<br>    LARGE_INTEGER fileSize;<br>    if (!GetFileSizeEx(file, &amp;fileSize))<br>    {<br>        return true;<br>    }</p>
-<pre><code>FILE_ALLOCATED_RANGE_BUFFER in;
-in.FileOffset.QuadPart = 0;
-in.Length.QuadPart = fileSize.QuadPart;
-
-FILE_ALLOCATED_RANGE_BUFFER out[2];
-
-DWORD processedSize = 0;
-BOOL ret = DeviceIoControl(file,
-                           FSCTL_QUERY_ALLOCATED_RANGES,
-                           (void*)&amp;in,
-                           sizeof(in),
-                           out,
-                           sizeof(out),
-                           &amp;processedSize,
-                           NULL);
-if (ret == FALSE)
-{
-    return true;
-}
-
-// if we only have a single range in the file, we&apos;re not sparse
-return processedSize != sizeof(FILE_ALLOCATED_RANGE_BUFFER);
-</code></pre><p>}</p>
+        <p>我有一堆小txt文本，想放在手机上阅读，但是在阅读器中切换文件比较烦，就写了个批处理把他们合并在一起成一个txt文件。</p>
+<p>示例中：将小文件全部放在<code>D:\mini</code>文件夹中，然后将所有txt合并到<code>D:\mini_10k.txt</code><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">set dest=D:\mini_10k.txt</span><br><span class="line">set src=D:\mini</span><br><span class="line">echo &gt;%dest%</span><br><span class="line">for /r &quot;%src%&quot; %%i in (*.txt) do (</span><br><span class="line">rem 添加分割线</span><br><span class="line">echo --------------------------------------- &gt;&gt; %dest%</span><br><span class="line">rem 输出文件路径</span><br><span class="line">echo %%i &gt;&gt; %dest%</span><br><span class="line">rem 输出文件内容</span><br><span class="line">type &quot;%%i&quot; &gt;&gt; %dest%</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -265,10 +238,15 @@ return processedSize != sizeof(FILE_ALLOCATED_RANGE_BUFFER);
         
   
   <div class="categories">
-    <a href="/categories/WINDOWS编程/">WINDOWS编程</a>
+    <a href="/categories/系统-工具/">系统/工具</a>
   </div>
 
         
+  
+  <div class="tags">
+    <a href="/tags/系统-工具-bat/">系统/工具 bat</a>
+  </div>
+
 <!-- Baidu Button BEGIN -->
 <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
 <a class="bds_qzone"></a>
@@ -294,10 +272,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2013/11/67/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2013/03/58/" class="alignright next" >下一页</a>
+    <a href="/2017/03/111_svn_ignore/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -305,7 +281,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <section id="comment">
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/2013/04/63/" data-title="win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏" data-url="/2013/04/63/"></div>
+	<div class="ds-thread" data-thread-key="/2017/03/112_bat_merge/" data-title="bat实例：用windows批处理合并txt文件" data-url="/2017/03/112_bat_merge/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
