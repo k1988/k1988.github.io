@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>bat | k1988</title>
+  <title>Android Studio：打包时出现xxx is not translated in xx | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Android Studio：打包时出现xxx is not translated in xx"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,42 +200,125 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">bat</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-04-20T03:20:28.000Z"><a href="/2017/04/114_android_studio_translate/">2017-04-20</a></time>
+      
+      
+  
+    <h1 class="title">Android Studio：打包时出现xxx is not translated in xx</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在某项目里用到了友盟的SDK，在打正式包时，友盟sdk里的很多资源文件编译出错，报错信息如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error:(23) Error: &quot;com_facebook_like_button_not_liked&quot; is not translated in &quot;ar&quot; (Arabic), &quot;cs&quot; (Czech), &quot;de&quot; (German), &quot;es&quot; (Spanish), &quot;fi&quot; (Finnish), &quot;fr&quot; (French), &quot;he&quot; (Hebrew), &quot;it&quot; (Italian), &quot;iw&quot; (Hebrew), &quot;ja&quot; (Japanese), &quot;ko&quot; (Korean), &quot;nl&quot; (Dutch), &quot;pl&quot; (Polish), &quot;pt&quot; (Portuguese), &quot;pt-BR&quot; (Portuguese: Brazil), &quot;ro&quot; (Romanian), &quot;ru&quot; (Russian), &quot;zh&quot; (Chinese) [MissingTranslation]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>但其实最后apk也打出来了，虽然不知道为什么报错了还是能输出apk，但是还要想解决这个问题，经过搜索，找到以下解决方案。<br><a id="more"></a></p>
+<h2 id="解决方案一："><a href="#解决方案一：" class="headerlink" title="解决方案一："></a>解决方案一：</h2><p>在字符串资源文件里将<code>string</code>结点添加一个属性<code>translatable=&quot;false&quot;</code>，这种方法只适合数量较少的情况下。</p>
+<h2 id="解决方案二："><a href="#解决方案二：" class="headerlink" title="解决方案二："></a>解决方案二：</h2><p>是用tools:ignore=”MissingTranslation“ 属性直接忽略这个问题。在字符资源文件里根结点<code>resource</code>中下添加这么两个属性，就可以了<br>xmlns:tools=”<a href="http://schemas.android.com/tools" target="_blank" rel="external">http://schemas.android.com/tools</a>“<br>tools:ignore=”MissingTranslation”。例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;resources</span><br><span class="line">  xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">  tools:ignore=&quot;MissingTranslation&quot; &gt;</span><br><span class="line">  &lt;string name=&quot;whatsapp_showword&quot;&gt;WhatsApp&lt;/string&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解决方案三："><a href="#解决方案三：" class="headerlink" title="解决方案三："></a>解决方案三：</h2><p>在项目的builde.gralde里添加如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">  lintOptions &#123;</span><br><span class="line">      checkReleaseBuilds false</span><br><span class="line">      // Or, if you prefer, you can continue to check for errors in release builds,</span><br><span class="line">      // but continue the build even when errors are found:</span><br><span class="line">      abortOnError false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="http://blog.163.com/shexinyang@126/blog/static/136739312201492144928812/" target="_blank" rel="external">http://blog.163.com/shexinyang@126/blog/static/136739312201492144928812/</a></li>
+<li><a href="http://www.cnblogs.com/qinxianyuzou/p/3941661.html" target="_blank" rel="external">http://www.cnblogs.com/qinxianyuzou/p/3941661.html</a></li>
+<li><a href="https://segmentfault.com/a/1190000000599530" target="_blank" rel="external">https://segmentfault.com/a/1190000000599530</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/android/">android</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/android-studio/">android studio</a>, <a href="/tags/android/">android</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
 
-  <div class="archive">
+
+ <nav id="pagination" >
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-21T09:53:28.000Z"><a href="/2017/03/113_bat_split/">2017-03-21</a></time>
-            
-              <h1 class="title"><a href="/2017/03/113_bat_split/">bat实例：用windows批处理将文件分组</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-07T02:23:28.000Z"><a href="/2017/03/112_bat_merge/">2017-03-07</a></time>
-            
-              <h1 class="title"><a href="/2017/03/112_bat_merge/">bat实例：用windows批处理合并txt文件</a></h1>
-            
-          </header>
-        </div>
-      </article>
+    <a href="/2017/03/113_bat_split/" class="alignright next" >下一页</a>
     
-  </div>  
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 </nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/04/114_android_studio_translate/" data-title="Android Studio：打包时出现xxx is not translated in xx" data-url="/2017/04/114_android_studio_translate/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/04/114_android_studio_translate/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

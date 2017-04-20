@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-03-21T09:53:22.735Z</updated>
+  <updated>2017-04-20T03:31:01.308Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Studio：打包时出现xxx is not translated in xx</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/04/114_android_studio_translate/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/04/114_android_studio_translate/</id>
+    <published>2017-04-20T03:20:28.000Z</published>
+    <updated>2017-04-20T03:31:01.308Z</updated>
+    
+    <content type="html">&lt;p&gt;在某项目里用到了友盟的SDK，在打正式包时，友盟sdk里的很多资源文件编译出错，报错信息如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Error:(23) Error: &amp;quot;com_facebook_like_button_not_liked&amp;quot; is not translated in &amp;quot;ar&amp;quot; (Arabic), &amp;quot;cs&amp;quot; (Czech), &amp;quot;de&amp;quot; (German), &amp;quot;es&amp;quot; (Spanish), &amp;quot;fi&amp;quot; (Finnish), &amp;quot;fr&amp;quot; (French), &amp;quot;he&amp;quot; (Hebrew), &amp;quot;it&amp;quot; (Italian), &amp;quot;iw&amp;quot; (Hebrew), &amp;quot;ja&amp;quot; (Japanese), &amp;quot;ko&amp;quot; (Korean), &amp;quot;nl&amp;quot; (Dutch), &amp;quot;pl&amp;quot; (Polish), &amp;quot;pt&amp;quot; (Portuguese), &amp;quot;pt-BR&amp;quot; (Portuguese: Brazil), &amp;quot;ro&amp;quot; (Romanian), &amp;quot;ru&amp;quot; (Russian), &amp;quot;zh&amp;quot; (Chinese) [MissingTranslation]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;但其实最后apk也打出来了，虽然不知道为什么报错了还是能输出apk，但是还要想解决这个问题，经过搜索，找到以下解决方案。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;解决方案一：&quot;&gt;&lt;a href=&quot;#解决方案一：&quot; class=&quot;headerlink&quot; title=&quot;解决方案一：&quot;&gt;&lt;/a&gt;解决方案一：&lt;/h2&gt;&lt;p&gt;在字符串资源文件里将&lt;code&gt;string&lt;/code&gt;结点添加一个属性&lt;code&gt;translatable=&amp;quot;false&amp;quot;&lt;/code&gt;，这种方法只适合数量较少的情况下。&lt;/p&gt;
+&lt;h2 id=&quot;解决方案二：&quot;&gt;&lt;a href=&quot;#解决方案二：&quot; class=&quot;headerlink&quot; title=&quot;解决方案二：&quot;&gt;&lt;/a&gt;解决方案二：&lt;/h2&gt;&lt;p&gt;是用tools:ignore=”MissingTranslation“ 属性直接忽略这个问题。在字符资源文件里根结点&lt;code&gt;resource&lt;/code&gt;中下添加这么两个属性，就可以了&lt;br&gt;xmlns:tools=”&lt;a href=&quot;http://schemas.android.com/tools&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://schemas.android.com/tools&lt;/a&gt;“&lt;br&gt;tools:ignore=”MissingTranslation”。例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;resources&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  tools:ignore=&amp;quot;MissingTranslation&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;string name=&amp;quot;whatsapp_showword&amp;quot;&amp;gt;WhatsApp&amp;lt;/string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/resources&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;解决方案三：&quot;&gt;&lt;a href=&quot;#解决方案三：&quot; class=&quot;headerlink&quot; title=&quot;解决方案三：&quot;&gt;&lt;/a&gt;解决方案三：&lt;/h2&gt;&lt;p&gt;在项目的builde.gralde里添加如下代码&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  lintOptions &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      checkReleaseBuilds false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      // Or, if you prefer, you can continue to check for errors in release builds,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      // but continue the build even when errors are found:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      abortOnError false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.163.com/shexinyang@126/blog/static/136739312201492144928812/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.163.com/shexinyang@126/blog/static/136739312201492144928812/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/qinxianyuzou/p/3941661.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/qinxianyuzou/p/3941661.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000000599530&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://segmentfault.com/a/1190000000599530&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在某项目里用到了友盟的SDK，在打正式包时，友盟sdk里的很多资源文件编译出错，报错信息如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Error:(23) Error: &amp;quot;com_facebook_like_button_not_liked&amp;quot; is not translated in &amp;quot;ar&amp;quot; (Arabic), &amp;quot;cs&amp;quot; (Czech), &amp;quot;de&amp;quot; (German), &amp;quot;es&amp;quot; (Spanish), &amp;quot;fi&amp;quot; (Finnish), &amp;quot;fr&amp;quot; (French), &amp;quot;he&amp;quot; (Hebrew), &amp;quot;it&amp;quot; (Italian), &amp;quot;iw&amp;quot; (Hebrew), &amp;quot;ja&amp;quot; (Japanese), &amp;quot;ko&amp;quot; (Korean), &amp;quot;nl&amp;quot; (Dutch), &amp;quot;pl&amp;quot; (Polish), &amp;quot;pt&amp;quot; (Portuguese), &amp;quot;pt-BR&amp;quot; (Portuguese: Brazil), &amp;quot;ro&amp;quot; (Romanian), &amp;quot;ru&amp;quot; (Russian), &amp;quot;zh&amp;quot; (Chinese) [MissingTranslation]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;但其实最后apk也打出来了，虽然不知道为什么报错了还是能输出apk，但是还要想解决这个问题，经过搜索，找到以下解决方案。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
+    
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+  </entry>
   
   <entry>
     <title>bat实例：用windows批处理将文件分组</title>
@@ -366,9 +401,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
   </entry>
   
@@ -856,36 +891,6 @@
     
       <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>IE8崩溃在CElement::GetUpdatedLayoutWithContext</title>
-    <link href="http://baba.zhaoxiuyuan.com/2014/11/82/"/>
-    <id>http://baba.zhaoxiuyuan.com/2014/11/82/</id>
-    <published>2014-11-19T18:40:48.000Z</published>
-    <updated>2016-07-04T09:46:35.969Z</updated>
-    
-    <content type="html">&lt;p&gt;发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://images.cnitblog.com/blog/160770/201411/201042174372235.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;崩溃截图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/blog/160770/201411/201044121563221.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;测试并未找到崩溃的规律，最后经多种方式测试和查阅资料最终得出问题原因：&lt;/p&gt;
-&lt;div&gt;1、8.0.6001.19170 版本及之前的IE，在打开&lt;img src=&quot;file:///C:\Users\terry\AppData\Local\Temp\[5UQ[BL(6~BS2JV6W}N6[%S.png&quot; alt=&quot;&quot;&gt;&lt;a href=&quot;http://jzyf.ledu.com/网页后，右键菜单中点击刷新或直接刷新，基本上都会崩溃。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jzyf.ledu.com/网页后，右键菜单中点击刷新或直接刷新，基本上都会崩溃。&lt;/a&gt;&lt;br&gt;2、据说与网页中给body设置background图片有关。&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;相关资料：&lt;/div&gt;&lt;br&gt;&lt;div&gt;1、&lt;a href=&quot;https://social.technet.microsoft.com/Forums/en-US/82144d88-ba2f-4042-8b69-61a8f84c2292/ie8-crashes-due-to-bug-in-mshtmldll-up-to-version-80600119170-null-pointer-access-in?forum=ieitprocurrentver&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://social.technet.microsoft.com/Forums/en-US/82144d88-ba2f-4042-8b69-61a8f84c2292/ie8-crashes-due-to-bug-in-mshtmldll-up-to-version-80600119170-null-pointer-access-in?forum=ieitprocurrentver&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;2、&lt;a href=&quot;http://answers.microsoft.com/en-us/ie/forum/ie8-windows_xp/bug-in-mshtmldll-version-80600119154-discovered/6895275e-b796-439b-a2f5-8a8b3655fa44&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://answers.microsoft.com/en-us/ie/forum/ie8-windows_xp/bug-in-mshtmldll-version-80600119154-discovered/6895275e-b796-439b-a2f5-8a8b3655fa44&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;3、&lt;a href=&quot;http://bugs.jquery.com/ticket/9823&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bugs.jquery.com/ticket/9823&lt;/a&gt;&lt;/div&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：&lt;br&gt;
-    
-    </summary>
-    
-      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="GetUpdatedLayoutWithContext" scheme="http://baba.zhaoxiuyuan.com/tags/GetUpdatedLayoutWithContext/"/>
-    
-      <category term="IE8" scheme="http://baba.zhaoxiuyuan.com/tags/IE8/"/>
-    
-      <category term="崩溃" scheme="http://baba.zhaoxiuyuan.com/tags/%E5%B4%A9%E6%BA%83/"/>
     
   </entry>
   
