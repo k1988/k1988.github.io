@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-04-20T03:31:01.308Z</updated>
+  <updated>2017-05-03T08:50:41.383Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android RandomAccessFile模式</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/05/115_android_randomaccessfile/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/05/115_android_randomaccessfile/</id>
+    <published>2017-05-03T08:50:28.000Z</published>
+    <updated>2017-05-03T08:50:41.383Z</updated>
+    
+    <content type="html">&lt;p&gt;在项目中发现同一个文件（约500M），在浏览器和别的下载工具上使用http协议下载速度能达5M+KB/s，而我们的app中只能到6、700+KB/s。一开始以为是没有使用多线程下载，或者某逻辑代码是耗时操作，经过多次对比实验和调试，发现将下载时写文件用的&lt;code&gt;RandomAccessFile&lt;/code&gt;的构造函数中的参数&lt;code&gt;mode&lt;/code&gt;由&lt;code&gt;rwd&lt;/code&gt;改为&lt;code&gt;rw&lt;/code&gt;即可。&lt;/p&gt;
+&lt;h3 id=&quot;RandomAccessFile的mode官方文档：&quot;&gt;&lt;a href=&quot;#RandomAccessFile的mode官方文档：&quot; class=&quot;headerlink&quot; title=&quot;RandomAccessFile的mode官方文档：&quot;&gt;&lt;/a&gt;&lt;code&gt;RandomAccessFile&lt;/code&gt;的&lt;code&gt;mode&lt;/code&gt;官方文档：&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;Meaning&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;“r”&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;for reading only. Invoking any of the write methods of the resulting object will cause an IOException.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;“rw”&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Open for reading and writing. If the file does not already exist then an attempt will be made to create it.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;“rws”&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Open for reading and writing, as with “rw”, and also require that every update to the file’s content or metadata be written synchronously to the underlying storage device.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;“rwd”&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Open for reading and writing, as with “rw”, and also require that every update to the file’s content be written synchronously to the underlying storage device.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;参考：&quot;&gt;&lt;a href=&quot;#参考：&quot; class=&quot;headerlink&quot; title=&quot;参考：&quot;&gt;&lt;/a&gt;参考：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.itpub.net/7437037/viewspace-977394/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.itpub.net/7437037/viewspace-977394/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/attilax/article/details/50881526&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/attilax/article/details/50881526&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在项目中发现同一个文件（约500M），在浏览器和别的下载工具上使用http协议下载速度能达5M+KB/s，而我们的app中只能到6、700+KB/s。一开始以为是没有使用多线程下载，或者某逻辑代码是耗时操作，经过多次对比实验和调试，发现将下载时写文件用的&lt;code&gt;Rand
+    
+    </summary>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
+    
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android Studio：打包时出现xxx is not translated in xx</title>
@@ -44,9 +99,9 @@
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
     
     
-      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
-    
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
     
   </entry>
   
@@ -870,27 +925,6 @@
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
     
       <category term="android 驱动" scheme="http://baba.zhaoxiuyuan.com/tags/android-%E9%A9%B1%E5%8A%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>32位程序在64位系统上获取系统安装时间</title>
-    <link href="http://baba.zhaoxiuyuan.com/2015/01/85/"/>
-    <id>http://baba.zhaoxiuyuan.com/2015/01/85/</id>
-    <published>2015-01-28T23:07:08.000Z</published>
-    <updated>2016-07-04T09:12:54.615Z</updated>
-    
-    <content type="html">&lt;p&gt;众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。&lt;br&gt;但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。&lt;br&gt;所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。&lt;br&gt;但是在64位系统上有所不同（仅
-    
-    </summary>
-    
-      <category term="WINDOWS编程" scheme="http://baba.zhaoxiuyuan.com/categories/WINDOWS%E7%BC%96%E7%A8%8B/"/>
-    
     
   </entry>
   
