@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-05-03T08:50:41.383Z</updated>
+  <updated>2017-06-28T08:54:18.426Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mc的部分代码研究</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/06/116_mc_code/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/06/116_mc_code/</id>
+    <published>2017-06-28T08:50:28.000Z</published>
+    <updated>2017-06-28T08:54:18.426Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;minecraft-server&quot;&gt;&lt;a href=&quot;#minecraft-server&quot; class=&quot;headerlink&quot; title=&quot;minecraft server&quot;&gt;&lt;/a&gt;minecraft server&lt;/h1&gt;&lt;p&gt;spigot服务器代码中，net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo用来序列化玩家配置文件GameProfile给客户端的。&lt;br&gt;某次由于服务器返回的格式不符合要求，导致在使用了某种道具后导致了某个服务器崩溃。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;com-mojiang-authlib&quot;&gt;&lt;a href=&quot;#com-mojiang-authlib&quot; class=&quot;headerlink&quot; title=&quot;com.mojiang.authlib&quot;&gt;&lt;/a&gt;com.mojiang.authlib&lt;/h3&gt;&lt;p&gt;服务器和客户端共用代码，用来实现yggdrasil用户登录验证和用户Profile的获取。&lt;/p&gt;
+&lt;p&gt;其中com/mojang/authlib/yggdrasil/YggdrasilMinecraftSessionService.java定义了所有使用到的url和资源域名白名单列表，直接更改此代码再重新打包成jar可改变客户端和服务器端的行为。&lt;/p&gt;
+&lt;h1 id=&quot;BungeeCord&quot;&gt;&lt;a href=&quot;#BungeeCord&quot; class=&quot;headerlink&quot; title=&quot;BungeeCord&quot;&gt;&lt;/a&gt;BungeeCord&lt;/h1&gt;&lt;h2 id=&quot;支持的客户端版本列表&quot;&gt;&lt;a href=&quot;#支持的客户端版本列表&quot; class=&quot;headerlink&quot; title=&quot;支持的客户端版本列表&quot;&gt;&lt;/a&gt;支持的客户端版本列表&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;net.md_5.bungee.protocol.ProtocolConstants.java&lt;/code&gt;里定义了SUPPORTED_VERSION_IDS，如：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static final List&amp;lt;String&amp;gt; SUPPORTED_VERSIONS = Arrays.asList(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;1.8.x&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;1.9.x&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;1.10.x&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;quot;1.11.x&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static final List&amp;lt;Integer&amp;gt; SUPPORTED_VERSION_IDS = Arrays.asList( ProtocolConstants.MINECRAFT_1_8,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ProtocolConstants.MINECRAFT_1_9,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ProtocolConstants.MINECRAFT_1_9_1,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ProtocolConstants.MINECRAFT_1_9_2,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ProtocolConstants.MINECRAFT_1_9_4,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ProtocolConstants.MINECRAFT_1_10,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ProtocolConstants.MINECRAFT_1_11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;正版登录验证&quot;&gt;&lt;a href=&quot;#正版登录验证&quot; class=&quot;headerlink&quot; title=&quot;正版登录验证&quot;&gt;&lt;/a&gt;正版登录验证&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;net.md_5.bungee.connection.InitialHandler&lt;/code&gt;的&lt;code&gt;public void handle(EncryptionResponse encryptResponse)&lt;/code&gt;方法中，调用&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;精简版本代码：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;HttpClient.get(&amp;quot;https://sessionserver.mojang.com/session/minecraft/hasJoined?username=&amp;quot; + xxx,new Callback()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  if (success)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;  else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      InitialHandler.this.disconnect(&amp;quot;给客户端的提示错误信息&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;minecraft-server&quot;&gt;&lt;a href=&quot;#minecraft-server&quot; class=&quot;headerlink&quot; title=&quot;minecraft server&quot;&gt;&lt;/a&gt;minecraft server&lt;/h1&gt;&lt;p&gt;spigot服务器代码中，net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo用来序列化玩家配置文件GameProfile给客户端的。&lt;br&gt;某次由于服务器返回的格式不符合要求，导致在使用了某种道具后导致了某个服务器崩溃。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="mc" scheme="http://baba.zhaoxiuyuan.com/tags/mc/"/>
+    
+  </entry>
   
   <entry>
     <title>Android RandomAccessFile模式</title>
@@ -456,9 +486,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
-    
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
   </entry>
   
@@ -758,173 +788,6 @@
       <category term="win10" scheme="http://baba.zhaoxiuyuan.com/tags/win10/"/>
     
       <category term="系统版本号" scheme="http://baba.zhaoxiuyuan.com/tags/%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>另类方法制作android通用驱动</title>
-    <link href="http://baba.zhaoxiuyuan.com/2015/07/92/"/>
-    <id>http://baba.zhaoxiuyuan.com/2015/07/92/</id>
-    <published>2015-07-08T00:37:00.000Z</published>
-    <updated>2016-07-04T09:46:28.696Z</updated>
-    
-    <content type="html">&lt;p&gt;绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。&lt;/p&gt;
-&lt;p&gt;先在前面声明大纲，改造Android驱动只需要两点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;驱动文件的&lt;strong&gt;inf文件&lt;/strong&gt;中添加该手机对应的&lt;strong&gt;硬件id/兼容id&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;对更新后的inf和所有的原来的文件重新生成&lt;strong&gt;cat文件&lt;/strong&gt;(安全目录)，并&lt;strong&gt;数字签名&lt;/strong&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;驱动常见格式&quot;&gt;&lt;a href=&quot;#驱动常见格式&quot; class=&quot;headerlink&quot; title=&quot;驱动常见格式&quot;&gt;&lt;/a&gt;&lt;strong&gt;驱动常见格式&lt;/strong&gt;&lt;/h2&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt;先看一个从android网站上下载的一个官方驱动usb_driver_r04-windows.zip，解压后内部结构为下图所示:&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt; &lt;a href=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l1.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l1-300x140.png&quot; alt=&quot;&quot; title=&quot;usb_driver_r04-windows 1层目录结构&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l2.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/l2-300x67.png&quot; alt=&quot;&quot; title=&quot;usb_driver_r04-windows 2层结构&quot;&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt;其中inf文件的内容大致如下：&lt;/span&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;span style=&quot;font-size: 16px; line-height: 24px;&quot;&gt;;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;; Android WinUsb driver installation.&lt;/p&gt;
-&lt;p&gt;;&lt;/p&gt;
-&lt;p&gt;[Version]&lt;/p&gt;
-&lt;p&gt;Signature           = “$Windows NT$”&lt;/p&gt;
-&lt;p&gt;Class               = AndroidUsbDeviceClass&lt;/p&gt;
-&lt;p&gt;ClassGuid           = {3F966BD9-FA04-4ec5-991C-D326973B5128}&lt;/p&gt;
-&lt;p&gt;Provider            = %ProviderName%&lt;/p&gt;
-&lt;p&gt;DriverVer           = 12/06/2010,4.0.0000.00000&lt;/p&gt;
-&lt;p&gt;CatalogFile.NTx86   = androidwinusb86.cat&lt;/p&gt;
-&lt;p&gt;CatalogFile.NTamd64 = androidwinusba64.cat&lt;/p&gt;
-&lt;p&gt;;&lt;/p&gt;
-&lt;p&gt;; This section seems to be required for WinUsb driver installation.&lt;/p&gt;
-&lt;p&gt;; If this section is removed the installer will report an error&lt;/p&gt;
-&lt;p&gt;; “Required section not found in INF file”.&lt;/p&gt;
-&lt;p&gt;;&lt;/p&gt;
-&lt;p&gt;[ClassInstall32]&lt;/p&gt;
-&lt;p&gt;Addreg = AndroidWinUsbClassReg&lt;/p&gt;
-&lt;p&gt;[AndroidWinUsbClassReg]&lt;/p&gt;
-&lt;p&gt;HKR,,,0,%ClassName%&lt;/p&gt;
-&lt;p&gt;HKR,,Icon,,-1&lt;/p&gt;
-&lt;p&gt;[Manufacturer]&lt;/p&gt;
-&lt;p&gt;%ProviderName% = Google, NTx86, NTamd64&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;[Google.NTx86]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Dream&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_0BB4&amp;amp;PID_0C01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&amp;amp;PID_0FFF&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Magic&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C03&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Moto Sholes&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Google NexusOne&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_4E11&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E12&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E22&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;[Google.NTamd64]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Dream&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_0BB4&amp;amp;PID_0C01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleBootLoaderInterface% = USB_Install, USB\VID_0BB4&amp;amp;PID_0FFF&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ; HTC Magic&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_0BB4&amp;amp;PID_0C03&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Moto Sholes&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_22B8&amp;amp;PID_41DB&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; ;Google NexusOne&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_0D02&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %SingleAdbInterface%        = USB_Install, USB\VID_18D1&amp;amp;PID_4E11&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E12&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt; %CompositeAdbInterface%     = USB_Install, USB\VID_18D1&amp;amp;PID_4E22&amp;amp;MI_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;[USB_Install]&lt;/p&gt;
-&lt;p&gt;Include = winusb.inf&lt;/p&gt;
-&lt;p&gt;Needs   = WINUSB.NT&lt;/p&gt;
-&lt;p&gt;[USB_Install.Services]&lt;/p&gt;
-&lt;p&gt;Include     = winusb.inf&lt;/p&gt;
-&lt;p&gt;AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall&lt;/p&gt;
-&lt;p&gt;[WinUSB_ServiceInstall]&lt;/p&gt;
-&lt;p&gt;DisplayName     = %WinUSB_SvcDesc%&lt;/p&gt;
-&lt;p&gt;ServiceType     = 1&lt;/p&gt;
-&lt;p&gt;StartType       = 3&lt;/p&gt;
-&lt;p&gt;ErrorControl    = 1&lt;/p&gt;
-&lt;p&gt;ServiceBinary   = %12%\WinUSB.sys&lt;/p&gt;
-&lt;p&gt;[USB_Install.Wdf]&lt;/p&gt;
-&lt;p&gt;KmdfService = WINUSB, WinUSB_Install&lt;/p&gt;
-&lt;p&gt;[WinUSB_Install]&lt;/p&gt;
-&lt;p&gt;KmdfLibraryVersion  = 1.9&lt;/p&gt;
-&lt;p&gt;[USB_Install.HW]&lt;/p&gt;
-&lt;p&gt;AddReg  = Dev_AddReg&lt;/p&gt;
-&lt;p&gt;[Dev_AddReg]&lt;/p&gt;
-&lt;p&gt;HKR,,DeviceInterfaceGUIDs,0x10000,”{F72FE0D4-CBCB-407d-8814-9ED673D0DD6B}”&lt;/p&gt;
-&lt;p&gt;[USB_Install.CoInstallers]&lt;/p&gt;
-&lt;p&gt;AddReg    = CoInstallers_AddReg&lt;/p&gt;
-&lt;p&gt;CopyFiles = CoInstallers_CopyFiles&lt;/p&gt;
-&lt;p&gt;[CoInstallers_AddReg]&lt;/p&gt;
-&lt;p&gt;HKR,,CoInstallers32,0x00010000,”WdfCoInstaller01009.dll,WdfCoInstaller”,”WinUSBCoInstaller2.dll”&lt;/p&gt;
-&lt;p&gt;[CoInstallers_CopyFiles]&lt;/p&gt;
-&lt;p&gt;WinUSBCoInstaller2.dll&lt;/p&gt;
-&lt;p&gt;WdfCoInstaller01009.dll&lt;/p&gt;
-&lt;p&gt;[DestinationDirs]&lt;/p&gt;
-&lt;p&gt;CoInstallers_CopyFiles=11&lt;/p&gt;
-&lt;p&gt;[SourceDisksNames]&lt;/p&gt;
-&lt;p&gt;1 = %DISK_NAME%,,,\i386&lt;/p&gt;
-&lt;p&gt;2 = %DISK_NAME%,,,\amd64&lt;/p&gt;
-&lt;p&gt;[SourceDisksFiles.x86]&lt;/p&gt;
-&lt;p&gt;WinUSBCoInstaller2.dll  = 1&lt;/p&gt;
-&lt;p&gt;WdfCoInstaller01009.dll = 1&lt;/p&gt;
-&lt;p&gt;[SourceDisksFiles.amd64]&lt;/p&gt;
-&lt;p&gt;WinUSBCoInstaller2.dll  = 2&lt;/p&gt;
-&lt;p&gt;WdfCoInstaller01009.dll = 2&lt;/p&gt;
-&lt;p&gt;[Strings]&lt;/p&gt;
-&lt;p&gt;ProviderName                = “Google, Inc.”&lt;/p&gt;
-&lt;p&gt;SingleAdbInterface          = “Android ADB Interface”&lt;/p&gt;
-&lt;p&gt;CompositeAdbInterface       = “Android Composite ADB Interface”&lt;/p&gt;
-&lt;p&gt;SingleBootLoaderInterface   = “Android Bootloader Interface”&lt;/p&gt;
-&lt;p&gt;WinUSB_SvcDesc              = “Android USB Driver”&lt;/p&gt;
-&lt;p&gt;DISK_NAME                   = “Android WinUsb installation disk”&lt;/p&gt;
-&lt;p&gt;ClassName                   = “Android Phone”&lt;br&gt;上面这个inf中标为红色的地方就是这个驱动默认支持的所有设备的硬件id。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;修改inf文件&quot;&gt;&lt;a href=&quot;#修改inf文件&quot; class=&quot;headerlink&quot; title=&quot;修改inf文件&quot;&gt;&lt;/a&gt;&lt;strong&gt;修改inf文件&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;span style=&quot;line-height: 24px;&quot;&gt; 市面上的常见通用 驱动文件的修改大多是采用如谷歌原生驱动一样的方式，将想要支持的设备的硬件id加到inf文件，每多要支持一个系列的设备，就得修改一次inf文件并且重新发布驱动。这种方式简单粗暴，并且使用微软的inf2cat.exe能够正常生成安全目录。&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;line-height: 24px;&quot;&gt; 还有一种就是小米早期版本的驱动一样，直接使用硬件设备的兼容id，它改动过的inf如下：&lt;/span&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;span style=&quot;line-height: 24px;&quot;&gt;[Google.NTx86]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;;Xiaomi Mione&lt;/p&gt;
-&lt;p&gt;%CompositeAdbInterface%     = &lt;span style=&quot;color: #ff0000;&quot;&gt;USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_01&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;%SingleAdbInterface% = &lt;span style=&quot;color: #ff0000;&quot;&gt;USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_03&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;[Google.NTamd64]&lt;/p&gt;
-&lt;p&gt;;Xiaomi Mione&lt;/p&gt;
-&lt;p&gt;%CompositeAdbInterface%     = USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_01&lt;/p&gt;
-&lt;p&gt;%SingleAdbInterface% = USB_Install, USB\Class_FF&amp;amp;SubClass_42&amp;amp;Prot_03&lt;br&gt;但是在研究中发现，在win7上安装驱动时驱动如果没有正确的cat文件和对cat数字签名，驱动是安装不上或者有警告。小米的驱动同样如此，所以估计这也是后来小米的新驱动一样使用上面添加硬件id列表的方式的原因之一吧。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这里我们使用第二种方式，将inf里多余的硬件id全部删除，然后使用小米的这种方式将android手机通用的兼容id写入进去。&lt;/p&gt;
-&lt;h2 id=&quot;生成CAT文件&quot;&gt;&lt;a href=&quot;#生成CAT文件&quot; class=&quot;headerlink&quot; title=&quot;生成CAT文件&quot;&gt;&lt;/a&gt;生成CAT文件&lt;/h2&gt;&lt;p&gt;安装windows的驱动开发包(我使用的是WinDDK 7600.16385.1)，找到里面的bin\selfsign\Inf2Cat.exe，使用命令行Inf2Cat.exe /v /driver:&lt;strong&gt;驱动目录&lt;/strong&gt; /OS:7_X64,7_X86进行编辑，如果是使用的硬件id，则会正常生成安装目录文件，但如果使用兼容id，则会报以下错误。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/无标题.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://zhaohaiyang-wordpress.stor.sinaapp.com/uploads/2015/07/无标题-300x130.png&quot; alt=&quot;&quot; title=&quot;inf2Cat错误提示&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这个inf2cat程序经研究是c#语言开发的，于是，祭出神器&lt;strong&gt;JetBrains dotPeek 1.1 &lt;/strong&gt;对它进行反编译，并且导出c#工程，然后改掉其中的判断错误的代码&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在bool flag = driverPackageInfo.TestSignability(out errors, out warnings);之后， 将flag强制赋值为true。&lt;br&gt;并且注释掉AssemblyInfo.cs中的//[assembly: AssemblyKeyFile(“\\DQBLD01\builds2\keys\whos.snk”)]，然后重新生成一个inf2cat程序，放在winddk的原目录。这样重新生成cat文件，虽然还是有错误提示，但是不要紧，cat文件正常的生成出来了。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最后对生成出来的cat文件进行数字签名，注意要使用signtool.exe+证书文件的数字签名方法，使用signcode.exe的加密方式对于64位程序似乎系统不太认。&lt;/p&gt;
-&lt;p&gt;这样，一个通用android驱动就完成了。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。&lt;/p&gt;
-&lt;p&gt;先在前面声明大纲，改造Android驱动只需要两点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;驱动文件的&lt;strong&gt;inf文件&lt;/strong&gt;中添加该手机对应的&lt;strong&gt;硬件id/兼容id&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;对更新后的inf和所有的原来的文件重新生成&lt;strong&gt;cat文件&lt;/strong&gt;(安全目录)，并&lt;strong&gt;数字签名&lt;/strong&gt;
-    
-    </summary>
-    
-      <category term="系统/工具" scheme="http://baba.zhaoxiuyuan.com/categories/%E7%B3%BB%E7%BB%9F-%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
-    
-      <category term="android 驱动" scheme="http://baba.zhaoxiuyuan.com/tags/android-%E9%A9%B1%E5%8A%A8/"/>
     
   </entry>
   
