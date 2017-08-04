@@ -234,6 +234,9 @@
 <h1 id="BungeeCord"><a href="#BungeeCord" class="headerlink" title="BungeeCord"></a>BungeeCord</h1><h2 id="支持的客户端版本列表"><a href="#支持的客户端版本列表" class="headerlink" title="支持的客户端版本列表"></a>支持的客户端版本列表</h2><p>在<code>net.md_5.bungee.protocol.ProtocolConstants.java</code>里定义了SUPPORTED_VERSION_IDS，如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static final List&lt;String&gt; SUPPORTED_VERSIONS = Arrays.asList(</span><br><span class="line">        &quot;1.8.x&quot;,</span><br><span class="line">        &quot;1.9.x&quot;,</span><br><span class="line">        &quot;1.10.x&quot;,</span><br><span class="line">        &quot;1.11.x&quot;</span><br><span class="line">);</span><br><span class="line">public static final List&lt;Integer&gt; SUPPORTED_VERSION_IDS = Arrays.asList( ProtocolConstants.MINECRAFT_1_8,</span><br><span class="line">        ProtocolConstants.MINECRAFT_1_9,</span><br><span class="line">        ProtocolConstants.MINECRAFT_1_9_1,</span><br><span class="line">        ProtocolConstants.MINECRAFT_1_9_2,</span><br><span class="line">        ProtocolConstants.MINECRAFT_1_9_4,</span><br><span class="line">        ProtocolConstants.MINECRAFT_1_10,</span><br><span class="line">        ProtocolConstants.MINECRAFT_1_11</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <h2 id="正版登录验证"><a href="#正版登录验证" class="headerlink" title="正版登录验证"></a>正版登录验证</h2><p>在<code>net.md_5.bungee.connection.InitialHandler</code>的<code>public void handle(EncryptionResponse encryptResponse)</code>方法中，调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">精简版本代码：</span><br><span class="line">HttpClient.get(&quot;https://sessionserver.mojang.com/session/minecraft/hasJoined?username=&quot; + xxx,new Callback()&#123;</span><br><span class="line">  if (success)&#123;</span><br><span class="line">     ...</span><br><span class="line">   &#125;  else &#123;</span><br><span class="line">      InitialHandler.this.disconnect(&quot;给客户端的提示错误信息&quot;)</span><br><span class="line">   &#125;   </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><h2 id="authlib"><a href="#authlib" class="headerlink" title="authlib"></a>authlib</h2><p>同上面服务器，只不过客户端的authlib是在.minecraft中的<code>.minecraft\libraries\com\mojang\authlib</code>目录中，替换和原客户端相同的版本即可。</p>
+<h2 id="forge版本"><a href="#forge版本" class="headerlink" title="forge版本"></a>forge版本</h2><h3 id="无敌模式"><a href="#无敌模式" class="headerlink" title="无敌模式"></a>无敌模式</h3><p>在编译spigot时反编译了net.minecraft.server.Entity的代码中，有一个函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public boolean damageEntity(DamageSource damagesource, float f) &#123;</span><br><span class="line">    if (this.isInvulnerable(damagesource)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.ac();</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在forge版本的<code>net.minecraft.entity.player.EntityPlayerMp</code>的代码中，同样有一段类似但更复杂的函数,如果hook掉此函数的功能直接return false，即可实现无敌模式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public boolean func_70097_a(DamageSource source, float amount) &#123;</span><br><span class="line">    if(this.func_180431_b(source)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        boolean flag = this.field_71133_b.func_71262_S() &amp;&amp; this.func_175400_cq() &amp;&amp; &quot;fall&quot;.equals(source.field_76373_n);</span><br><span class="line">        if(!flag &amp;&amp; this.field_147101_bU &gt; 0 &amp;&amp; source != DamageSource.field_76380_i) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if(source instanceof EntityDamageSource) &#123;</span><br><span class="line">                Entity entity = source.func_76346_g();</span><br><span class="line">                if(entity instanceof EntityPlayer &amp;&amp; !this.func_96122_a((EntityPlayer)entity)) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if(entity instanceof EntityArrow) &#123;</span><br><span class="line">                    EntityArrow entityarrow = (EntityArrow)entity;</span><br><span class="line">                    if(entityarrow.field_70250_c instanceof EntityPlayer &amp;&amp; !this.func_96122_a((EntityPlayer)entityarrow.field_70250_c)) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return super.func_70097_a(source, amount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -242,13 +245,13 @@
         
   
   <div class="categories">
-    <a href="/categories/java/">java</a>
+    <a href="/categories/java/">java</a>, <a href="/categories/java/minecraft/">minecraft</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/java/">java</a>, <a href="/tags/mc/">mc</a>
+    <a href="/tags/minecraft/">minecraft</a>, <a href="/tags/java/">java</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -275,6 +278,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 
  <nav id="pagination" >
+    
+    <a href="/2017/08/117_java_asm/" class="alignleft prev" >上一页</a>
     
     
     <a href="/2017/05/115_android_randomaccessfile/" class="alignright next" >下一页</a>
@@ -333,37 +338,39 @@ var duoshuoQuery = {short_name:"k1988"};
   
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
-    <li><a href="/categories/WEB/">WEB</a><small>1</small></li>
+    <li><a href="/categories/WEB/">WEB</a><small>0</small></li>
   
     <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
   
     <li><a href="/categories/android/">android</a><small>3</small></li>
   
+    <li><a href="/categories/java/bugs/">bugs</a><small>1</small></li>
+  
     <li><a href="/categories/bugs/">bugs</a><small>1</small></li>
   
-    <li><a href="/categories/ie/flash/">flash</a><small>1</small></li>
+    <li><a href="/categories/ie/flash/">flash</a><small>0</small></li>
   
-    <li><a href="/categories/ie/">ie</a><small>1</small></li>
+    <li><a href="/categories/ie/">ie</a><small>0</small></li>
   
-    <li><a href="/categories/java/">java</a><small>6</small></li>
+    <li><a href="/categories/java/">java</a><small>7</small></li>
   
-    <li><a href="/categories/java/minecraft/">minecraft</a><small>2</small></li>
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>4</small></li>
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   
     <li><a href="/categories/python/">python</a><small>1</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>2</small></li>
+    <li><a href="/categories/windows/">windows</a><small>3</small></li>
   
-    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+    <li><a href="/categories/工具/">工具</a><small>0</small></li>
   
-    <li><a href="/categories/开源项目/">开源项目</a><small>2</small></li>
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
   
     <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
   
     <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
   
-    <li><a href="/categories/软件/">软件</a><small>2</small></li>
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
   
   </ul>
 </div>

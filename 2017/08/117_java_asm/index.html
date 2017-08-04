@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java的asm若干实践 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="java的asm若干实践"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/117_java_asm/">2017-08-03</a></time>
+      
+      
+  
+    <h1 class="title">java的asm若干实践</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="一、前置知识、工具、代码库等"><a href="#一、前置知识、工具、代码库等" class="headerlink" title="一、前置知识、工具、代码库等"></a>一、前置知识、工具、代码库等</h1><ul>
+<li>jdk里的javap，用来反汇编class文件查看生成的字节码</li>
+<li><a href="http://asm.ow2.org/" target="_blank" rel="external">org.objectweb.asm</a> 用来解析、修改、保存字节码的代码库</li>
+<li>fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)</li>
+<li>java的<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html" target="_blank" rel="external">Instrumentation</a>，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。</li>
+</ul>
+<h1 id="二、Instrumentation"><a href="#二、Instrumentation" class="headerlink" title="二、Instrumentation"></a>二、Instrumentation</h1><p>在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：<br><a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void premain(String var0, Instrumentation inst) &#123;</span><br><span class="line">   inst.addTransformer(new MyTransformer());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>JVM在加载每一个类时，都会调用MyTransformer的transform方法对字节码进行处理:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public final byte[] transform(ClassLoader l, String className, Class&lt;?&gt; c,ProtectionDomain pd, byte[] b) throws IllegalClassFormatException &#123;</span><br><span class="line">   // 在这里可以根据className筛选到自己想要更改的类</span><br><span class="line">   if (className.equal(&quot;example&quot;))&#123;</span><br><span class="line">     b = getAnotherCodeArray(b);</span><br><span class="line">     b = modifyCodeArray(b);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在transform函数也可保存修改前或修改后的字节为class文件，只需要直接将b保存成class文件即可。</li>
+<li>如果transform里抛出异常，程序也能正常执行，只不过类没有发生任何变化(因为没有返回修改过的字节码)。</li>
+<li>如果修改过的字节码中，有错误，比如在生成方法的局部变量时，生成了如下格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LocalVariableTable:</span><br><span class="line">Start  Length  Slot  Name   Signature</span><br><span class="line">    45      65     0  this   Lnet/minecraft/client/network/NetHandlerLoginClient;</span><br><span class="line">    45      65     1 packetIn   Lnet/minecraft/network/login/server/SPacketLoginSuccess;</span><br><span class="line">    0       0     2 address   desc</span><br></pre></td></tr></table></figure>
+<p>其中address对应的类型为desc，显然是非法的，则启动程序时会报异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.lang.NoClassDefFoundError: net/minecraft/client/network/NetHandlerLoginClient</span><br><span class="line">Caused by: java.lang.ClassFormatError: Field &quot;address&quot; in class net/minecraft/client/network/NetHandlerLoginClient has illegal signature &quot;desc&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="三、asm实践"><a href="#三、asm实践" class="headerlink" title="三、asm实践"></a>三、asm实践</h1><p>使用asm修改字节码的示例有很多，这里就不再详细列举，这里仅说几个我填过的坑。在破解forge版本minecraft游戏的过程中，有些asm代码在老版本执行正常，但是在v1.12版本就导致游戏崩溃。</p>
+<p>在transform里将修改过的代码保存成class文件并且通过idea反汇编成java文件，对比1.11和1.12两个版本生成的java代码是一样的，在各种调整jvm参数、java版本、asm库版本之后，最终找到原因和解决办法。</p>
+<h3 id="错误1：Caused-by-java-lang-VerifyError-Expecting-a-stackmap-frame-at-branch-target-xxx"><a href="#错误1：Caused-by-java-lang-VerifyError-Expecting-a-stackmap-frame-at-branch-target-xxx" class="headerlink" title="错误1：Caused by: java.lang.VerifyError: Expecting a stackmap frame at branch target xxx"></a>错误1：Caused by: java.lang.VerifyError: Expecting a stackmap frame at branch target xxx</h3><p>此bug是因为原有代码在插入了一些if(xxx)等分支流程，假设代码是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">MethodNode method = xxx;// 从原字节码里使用ClassReader得到方法对象。</span><br><span class="line"></span><br><span class="line">// 插入自己的新的指令</span><br><span class="line">InsnList rawMethodInstructions = method.instructions;</span><br><span class="line">InsnList newCall = new InsnList();</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">// 在某处逻辑添加了跳转指令</span><br><span class="line">LabelNode labelNode = new LabelNode();</span><br><span class="line">newCall.add(new JumpInsnNode(Opcodes.IFEQ, labelNode));</span><br><span class="line">...</span><br><span class="line">newCall.add(labelNode);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"> rawMethodInstructions.insertBefore(rawMethodInstructions.getFirst(), newCall);</span><br><span class="line"> method.maxStack += 4;</span><br></pre></td></tr></table></figure>
+<p>以上代码在很多mc版本上都正常运行，只有v1.12版本才会报标题中的错误。是因为v1.12的代码在执行时对生成字节码的StackMapTable区域做了检测。在未修改之前的原方法中可能StackMapTable是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">StackMapTable: number_of_entries = 6</span><br><span class="line">  frame_type = 10 /* same */</span><br><span class="line">  frame_type = 33 /* same */</span><br><span class="line">  frame_type = 64 /* same_locals_1_stack_item */</span><br><span class="line">    stack = [ int ]</span><br><span class="line">  frame_type = 252 /* append */</span><br><span class="line">    offset_delta = 20</span><br><span class="line">    locals = [ int ]</span><br><span class="line">  frame_type = 252 /* append */</span><br><span class="line">    offset_delta = 34</span><br><span class="line">    locals = [ class net/minecraft/entity/Entity ]</span><br><span class="line">  frame_type = 250 /* chop */</span><br><span class="line">    offset_delta = 42</span><br></pre></td></tr></table></figure>
+<p>以上方法修改后，生成的字节码是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">StackMapTable: number_of_entries = 6</span><br><span class="line">  frame_type = 10 /* same */</span><br><span class="line">  frame_type = 33 /* same */</span><br><span class="line">  frame_type = 64 /* same_locals_1_stack_item */</span><br><span class="line">    stack = [ int ]</span><br><span class="line">  frame_type = 252 /* append */</span><br><span class="line">    offset_delta = 20</span><br><span class="line">    locals = [ int ]</span><br><span class="line">  frame_type = 252 /* append */</span><br><span class="line">    offset_delta = 34</span><br><span class="line">    locals = [ class net/minecraft/entity/Entity ]</span><br><span class="line">  frame_type = 250 /* chop */</span><br><span class="line">    offset_delta = 42</span><br><span class="line">  frame_type = 6 /* same */</span><br></pre></td></tr></table></figure>
+<p>其实这个 frame_type 的顺序应该和代码块的顺序一致（至于StackMapTable对应代码结构的关系可以见（<a href="http://hllvm.group.iteye.com/group/topic/26545中R大的解释及其它资料）。" target="_blank" rel="external">http://hllvm.group.iteye.com/group/topic/26545中R大的解释及其它资料）。</a></p>
+<p>知道这个特性后，尝试了给java添加了<a href="http://blog.csdn.net/u012881904/article/details/51337347" target="_blank" rel="external">某博客</a>提到的 <em>-noverify</em> 和 <em>-XX:-UseSplitVerifier</em> 这两个jvm参数来禁用字节码验证，然而不知道为什么并没有卵用。</p>
+<p>最后使用asm在代码合适的位置补上了一个frame解决问题。</p>
+<h3 id="错误2：java-lang-VerifyError-Bad-local-variable-type"><a href="#错误2：java-lang-VerifyError-Bad-local-variable-type" class="headerlink" title="错误2：java.lang.VerifyError: Bad local variable type"></a>错误2：java.lang.VerifyError: Bad local variable type</h3><p>hook代码增加了局部变量，需要手动设置LocalVariableTable，通过 <code>methodnode.visitLocalVariable</code>来增加变量，注意第三个参数signature如果不是generic types，则不需要设置。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 必须要调该方法，手动设置LocalVariableTable，否则会报 Caused by: java.lang.VerifyError: Bad local variable type</span><br><span class="line">*/</span><br><span class="line">methodnode.visitLocalVariable(&quot;addressObj&quot;, &quot;Ljava/net/SocketAddress;&quot;, null, newLabelBegin.getLabel(), newLabel2.getLabel(), 3);</span><br><span class="line">methodnode.visitLocalVariable(&quot;addressStr&quot;, &quot;Ljava/lang/String;&quot;, null, newLabelBegin.getLabel(), newLabel2.getLabel(), 4);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>, <a href="/categories/java/minecraft/">minecraft</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/minecraft/">minecraft</a>, <a href="/tags/java/">java</a>, <a href="/tags/asm/">asm</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2017/06/116_mc_code/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/08/117_java_asm/" data-title="java的asm若干实践" data-url="/2017/08/117_java_asm/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/08/117_java_asm/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/WEB/">WEB</a><small>0</small></li>
+  
+    <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
+  
+    <li><a href="/categories/android/">android</a><small>3</small></li>
+  
+    <li><a href="/categories/java/bugs/">bugs</a><small>1</small></li>
+  
+    <li><a href="/categories/bugs/">bugs</a><small>1</small></li>
+  
+    <li><a href="/categories/ie/flash/">flash</a><small>0</small></li>
+  
+    <li><a href="/categories/ie/">ie</a><small>0</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>7</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>4</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>3</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>0</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>关于我：<a href="/about">点这里</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

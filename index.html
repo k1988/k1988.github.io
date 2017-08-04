@@ -219,6 +219,60 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/117_java_asm/">2017-08-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/08/117_java_asm/">java的asm若干实践</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="一、前置知识、工具、代码库等"><a href="#一、前置知识、工具、代码库等" class="headerlink" title="一、前置知识、工具、代码库等"></a>一、前置知识、工具、代码库等</h1><ul>
+<li>jdk里的javap，用来反汇编class文件查看生成的字节码</li>
+<li><a href="http://asm.ow2.org/">org.objectweb.asm</a> 用来解析、修改、保存字节码的代码库</li>
+<li>fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)</li>
+<li>java的<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html">Instrumentation</a>，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。</li>
+</ul>
+<h1 id="二、Instrumentation"><a href="#二、Instrumentation" class="headerlink" title="二、Instrumentation"></a>二、Instrumentation</h1><p>在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/08/117_java_asm/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-06-28T08:50:28.000Z"><a href="/2017/06/116_mc_code/">2017-06-28</a></time>
       
       
@@ -472,56 +526,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-03T03:40:28.000Z"><a href="/2017/03/111_svn_ignore/">2017-03-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/111_svn_ignore/">svn使用技巧：使用命令行添加忽略文件和目录</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>之前一直在团队中推荐自己在<code>TortoiseSVN</code>的<code>Setting-&gt;General-&gt;Global ignore pattern</code>中定义排除规则。比如，我一直用的是<code>*.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store [Tt]humbs.db</code>。但有些人就不喜欢用，而且随着项目类型的转换，比如新的android团队需要定义不同的规则，这时就得重新在群里发新的规则比较麻烦。</p>
-<p>想到git项目中有.gitignore文件，就想svn中是否有一样的文件，寻找了一圈发现应该是没有类型的文件可以用，仅仅是在项目的svn Propertys设置对话框中在Edit时可以Load一个文件，这个文件的规则和.gitignore类似。</p>
-<p>顺便看到更改项目的svn:global-ignores和svn:ignore的命令行，就直接写了个批处理，外加三个规则文件
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/03/111_svn_ignore/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -547,37 +551,39 @@
   
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
-    <li><a href="/categories/WEB/">WEB</a><small>1</small></li>
+    <li><a href="/categories/WEB/">WEB</a><small>0</small></li>
   
     <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
   
     <li><a href="/categories/android/">android</a><small>3</small></li>
   
+    <li><a href="/categories/java/bugs/">bugs</a><small>1</small></li>
+  
     <li><a href="/categories/bugs/">bugs</a><small>1</small></li>
   
-    <li><a href="/categories/ie/flash/">flash</a><small>1</small></li>
+    <li><a href="/categories/ie/flash/">flash</a><small>0</small></li>
   
-    <li><a href="/categories/ie/">ie</a><small>1</small></li>
+    <li><a href="/categories/ie/">ie</a><small>0</small></li>
   
-    <li><a href="/categories/java/">java</a><small>6</small></li>
+    <li><a href="/categories/java/">java</a><small>7</small></li>
   
-    <li><a href="/categories/java/minecraft/">minecraft</a><small>2</small></li>
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>4</small></li>
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   
     <li><a href="/categories/python/">python</a><small>1</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>2</small></li>
+    <li><a href="/categories/windows/">windows</a><small>3</small></li>
   
-    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+    <li><a href="/categories/工具/">工具</a><small>0</small></li>
   
-    <li><a href="/categories/开源项目/">开源项目</a><small>2</small></li>
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
   
     <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
   
     <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
   
-    <li><a href="/categories/软件/">软件</a><small>2</small></li>
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
   
   </ul>
 </div>

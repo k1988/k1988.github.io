@@ -219,6 +219,51 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-03-18T23:38:45.000Z"><a href="/2013/03/58/">2013-03-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/58/">微软数字签名和长度和位移</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>原来微软数字签名的内容是直接追加在文件末尾的，这导致了原来的根据PE头的Sections的最后一个段的位移和大小确定文件末尾的方法对于有签名的程序不适用。还好，有OptionHeader中的结构可以获取数字签名的长度。<br>ntHeaders.OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_SECURITY] </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-02-16T01:03:49.000Z"><a href="/2013/02/59/">2013-02-16</a></time>
       
       
@@ -453,54 +498,6 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-12-26T19:08:31.000Z"><a href="/2011/12/40/">2011-12-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/12/40/">NAT穿之TCP</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>STUN#1 ：双方发送SYN握手请求（低TTL），此请求通过已方NAT后即被丢弃，双方将自己的SYN握手请求的序号（通过侦听经过RAW-socket或PCAP向外发送的SYN，终端可以得知初始TCP的序号）发给服务器，服务器各伪造一个ACK发给另一端，做为SYN的回应，然后其它ACK继续按照正常方式穿过网络。<br>这种方法有四个潜在的问题：第一，它需要终端确定一个TTL，该TTL足够大，大到可以穿透自己的NAT，但又要足够小，小到不能到达对方的NAT；第二，作为SYN包的回应，比TTL优先的ICMP错误是可能产生的，而且，也可能被NAT认为是致命的错误；第三，NAT可能改变初始SYN的TCP序号，这样就可能导致基于原始序号的欺骗SYNACK到达NAT时，被当作窗口之外的包；第四，它需要一个第三方为一个任意地址产生一个欺骗包，而该欺骗包很可能被网络中各种各样的进出过滤器丢弃。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2011/12/40/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -528,37 +525,39 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
   
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
-    <li><a href="/categories/WEB/">WEB</a><small>1</small></li>
+    <li><a href="/categories/WEB/">WEB</a><small>0</small></li>
   
     <li><a href="/categories/WINDOWS编程/">WINDOWS编程</a><small>6</small></li>
   
     <li><a href="/categories/android/">android</a><small>3</small></li>
   
+    <li><a href="/categories/java/bugs/">bugs</a><small>1</small></li>
+  
     <li><a href="/categories/bugs/">bugs</a><small>1</small></li>
   
-    <li><a href="/categories/ie/flash/">flash</a><small>1</small></li>
+    <li><a href="/categories/ie/flash/">flash</a><small>0</small></li>
   
-    <li><a href="/categories/ie/">ie</a><small>1</small></li>
+    <li><a href="/categories/ie/">ie</a><small>0</small></li>
   
-    <li><a href="/categories/java/">java</a><small>6</small></li>
+    <li><a href="/categories/java/">java</a><small>7</small></li>
   
-    <li><a href="/categories/java/minecraft/">minecraft</a><small>2</small></li>
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>4</small></li>
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   
     <li><a href="/categories/python/">python</a><small>1</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>2</small></li>
+    <li><a href="/categories/windows/">windows</a><small>3</small></li>
   
-    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+    <li><a href="/categories/工具/">工具</a><small>0</small></li>
   
-    <li><a href="/categories/开源项目/">开源项目</a><small>2</small></li>
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
   
     <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
   
     <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
   
-    <li><a href="/categories/软件/">软件</a><small>2</small></li>
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
   
   </ul>
 </div>
