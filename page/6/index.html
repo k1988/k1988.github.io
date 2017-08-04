@@ -219,6 +219,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-04-28T02:32:29.000Z"><a href="/2013/04/63/">2013-04-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/63/">win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>众所周之，使用下面的代码可以设置文件为稀疏文件。<br>::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;temp, 0);</p>
+<p>使用这段代码清除稀疏文件标志(vista及以后才有效)<br>DWORD temp;<br>FILE_SET_SPARSE_BUFFER b;<br>b.SetSparse = FALSE;<br>::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;b, sizeof(b), 0, 0, &amp;temp, 0));</p>
+<p>但，
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/04/63/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-03-18T23:38:45.000Z"><a href="/2013/03/58/">2013-03-19</a></time>
       
       
@@ -450,54 +500,6 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-04-27T06:21:25.000Z"><a href="/2012/04/43/">2012-04-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/04/43/">QQ2012多客户端在线状态以及消息接收之简单研究</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <div>上次说的，有时间时稍微研究一下QQ的多客户端共存的一些规则<strong> ，今天就抽空做了一点点实验。</strong></div><br><div><strong>实验环境：</strong></div><br><div>Lenovo Y450 ,window 7系统 ，QQ2012 Beta1 (4145)</div><br><div>Apple new ipad 一只，ios5.1系统，安装有QQ HD V2.8(ipad), iphone QQ 2012 V2.0.0.1808。</div><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/04/43/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -527,9 +529,9 @@ From 是限制来源的位置，也就是该位置受限制。他可以是完整
   
     <li><a href="/categories/android/">android</a><small>3</small></li>
   
-    <li><a href="/categories/java/">java</a><small>7</small></li>
+    <li><a href="/categories/java/">java</a><small>8</small></li>
   
-    <li><a href="/categories/java/minecraft/">minecraft</a><small>4</small></li>
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>5</small></li>
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   

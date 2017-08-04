@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spigot编译流程 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Spigot编译流程"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/118_spigot/">2017-08-03</a></time>
+      
+      
+  
+    <h1 class="title">Spigot编译流程</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
+<li><a href="https://www.spigotmc.org/wiki/buildtools/" target="_blank" rel="external">buildtools帮助文档</a></li>
+<li><a href="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" target="_blank" rel="external">BuildTool.jar下载地址</a></li>
+</ul>
+<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>使用gitbash打开当前目录，输入<code>java -jar BuildTools.jar --rev 1.8</code>,这里的1.8可以替换成其它版本，如1.10,1.10.2等。</p>
+<h1 id="流程一，下载代码"><a href="#流程一，下载代码" class="headerlink" title="流程一，下载代码"></a>流程一，下载代码</h1><ul>
+<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/bukkit.git" target="_blank" rel="external">bukkit</a> 到 <code>bukkit</code> 目录<a id="more"></a></li>
+<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/craftbukkit.git" target="_blank" rel="external">craftbukkit</a> 到 <code>craftbukkit</code> 目录</li>
+<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/spigot.git" target="_blank" rel="external">spigot</a> 到 <code>Spigot</code> 目录</li>
+<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/builddata.git" target="_blank" rel="external">buildata</a>到 <code>BuildData</code> 目录</li>
+<li>下载<a href="https://static.spigotmc.org/maven/apache-maven-3.2.5-bin.zip" target="_blank" rel="external">maven工具</a></li>
+<li>从服务器上查询命令行中指定的rev对应的各代码库的分支，如</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Attempting to build version: &apos;1.8&apos; use --rev &lt;version&gt; to override</span><br><span class="line">Found version</span><br><span class="line">&#123;</span><br><span class="line">	&quot;name&quot;: &quot;1.8&quot;,</span><br><span class="line">	&quot;description&quot;: &quot;Backport of fixes from 1.8.3&quot;,</span><br><span class="line">	&quot;information&quot;: &quot;Last build of Spigot 1.8.0. To update please see http://www.spigotmc.org/&quot;,</span><br><span class="line">	&quot;warning&quot;: &quot;***** Please ensure your BuildTools is at least #35 *****&quot;,</span><br><span class="line">	&quot;refs&quot;: &#123;</span><br><span class="line">		&quot;BuildData&quot;: &quot;0630ea462a82fdbd93018de7d5ec5e9d3b3c732b&quot;,</span><br><span class="line">		&quot;Bukkit&quot;: &quot;1d2509b99fb10b3bd6f597e63805f85b49d5a055&quot;,</span><br><span class="line">		&quot;CraftBukkit&quot;: &quot;7019900e276b7c9f6e940debf8529094c7f4da0c&quot;,</span><br><span class="line">		&quot;Spigot&quot;: &quot;550ebace4b43adc73854d7d5976e1343eba6fb98&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将4个文件夹中的代码更新到指定标签</li>
+</ul>
+<h2 id="目录说明"><a href="#目录说明" class="headerlink" title="目录说明"></a>目录说明</h2><h3 id="BuildData"><a href="#BuildData" class="headerlink" title="BuildData"></a>BuildData</h3><p>反编译工具及反编译minecraft使用的代码映射。</p>
+<h3 id="CraftBukkit"><a href="#CraftBukkit" class="headerlink" title="CraftBukkit"></a>CraftBukkit</h3><p>对minecraft server的魔改，改善性能，并支持插件等。</p>
+<h3 id="Bukkit"><a href="#Bukkit" class="headerlink" title="Bukkit"></a>Bukkit</h3><p>Bukkit是服务器插件编程接口，封装不同版本minecraft server的细节，统一接口，便于开发插件。</p>
+<h3 id="Spigot目录"><a href="#Spigot目录" class="headerlink" title="Spigot目录"></a>Spigot目录</h3><p>spigot服务器是一个改良服务器，在文件夹里是两个补丁目录，CraftBukkit-Patches存放对craftBukkit代码的补丁，Bukkit-Patches存放对Bukkit代码的补丁。</p>
+<h1 id="流程二，下载minecraft-server并反编译"><a href="#流程二，下载minecraft-server并反编译" class="headerlink" title="流程二，下载minecraft server并反编译"></a>流程二，下载minecraft server并反编译</h1><ul>
+<li>下载纯净版本minecraft服务器jar包（此处应有梯子）。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Attempting to build Minecraft with details: VersionInfo(minecraftVersion=1.8, accessTransforms=bukkit-1.8.at, classMappings=bukkit-1.8-cl.csrg, memberMappings=bukkit-1.8-members.csrg, packageMappings=package.srg, minecraftHash=null, decompileCommand=null, serverUrl=null)</span><br><span class="line">Starting download of https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar</span><br><span class="line"></span><br><span class="line">如果下载不下来，也可以迅雷下载后直接放在work目录中，如果已经存在，则会提示：</span><br><span class="line">Found good Minecraft hash (5b19d1a562a8a7c5f9a787ad96c8148b)</span><br><span class="line">Found good Minecraft hash (5b19d1a562a8a7c5f9a787ad96c8148b)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>反编译代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Final mapped jar: work\mapped.8eb82bde.jar does not exist, creating!</span><br><span class="line">Loading mappings</span><br><span class="line">Loading mappings</span><br><span class="line">1 packages, 0 classes, 0 fields, 0 methods</span><br><span class="line">INFO: merging AccessMap net/minecraft/server/CraftingManager/recipes from AccessChange(clear=16, set=0, vis=1) with AccessChange(clear=0, set=0, vis=1)</span><br><span class="line">INFO: merging AccessMap net/minecraft/server/PropertyManager/properties from AccessChange(clear=0, set=0, vis=1) with AccessChange(clear=0, set=0, vis=1)</span><br><span class="line">INFO: merging AccessMap net/minecraft/server/TileEntityBrewingStand/items from AccessChange(clear=0, set=0, vis=1) with AccessChange(clear=0, set=0, vis=1)</span><br><span class="line">INFO: merging AccessMap net/minecraft/server/WorldServer/tracker from AccessChange(clear=16, set=0, vis=1) with AccessChange(clear=0, set=0, vis=1)</span><br><span class="line">INFO: merging AccessMap net/minecraft/server/WorldManager/world from AccessChange(clear=0, set=0, vis=1) with AccessChange(clear=0, set=0, vis=1)</span><br><span class="line">Remapping final jar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将minecraft-server的class文件释放到work目录下的<code>decompile-xxxxxxxx</code>目录的<code>classes</code>子目录。</li>
+<li>根据map文件，将释放的class文件，反编译到work目录下的<code>decompile-xxxxxxxx</code>中。</li>
+<li>将生成的java文件，编译并生成minecraft-server-1.8-SNAPSHOT.jar到mvn的代码仓库目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO]                                                                         </span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Building Maven Stub Project (No POM) 1</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-install-plugin:2.4:install-file (default-cli) @ standalone-pom ---</span><br><span class="line">[INFO] Installing D:\mc\spigotmc_build\work\mapped.8eb82bde.jar to D:\repo\repository\org\spigotmc\minecraft-server\1.8-SNAPSHOT\minecraft-server-1.8-SNAPSHOT.jar</span><br><span class="line">[INFO] Installing C:\Users\terry\AppData\Local\Temp\mvninstall1056450265315348368.pom to D:\repo\repository\org\spigotmc\minecraft-server\1.8-SNAPSHOT\minecraft-server-1.8-SNAPSHOT.pom</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">extract ....*.class</span><br><span class="line">Decomiling ***.java</span><br><span class="line">Applying CraftBukkit Patches</span><br></pre></td></tr></table></figure>
+<ul>
+<li>应用代码补丁</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Applying CraftBukkit Patches</span><br><span class="line">Patching with BiomeDecorator.patch</span><br><span class="line">Patching with BiomeTheEndDecorator.patch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>并各种文件夹合并,将Bukkit和CraftBukkit的代码都checkout一份到Spigot目录。</li>
+</ul>
+<h1 id="流程三，编译代码"><a href="#流程三，编译代码" class="headerlink" title="流程三，编译代码"></a>流程三，编译代码</h1><ul>
+<li>编译Bukkit和CraftBukkit,并且都输出到Maven本地仓库。</li>
+<li>将Bukkit和CraftBukkit的代码check out到Spigot中的Spigot-API和Spigot-Server，然后分别打上补丁(Bukkit-Patches和CraftBukkit-Patches)。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Rebuilding Forked projects.... </span><br><span class="line">From file:///D:\mc\spigotmc_build\Bukkit</span><br><span class="line"> * [new branch]      spigot     -&gt; origin/spigot</span><br><span class="line">HEAD is now at 1d2509b Revert finite checks in locations. Fixes SPIGOT-628 and others</span><br><span class="line">Cloning into &apos;Spigot-API&apos;...</span><br><span class="line">done.</span><br><span class="line">Resetting Spigot-API to Bukkit...</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">HEAD is now at 36052f0 CraftBukkit $ Fri Aug 04 14:37:11 CST 2017</span><br><span class="line">Cloning into &apos;Spigot-Server&apos;...</span><br><span class="line">done.</span><br><span class="line">Resetting Spigot-Server to CraftBukkit...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译输出 craftbukkit-1.8.jar 和 spigot-1.8.jar 等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Success! Everything compiled successfully. Copying final .jar files now.</span><br><span class="line">Copying craftbukkit-1.8-R0.1-SNAPSHOT-remapped.jar to D:\mc\spigotmc_build\.</span><br><span class="line">  - Saved as craftbukkit-1.8.jar</span><br><span class="line">Copying craftbukkit-1.8-R0.1-SNAPSHOT.jar to D:\mc\spigotmc_build\.</span><br><span class="line">  - Saved as craftbukkit-1.8.jar</span><br><span class="line">Copying spigot-1.8-R0.1-SNAPSHOT-remapped.jar to D:\mc\spigotmc_build\.</span><br><span class="line">  - Saved as spigot-1.8.jar</span><br><span class="line">Copying spigot-1.8-R0.1-SNAPSHOT.jar to D:\mc\spigotmc_build\.</span><br><span class="line">  - Saved as spigot-1.8.jar</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>, <a href="/categories/java/minecraft/">minecraft</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/minecraft/">minecraft</a>, <a href="/tags/java/">java</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2017/08/117_java_asm/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/08/118_spigot/" data-title="Spigot编译流程" data-url="/2017/08/118_spigot/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/08/118_spigot/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/android/">android</a><small>3</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>8</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>5</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>9</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>关于我：<a href="/about">点这里</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
