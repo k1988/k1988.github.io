@@ -374,7 +374,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/01/java%E9%87%8D%E6%96%B0%E5%85%A5%E5%9D%91/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/01/java重新入坑/</id>
     <published>2017-01-11T09:49:48.000Z</published>
-    <updated>2017-08-04T01:21:17.451Z</updated>
+    <updated>2017-08-04T01:44:58.565Z</updated>
     
     <content type="html">&lt;p&gt;毕业八年了，从毕业后就没有写过java代码，仅平常看看android相关的资讯和博客及时不时编译下Android工程，以前学过的java早忘光了。&lt;/p&gt;
 &lt;p&gt;最近因工作需要要重新学习下java，结果上来就踩一坑。&lt;/p&gt;
@@ -408,8 +408,6 @@
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
     
-      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/categories/java/bugs/"/>
-    
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
@@ -422,7 +420,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/</id>
     <published>2017-01-03T12:00:28.000Z</published>
-    <updated>2017-08-04T01:22:00.691Z</updated>
+    <updated>2017-08-04T01:45:45.821Z</updated>
     
     <content type="html">&lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某天在查找其它问题/添加新的功能/优化代码/睡觉时，突然发现/想到根本原因之后，简直想哭。。问题可能出现在一个很不起眼/一扫而过/觉得100%不会有问题的地方。&lt;/p&gt;
 &lt;p&gt;今天就遇到一个这样的bug，无语的让我想专门开个类别存放这类bug。&lt;/p&gt;
@@ -452,7 +450,7 @@
     
     </summary>
     
-      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/categories/bugs/"/>
+      <category term="随笔" scheme="http://baba.zhaoxiuyuan.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
       <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/tags/bugs/"/>
@@ -608,11 +606,11 @@
       <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/windows/"/>
     
     
-      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
-    
       <category term="ie" scheme="http://baba.zhaoxiuyuan.com/tags/ie/"/>
     
       <category term="flash" scheme="http://baba.zhaoxiuyuan.com/tags/flash/"/>
+    
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
     
   </entry>
   
@@ -654,7 +652,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2016/08/102/"/>
     <id>http://baba.zhaoxiuyuan.com/2016/08/102/</id>
     <published>2016-08-12T02:44:28.000Z</published>
-    <updated>2016-08-12T02:53:23.195Z</updated>
+    <updated>2017-08-04T01:43:59.557Z</updated>
     
     <content type="html">&lt;h1 id=&quot;配置文件&quot;&gt;&lt;a href=&quot;#配置文件&quot; class=&quot;headerlink&quot; title=&quot;配置文件&quot;&gt;&lt;/a&gt;配置文件&lt;/h1&gt;&lt;p&gt;%mc%.minecraft\servers.dat里存放着所有的服务器地址、名称、图标、介绍等信息。其中服务器地址和名称可以通过mc的主菜单-&amp;gt;多人游戏-&amp;gt;添加服务器进行添加。&lt;/p&gt;
 &lt;h1 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h1&gt;&lt;p&gt;也可以通过命令行 –server mc.ymdcyy.com –port 25565 来启动mc，使之直接连接到服务器。&lt;/p&gt;
@@ -692,6 +690,8 @@
     
     
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
   </entry>
   
