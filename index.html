@@ -219,30 +219,31 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/118_spigot/">2017-08-03</a></time>
+        <time datetime="2017-08-18T07:12:28.000Z"><a href="/2017/08/119_ndk/">2017-08-18</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/08/118_spigot/">Spigot编译流程</a></h1>
+    <h1 class="title"><a href="/2017/08/119_ndk/">Android NDK 知识大全</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
-<li><a href="https://www.spigotmc.org/wiki/buildtools/">buildtools帮助文档</a></li>
-<li><a href="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar">BuildTool.jar下载地址</a></li>
+        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><a href="https://developer.android.com/ndk/guides/concepts.html">Android官方文档-概念</a>，从这里可以发散出JNI、ABI等需要学习的概念，按文档学习即可</li>
+<li><a href="http://google.github.io/android-gradle-dsl/current/index.html">Android Gradle插件节点定义</a></li>
 </ul>
-<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>使用gitbash打开当前目录，输入<code>java -jar BuildTools.jar --rev 1.8</code>,这里的1.8可以替换成其它版本，如1.10,1.10.2等。</p>
-<h1 id="流程一，下载代码"><a href="#流程一，下载代码" class="headerlink" title="流程一，下载代码"></a>流程一，下载代码</h1><ul>
-<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/bukkit.git">bukkit</a> 到 <code>bukkit</code> 目录
+<h2 id="NDK安装配置"><a href="#NDK安装配置" class="headerlink" title="NDK安装配置"></a>NDK安装配置</h2><ul>
+<li><a href="https://developer.android.com/ndk/guides/index.html">Android官方指南</a></li>
+<li><a href="http://www.jianshu.com/p/9aff422204eb">Android Studio里NDK入门</a></li>
+<li><a href="http://blog.csdn.net/zhaoguangjun33/article/details/51690136">Android Studio下使用NDK</a>,这里提供了一些gradle里直接设置toolchain,CFlags等的示例
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/08/118_spigot/#more" class="more-link">阅读全文</a>
+            <a href="/2017/08/119_ndk/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -297,6 +298,60 @@
         
           <div class="alignleft">
             <a href="/2017/08/117_java_asm/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/118_spigot/">2017-08-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/08/118_spigot/">Spigot编译流程</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
+<li><a href="https://www.spigotmc.org/wiki/buildtools/">buildtools帮助文档</a></li>
+<li><a href="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar">BuildTool.jar下载地址</a></li>
+</ul>
+<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>使用gitbash打开当前目录，输入<code>java -jar BuildTools.jar --rev 1.8</code>,这里的1.8可以替换成其它版本，如1.10,1.10.2等。</p>
+<h1 id="流程一，下载代码"><a href="#流程一，下载代码" class="headerlink" title="流程一，下载代码"></a>流程一，下载代码</h1><ul>
+<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/bukkit.git">bukkit</a> 到 <code>bukkit</code> 目录
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/08/118_spigot/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -481,56 +536,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-21T09:53:28.000Z"><a href="/2017/03/113_bat_split/">2017-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/113_bat_split/">bat实例：用windows批处理将文件分组</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>上一次，使用bat来将txt文件给合并起来，而这次又有个小需求要将某目录下的大数量的指定类型文件（比如1w张图片，或者2w个xml）拆分到多个文件夹中。</p>
-<p>第一期先实现了个简单的按数量拆分的批处理文件，后面根据需求可以再过滤文件修改时间，文件名等（不过如果需求真的到了那么复杂，可能会换用python来写）。</p>
-<p>代码如下<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/03/113_bat_split/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -556,7 +561,7 @@
   
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
-    <li><a href="/categories/android/">android</a><small>3</small></li>
+    <li><a href="/categories/android/">android</a><small>4</small></li>
   
     <li><a href="/categories/java/">java</a><small>8</small></li>
   

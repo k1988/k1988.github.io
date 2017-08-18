@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android NDK 知识大全 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android NDK 知识大全"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-08-18T07:12:28.000Z"><a href="/2017/08/119_ndk/">2017-08-18</a></time>
+      
+      
+  
+    <h1 class="title">Android NDK 知识大全</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><a href="https://developer.android.com/ndk/guides/concepts.html" target="_blank" rel="external">Android官方文档-概念</a>，从这里可以发散出JNI、ABI等需要学习的概念，按文档学习即可</li>
+<li><a href="http://google.github.io/android-gradle-dsl/current/index.html" target="_blank" rel="external">Android Gradle插件节点定义</a></li>
+</ul>
+<h2 id="NDK安装配置"><a href="#NDK安装配置" class="headerlink" title="NDK安装配置"></a>NDK安装配置</h2><ul>
+<li><a href="https://developer.android.com/ndk/guides/index.html" target="_blank" rel="external">Android官方指南</a></li>
+<li><a href="http://www.jianshu.com/p/9aff422204eb" target="_blank" rel="external">Android Studio里NDK入门</a></li>
+<li><a href="http://blog.csdn.net/zhaoguangjun33/article/details/51690136" target="_blank" rel="external">Android Studio下使用NDK</a>,这里提供了一些gradle里直接设置toolchain,CFlags等的示例<a id="more"></a>
+<h2 id="编译选项"><a href="#编译选项" class="headerlink" title="编译选项"></a>编译选项</h2></li>
+<li><a href="http://blog.csdn.net/crash163/article/details/52228412" target="_blank" rel="external">Android NDK编译选项设置</a></li>
+<li><a href="http://blog.csdn.net/wchinaw/article/details/19621285" target="_blank" rel="external">NDK中C++标准库、STL的配置；Include其他头文件</a></li>
+<li><a href="http://www.jianshu.com/p/d9e9ba3312fc" target="_blank" rel="external">Android Studio中对NDK进行设置</a></li>
+<li><a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android官方指南之Androd.mk</a></li>
+<li><a href="https://developer.android.com/ndk/guides/application_mk.html" target="_blank" rel="external">Android官方指南之Androd.mk</a></li>
+</ul>
+<h1 id="资料整理"><a href="#资料整理" class="headerlink" title="资料整理"></a>资料整理</h1><p>无论是用Android Studio集成NDK，还是手动使用NDK命令行，有两个文件是必须的</p>
+<ul>
+<li><a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android.mk</a>: 在jni文件夹内必须创建这个文件，ndk-build命令也会首先查找此文件才能执行，文件里定义ndk编译的模块的名称、c/c++源代码，需要链接的库及构建选项（传递给编译工具gcc|clang等的参数）。</li>
+<li><a href="https://developer.android.com/ndk/guides/application_mk.html" target="_blank" rel="external">Application.mk</a>: 这个文件定义需要构建的模块和构建环境及工具，包括以下：<ul>
+<li>需要编译的目标平台<a href="https://developer.android.com/ndk/guides/abis.html" target="_blank" rel="external">ABI</a></li>
+<li>工具链接</li>
+<li>需要包含的标准库(static and dynamic STLport or default system).</li>
+<li>全局的编译选项</li>
+</ul>
+</li>
+</ul>
+<h2 id="Android-mk"><a href="#Android-mk" class="headerlink" title="Android.mk"></a><a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android.mk</a></h2><p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir) # 必须要使用这个开头</span><br><span class="line">include $(CLEAR_VARS)  # 必须，清除编译环境中所有的LOCAL变量，否则同时编译多个Module时不同的Android.mk里的LOCAL变量会相互影响</span><br><span class="line"></span><br><span class="line">LOCAL_MODULE    := mcpelauncher # 必须，定义模块名称</span><br><span class="line"># 必须，源文件文件列表</span><br><span class="line">LOCAL_SRC_FILES := nativepatch.c modscript.c modscript_nextgen.cpp modscript_ScriptLevelListener.cpp utf8proc_slim.c dobby.cpp</span><br><span class="line"></span><br><span class="line">LOCAL_C_INCLUDES += E:\C_Shared\sdk\ndk-bundle\platforms\android-14\arch-arm\usr\include\</span><br><span class="line"></span><br><span class="line">LOCAL_LDLIBS := -llog   # 需要链接的NDK库</span><br><span class="line">LOCAL_SHARED_LIBRARIES := tinysubstrate-bin</span><br><span class="line"></span><br><span class="line"># 必须，包含定义好的一个文件，获取抽有LOCAL变量并决定构建信息</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">$(call import-add-path, prebuilts) # 其它导入模块</span><br><span class="line">$(call import-module, tinysubstrate-bin)</span><br></pre></td></tr></table></figure></p>
+<h3 id="变量和宏"><a href="#变量和宏" class="headerlink" title="变量和宏"></a><a href="https://developer.android.com/ndk/guides/android_mk.html#var" target="_blank" rel="external">变量和宏</a></h3><p>命名规则：</p>
+<ul>
+<li>LOCAL_： NDK编译系统使用的，提供给用户设置值</li>
+<li>PRIVATE<em>、NDK</em>、APP：NDK编译系统内部使用，用户不要定义</li>
+<li>my-dir：一些小写名称，编译系统内部使用的</li>
+<li>MY_: 其它大写名称，是用户自定义（仅仅是推荐，用户可以使用其它前缀或不使用前缀）</li>
+</ul>
+<h3 id="NDK预定义变量"><a href="#NDK预定义变量" class="headerlink" title="NDK预定义变量"></a>NDK预定义变量</h3><ul>
+<li><strong>CLEAR_VARS</strong> <code>include $(CLEAR_VARS)</code></li>
+<li><strong>BUILD_SHARED_LIBRARY | BUILD_STATIC_LIBRARY</strong> <code>include $(BUILD_SHARED_LIBRARY)</code></li>
+<li><strong>PREBUILT_SHARED_LIBRARY | PREBUILT_STATIC_LIBRARY</strong></li>
+<li><strong>TARGET_ARCH</strong> 目标cpu架构 取值arm、x86等</li>
+<li><strong>TARGET_PLATFORM</strong> 目标android版本 <code>TARGET_PLATFORM := android-22</code></li>
+<li><strong>TARGET_ARCH_ABI</strong> 目标cpu及架构的全名 如：<code>TARGET_ARCH_ABI := arm64-v8a x86</code>，详表见<a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">官方文档</a>中TARGET_ARCH_ABI一节。</li>
+<li><strong>TARGET_ABI</strong> Android Api级别和ABI的组合</li>
+</ul>
+<h3 id="模块定义变量"><a href="#模块定义变量" class="headerlink" title="模块定义变量"></a><a href="https://developer.android.com/ndk/guides/android_mk.html#mdv" target="_blank" rel="external">模块定义变量</a></h3><p>这些变量是每个模块单独设置的，每个模块都需要做以下事情：</p>
+<ol>
+<li>初使化模块变量或者用CLEAR_VARS清除</li>
+<li>给一些变量赋值来描述模块的功能</li>
+<li>使用NDK预定义变量中的BUILD_XXX来定义模块的格式（动态库、静态库等）</li>
+</ol>
+<p>变量列表（粗体为必须）：</p>
+<ul>
+<li><strong>LOCAL_PATH</strong> 设置当前文件的路径，必须在Androd.mk的开头使用<code>LOCAL_PATH := $(call my-dir)</code></li>
+<li><strong>LOCAL_MODULE</strong> 当前模块名称，不能用空格。除了<code>CLEAR_VARS</code>之外他要放在前面，不需要添加lib前缀和.so.a后缀。</li>
+<li>LOCAL_MODULE_FILENAME 模块文件名，可以指定一个新的模块文件名</li>
+<li><strong>LOCAL_SRC_FILES</strong> 源文件文件列表</li>
+<li>LOCAL_CPP_EXTENSION 定义支持的c++源文件的后缀，一般来说可以用<code>LOCAL_CPP_EXTENSION := .cxx .cpp .cc</code></li>
+<li>LOCAL_CPP_FEATURES c++语言特性，如rtti、exceptions等</li>
+<li>LOCAL_C_INCLUDES 头文件默认是相对于NDK的根目录，如果相对于当前目录要用<code>LOCAL_C_INCLUDES := $(LOCAL_PATH)//foo</code>,需要设置在LOCAL_CFLAGS和LOCAL_CPPFLAGS <strong>之前</strong>。ps：在windows上我想直接引用ndk目录，但使用了LOCAL_PATH后似乎就默认是当前目录了， 所以我最后使用了环境变量中的ndk目录。例：<code>LOCAL_C_INCLUDES += $(ANDROID_NDK_HOME)\platforms\$(TARGET_PLATFORM)\arch-$(TARGET_ARCH)\usr\include</code></li>
+<li>LOCAL_CFLAGS 给c和c++的编译选项，从 android-ndk-1.5_r1开始，此选项仅适用于c语言</li>
+<li>LOCAL_CPPFLAGS 给c++的编译选项</li>
+<li>LOCAL_STATIC_LIBRARIES 当前模块依赖的静态库，如果当前模块也是静态库，这个表明引用当前模块的也自动依赖这些静态库。如果当前模块是可执行程序或动态库，则链接这些静态库。</li>
+<li>LOCAL_SHARED_LIBRARIES 运行时依赖的动态库，仅用在链接时</li>
+<li>LOCAL_LDLIBS 声明链接时引用的动态库,-l作为前缀，例<code>LOCAL_LDLIBS := -lz</code>声明需要链接<code>/system/lib/libz.so</code></li>
+<li>LOCAL_LDFLAGS 链接参数，如果当前模块是是静态库，此参数无效</li>
+<li>LOCAL_ALLOW_UNDEFINED_SYMBOLS 当设置成true时，链接时不检查未定义的引用。如果当前模块是是静态库，此参数无效</li>
+<li>LOCAL_WHOLE_STATIC_LIBRARIES、LOCAL_ARM_MODE、LOCAL_ARM_NEON、LOCAL_DISABLE_NO_EXECUTE、LOCAL_DISABLE_RELRO、LOCAL_DISABLE_FORMAT_STRING_CHECKS、LOCAL_SHORT_COMMANDS、LOCAL_THIN_ARCHIVE、LOCAL_FILTER_ASM等 略，详见文档</li>
+<li>LOCAL_EXPORT_XXX系列指令</li>
+<li></li>
+</ul>
+<h3 id="预定义函数"><a href="#预定义函数" class="headerlink" title="预定义函数"></a>预定义函数</h3><ul>
+<li><strong>my-dir</strong> 获取最后一个makefile的目录</li>
+<li>all-subdir-makefiles 返回所有子目录中的Android.mk</li>
+<li>this-makefile 当前makefile的路径</li>
+<li>parent-makefile 上级makefile的路径</li>
+<li>grand-parent-makefile 上上级makefile的路径</li>
+<li><strong>import-module</strong> 使用方式<code>$(call import-module,&lt;name&gt;)</code>,在NDK_MODULE_PATH环境变量中查找指定名称的模块，然后inlucde它的Android.mk文件</li>
+</ul>
+<h2 id="Application-mk"><a href="#Application-mk" class="headerlink" title="Application.mk"></a><a href="https://developer.android.com/ndk/guides/application_mk.html" target="_blank" rel="external">Application.mk</a></h2><p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">APP_ABI := x86 #只生成x86架构的CPU用的lib，要生成所有平台的可以改为all    </span><br><span class="line">#APP_STL := stlport_static  </span><br><span class="line">NDK_TOOLCHAIN_VERSION=4.7 #使用GCC4.7  </span><br><span class="line">APP_STL := gnustl_static #GNU STL  </span><br><span class="line">APP_CPPFLAGS := -fexceptions -frtti #允许异常功能，及运行时类型识别  </span><br><span class="line">APP_CPPFLAGS +=-std=c++11 #允许使用c++11的函数等功能  </span><br><span class="line">APP_CPPFLAGS +=-fpermissive  #此项有效时表示宽松的编译形式，比如没有用到的代码中有错误也可以通过编译；使用GNU STL时不用此项std::string 居然编译不通过！！</span><br></pre></td></tr></table></figure></p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a><a href="https://developer.android.com/ndk/guides/application_mk.html#var" target="_blank" rel="external">变量</a></h3><ul>
+<li>APP_PROJECT_PATH app的根目录，如果当前Application.mk放在<code>$PROJECT/jni/</code>下，则不需要设置此变量</li>
+<li>APP_MODULES 如果定义了此变量，则只编译指定的模块。模块名使用空格间隔</li>
+<li>APP_OPTIM release 或 debug ,默认值是release，如果在Android项目中定义了android:debuggable,，则默认是debug</li>
+<li>APP_CFLAGS 所有模块通用的c编译参数</li>
+<li>APP_CPPFLAGS 所有模块通用的c++编译参数</li>
+<li>APP_LDFLAGS 所有模块通用的链接参数</li>
+<li>APP_BUILD_SCRIPT ndk墨认在jin/下找文件Android.mk，可以使用这个变量指定编译脚本路径。</li>
+<li>APP_ABI 默认ndk生成的是armeabi，可以使用此变量来指定，例：<code>APP_ABI := armeabi armeabi-v7a x86 mips</code></li>
+<li>APP_PLATFORM 指定最小支持android版本，最好不要使用此选项，而是使用模块的build.gradle中的defaultConfig 或 productFlavors 中的minSdkVersion来指定。</li>
+<li>APP_STL 默认使用系统的std库，可以使用这个指定，可选的见<a href="https://developer.android.com/ndk/guides/cpp-support.html#runtimes" target="_blank" rel="external">官方文档</a></li>
+<li>NDK_TOOLCHAIN_VERSION 指定编译工具的版本，如果是<code>clang</code>就是引用Clang编译器，如果是<code>4.9</code>这种，就是指定GCC的版本</li>
+<li>APP_SHORT_COMMANDS、APP_PIE、APP_THIN_ARCHIVE 略过，详见文档</li>
+</ul>
+<h2 id="gradle配置"><a href="#gradle配置" class="headerlink" title="gradle配置"></a>gradle配置</h2><p>nkd的配置也分散在grale中<a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.BaseExtension.html" target="_blank" rel="external">android节点</a>下面的各个节点中，主要在ndk，<a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html" target="_blank" rel="external">defaultConfig.externalNativeBuild.ndkBuild</a>、<a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeBuild.html" target="_blank" rel="external">externalNativeBuild.ndkBuild</a>中，同时在sourceSets中对文件包含进行一些修改，flavor和build-types在不同的编译选项下打不同的包。</p>
+<h3 id="android-defaultConfig-ndk"><a href="#android-defaultConfig-ndk" class="headerlink" title="android.defaultConfig.ndk"></a><a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ProductFlavor.html#com.android.build.gradle.internal.dsl.ProductFlavor:ndk" target="_blank" rel="external">android.defaultConfig.ndk</a></h3><p>接口原型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface CoreNdkOptions &#123;</span><br><span class="line">    String getModuleName();</span><br><span class="line">    String getcFlags();</span><br><span class="line">    List&lt;String&gt; getLdLibs();</span><br><span class="line">    Set&lt;String&gt; getAbiFilters();</span><br><span class="line">    String getStl();</span><br><span class="line">    Integer getJobs();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意这里也有cFlags和AbiFilters，这两项和下面的<a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html" target="_blank" rel="external">android.defaultConfig.externalNativeBuild</a>重复，原因暂时我还不知道。</p>
+<p>使用示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;//在android节点下面</span><br><span class="line">    moduleName = &quot;MyLib&quot;    动态库的名称</span><br><span class="line">    toolchain = &apos;clang&apos;     编译器，据说这个比gcc要快，没有这个写native代码时没有自动补全的功能</span><br><span class="line">    CFlags.addAll([&apos;-Wall&apos;, &apos;-DHELLO_2&apos;])    对应gcc中的编译选项 CFLAGS,方括号内是一个数组，可以有多个值</span><br><span class="line">    CFlags.add(&quot;-DHELLO_3&quot;)</span><br><span class="line">//  CFlags += &quot;-DHELLO&quot;         //这种方式在这里行不通,包括以下的ldFlags, ldLibs 也一样.</span><br><span class="line">    ldFlags.addAll([&quot;-L../lib&quot;])       //库文件路径       ldLibs.addAll([&apos;log&apos;])             //库文件名          stl = &quot;stlport_static&quot;      //指示使用动态库还是静态库</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="android-defaultConfig-externalNativeBuild"><a href="#android-defaultConfig-externalNativeBuild" class="headerlink" title="android.defaultConfig.externalNativeBuild"></a><a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html" target="_blank" rel="external">android.defaultConfig.externalNativeBuild</a></h3><p>构建参数，可以在每个Flavor里特殊定义。<br>见<a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html" target="_blank" rel="external">文档</a>，接口原型为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface CoreExternalNativeNdkBuildOptions &#123;</span><br><span class="line">    List&lt;String&gt; getArguments();</span><br><span class="line">    List&lt;String&gt; getcFlags();</span><br><span class="line">    List&lt;String&gt; getCppFlags();</span><br><span class="line">    Set&lt;String&gt; getAbiFilters();</span><br><span class="line">    Set&lt;String&gt; getTargets();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在gradle里的使用方法见<a href="https://developer.android.com/studio/projects/add-native-code.html" target="_blank" rel="external">这里</a></p>
+<h3 id="android-externalNativeBuild-ndkBuild"><a href="#android-externalNativeBuild-ndkBuild" class="headerlink" title="android.externalNativeBuild.ndkBuild"></a>android.externalNativeBuild.ndkBuild</h3><p>这里只能设置路径，只有当Android.mk或CMakeLists.txt不在默认目录上时使用此选项指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line"></span><br><span class="line">  // Encapsulates your external native build configurations.</span><br><span class="line">  externalNativeBuild &#123;</span><br><span class="line"></span><br><span class="line">    // Encapsulates your CMake build configurations.</span><br><span class="line">    cmake &#123;</span><br><span class="line"></span><br><span class="line">      // Provides a relative path to your CMake build script.</span><br><span class="line">      path &quot;CMakeLists.txt&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // If you want Gradle to package prebuilt native libraries</span><br><span class="line">  // with your APK, modify the default source set configuration</span><br><span class="line">  // to include the directory of your prebuilt .so files as follows.</span><br><span class="line">  sourceSets &#123;</span><br><span class="line">      main &#123;</span><br><span class="line">          jniLibs.srcDirs &apos;imported-lib/src/&apos;, &apos;more-imported-libs/src/&apos;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="buildTypes"><a href="#buildTypes" class="headerlink" title="buildTypes"></a>buildTypes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">buildTypes &#123;</span><br><span class="line">    release &#123;</span><br><span class="line">        minifyEnabled = false</span><br><span class="line">        proguardFiles.add(file(&apos;proguard-rules.pro&apos;))</span><br><span class="line">    &#125;</span><br><span class="line">    debug &#123;</span><br><span class="line">        ndk.debuggable = true  //有这个才会支持调试native 代码,这个放到release里一样能用</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/android/">android</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/android-studio/">android studio</a>, <a href="/tags/android/">android</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2017/08/117_java_asm/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/08/119_ndk/" data-title="Android NDK 知识大全" data-url="/2017/08/119_ndk/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/08/119_ndk/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/android/">android</a><small>4</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>8</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>5</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>9</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>关于我：<a href="/about">点这里</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
