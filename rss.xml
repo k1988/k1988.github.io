@@ -17,6 +17,139 @@
   
   <entry>
     <title>Android NDK 知识大全</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/08/120_redefine_so_dynamic_symbols/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/08/120_redefine_so_dynamic_symbols/</id>
+    <published>2017-08-18T07:12:28.000Z</published>
+    <updated>2017-08-18T07:16:54.336Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h1&gt;&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/concepts.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android官方文档-概念&lt;/a&gt;，从这里可以发散出JNI、ABI等需要学习的概念，按文档学习即可&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Gradle插件节点定义&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;NDK安装配置&quot;&gt;&lt;a href=&quot;#NDK安装配置&quot; class=&quot;headerlink&quot; title=&quot;NDK安装配置&quot;&gt;&lt;/a&gt;NDK安装配置&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android官方指南&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/9aff422204eb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Studio里NDK入门&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/zhaoguangjun33/article/details/51690136&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Studio下使用NDK&lt;/a&gt;,这里提供了一些gradle里直接设置toolchain,CFlags等的示例&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;编译选项&quot;&gt;&lt;a href=&quot;#编译选项&quot; class=&quot;headerlink&quot; title=&quot;编译选项&quot;&gt;&lt;/a&gt;编译选项&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/crash163/article/details/52228412&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android NDK编译选项设置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/wchinaw/article/details/19621285&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NDK中C++标准库、STL的配置；Include其他头文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/d9e9ba3312fc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Studio中对NDK进行设置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/android_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android官方指南之Androd.mk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/application_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android官方指南之Androd.mk&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;资料整理&quot;&gt;&lt;a href=&quot;#资料整理&quot; class=&quot;headerlink&quot; title=&quot;资料整理&quot;&gt;&lt;/a&gt;资料整理&lt;/h1&gt;&lt;p&gt;无论是用Android Studio集成NDK，还是手动使用NDK命令行，有两个文件是必须的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/android_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android.mk&lt;/a&gt;: 在jni文件夹内必须创建这个文件，ndk-build命令也会首先查找此文件才能执行，文件里定义ndk编译的模块的名称、c/c++源代码，需要链接的库及构建选项（传递给编译工具gcc|clang等的参数）。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/application_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Application.mk&lt;/a&gt;: 这个文件定义需要构建的模块和构建环境及工具，包括以下：&lt;ul&gt;
+&lt;li&gt;需要编译的目标平台&lt;a href=&quot;https://developer.android.com/ndk/guides/abis.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ABI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;工具链接&lt;/li&gt;
+&lt;li&gt;需要包含的标准库(static and dynamic STLport or default system).&lt;/li&gt;
+&lt;li&gt;全局的编译选项&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Android-mk&quot;&gt;&lt;a href=&quot;#Android-mk&quot; class=&quot;headerlink&quot; title=&quot;Android.mk&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/android_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android.mk&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;LOCAL_PATH := $(call my-dir) # 必须要使用这个开头&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;include $(CLEAR_VARS)  # 必须，清除编译环境中所有的LOCAL变量，否则同时编译多个Module时不同的Android.mk里的LOCAL变量会相互影响&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LOCAL_MODULE    := mcpelauncher # 必须，定义模块名称&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 必须，源文件文件列表&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LOCAL_SRC_FILES := nativepatch.c modscript.c modscript_nextgen.cpp modscript_ScriptLevelListener.cpp utf8proc_slim.c dobby.cpp&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LOCAL_C_INCLUDES += E:\C_Shared\sdk\ndk-bundle\platforms\android-14\arch-arm\usr\include\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LOCAL_LDLIBS := -llog   # 需要链接的NDK库&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LOCAL_SHARED_LIBRARIES := tinysubstrate-bin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 必须，包含定义好的一个文件，获取抽有LOCAL变量并决定构建信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;include $(BUILD_SHARED_LIBRARY)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(call import-add-path, prebuilts) # 其它导入模块&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(call import-module, tinysubstrate-bin)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;变量和宏&quot;&gt;&lt;a href=&quot;#变量和宏&quot; class=&quot;headerlink&quot; title=&quot;变量和宏&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/android_mk.html#var&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;变量和宏&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;命名规则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LOCAL_： NDK编译系统使用的，提供给用户设置值&lt;/li&gt;
+&lt;li&gt;PRIVATE&lt;em&gt;、NDK&lt;/em&gt;、APP：NDK编译系统内部使用，用户不要定义&lt;/li&gt;
+&lt;li&gt;my-dir：一些小写名称，编译系统内部使用的&lt;/li&gt;
+&lt;li&gt;MY_: 其它大写名称，是用户自定义（仅仅是推荐，用户可以使用其它前缀或不使用前缀）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;NDK预定义变量&quot;&gt;&lt;a href=&quot;#NDK预定义变量&quot; class=&quot;headerlink&quot; title=&quot;NDK预定义变量&quot;&gt;&lt;/a&gt;NDK预定义变量&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CLEAR_VARS&lt;/strong&gt; &lt;code&gt;include $(CLEAR_VARS)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BUILD_SHARED_LIBRARY | BUILD_STATIC_LIBRARY&lt;/strong&gt; &lt;code&gt;include $(BUILD_SHARED_LIBRARY)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PREBUILT_SHARED_LIBRARY | PREBUILT_STATIC_LIBRARY&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TARGET_ARCH&lt;/strong&gt; 目标cpu架构 取值arm、x86等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TARGET_PLATFORM&lt;/strong&gt; 目标android版本 &lt;code&gt;TARGET_PLATFORM := android-22&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TARGET_ARCH_ABI&lt;/strong&gt; 目标cpu及架构的全名 如：&lt;code&gt;TARGET_ARCH_ABI := arm64-v8a x86&lt;/code&gt;，详表见&lt;a href=&quot;https://developer.android.com/ndk/guides/android_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;中TARGET_ARCH_ABI一节。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TARGET_ABI&lt;/strong&gt; Android Api级别和ABI的组合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;模块定义变量&quot;&gt;&lt;a href=&quot;#模块定义变量&quot; class=&quot;headerlink&quot; title=&quot;模块定义变量&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/android_mk.html#mdv&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;模块定义变量&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;这些变量是每个模块单独设置的，每个模块都需要做以下事情：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初使化模块变量或者用CLEAR_VARS清除&lt;/li&gt;
+&lt;li&gt;给一些变量赋值来描述模块的功能&lt;/li&gt;
+&lt;li&gt;使用NDK预定义变量中的BUILD_XXX来定义模块的格式（动态库、静态库等）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;变量列表（粗体为必须）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LOCAL_PATH&lt;/strong&gt; 设置当前文件的路径，必须在Androd.mk的开头使用&lt;code&gt;LOCAL_PATH := $(call my-dir)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LOCAL_MODULE&lt;/strong&gt; 当前模块名称，不能用空格。除了&lt;code&gt;CLEAR_VARS&lt;/code&gt;之外他要放在前面，不需要添加lib前缀和.so.a后缀。&lt;/li&gt;
+&lt;li&gt;LOCAL_MODULE_FILENAME 模块文件名，可以指定一个新的模块文件名&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LOCAL_SRC_FILES&lt;/strong&gt; 源文件文件列表&lt;/li&gt;
+&lt;li&gt;LOCAL_CPP_EXTENSION 定义支持的c++源文件的后缀，一般来说可以用&lt;code&gt;LOCAL_CPP_EXTENSION := .cxx .cpp .cc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;LOCAL_CPP_FEATURES c++语言特性，如rtti、exceptions等&lt;/li&gt;
+&lt;li&gt;LOCAL_C_INCLUDES 头文件默认是相对于NDK的根目录，如果相对于当前目录要用&lt;code&gt;LOCAL_C_INCLUDES := $(LOCAL_PATH)//foo&lt;/code&gt;,需要设置在LOCAL_CFLAGS和LOCAL_CPPFLAGS &lt;strong&gt;之前&lt;/strong&gt;。ps：在windows上我想直接引用ndk目录，但使用了LOCAL_PATH后似乎就默认是当前目录了， 所以我最后使用了环境变量中的ndk目录。例：&lt;code&gt;LOCAL_C_INCLUDES += $(ANDROID_NDK_HOME)\platforms\$(TARGET_PLATFORM)\arch-$(TARGET_ARCH)\usr\include&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;LOCAL_CFLAGS 给c和c++的编译选项，从 android-ndk-1.5_r1开始，此选项仅适用于c语言&lt;/li&gt;
+&lt;li&gt;LOCAL_CPPFLAGS 给c++的编译选项&lt;/li&gt;
+&lt;li&gt;LOCAL_STATIC_LIBRARIES 当前模块依赖的静态库，如果当前模块也是静态库，这个表明引用当前模块的也自动依赖这些静态库。如果当前模块是可执行程序或动态库，则链接这些静态库。&lt;/li&gt;
+&lt;li&gt;LOCAL_SHARED_LIBRARIES 运行时依赖的动态库，仅用在链接时&lt;/li&gt;
+&lt;li&gt;LOCAL_LDLIBS 声明链接时引用的动态库,-l作为前缀，例&lt;code&gt;LOCAL_LDLIBS := -lz&lt;/code&gt;声明需要链接&lt;code&gt;/system/lib/libz.so&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;LOCAL_LDFLAGS 链接参数，如果当前模块是是静态库，此参数无效&lt;/li&gt;
+&lt;li&gt;LOCAL_ALLOW_UNDEFINED_SYMBOLS 当设置成true时，链接时不检查未定义的引用。如果当前模块是是静态库，此参数无效&lt;/li&gt;
+&lt;li&gt;LOCAL_WHOLE_STATIC_LIBRARIES、LOCAL_ARM_MODE、LOCAL_ARM_NEON、LOCAL_DISABLE_NO_EXECUTE、LOCAL_DISABLE_RELRO、LOCAL_DISABLE_FORMAT_STRING_CHECKS、LOCAL_SHORT_COMMANDS、LOCAL_THIN_ARCHIVE、LOCAL_FILTER_ASM等 略，详见文档&lt;/li&gt;
+&lt;li&gt;LOCAL_EXPORT_XXX系列指令&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;预定义函数&quot;&gt;&lt;a href=&quot;#预定义函数&quot; class=&quot;headerlink&quot; title=&quot;预定义函数&quot;&gt;&lt;/a&gt;预定义函数&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;my-dir&lt;/strong&gt; 获取最后一个makefile的目录&lt;/li&gt;
+&lt;li&gt;all-subdir-makefiles 返回所有子目录中的Android.mk&lt;/li&gt;
+&lt;li&gt;this-makefile 当前makefile的路径&lt;/li&gt;
+&lt;li&gt;parent-makefile 上级makefile的路径&lt;/li&gt;
+&lt;li&gt;grand-parent-makefile 上上级makefile的路径&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;import-module&lt;/strong&gt; 使用方式&lt;code&gt;$(call import-module,&amp;lt;name&amp;gt;)&lt;/code&gt;,在NDK_MODULE_PATH环境变量中查找指定名称的模块，然后inlucde它的Android.mk文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Application-mk&quot;&gt;&lt;a href=&quot;#Application-mk&quot; class=&quot;headerlink&quot; title=&quot;Application.mk&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/application_mk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Application.mk&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;APP_ABI := x86 #只生成x86架构的CPU用的lib，要生成所有平台的可以改为all    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#APP_STL := stlport_static  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;NDK_TOOLCHAIN_VERSION=4.7 #使用GCC4.7  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;APP_STL := gnustl_static #GNU STL  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;APP_CPPFLAGS := -fexceptions -frtti #允许异常功能，及运行时类型识别  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;APP_CPPFLAGS +=-std=c++11 #允许使用c++11的函数等功能  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;APP_CPPFLAGS +=-fpermissive  #此项有效时表示宽松的编译形式，比如没有用到的代码中有错误也可以通过编译；使用GNU STL时不用此项std::string 居然编译不通过！！&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/application_mk.html#var&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;变量&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;APP_PROJECT_PATH app的根目录，如果当前Application.mk放在&lt;code&gt;$PROJECT/jni/&lt;/code&gt;下，则不需要设置此变量&lt;/li&gt;
+&lt;li&gt;APP_MODULES 如果定义了此变量，则只编译指定的模块。模块名使用空格间隔&lt;/li&gt;
+&lt;li&gt;APP_OPTIM release 或 debug ,默认值是release，如果在Android项目中定义了android:debuggable,，则默认是debug&lt;/li&gt;
+&lt;li&gt;APP_CFLAGS 所有模块通用的c编译参数&lt;/li&gt;
+&lt;li&gt;APP_CPPFLAGS 所有模块通用的c++编译参数&lt;/li&gt;
+&lt;li&gt;APP_LDFLAGS 所有模块通用的链接参数&lt;/li&gt;
+&lt;li&gt;APP_BUILD_SCRIPT ndk墨认在jin/下找文件Android.mk，可以使用这个变量指定编译脚本路径。&lt;/li&gt;
+&lt;li&gt;APP_ABI 默认ndk生成的是armeabi，可以使用此变量来指定，例：&lt;code&gt;APP_ABI := armeabi armeabi-v7a x86 mips&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;APP_PLATFORM 指定最小支持android版本，最好不要使用此选项，而是使用模块的build.gradle中的defaultConfig 或 productFlavors 中的minSdkVersion来指定。&lt;/li&gt;
+&lt;li&gt;APP_STL 默认使用系统的std库，可以使用这个指定，可选的见&lt;a href=&quot;https://developer.android.com/ndk/guides/cpp-support.html#runtimes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;NDK_TOOLCHAIN_VERSION 指定编译工具的版本，如果是&lt;code&gt;clang&lt;/code&gt;就是引用Clang编译器，如果是&lt;code&gt;4.9&lt;/code&gt;这种，就是指定GCC的版本&lt;/li&gt;
+&lt;li&gt;APP_SHORT_COMMANDS、APP_PIE、APP_THIN_ARCHIVE 略过，详见文档&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;gradle配置&quot;&gt;&lt;a href=&quot;#gradle配置&quot; class=&quot;headerlink&quot; title=&quot;gradle配置&quot;&gt;&lt;/a&gt;gradle配置&lt;/h2&gt;&lt;p&gt;nkd的配置也分散在grale中&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.BaseExtension.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android节点&lt;/a&gt;下面的各个节点中，主要在ndk，&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;defaultConfig.externalNativeBuild.ndkBuild&lt;/a&gt;、&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeBuild.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;externalNativeBuild.ndkBuild&lt;/a&gt;中，同时在sourceSets中对文件包含进行一些修改，flavor和build-types在不同的编译选项下打不同的包。&lt;/p&gt;
+&lt;h3 id=&quot;android-defaultConfig-ndk&quot;&gt;&lt;a href=&quot;#android-defaultConfig-ndk&quot; class=&quot;headerlink&quot; title=&quot;android.defaultConfig.ndk&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ProductFlavor.html#com.android.build.gradle.internal.dsl.ProductFlavor:ndk&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android.defaultConfig.ndk&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;接口原型&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public interface CoreNdkOptions &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    String getModuleName();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    String getcFlags();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    List&amp;lt;String&amp;gt; getLdLibs();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Set&amp;lt;String&amp;gt; getAbiFilters();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    String getStl();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Integer getJobs();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;注意这里也有cFlags和AbiFilters，这两项和下面的&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android.defaultConfig.externalNativeBuild&lt;/a&gt;重复，原因暂时我还不知道。&lt;/p&gt;
+&lt;p&gt;使用示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ndk &amp;#123;//在android节点下面&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    moduleName = &amp;quot;MyLib&amp;quot;    动态库的名称&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    toolchain = &amp;apos;clang&amp;apos;     编译器，据说这个比gcc要快，没有这个写native代码时没有自动补全的功能&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    CFlags.addAll([&amp;apos;-Wall&amp;apos;, &amp;apos;-DHELLO_2&amp;apos;])    对应gcc中的编译选项 CFLAGS,方括号内是一个数组，可以有多个值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    CFlags.add(&amp;quot;-DHELLO_3&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  CFlags += &amp;quot;-DHELLO&amp;quot;         //这种方式在这里行不通,包括以下的ldFlags, ldLibs 也一样.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ldFlags.addAll([&amp;quot;-L../lib&amp;quot;])       //库文件路径       ldLibs.addAll([&amp;apos;log&amp;apos;])             //库文件名          stl = &amp;quot;stlport_static&amp;quot;      //指示使用动态库还是静态库&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;android-defaultConfig-externalNativeBuild&quot;&gt;&lt;a href=&quot;#android-defaultConfig-externalNativeBuild&quot; class=&quot;headerlink&quot; title=&quot;android.defaultConfig.externalNativeBuild&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android.defaultConfig.externalNativeBuild&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;构建参数，可以在每个Flavor里特殊定义。&lt;br&gt;见&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.ExternalNativeNdkBuildOptions.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文档&lt;/a&gt;，接口原型为：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public interface CoreExternalNativeNdkBuildOptions &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    List&amp;lt;String&amp;gt; getArguments();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    List&amp;lt;String&amp;gt; getcFlags();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    List&amp;lt;String&amp;gt; getCppFlags();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Set&amp;lt;String&amp;gt; getAbiFilters();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Set&amp;lt;String&amp;gt; getTargets();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;在gradle里的使用方法见&lt;a href=&quot;https://developer.android.com/studio/projects/add-native-code.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;android-externalNativeBuild-ndkBuild&quot;&gt;&lt;a href=&quot;#android-externalNativeBuild-ndkBuild&quot; class=&quot;headerlink&quot; title=&quot;android.externalNativeBuild.ndkBuild&quot;&gt;&lt;/a&gt;android.externalNativeBuild.ndkBuild&lt;/h3&gt;&lt;p&gt;这里只能设置路径，只有当Android.mk或CMakeLists.txt不在默认目录上时使用此选项指定目录。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  defaultConfig &amp;#123;...&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  buildTypes &amp;#123;...&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  // Encapsulates your external native build configurations.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  externalNativeBuild &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // Encapsulates your CMake build configurations.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    cmake &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      // Provides a relative path to your CMake build script.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      path &amp;quot;CMakeLists.txt&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  // If you want Gradle to package prebuilt native libraries&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  // with your APK, modify the default source set configuration&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  // to include the directory of your prebuilt .so files as follows.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  sourceSets &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      main &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          jniLibs.srcDirs &amp;apos;imported-lib/src/&amp;apos;, &amp;apos;more-imported-libs/src/&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;buildTypes&quot;&gt;&lt;a href=&quot;#buildTypes&quot; class=&quot;headerlink&quot; title=&quot;buildTypes&quot;&gt;&lt;/a&gt;buildTypes&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;buildTypes &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    release &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        minifyEnabled = false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        proguardFiles.add(file(&amp;apos;proguard-rules.pro&amp;apos;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    debug &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ndk.debuggable = true  //有这个才会支持调试native 代码,这个放到release里一样能用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h1&gt;&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/concepts.html&quot;&gt;Android官方文档-概念&lt;/a&gt;，从这里可以发散出JNI、ABI等需要学习的概念，按文档学习即可&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://google.github.io/android-gradle-dsl/current/index.html&quot;&gt;Android Gradle插件节点定义&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;NDK安装配置&quot;&gt;&lt;a href=&quot;#NDK安装配置&quot; class=&quot;headerlink&quot; title=&quot;NDK安装配置&quot;&gt;&lt;/a&gt;NDK安装配置&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.android.com/ndk/guides/index.html&quot;&gt;Android官方指南&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/9aff422204eb&quot;&gt;Android Studio里NDK入门&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/zhaoguangjun33/article/details/51690136&quot;&gt;Android Studio下使用NDK&lt;/a&gt;,这里提供了一些gradle里直接设置toolchain,CFlags等的示例
+    
+    </summary>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
+    
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android NDK 知识大全</title>
     <link href="http://baba.zhaoxiuyuan.com/2017/08/119_ndk/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/08/119_ndk/</id>
     <published>2017-08-18T07:12:28.000Z</published>
@@ -142,9 +275,9 @@
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
-      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
-    
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
     
   </entry>
   
@@ -430,9 +563,9 @@
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
     
     
-      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
-    
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
     
   </entry>
   
@@ -924,36 +1057,6 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过修改fontconfig.properties文件来改变IDE字体</title>
-    <link href="http://baba.zhaoxiuyuan.com/2016/08/fontconfig.properties/"/>
-    <id>http://baba.zhaoxiuyuan.com/2016/08/fontconfig.properties/</id>
-    <published>2016-08-10T10:29:28.000Z</published>
-    <updated>2016-08-11T01:35:05.062Z</updated>
-    
-    <content type="html">&lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; &lt;/p&gt;
-&lt;p&gt;经过一翻努力研究，发现只有在我的机器上对于中文+某些字体的组合不能设置成16以上字号，在别的机器上是正常的。&lt;/p&gt;
-&lt;p&gt;顺便发现了可以使用fontconfig.properties这个文件来改变基于java的程序的字体映射。&lt;/p&gt;
-&lt;p&gt;参考：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://my.oschina.net/Tyrfing/blog/681278&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://my.oschina.net/Tyrfing/blog/681278&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/jinuxwu/article/details/5933316&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/jinuxwu/article/details/5933316&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/quantumpo/article/details/10274079&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/quantumpo/article/details/10274079&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://jingyan.baidu.com/article/48a42057c293d9a924250481.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jingyan.baidu.com/article/48a42057c293d9a924250481.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在公司的win10上使用IDEA,设置字体为Monospaced和18号字体，发现中文显示出来不对。明明输入 的是“中文”结果显示出来的是“争X”(这个x是个奇怪的字我打不出来)，复制到别的ide里也是“中文”。
-    
-    </summary>
-    
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
-    
     
   </entry>
   

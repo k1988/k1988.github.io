@@ -219,6 +219,58 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-07-08T00:37:00.000Z"><a href="/2015/07/92/">2015-07-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/07/92/">另类方法制作android通用驱动</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>绝大多数的Android驱动应该都是基于google的通用驱动改造而来，我们不说复杂的添加很多新模块和新功能的改造，就说简单的改造google的anroid通用驱动来实现适配常见anroid手机。本文中一些名词(inf、数字签名)等不做展开说明，有兴趣请自行了解。</p>
+<p>先在前面声明大纲，改造Android驱动只需要两点：</p>
+<ol>
+<li>驱动文件的<strong>inf文件</strong>中添加该手机对应的<strong>硬件id/兼容id</strong>。</li>
+<li>对更新后的inf和所有的原来的文件重新生成<strong>cat文件</strong>(安全目录)，并<strong>数字签名</strong>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/07/92/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-01-28T23:07:08.000Z"><a href="/2015/01/85/">2015-01-29</a></time>
       
       
@@ -449,55 +501,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-03-07T21:51:52.000Z"><a href="/2014/03/69/">2014-03-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/03/69/">使用__declspec(dllimport)与否的区别</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>按照MSDN说明，当链接dll的导出函数时，只需要包含头文件和lib，__declspec(dllimport)修饰符不是必须的，但加上该修饰能使导出函数的调用效率更高。那么，究竟原因是什么？</p>
-<p><strong><em>不使用 <strong>declspec(dllimport) 也能正确编译代码，但使用 </strong>declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。</em> &nbsp;</strong><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/03/69/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -525,7 +528,7 @@
   
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
-    <li><a href="/categories/android/">android</a><small>4</small></li>
+    <li><a href="/categories/android/">android</a><small>5</small></li>
   
     <li><a href="/categories/java/">java</a><small>8</small></li>
   
