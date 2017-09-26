@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>几种mingw使用记录 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="几种mingw使用记录"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-14T03:12:28.000Z"><a href="/2017/09/121_mingw_record/">2017-09-14</a></time>
+      
+      
+  
+    <h1 class="title">几种mingw使用记录</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>windows 10 64位 专业版 1607（内部版本 14393.1715）</li>
+<li><a href="http://mingw.org/" target="_blank" rel="external">mingw</a> 多年前装的版本，但使用<a href="https://sourceforge.net/projects/mingw/files/latest/download?source=files" target="_blank" rel="external">在线安装器</a> 到了最新</li>
+<li><a href="https://nuwen.net/mingw.html" target="_blank" rel="external">nuwen mingw</a> <a href="https://nuwen.net/files/mingw/mingw-15.1-without-git.exe" target="_blank" rel="external">下载地址</a></li>
+<li><a href="https://sourceforge.net/projects/tdm-gcc/" target="_blank" rel="external">TDM-GCC-64</a> <a href="https://sourceforge.net/projects/tdm-gcc/files/latest/download" target="_blank" rel="external">下载地址</a></li>
+<li>mingw-w64 本来想也测下这个的，但是没下载动，算了。。。<a id="more"></a>
+<h2 id="mingw-gcc-v"><a href="#mingw-gcc-v" class="headerlink" title="mingw gcc -v"></a>mingw gcc -v</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> specs</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=d:/mingw/bin/../libexec/gcc/mingw32/6.3.0/lto-wrapper.exe</span><br><span class="line">mingw32</span><br><span class="line">../src/gcc-6.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --target=mingw32 --with-gmp=/mingw --with-mpfr --with-mpc=/mingw --with-isl=/mingw --prefix=/mingw --disable-win32-registry --with-arch=i586 --with-tune=generic --enable-languages=c,c++,objc,obj-c++,fortran,ada --with-pkgversion=&apos;MinGW.org GCC-6.3.0-1&apos; --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --enable-libgomp --disable-libvtv --enable-nls</span><br><span class="line">win32</span><br><span class="line">gcc  6.3.0 (MinGW.org GCC-6.3.0-1)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="TDM-GCC-64-gcc-v"><a href="#TDM-GCC-64-gcc-v" class="headerlink" title="TDM-GCC-64 gcc -v"></a>TDM-GCC-64 gcc -v</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Using built-in specs.</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=D:/TDM-GCC-64/bin/../libexec/gcc/x86_64-w64-mingw32/5.1.0/lto-wrapper.exe</span><br><span class="line">Target: x86_64-w64-mingw32</span><br><span class="line">Configured with: ../../../src/gcc-5.1.0/configure --build=x86_64-w64-mingw32 --enable-targets=all --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-libgomp --enable-lto --enable-graphite --enable-cxx-flags=-DWINPTHREAD_STATIC --disable-build-with-cxx --disable-build-poststage1-with-cxx --enable-libstdcxx-debug --enable-threads=posix --enable-version-specific-runtime-libs --enable-fully-dynamic-string --enable-libstdcxx-threads --enable-libstdcxx-time --with-gnu-ld --disable-werror --disable-nls --disable-win32-registry --prefix=/mingw64tdm --with-local-prefix=/mingw64tdm --with-pkgversion=tdm64-1 --with-bugurl=http://tdm-gcc.tdragon.net/bugs</span><br><span class="line">Thread model: posix</span><br><span class="line">gcc version 5.1.0 (tdm64-1)</span><br></pre></td></tr></table></figure>
+<h2 id="nuwen-gcc-v"><a href="#nuwen-gcc-v" class="headerlink" title="nuwen gcc -v"></a>nuwen gcc -v</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Using built-in specs.</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=d:/mingw-nuwen-15.1/bin/../libexec/gcc/x86_64-w64-mingw32/7.2.0/lto-wrapper.exe</span><br><span class="line">Target: x86_64-w64-mingw32</span><br><span class="line">Configured with: ../src/configure --enable-languages=c,c++ --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --disable-multilib --prefix=/c/temp/gcc/dest --with-sysroot=/c/temp/gcc/dest --disable-libstdcxx-pch --disable-libstdcxx-verbose --disable-nls --disable-shared --disable-win32-registry --with-tune=haswell</span><br><span class="line">Thread model: win32</span><br><span class="line">gcc version 7.2.0 (GCC)</span><br></pre></td></tr></table></figure>
+<h1 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h1><p>先创建一个简单的c文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo void main()&#123;&#125; &gt; simple.c</span><br></pre></td></tr></table></figure></p>
+<p>然后使用不同的mingw环境来执行gcc进行编译链接，分别使用默认参数、-m32、-m64做测试。</p>
+<h2 id="mingw"><a href="#mingw" class="headerlink" title="mingw"></a>mingw</h2><ul>
+<li><code>gcc simple.c -o simple-gcc.exe</code> 无输出，生成32位exe</li>
+<li><code>gcc simple.c -o simple-gcc-m32.exe -m32</code> 无输出，生成32位exe</li>
+<li><code>gcc simple.c -o simple-gcc-m64.exe -m64</code> 命令直接出错<blockquote>
+<p>simple.c:1:0: 对不起，尚未实现：未编译入对 64 位模式的支持<br>void main(){}</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="nuwen"><a href="#nuwen" class="headerlink" title="nuwen"></a>nuwen</h2><ul>
+<li><code>gcc simple.c -o simple-nuwen.exe</code> 无输出，生成64位exe</li>
+<li><code>gcc simple.c -o simple-nuwen-m64.exe -m64</code> 无输出，生成64位exe</li>
+<li><code>gcc simple.c -o simple-nuwen-m32.exe -m32</code> 链接出错<blockquote>
+<p>d:/mingw-nuwen-15.1/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: skipping incompatible d:/mingw-nuwen-15.1/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/lib/libmingw32.a when searching for -lmingw32<br>…-lgcc、-lmoldname、-lmingwex、-lmsvcrt、-ladvapi32、-lshell32、-lkernel32…<br>x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/lib/libmsvcrt.a when searching for -lmsvcrt<br>d:/mingw-nuwen-15.1/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot find -lmsvcrt<br>collect2.exe: error: ld returned 1 exit status</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="TDM-GCC-64"><a href="#TDM-GCC-64" class="headerlink" title="TDM-GCC-64"></a>TDM-GCC-64</h2><ul>
+<li><code>gcc simple.c -o simple-tdm.exe</code> 无输出，生成64位exe</li>
+<li><code>gcc simple.c -o simple-tdm-m64.exe -m64</code> 无输出，生成64位exe</li>
+<li><code>gcc simple.c -o simple-tdm-m32.exe -m32</code> 无输出，生成32位exe</li>
+</ul>
+<h1 id="某项目用到了glibc，所以使用glibc再测一次"><a href="#某项目用到了glibc，所以使用glibc再测一次" class="headerlink" title="某项目用到了glibc，所以使用glibc再测一次"></a>某项目用到了glibc，所以使用glibc再测一次</h1><p>使用glibc 2.28版本，<a href="http://ftp.acc.umu.se/pub/gnome/binaries/win32/glib/2.28/glib-dev_2.28.8-1_win32.zip" target="_blank" rel="external">下载地址</a></p>
+<p>上面编译失败的就不再尝试了，只尝试上面成功过的。</p>
+<p>使用测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;glib.h&gt;</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line"></span><br><span class="line">	char* buffer = (char *)g_malloc(100);</span><br><span class="line">	g_free(buffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="MinGW-m32"><a href="#MinGW-m32" class="headerlink" title="MinGW -m32"></a>MinGW -m32</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c -ID:\VC_INCLUDE\glibc-2.28.8\include\glib-2.0 -ID:\VC_INCLUDE\glibc-2.28.8\lib\glib-2.0\include  D:\VC_INCLUDE\glibc-2.28.8\bin\libglib-2.0-0.dll -o test-gcc.exe</span><br><span class="line">====&gt;</span><br><span class="line">编译成功，生成32位exe</span><br></pre></td></tr></table></figure>
+<h2 id="TDM-GCC-64-m32"><a href="#TDM-GCC-64-m32" class="headerlink" title="TDM-GCC-64 -m32"></a>TDM-GCC-64 -m32</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c -ID:\VC_INCLUDE\glibc-2.28.8\include\glib-2.0 -ID:\VC_INCLUDE\glibc-2.28.8\lib\glib-2.0\include  D:\VC_INCLUDE\glibc-2.28.8\bin\libglib-2.0-0.dll -o test-tdm-m32.exe -m32</span><br><span class="line">====&gt;</span><br><span class="line">编译成功，生成32位exe</span><br></pre></td></tr></table></figure>
+<h2 id="TDM-GCC-64-不使用-m32-链接出错-没有glibc的64位lib"><a href="#TDM-GCC-64-不使用-m32-链接出错-没有glibc的64位lib" class="headerlink" title="TDM-GCC-64 不使用-m32 链接出错(没有glibc的64位lib)"></a>TDM-GCC-64 不使用-m32 链接出错(没有glibc的64位lib)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c -ID:\VC_INCLUDE\glibc-2.28.8\include\glib-2.0 -ID:\VC_INCLUDE\glibc-2.28.8\lib\glib-2.0\include  D:\VC_INCLUDE\glibc-2.28.8\bin\libglib-2.0-0.dll -o test-tdm.exe</span><br><span class="line">====&gt;</span><br><span class="line">C:\Users\terry\AppData\Local\Temp\ccA3V4Ba.o:test.c:(.text+0x13): undefined reference to `g_malloc&apos;</span><br><span class="line">C:\Users\terry\AppData\Local\Temp\ccA3V4Ba.o:test.c:(.text+0x23): undefined reference to `g_free&apos;</span><br><span class="line">collect2.exe: error: ld returned 1 exit status</span><br></pre></td></tr></table></figure>
+<h2 id="nuwen-链接出错-没有glibc的64位lib"><a href="#nuwen-链接出错-没有glibc的64位lib" class="headerlink" title="nuwen 链接出错 (没有glibc的64位lib)"></a>nuwen 链接出错 (没有glibc的64位lib)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c -ID:\VC_INCLUDE\glibc-2.28.8\include\glib-2.0 -ID:\VC_INCLUDE\glibc-2.28.8\lib\glib-2.0\include  D:\VC_INCLUDE\glibc-2.28.8\bin\libglib-2.0-0.dll -o test-nuwen.exe</span><br><span class="line">====&gt;</span><br><span class="line">C:\Users\terry\AppData\Local\Temp\ccedeuKo.o:test.c:(.text+0x13): undefined reference to `g_malloc&apos;</span><br><span class="line">C:\Users\terry\AppData\Local\Temp\ccedeuKo.o:test.c:(.text+0x23): undefined reference to `g_free&apos;</span><br><span class="line">collect2.exe: error: ld returned 1 exit status</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>反正TDM-GCC-64这个最好使，默认下载下来就支持32位和64位的gcc编译，其它的估计都得自己再折腾。但nuwen的优势是版本更新快，自带的3方库最多。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/windows/">windows</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/windows/">windows</a>, <a href="/tags/gnu/">gnu</a>, <a href="/tags/gcc/">gcc</a>, <a href="/tags/mingw/">mingw</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2017/09/120_redefine_so_dynamic_symbols/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/09/121_mingw_record/" data-title="几种mingw使用记录" data-url="/2017/09/121_mingw_record/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/09/121_mingw_record/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/android/">android</a><small>4</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>8</small></li>
+  
+    <li><a href="/categories/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>5</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>10</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>关于我：<a href="/about">点这里</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
