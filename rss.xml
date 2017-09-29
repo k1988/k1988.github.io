@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-09-26T10:05:09.287Z</updated>
+  <updated>2017-09-29T07:14:16.259Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Visual Studio 2017 / 2015 命令行编译 找不到 stdlib.h 的问题</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/09/122_vs_cmd_win10_sdk/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/09/122_vs_cmd_win10_sdk/</id>
+    <published>2017-09-28T06:12:28.000Z</published>
+    <updated>2017-09-29T07:14:16.259Z</updated>
+    
+    <content type="html">&lt;p&gt;上周折腾了下VS不能使用XP系统工具集（如：vc140_xp）编译的问题，原因是不知道为何以前安装的windows SDK 8 不完整，但是单独安装winsdk 8.0的话安装包又崩溃退出，包括用vs2015和vs2017修复都修复不成功。&lt;/p&gt;
+&lt;p&gt;所以最后是彻底卸载了vs2015、vs2017后依次再重装解决问题。&lt;br&gt;结果本周在mingw+msvc编译某项目时就报出了错误&lt;code&gt;fatal error C1083: 无法打开包括文件: “stdio.h”: No such file or directory&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;但是单独使用VS2015或VS2017去编译时又可以编译成功，右键&lt;code&gt;stdio.h&lt;/code&gt;打开头文件时定位到了路径&lt;code&gt;&amp;quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h&amp;quot;&lt;/code&gt;,为什么IDE能够找到头文件而命令行不行呢?&lt;/p&gt;
+&lt;p&gt;接着&lt;code&gt;VS2015 x86 本机工具命令提示符&lt;/code&gt;中执行&lt;code&gt;set INCLUDE&lt;/code&gt;时发现包含了一系列头文件路径中有&lt;code&gt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt&lt;/code&gt;但是没有10.0.10240.0,而&lt;code&gt;10.0.15063.0&lt;/code&gt;下没有ucrt目录。&lt;/p&gt;
+&lt;p&gt;一开始觉得可能是10.0.15063.0的安装有问题，就打开vs2017的安装程序点修改，发现所有10.0.15063.0相关的安装选项都是勾上的。然后将其全部反勾选并且勾选上另一个&lt;code&gt;win10 sdk 10.0.14393.0&lt;/code&gt;，然后安装后使用命令行成功编译，看INCLUDE也能看到ucrt目录变成了&lt;code&gt;&amp;quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0&amp;quot;&lt;/code&gt;下的了。&lt;/p&gt;
+&lt;p&gt;然后再修改安装包将所有10.0.15063.0相关的安装选项都勾上，再安装后用命令行发现INCLUDE也能看到ucrt目录变成了&lt;code&gt;&amp;quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0&amp;quot;&lt;/code&gt;下的了，然后也能编译成功了，自此命令行的问题解决了。&lt;/p&gt;
+&lt;p&gt;猜想：命令行查找win10 sdk的方式是找注册表中的&lt;strong&gt;最高版本号&lt;/strong&gt;，并不验证用户是否安装完整的win10 sdk。&lt;/p&gt;
+&lt;p&gt;衍生问题：&lt;br&gt;我机器上还有两个不完整的win10 sdk，10.0.10150.0和10.0.10240.0，在vs里的项目属性中，如果选择平台工具集为&lt;strong&gt;Visual Studio 2017 - Windows XP (v141_xp)&lt;/strong&gt;，则&lt;strong&gt;Windows SDK版本&lt;/strong&gt;默认变成了7.0，点击下拉后有可选项8.1，&lt;strong&gt;目标平台&lt;/strong&gt;显示空白。&lt;br&gt;如果选择平台工具集为&lt;strong&gt;Visual Studio 2017 (v141)&lt;/strong&gt;，则&lt;strong&gt;Windows SDK版本&lt;/strong&gt;可选项有10.0.14393.0、10.0.15063.0、8.1三个版本。如果选择8.1，则目标平台显示Windows；如果选择10.0.x.0，则目标平台显示Windows 10。&lt;/p&gt;
+&lt;p&gt;猜想：在IDE里可选的Windows SDK版本取自完整安装的sdk，如果平台工具集是v141_xp，为了支持XP，所以目标平台不做限定，且Windows SDK至多只能使用8.1。如果选择v141，则默认不支持xp，如果同时SDK版本选择了10.x，可能默认只支持win10（仅猜测，未验证）。&lt;/p&gt;
+&lt;p&gt;还有一个疑问，在我机器上同时存在4个版本的ucrt的情况下，IDE计算出来的包含目录是10.0.10240.0，即不是最小版本号的那个，也不是最大版本号的那个，这个就不清楚原因了，可能要看下MSBUILD的那些Props文件才可以得出答案了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上周折腾了下VS不能使用XP系统工具集（如：vc140_xp）编译的问题，原因是不知道为何以前安装的windows SDK 8 不完整，但是单独安装winsdk 8.0的话安装包又崩溃退出，包括用vs2015和vs2017修复都修复不成功。&lt;/p&gt;
+&lt;p&gt;所以最后是彻底卸载
+    
+    </summary>
+    
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/categories/windows/"/>
+    
+    
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
+    
+      <category term="visual studio" scheme="http://baba.zhaoxiuyuan.com/tags/visual-studio/"/>
+    
+  </entry>
   
   <entry>
     <title>几种mingw使用记录</title>
@@ -295,70 +330,6 @@
   </entry>
   
   <entry>
-    <title>java的asm若干实践</title>
-    <link href="http://baba.zhaoxiuyuan.com/2017/08/117_java_asm/"/>
-    <id>http://baba.zhaoxiuyuan.com/2017/08/117_java_asm/</id>
-    <published>2017-08-03T08:50:28.000Z</published>
-    <updated>2017-08-04T01:15:37.681Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;a href=&quot;#一、前置知识、工具、代码库等&quot; class=&quot;headerlink&quot; title=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;/a&gt;一、前置知识、工具、代码库等&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;jdk里的javap，用来反汇编class文件查看生成的字节码&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://asm.ow2.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;org.objectweb.asm&lt;/a&gt; 用来解析、修改、保存字节码的代码库&lt;/li&gt;
-&lt;li&gt;fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)&lt;/li&gt;
-&lt;li&gt;java的&lt;a href=&quot;https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Instrumentation&lt;/a&gt;，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;二、Instrumentation&quot;&gt;&lt;a href=&quot;#二、Instrumentation&quot; class=&quot;headerlink&quot; title=&quot;二、Instrumentation&quot;&gt;&lt;/a&gt;二、Instrumentation&lt;/h1&gt;&lt;p&gt;在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static void premain(String var0, Instrumentation inst) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   inst.addTransformer(new MyTransformer());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;JVM在加载每一个类时，都会调用MyTransformer的transform方法对字节码进行处理:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public final byte[] transform(ClassLoader l, String className, Class&amp;lt;?&amp;gt; c,ProtectionDomain pd, byte[] b) throws IllegalClassFormatException &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   // 在这里可以根据className筛选到自己想要更改的类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   if (className.equal(&amp;quot;example&amp;quot;))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     b = getAnotherCodeArray(b);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     b = modifyCodeArray(b);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   return b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;在transform函数也可保存修改前或修改后的字节为class文件，只需要直接将b保存成class文件即可。&lt;/li&gt;
-&lt;li&gt;如果transform里抛出异常，程序也能正常执行，只不过类没有发生任何变化(因为没有返回修改过的字节码)。&lt;/li&gt;
-&lt;li&gt;如果修改过的字节码中，有错误，比如在生成方法的局部变量时，生成了如下格式&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;LocalVariableTable:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Start  Length  Slot  Name   Signature&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    45      65     0  this   Lnet/minecraft/client/network/NetHandlerLoginClient;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    45      65     1 packetIn   Lnet/minecraft/network/login/server/SPacketLoginSuccess;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    0       0     2 address   desc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其中address对应的类型为desc，显然是非法的，则启动程序时会报异常：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;java.lang.NoClassDefFoundError: net/minecraft/client/network/NetHandlerLoginClient&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Caused by: java.lang.ClassFormatError: Field &amp;quot;address&amp;quot; in class net/minecraft/client/network/NetHandlerLoginClient has illegal signature &amp;quot;desc&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;三、asm实践&quot;&gt;&lt;a href=&quot;#三、asm实践&quot; class=&quot;headerlink&quot; title=&quot;三、asm实践&quot;&gt;&lt;/a&gt;三、asm实践&lt;/h1&gt;&lt;p&gt;使用asm修改字节码的示例有很多，这里就不再详细列举，这里仅说几个我填过的坑。在破解forge版本minecraft游戏的过程中，有些asm代码在老版本执行正常，但是在v1.12版本就导致游戏崩溃。&lt;/p&gt;
-&lt;p&gt;在transform里将修改过的代码保存成class文件并且通过idea反汇编成java文件，对比1.11和1.12两个版本生成的java代码是一样的，在各种调整jvm参数、java版本、asm库版本之后，最终找到原因和解决办法。&lt;/p&gt;
-&lt;h3 id=&quot;错误1：Caused-by-java-lang-VerifyError-Expecting-a-stackmap-frame-at-branch-target-xxx&quot;&gt;&lt;a href=&quot;#错误1：Caused-by-java-lang-VerifyError-Expecting-a-stackmap-frame-at-branch-target-xxx&quot; class=&quot;headerlink&quot; title=&quot;错误1：Caused by: java.lang.VerifyError: Expecting a stackmap frame at branch target xxx&quot;&gt;&lt;/a&gt;错误1：Caused by: java.lang.VerifyError: Expecting a stackmap frame at branch target xxx&lt;/h3&gt;&lt;p&gt;此bug是因为原有代码在插入了一些if(xxx)等分支流程，假设代码是：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MethodNode method = xxx;// 从原字节码里使用ClassReader得到方法对象。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 插入自己的新的指令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InsnList rawMethodInstructions = method.instructions;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InsnList newCall = new InsnList();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 在某处逻辑添加了跳转指令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LabelNode labelNode = new LabelNode();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;newCall.add(new JumpInsnNode(Opcodes.IFEQ, labelNode));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;newCall.add(labelNode);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; rawMethodInstructions.insertBefore(rawMethodInstructions.getFirst(), newCall);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; method.maxStack += 4;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上代码在很多mc版本上都正常运行，只有v1.12版本才会报标题中的错误。是因为v1.12的代码在执行时对生成字节码的StackMapTable区域做了检测。在未修改之前的原方法中可能StackMapTable是这样的：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;StackMapTable: number_of_entries = 6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 10 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 33 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 64 /* same_locals_1_stack_item */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    stack = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ class net/minecraft/entity/Entity ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 250 /* chop */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 42&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上方法修改后，生成的字节码是这样的：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;StackMapTable: number_of_entries = 6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 10 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 33 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 64 /* same_locals_1_stack_item */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    stack = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ class net/minecraft/entity/Entity ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 250 /* chop */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 6 /* same */&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其实这个 frame_type 的顺序应该和代码块的顺序一致（至于StackMapTable对应代码结构的关系可以见（&lt;a href=&quot;http://hllvm.group.iteye.com/group/topic/26545中R大的解释及其它资料）。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://hllvm.group.iteye.com/group/topic/26545中R大的解释及其它资料）。&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;知道这个特性后，尝试了给java添加了&lt;a href=&quot;http://blog.csdn.net/u012881904/article/details/51337347&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;某博客&lt;/a&gt;提到的 &lt;em&gt;-noverify&lt;/em&gt; 和 &lt;em&gt;-XX:-UseSplitVerifier&lt;/em&gt; 这两个jvm参数来禁用字节码验证，然而不知道为什么并没有卵用。&lt;/p&gt;
-&lt;p&gt;最后使用asm在代码合适的位置补上了一个frame解决问题。&lt;/p&gt;
-&lt;h3 id=&quot;错误2：java-lang-VerifyError-Bad-local-variable-type&quot;&gt;&lt;a href=&quot;#错误2：java-lang-VerifyError-Bad-local-variable-type&quot; class=&quot;headerlink&quot; title=&quot;错误2：java.lang.VerifyError: Bad local variable type&quot;&gt;&lt;/a&gt;错误2：java.lang.VerifyError: Bad local variable type&lt;/h3&gt;&lt;p&gt;hook代码增加了局部变量，需要手动设置LocalVariableTable，通过 &lt;code&gt;methodnode.visitLocalVariable&lt;/code&gt;来增加变量，注意第三个参数signature如果不是generic types，则不需要设置。例如：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 必须要调该方法，手动设置LocalVariableTable，否则会报 Caused by: java.lang.VerifyError: Bad local variable type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;methodnode.visitLocalVariable(&amp;quot;addressObj&amp;quot;, &amp;quot;Ljava/net/SocketAddress;&amp;quot;, null, newLabelBegin.getLabel(), newLabel2.getLabel(), 3);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;methodnode.visitLocalVariable(&amp;quot;addressStr&amp;quot;, &amp;quot;Ljava/lang/String;&amp;quot;, null, newLabelBegin.getLabel(), newLabel2.getLabel(), 4);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;a href=&quot;#一、前置知识、工具、代码库等&quot; class=&quot;headerlink&quot; title=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;/a&gt;一、前置知识、工具、代码库等&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;jdk里的javap，用来反汇编class文件查看生成的字节码&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://asm.ow2.org/&quot;&gt;org.objectweb.asm&lt;/a&gt; 用来解析、修改、保存字节码的代码库&lt;/li&gt;
-&lt;li&gt;fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)&lt;/li&gt;
-&lt;li&gt;java的&lt;a href=&quot;https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html&quot;&gt;Instrumentation&lt;/a&gt;，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;二、Instrumentation&quot;&gt;&lt;a href=&quot;#二、Instrumentation&quot; class=&quot;headerlink&quot; title=&quot;二、Instrumentation&quot;&gt;&lt;/a&gt;二、Instrumentation&lt;/h1&gt;&lt;p&gt;在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：&lt;br&gt;
-    
-    </summary>
-    
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
-    
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
-    
-    
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
-    
-      <category term="asm" scheme="http://baba.zhaoxiuyuan.com/tags/asm/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Spigot编译流程</title>
     <link href="http://baba.zhaoxiuyuan.com/2017/08/118_spigot/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/08/118_spigot/</id>
@@ -434,9 +405,73 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
+  </entry>
+  
+  <entry>
+    <title>java的asm若干实践</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/08/117_java_asm/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/08/117_java_asm/</id>
+    <published>2017-08-03T08:50:28.000Z</published>
+    <updated>2017-08-04T01:15:37.681Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;a href=&quot;#一、前置知识、工具、代码库等&quot; class=&quot;headerlink&quot; title=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;/a&gt;一、前置知识、工具、代码库等&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;jdk里的javap，用来反汇编class文件查看生成的字节码&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://asm.ow2.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;org.objectweb.asm&lt;/a&gt; 用来解析、修改、保存字节码的代码库&lt;/li&gt;
+&lt;li&gt;fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)&lt;/li&gt;
+&lt;li&gt;java的&lt;a href=&quot;https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Instrumentation&lt;/a&gt;，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;二、Instrumentation&quot;&gt;&lt;a href=&quot;#二、Instrumentation&quot; class=&quot;headerlink&quot; title=&quot;二、Instrumentation&quot;&gt;&lt;/a&gt;二、Instrumentation&lt;/h1&gt;&lt;p&gt;在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static void premain(String var0, Instrumentation inst) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   inst.addTransformer(new MyTransformer());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;JVM在加载每一个类时，都会调用MyTransformer的transform方法对字节码进行处理:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public final byte[] transform(ClassLoader l, String className, Class&amp;lt;?&amp;gt; c,ProtectionDomain pd, byte[] b) throws IllegalClassFormatException &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   // 在这里可以根据className筛选到自己想要更改的类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   if (className.equal(&amp;quot;example&amp;quot;))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     b = getAnotherCodeArray(b);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     b = modifyCodeArray(b);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   return b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;在transform函数也可保存修改前或修改后的字节为class文件，只需要直接将b保存成class文件即可。&lt;/li&gt;
+&lt;li&gt;如果transform里抛出异常，程序也能正常执行，只不过类没有发生任何变化(因为没有返回修改过的字节码)。&lt;/li&gt;
+&lt;li&gt;如果修改过的字节码中，有错误，比如在生成方法的局部变量时，生成了如下格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;LocalVariableTable:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Start  Length  Slot  Name   Signature&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    45      65     0  this   Lnet/minecraft/client/network/NetHandlerLoginClient;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    45      65     1 packetIn   Lnet/minecraft/network/login/server/SPacketLoginSuccess;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    0       0     2 address   desc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中address对应的类型为desc，显然是非法的，则启动程序时会报异常：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;java.lang.NoClassDefFoundError: net/minecraft/client/network/NetHandlerLoginClient&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Caused by: java.lang.ClassFormatError: Field &amp;quot;address&amp;quot; in class net/minecraft/client/network/NetHandlerLoginClient has illegal signature &amp;quot;desc&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;三、asm实践&quot;&gt;&lt;a href=&quot;#三、asm实践&quot; class=&quot;headerlink&quot; title=&quot;三、asm实践&quot;&gt;&lt;/a&gt;三、asm实践&lt;/h1&gt;&lt;p&gt;使用asm修改字节码的示例有很多，这里就不再详细列举，这里仅说几个我填过的坑。在破解forge版本minecraft游戏的过程中，有些asm代码在老版本执行正常，但是在v1.12版本就导致游戏崩溃。&lt;/p&gt;
+&lt;p&gt;在transform里将修改过的代码保存成class文件并且通过idea反汇编成java文件，对比1.11和1.12两个版本生成的java代码是一样的，在各种调整jvm参数、java版本、asm库版本之后，最终找到原因和解决办法。&lt;/p&gt;
+&lt;h3 id=&quot;错误1：Caused-by-java-lang-VerifyError-Expecting-a-stackmap-frame-at-branch-target-xxx&quot;&gt;&lt;a href=&quot;#错误1：Caused-by-java-lang-VerifyError-Expecting-a-stackmap-frame-at-branch-target-xxx&quot; class=&quot;headerlink&quot; title=&quot;错误1：Caused by: java.lang.VerifyError: Expecting a stackmap frame at branch target xxx&quot;&gt;&lt;/a&gt;错误1：Caused by: java.lang.VerifyError: Expecting a stackmap frame at branch target xxx&lt;/h3&gt;&lt;p&gt;此bug是因为原有代码在插入了一些if(xxx)等分支流程，假设代码是：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MethodNode method = xxx;// 从原字节码里使用ClassReader得到方法对象。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 插入自己的新的指令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InsnList rawMethodInstructions = method.instructions;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;InsnList newCall = new InsnList();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 在某处逻辑添加了跳转指令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LabelNode labelNode = new LabelNode();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;newCall.add(new JumpInsnNode(Opcodes.IFEQ, labelNode));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;newCall.add(labelNode);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; rawMethodInstructions.insertBefore(rawMethodInstructions.getFirst(), newCall);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; method.maxStack += 4;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以上代码在很多mc版本上都正常运行，只有v1.12版本才会报标题中的错误。是因为v1.12的代码在执行时对生成字节码的StackMapTable区域做了检测。在未修改之前的原方法中可能StackMapTable是这样的：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;StackMapTable: number_of_entries = 6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 10 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 33 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 64 /* same_locals_1_stack_item */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    stack = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ class net/minecraft/entity/Entity ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 250 /* chop */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 42&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以上方法修改后，生成的字节码是这样的：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;StackMapTable: number_of_entries = 6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 10 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 33 /* same */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 64 /* same_locals_1_stack_item */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    stack = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ int ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 252 /* append */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    locals = [ class net/minecraft/entity/Entity ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 250 /* chop */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    offset_delta = 42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  frame_type = 6 /* same */&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其实这个 frame_type 的顺序应该和代码块的顺序一致（至于StackMapTable对应代码结构的关系可以见（&lt;a href=&quot;http://hllvm.group.iteye.com/group/topic/26545中R大的解释及其它资料）。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://hllvm.group.iteye.com/group/topic/26545中R大的解释及其它资料）。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;知道这个特性后，尝试了给java添加了&lt;a href=&quot;http://blog.csdn.net/u012881904/article/details/51337347&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;某博客&lt;/a&gt;提到的 &lt;em&gt;-noverify&lt;/em&gt; 和 &lt;em&gt;-XX:-UseSplitVerifier&lt;/em&gt; 这两个jvm参数来禁用字节码验证，然而不知道为什么并没有卵用。&lt;/p&gt;
+&lt;p&gt;最后使用asm在代码合适的位置补上了一个frame解决问题。&lt;/p&gt;
+&lt;h3 id=&quot;错误2：java-lang-VerifyError-Bad-local-variable-type&quot;&gt;&lt;a href=&quot;#错误2：java-lang-VerifyError-Bad-local-variable-type&quot; class=&quot;headerlink&quot; title=&quot;错误2：java.lang.VerifyError: Bad local variable type&quot;&gt;&lt;/a&gt;错误2：java.lang.VerifyError: Bad local variable type&lt;/h3&gt;&lt;p&gt;hook代码增加了局部变量，需要手动设置LocalVariableTable，通过 &lt;code&gt;methodnode.visitLocalVariable&lt;/code&gt;来增加变量，注意第三个参数signature如果不是generic types，则不需要设置。例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 必须要调该方法，手动设置LocalVariableTable，否则会报 Caused by: java.lang.VerifyError: Bad local variable type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;methodnode.visitLocalVariable(&amp;quot;addressObj&amp;quot;, &amp;quot;Ljava/net/SocketAddress;&amp;quot;, null, newLabelBegin.getLabel(), newLabel2.getLabel(), 3);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;methodnode.visitLocalVariable(&amp;quot;addressStr&amp;quot;, &amp;quot;Ljava/lang/String;&amp;quot;, null, newLabelBegin.getLabel(), newLabel2.getLabel(), 4);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;a href=&quot;#一、前置知识、工具、代码库等&quot; class=&quot;headerlink&quot; title=&quot;一、前置知识、工具、代码库等&quot;&gt;&lt;/a&gt;一、前置知识、工具、代码库等&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;jdk里的javap，用来反汇编class文件查看生成的字节码&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://asm.ow2.org/&quot;&gt;org.objectweb.asm&lt;/a&gt; 用来解析、修改、保存字节码的代码库&lt;/li&gt;
+&lt;li&gt;fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)&lt;/li&gt;
+&lt;li&gt;java的&lt;a href=&quot;https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html&quot;&gt;Instrumentation&lt;/a&gt;，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;二、Instrumentation&quot;&gt;&lt;a href=&quot;#二、Instrumentation&quot; class=&quot;headerlink&quot; title=&quot;二、Instrumentation&quot;&gt;&lt;/a&gt;二、Instrumentation&lt;/h1&gt;&lt;p&gt;在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
+    
+    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
+    
+      <category term="asm" scheme="http://baba.zhaoxiuyuan.com/tags/asm/"/>
     
   </entry>
   
@@ -486,9 +521,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
   </entry>
   
@@ -935,9 +970,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
   </entry>
   
@@ -989,39 +1024,6 @@
       <category term="flash" scheme="http://baba.zhaoxiuyuan.com/tags/flash/"/>
     
       <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Annotation(Java注解)</title>
-    <link href="http://baba.zhaoxiuyuan.com/2016/08/103_java%20Annotation(%E6%B3%A8%E8%A7%A3)/"/>
-    <id>http://baba.zhaoxiuyuan.com/2016/08/103_java Annotation(注解)/</id>
-    <published>2016-08-18T03:44:28.000Z</published>
-    <updated>2016-08-18T03:46:52.995Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;Java注解的基础知识点&quot;&gt;&lt;a href=&quot;#Java注解的基础知识点&quot; class=&quot;headerlink&quot; title=&quot;Java注解的基础知识点&quot;&gt;&lt;/a&gt;Java注解的基础知识点&lt;/h2&gt;&lt;!--![123](./images/annotation.jpg)--&gt;
-&lt;img title=&quot;Java注解的基础知识点&quot; alt=&quot;Java注解的基础知识点&quot; src=&quot;http://o9tn2674s.bkt.clouddn.com/static/images/annotation.jpg-k1988&quot;&gt; 
-&lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://swiftlet.net/archives/1906&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;注解系列知识总结&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入理解Java：注解（Annotation）自定义注解入门&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/duo2005duo/article/details/50505884&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java注解（1）-基础&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/duo2005duo/article/details/50511476&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java注解（2）-运行时框架&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/duo2005duo/article/details/50541281&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Java注解（3）-源码级框架&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;深入理解Java：注解（Annotation）自定义注解入门&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;深入理解Java：注解（Annotation）--注解处理器&quot;&gt;深入理解Java：注解（Annotation）–注解处理器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Java注解的基础知识点&quot;&gt;&lt;a href=&quot;#Java注解的基础知识点&quot; class=&quot;headerlink&quot; title=&quot;Java注解的基础知识点&quot;&gt;&lt;/a&gt;Java注解的基础知识点&lt;/h2&gt;&lt;!--![123](./images/annotation.jp
-    
-    </summary>
-    
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
   </entry>
   

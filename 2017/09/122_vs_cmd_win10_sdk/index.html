@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>bat | k1988</title>
+  <title>Visual Studio 2017 / 2015 命令行编译 找不到 stdlib.h 的问题 | k1988</title>
   <meta name="author" content="赵海洋">
   
   <meta name="description" content="个人博客">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Visual Studio 2017 / 2015 命令行编译 找不到 stdlib.h 的问题"/>
   <meta property="og:site_name" content="k1988"/>
 
   
@@ -200,42 +200,125 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">bat</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-28T06:12:28.000Z"><a href="/2017/09/122_vs_cmd_win10_sdk/">2017-09-28</a></time>
+      
+      
+  
+    <h1 class="title">Visual Studio 2017 / 2015 命令行编译 找不到 stdlib.h 的问题</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>上周折腾了下VS不能使用XP系统工具集（如：vc140_xp）编译的问题，原因是不知道为何以前安装的windows SDK 8 不完整，但是单独安装winsdk 8.0的话安装包又崩溃退出，包括用vs2015和vs2017修复都修复不成功。</p>
+<p>所以最后是彻底卸载了vs2015、vs2017后依次再重装解决问题。<br>结果本周在mingw+msvc编译某项目时就报出了错误<code>fatal error C1083: 无法打开包括文件: “stdio.h”: No such file or directory</code>。</p>
+<p>但是单独使用VS2015或VS2017去编译时又可以编译成功，右键<code>stdio.h</code>打开头文件时定位到了路径<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h&quot;</code>,为什么IDE能够找到头文件而命令行不行呢?</p>
+<p>接着<code>VS2015 x86 本机工具命令提示符</code>中执行<code>set INCLUDE</code>时发现包含了一系列头文件路径中有<code>C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt</code>但是没有10.0.10240.0,而<code>10.0.15063.0</code>下没有ucrt目录。</p>
+<p>一开始觉得可能是10.0.15063.0的安装有问题，就打开vs2017的安装程序点修改，发现所有10.0.15063.0相关的安装选项都是勾上的。然后将其全部反勾选并且勾选上另一个<code>win10 sdk 10.0.14393.0</code>，然后安装后使用命令行成功编译，看INCLUDE也能看到ucrt目录变成了<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0&quot;</code>下的了。</p>
+<p>然后再修改安装包将所有10.0.15063.0相关的安装选项都勾上，再安装后用命令行发现INCLUDE也能看到ucrt目录变成了<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0&quot;</code>下的了，然后也能编译成功了，自此命令行的问题解决了。</p>
+<p>猜想：命令行查找win10 sdk的方式是找注册表中的<strong>最高版本号</strong>，并不验证用户是否安装完整的win10 sdk。</p>
+<p>衍生问题：<br>我机器上还有两个不完整的win10 sdk，10.0.10150.0和10.0.10240.0，在vs里的项目属性中，如果选择平台工具集为<strong>Visual Studio 2017 - Windows XP (v141_xp)</strong>，则<strong>Windows SDK版本</strong>默认变成了7.0，点击下拉后有可选项8.1，<strong>目标平台</strong>显示空白。<br>如果选择平台工具集为<strong>Visual Studio 2017 (v141)</strong>，则<strong>Windows SDK版本</strong>可选项有10.0.14393.0、10.0.15063.0、8.1三个版本。如果选择8.1，则目标平台显示Windows；如果选择10.0.x.0，则目标平台显示Windows 10。</p>
+<p>猜想：在IDE里可选的Windows SDK版本取自完整安装的sdk，如果平台工具集是v141_xp，为了支持XP，所以目标平台不做限定，且Windows SDK至多只能使用8.1。如果选择v141，则默认不支持xp，如果同时SDK版本选择了10.x，可能默认只支持win10（仅猜测，未验证）。</p>
+<p>还有一个疑问，在我机器上同时存在4个版本的ucrt的情况下，IDE计算出来的包含目录是10.0.10240.0，即不是最小版本号的那个，也不是最大版本号的那个，这个就不清楚原因了，可能要看下MSBUILD的那些Props文件才可以得出答案了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/windows/">windows</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/windows/">windows</a>, <a href="/tags/visual-studio/">visual studio</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
 
 
-  <div class="archive">
+
+ <nav id="pagination" >
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-21T09:53:28.000Z"><a href="/2017/03/113_bat_split/">2017-03-21</a></time>
-            
-              <h1 class="title"><a href="/2017/03/113_bat_split/">bat实例：用windows批处理将文件分组</a></h1>
-            
-          </header>
-        </div>
-      </article>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-03-07T02:23:28.000Z"><a href="/2017/03/112_bat_merge/">2017-03-07</a></time>
-            
-              <h1 class="title"><a href="/2017/03/112_bat_merge/">bat实例：用windows批处理合并txt文件</a></h1>
-            
-          </header>
-        </div>
-      </article>
+    <a href="/2017/09/121_mingw_record/" class="alignright next" >下一页</a>
     
-  </div>  
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 </nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/09/122_vs_cmd_win10_sdk/" data-title="Visual Studio 2017 / 2015 命令行编译 找不到 stdlib.h 的问题" data-url="/2017/09/122_vs_cmd_win10_sdk/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/09/122_vs_cmd_win10_sdk/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
