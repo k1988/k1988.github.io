@@ -229,8 +229,7 @@
     <div class="entry">
       
         <p>上周折腾了下VS不能使用XP系统工具集（如：vc140_xp）编译的问题，原因是不知道为何以前安装的windows SDK 8 不完整，但是单独安装winsdk 8.0的话安装包又崩溃退出，包括用vs2015和vs2017修复都修复不成功。</p>
-<p>所以最后是彻底卸载了vs2015、vs2017后依次再重装解决问题。<br>结果本周在mingw+msvc编译某项目时就报出了错误<code>fatal error C1083: 无法打开包括文件: “stdio.h”: No such file or directory</code>。</p>
-<p>但是单独使用VS2015或VS2017去编译时又可以编译成功，右键<code>stdio.h</code>打开头文件时定位到了路径<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h&quot;</code>,为什么IDE能够找到头文件而命令行不行呢?</p>
+<p>所以最后是彻底卸载了vs2015、vs2017后依次再重装解决问题。<br>结果本周在mingw+msvc编译某项目时就报出了错误<code>fatal error C1083: 无法打开包括文件: “stdio.h”: No such file or directory</code>。<br><a id="more"></a><br>但是单独使用VS2015或VS2017去编译时又可以编译成功，右键<code>stdio.h</code>打开头文件时定位到了路径<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h&quot;</code>,为什么IDE能够找到头文件而命令行不行呢?</p>
 <p>接着<code>VS2015 x86 本机工具命令提示符</code>中执行<code>set INCLUDE</code>时发现包含了一系列头文件路径中有<code>C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt</code>但是没有10.0.10240.0,而<code>10.0.15063.0</code>下没有ucrt目录。</p>
 <p>一开始觉得可能是10.0.15063.0的安装有问题，就打开vs2017的安装程序点修改，发现所有10.0.15063.0相关的安装选项都是勾上的。然后将其全部反勾选并且勾选上另一个<code>win10 sdk 10.0.14393.0</code>，然后安装后使用命令行成功编译，看INCLUDE也能看到ucrt目录变成了<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0&quot;</code>下的了。</p>
 <p>然后再修改安装包将所有10.0.15063.0相关的安装选项都勾上，再安装后用命令行发现INCLUDE也能看到ucrt目录变成了<code>&quot;C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0&quot;</code>下的了，然后也能编译成功了，自此命令行的问题解决了。</p>
@@ -279,6 +278,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 
  <nav id="pagination" >
+    
+    <a href="/2017/09/123_makefile_1/" class="alignleft prev" >上一页</a>
     
     
     <a href="/2017/09/121_mingw_record/" class="alignright next" >下一页</a>
@@ -351,15 +352,19 @@ var duoshuoQuery = {short_name:"k1988"};
   
     <li><a href="/categories/windows/">windows</a><small>11</small></li>
   
-    <li><a href="/categories/开源项目/">开源项目</a><small>3</small></li>
+    <li><a href="/categories/开源项目/">开源项目</a><small>4</small></li>
   
     <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
   
     <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
   
+    <li><a href="/categories/开源项目/系统-工具/">系统/工具</a><small>1</small></li>
+  
     <li><a href="/categories/软件/">软件</a><small>3</small></li>
   
     <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+    <li><a href="/categories/开源项目/系统-工具/随笔/">随笔</a><small>1</small></li>
   
   </ul>
 </div>
