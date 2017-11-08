@@ -219,6 +219,107 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-11-08T02:20:28.000Z"><a href="/2017/11/125_vs_cmd_start_dir/">2017-11-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/11/125_vs_cmd_start_dir/">Visual Studio 2017 命令行默认目录</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>自从安装了<code>Visual Studio 2017</code> 后，在使用时有一个最大的不同一直困扰着我，今天终于下决心花了十来分钟解决了下。<br>我习惯于使用快捷方式或者在资源管理器中使用StEx加上一个vs编译命令行，而之前的VS版本<strong>命令行</strong>打开后都是在<strong>当前目录</strong>，<strong>Visual Studio 2017</strong>这个奇葩打开后一直是cd到我的<strong>C:\Users\UserName\source</strong>下。
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/11/125_vs_cmd_start_dir/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-11-02T04:34:28.000Z"><a href="/2017/11/124_python+wincap/">2017-11-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/11/124_python+wincap/">使用python和wincap抓包</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><ol>
+<li><code>easy_install winpcapy</code></li>
+<li><code>easy_install pcapy</code></li>
+</ol>
+<p>在这第2步安装pcapy时报错了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Searching for pcapy</span><br><span class="line">Reading https://pypi.python.org/simple/pcapy/</span><br><span class="line">Best match: pcapy 0.11.1</span><br><span class="line">Downloading https://pypi.python.org/packages/7f/12/626c6c1ee949b6d447f887a65388aa83faec6feb247e1bdf2478139a6078/pcapy-0.11.1.tar.gz#md5=24f8f339f1f1b00b2b43fe3c6910cbc1</span><br><span class="line">Processing pcapy-0.11.1.tar.gz</span><br><span class="line">Writing c:\users\terry\appdata\local\temp\easy_install-vf9ep5\pcapy-0.11.1\setup.cfg</span><br><span class="line">Running pcapy-0.11.1\setup.py -q bdist_egg --dist-dir c:\users\terry\appdata\local\temp\easy_install-vf9ep5\pcapy-0.11.1\egg-dist-tmp-0vrahf</span><br><span class="line">error: Setup script exited with error: Microsoft Visual C++ 9.0 is required (Unable to find vcvarsall.bat). Get it from http://aka.ms/vcpython27</span><br></pre></td></tr></table></figure></p>
+<p>原来pcapy下载下来不是直接可用的，而是需要先编译，按照提示在浏览器中打开了<a href="http://aka.ms/vcpython27链接，跳转到微软官网上下载了[Microsoft">http://aka.ms/vcpython27链接，跳转到微软官网上下载了[Microsoft</a> Visual C++ Compiler for Python 2.7](<a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266),然后安装，安装位置是`%appdata%\Local\Programs\Common\Microsoft\Visual">https://www.microsoft.com/en-us/download/details.aspx?id=44266),然后安装，安装位置是`%appdata%\Local\Programs\Common\Microsoft\Visual</a> C++ for Python\9.0`,安装后继续easy_install，结果又报一错误。
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/11/124_python+wincap/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-28T07:34:28.000Z"><a href="/2017/09/123_makefile_1/">2017-09-28</a></time>
       
       
@@ -443,115 +544,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-08-18T07:12:28.000Z"><a href="/2017/08/119_ndk/">2017-08-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/08/119_ndk/">Android NDK 知识大全</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><a href="https://developer.android.com/ndk/guides/concepts.html">Android官方文档-概念</a>，从这里可以发散出JNI、ABI等需要学习的概念，按文档学习即可</li>
-<li><a href="http://google.github.io/android-gradle-dsl/current/index.html">Android Gradle插件节点定义</a></li>
-</ul>
-<h2 id="NDK安装配置"><a href="#NDK安装配置" class="headerlink" title="NDK安装配置"></a>NDK安装配置</h2><ul>
-<li><a href="https://developer.android.com/ndk/guides/index.html">Android官方指南</a></li>
-<li><a href="http://www.jianshu.com/p/9aff422204eb">Android Studio里NDK入门</a></li>
-<li><a href="http://blog.csdn.net/zhaoguangjun33/article/details/51690136">Android Studio下使用NDK</a>,这里提供了一些gradle里直接设置toolchain,CFlags等的示例
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/08/119_ndk/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/117_java_asm/">2017-08-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/08/117_java_asm/">java的asm若干实践</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="一、前置知识、工具、代码库等"><a href="#一、前置知识、工具、代码库等" class="headerlink" title="一、前置知识、工具、代码库等"></a>一、前置知识、工具、代码库等</h1><ul>
-<li>jdk里的javap，用来反汇编class文件查看生成的字节码</li>
-<li><a href="http://asm.ow2.org/">org.objectweb.asm</a> 用来解析、修改、保存字节码的代码库</li>
-<li>fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)</li>
-<li>java的<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html">Instrumentation</a>，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。</li>
-</ul>
-<h1 id="二、Instrumentation"><a href="#二、Instrumentation" class="headerlink" title="二、Instrumentation"></a>二、Instrumentation</h1><p>在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/08/117_java_asm/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -587,9 +579,9 @@
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   
-    <li><a href="/categories/python/">python</a><small>1</small></li>
+    <li><a href="/categories/python/">python</a><small>2</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>11</small></li>
+    <li><a href="/categories/windows/">windows</a><small>12</small></li>
   
     <li><a href="/categories/开源项目/">开源项目</a><small>4</small></li>
   

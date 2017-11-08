@@ -219,6 +219,61 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-08-18T07:12:28.000Z"><a href="/2017/08/119_ndk/">2017-08-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/08/119_ndk/">Android NDK 知识大全</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><a href="https://developer.android.com/ndk/guides/concepts.html">Android官方文档-概念</a>，从这里可以发散出JNI、ABI等需要学习的概念，按文档学习即可</li>
+<li><a href="http://google.github.io/android-gradle-dsl/current/index.html">Android Gradle插件节点定义</a></li>
+</ul>
+<h2 id="NDK安装配置"><a href="#NDK安装配置" class="headerlink" title="NDK安装配置"></a>NDK安装配置</h2><ul>
+<li><a href="https://developer.android.com/ndk/guides/index.html">Android官方指南</a></li>
+<li><a href="http://www.jianshu.com/p/9aff422204eb">Android Studio里NDK入门</a></li>
+<li><a href="http://blog.csdn.net/zhaoguangjun33/article/details/51690136">Android Studio下使用NDK</a>,这里提供了一些gradle里直接设置toolchain,CFlags等的示例
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/08/119_ndk/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/118_spigot/">2017-08-03</a></time>
       
       
@@ -243,6 +298,60 @@
         
           <div class="alignleft">
             <a href="/2017/08/118_spigot/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/117_java_asm/">2017-08-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/08/117_java_asm/">java的asm若干实践</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="一、前置知识、工具、代码库等"><a href="#一、前置知识、工具、代码库等" class="headerlink" title="一、前置知识、工具、代码库等"></a>一、前置知识、工具、代码库等</h1><ul>
+<li>jdk里的javap，用来反汇编class文件查看生成的字节码</li>
+<li><a href="http://asm.ow2.org/">org.objectweb.asm</a> 用来解析、修改、保存字节码的代码库</li>
+<li>fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)</li>
+<li>java的<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html">Instrumentation</a>，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。</li>
+</ul>
+<h1 id="二、Instrumentation"><a href="#二、Instrumentation" class="headerlink" title="二、Instrumentation"></a>二、Instrumentation</h1><p>在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/08/117_java_asm/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -427,105 +536,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-21T09:53:28.000Z"><a href="/2017/03/113_bat_split/">2017-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/113_bat_split/">bat实例：用windows批处理将文件分组</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>上一次，使用bat来将txt文件给合并起来，而这次又有个小需求要将某目录下的大数量的指定类型文件（比如1w张图片，或者2w个xml）拆分到多个文件夹中。</p>
-<p>第一期先实现了个简单的按数量拆分的批处理文件，后面根据需求可以再过滤文件修改时间，文件名等（不过如果需求真的到了那么复杂，可能会换用python来写）。</p>
-<p>代码如下<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/03/113_bat_split/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-03-07T02:23:28.000Z"><a href="/2017/03/112_bat_merge/">2017-03-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/03/112_bat_merge/">bat实例：用windows批处理合并txt文件</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>我有一堆小txt文本，想放在手机上阅读，但是在阅读器中切换文件比较烦，就写了个批处理把他们合并在一起成一个txt文件。</p>
-<p>示例中：将小文件全部放在<code>D:\mini</code>文件夹中，然后将所有txt合并到<code>D:\mini_10k.txt</code><br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/03/112_bat_merge/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -563,9 +573,9 @@
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   
-    <li><a href="/categories/python/">python</a><small>1</small></li>
+    <li><a href="/categories/python/">python</a><small>2</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>11</small></li>
+    <li><a href="/categories/windows/">windows</a><small>12</small></li>
   
     <li><a href="/categories/开源项目/">开源项目</a><small>4</small></li>
   

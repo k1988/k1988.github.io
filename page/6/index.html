@@ -219,6 +219,99 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-01-28T23:07:08.000Z"><a href="/2015/01/85/">2015-01-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/85/">32位程序在64位系统上获取系统安装时间</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>众所周知，取系统的安装时间可取注册表HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion的子项InstallDate，此值是个DWORD类型的UnixStamp。<br>但是在64位系统上有所不同（仅测试了win7、win8），默认情况下32程序在64位机器上访问的是下面这个地址HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion。但此注册表下的InstallDate的值为0。<br>所以，32位程序在64位系统下，读注册表时flag要加上KEY_WOW64_64KEY才能获取到正确的值。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-19T18:40:48.000Z"><a href="/2014/11/82/">2014-11-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/82/">IE8崩溃在CElement::GetUpdatedLayoutWithContext</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>发了一个我们页游助手的版本时，测试报告在某些机器上点开某网站时崩溃 “0x637e5067指令引用的0x00000008内存，该内存不能为read”，查看dump文件，堆栈如下：<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/11/82/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-08-27T00:00:18.000Z"><a href="/2014/08/72/">2014-08-27</a></time>
       
       
@@ -405,106 +498,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-11-11T19:40:58.000Z"><a href="/2013/11/67/">2013-11-12</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/11/67/">vs的几种调试方法</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>作者：zhaohaiyang_1988@163.com (转载需保留)</p>
-<p>========================================================================================</p>
-<h1 id="进入调试的方法"><a href="#进入调试的方法" class="headerlink" title="进入调试的方法"></a>进入调试的方法</h1><p>1. F5，项目右键菜单-&gt;调试-&gt;启用新实例<br>    点击项目右键菜单-&gt;属性-&gt;配置属性-&gt;调试，可以设置调试的相关参数：<br>      1、命令：默认是$(TargetPath)，就是启动输出的可执行程序<br>      2、命令参数：启动被调试程序时使用的命令行参数。<br>      3、工作目录：启动被调试程序时使用的当前文件夹。影响GetCurrentDir,以及加载dll。<br>      4、附加：否-启动新进程 是-附加到已经存在的进程中<br>      其它参数不常用，有兴趣请百度之。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/11/67/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-28T02:32:29.000Z"><a href="/2013/04/63/">2013-04-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/04/63/">win7下清除带有稀疏块的文件的稀疏属性时导致文件损坏</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>众所周之，使用下面的代码可以设置文件为稀疏文件。<br>::DeviceIoControl(file, FSCTL_SET_SPARSE, 0, 0, 0, 0, &amp;temp, 0);</p>
-<p>使用这段代码清除稀疏文件标志(vista及以后才有效)<br>DWORD temp;<br>FILE_SET_SPARSE_BUFFER b;<br>b.SetSparse = FALSE;<br>::DeviceIoControl(file, FSCTL_SET_SPARSE, &amp;b, sizeof(b), 0, 0, &amp;temp, 0));</p>
-<p>但，
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/04/63/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -542,9 +535,9 @@
   
     <li><a href="/categories/net/">net</a><small>2</small></li>
   
-    <li><a href="/categories/python/">python</a><small>1</small></li>
+    <li><a href="/categories/python/">python</a><small>2</small></li>
   
-    <li><a href="/categories/windows/">windows</a><small>11</small></li>
+    <li><a href="/categories/windows/">windows</a><small>12</small></li>
   
     <li><a href="/categories/开源项目/">开源项目</a><small>4</small></li>
   

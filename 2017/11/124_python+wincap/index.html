@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用python和wincap抓包 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用python和wincap抓包"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-11-02T04:34:28.000Z"><a href="/2017/11/124_python+wincap/">2017-11-02</a></time>
+      
+      
+  
+    <h1 class="title">使用python和wincap抓包</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><ol>
+<li><code>easy_install winpcapy</code></li>
+<li><code>easy_install pcapy</code></li>
+</ol>
+<p>在这第2步安装pcapy时报错了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Searching for pcapy</span><br><span class="line">Reading https://pypi.python.org/simple/pcapy/</span><br><span class="line">Best match: pcapy 0.11.1</span><br><span class="line">Downloading https://pypi.python.org/packages/7f/12/626c6c1ee949b6d447f887a65388aa83faec6feb247e1bdf2478139a6078/pcapy-0.11.1.tar.gz#md5=24f8f339f1f1b00b2b43fe3c6910cbc1</span><br><span class="line">Processing pcapy-0.11.1.tar.gz</span><br><span class="line">Writing c:\users\terry\appdata\local\temp\easy_install-vf9ep5\pcapy-0.11.1\setup.cfg</span><br><span class="line">Running pcapy-0.11.1\setup.py -q bdist_egg --dist-dir c:\users\terry\appdata\local\temp\easy_install-vf9ep5\pcapy-0.11.1\egg-dist-tmp-0vrahf</span><br><span class="line">error: Setup script exited with error: Microsoft Visual C++ 9.0 is required (Unable to find vcvarsall.bat). Get it from http://aka.ms/vcpython27</span><br></pre></td></tr></table></figure></p>
+<p>原来pcapy下载下来不是直接可用的，而是需要先编译，按照提示在浏览器中打开了<a href="http://aka.ms/vcpython27链接，跳转到微软官网上下载了[Microsoft" target="_blank" rel="external">http://aka.ms/vcpython27链接，跳转到微软官网上下载了[Microsoft</a> Visual C++ Compiler for Python 2.7](<a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266),然后安装，安装位置是`%appdata%\Local\Programs\Common\Microsoft\Visual" target="_blank" rel="external">https://www.microsoft.com/en-us/download/details.aspx?id=44266),然后安装，安装位置是`%appdata%\Local\Programs\Common\Microsoft\Visual</a> C++ for Python\9.0`,安装后继续easy_install，结果又报一错误。<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Running pcapy-0.11.1\setup.py -q bdist_egg --dist-dir c:\users\terry\appdata\local\temp\easy_install-ger_s1\pcapy-0.11.1\egg-dist-tmp-kl4a0h</span><br><span class="line">pcapdumper.cc</span><br><span class="line">pcapdumper.cc(11) : fatal error C1083: Cannot open include file: &apos;pcap.h&apos;: No such file or directory</span><br><span class="line">error: Setup script exited with error: command &apos;C:\\Users\\terry\\AppData\\Local\\Programs\\Common\\Microsoft\\Visual C++ for Python\\9.0\\VC\\Bin\\cl.exe&apos; failed with exit status 2</span><br></pre></td></tr></table></figure>
+<p>由上可以看出来在编译pcapy时，还需要引用winpcap的头文件pcap.h，可以从winpcap网站下载，截止目前最新的版本是<code>https://www.winpcap.org/install/bin/WpdPack_4_1_2.zip</code>。由于我机器上已经有些c++的项目带了一些pcap的库，所以我直接在<code>Visual C++ for Python</code>的安装目录下找到了<code>vcvarsall.bat</code>，然后编辑之，修改INCLUDE和LIB路径加上winpcap开发sdk的安装目录（D:\VC_INCLUDE\winpcap那个是我加的）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set INCLUDE=D:\VC_INCLUDE\winpcap\Include;%VCINSTALLDIR%Include;%WindowsSdkDir%Include;%INCLUDE%</span><br><span class="line">set LIB=D:\VC_INCLUDE\winpcap\Lib;%VCINSTALLDIR%Lib;%WindowsSdkDir%Lib;%LIB%</span><br><span class="line">set LIBPATH=D:\VC_INCLUDE\winpcap\Lib;%VCINSTALLDIR%Lib;%WindowsSdkDir%Lib;%LIBPATH%</span><br></pre></td></tr></table></figure>
+<p>然后再编译，就成功了。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>使用pcap抓包，再使用dpkt解析包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">#! python3</span><br><span class="line"># coding: utf-8</span><br><span class="line"></span><br><span class="line">__author__ = &apos;terry&apos;</span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">from winpcapy import WinPcapDevices</span><br><span class="line">from winpcapy import WinPcapUtils</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.DEBUG,</span><br><span class="line">                    format=&apos;%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s&apos;,</span><br><span class="line">                    datefmt=&apos;%a, %d %b %Y %H:%M:%S&apos;,</span><br><span class="line">                    filename=&apos;myapp.log&apos;,</span><br><span class="line">                    filemode=&apos;w&apos;)</span><br><span class="line">logging.debug(&apos;This is debug message&apos;)</span><br><span class="line">logging.info(&apos;This is info message&apos;)</span><br><span class="line">logging.warning(&apos;This is warning message&apos;)</span><br><span class="line"></span><br><span class="line">logging.info(&quot;当前机器上有以下网卡&quot;)</span><br><span class="line">logging.info(WinPcapDevices.list_devices())</span><br><span class="line"></span><br><span class="line"># Example Callback function to parse IP packets</span><br><span class="line">def packet_callback(win_pcap, param, header, pkt_data):</span><br><span class="line">    # Assuming IP (for real parsing use modules like dpkt)</span><br><span class="line">    ip_frame = pkt_data[14:]</span><br><span class="line">    # Parse ips</span><br><span class="line">    src_ip = &quot;.&quot;.join([str(ord(b)) for b in ip_frame[0xc:0x10]])</span><br><span class="line">    dst_ip = &quot;.&quot;.join([str(ord(b)) for b in ip_frame[0x10:0x14]])</span><br><span class="line">    print(&quot;%s -&gt; %s&quot; % (src_ip, dst_ip))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># WinPcapUtils.capture_on(&quot;*Ethernet*&quot;, packet_callback)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import pcap</span><br><span class="line">import dpkt</span><br><span class="line"></span><br><span class="line">sniffer = pcap.pcap()</span><br><span class="line">sniffer.setfilter(&apos;tcp port 80&apos;)  # 过滤功能，可以设置需要显示的</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def process_packet(ptime, packet):</span><br><span class="line">    tem = dpkt.ethernet.Ethernet(packet)</span><br><span class="line">    if tem.data.data.__class__.__name__ == &apos;TCP&apos;:</span><br><span class="line">        http_data = tem.data.data.data</span><br><span class="line">        if len(http_data) &gt; 0:</span><br><span class="line">            if http_data.startswith(b&quot;HTTP&quot;):</span><br><span class="line">                # http response</span><br><span class="line">                response = dpkt.http.Response(http_data)</span><br><span class="line">                pass</span><br><span class="line">            else:</span><br><span class="line">                # http request</span><br><span class="line">                req = dpkt.http.Request(http_data)</span><br><span class="line">                host = str(req.headers[&quot;host&quot;])</span><br><span class="line">                cookie = str(req.headers[&quot;cookie&quot;])</span><br><span class="line">                path = str(req.uri)</span><br><span class="line">                if host.index(&quot;qianka.com&quot;):</span><br><span class="line">                    logging.info(&quot;QianKa message:&quot; + host + cookie + path)</span><br><span class="line">                pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def print_http_packet(ts, buf):</span><br><span class="line">    eth = dpkt.ethernet.Ethernet(buf)</span><br><span class="line">    ip = eth.data</span><br><span class="line">    # This is an oversimplification - IP packets can fragment if an MTU in the path is smaller than the MTU of the LAN</span><br><span class="line">    # Also, this changes a little bit with IPv6.  To tell the difference between IPv4 and IPv6, you have to look</span><br><span class="line">    # at the ethertype field, which is given by http://www.iana.org/assignments/ethernet-numbers.  IPv4 is 0x800 or 2048</span><br><span class="line">    # and IPv6 is 0x86DD or 34525</span><br><span class="line">    tcp = ip.data</span><br><span class="line">    # This is an oversimplification - this is true if and only if the protocol field of the IP packet is 6.</span><br><span class="line">    # See http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml for details of protocol numbers.</span><br><span class="line">    # See http://tools.ietf.org/html/rfc791 for details on IPv4</span><br><span class="line"></span><br><span class="line">    # If the destination port is 80 and there is data in the packet, then probably this is an HTTP request.</span><br><span class="line">    # TO be certain, there should</span><br><span class="line">    # be a TCP finite state machine in here.</span><br><span class="line">    if tcp.dport == 80 and len(tcp.data) &gt; 0:</span><br><span class="line">        http_req = dpkt.http.Request(tcp.data)</span><br><span class="line">        print(&quot;URI is &quot;, http_req.uri)</span><br><span class="line">        for header in http_req.headers.keys():</span><br><span class="line">            print(header, http_req.headers[header])</span><br><span class="line">        # [&apos;_Request__methods&apos;, &apos;_Request__proto&apos;, &apos;__class__&apos;, &apos;__delattr__&apos;, &apos;__dict__&apos;, &apos;__doc__&apos;,</span><br><span class="line">        #  &apos;__format__&apos;, &apos;__getattribute__&apos;, &apos;__getitem__&apos;, &apos;__hash__&apos;, &apos;__hdr_defaults__&apos;, &apos;__init__&apos;,</span><br><span class="line">        #  &apos;__len__&apos;, &apos;__metaclass__&apos;, &apos;__module__&apos;, &apos;__new__&apos;, &apos;__reduce__&apos;, &apos;__reduce_ex__&apos;, &apos;__repr__&apos;,</span><br><span class="line">        # &apos;__setattr__&apos;, &apos;__sizeof__&apos;, &apos;__str__&apos;, &apos;__subclasshook__&apos;, &apos;__weakref__&apos;, &apos;body&apos;, &apos;data&apos;,</span><br><span class="line">        # &apos;headers&apos;, &apos;method&apos;, &apos;pack&apos;, &apos;pack_hdr&apos;, &apos;unpack&apos;, &apos;uri&apos;, &apos;version&apos;]</span><br><span class="line">        print(&quot;method is &quot;, http_req.method)</span><br><span class="line">        # &apos;body&apos;, &apos;data&apos;, &apos;headers&apos;, &apos;method&apos;, &apos;pack&apos;, &apos;pack_hdr&apos;, &apos;unpack&apos;, &apos;uri&apos;, &apos;version&apos;</span><br><span class="line">        print(&quot;HTTP headers, packed &quot;, http_req.pack())</span><br><span class="line">        print(&quot;HTTP version&quot;, http_req.version)</span><br><span class="line">        print(&quot;HTTP data &quot;, http_req.data)  # I think this is valid if the method is POST</span><br><span class="line">    if tcp.sport == 80 and len(tcp.data) &gt; 0:</span><br><span class="line">        try:</span><br><span class="line">            http = dpkt.http.Response(tcp.data)</span><br><span class="line">            print(&quot;HTTP version is &quot;, http.version)</span><br><span class="line">            print(&quot;Status code is &quot;, http.status)</span><br><span class="line">            print(&quot;Status reason &quot;, http.reason)</span><br><span class="line">            for header in http.headers.keys():</span><br><span class="line">                print(header, http.headers[header])</span><br><span class="line">                # print &quot;date&quot;, http.headers[&apos;date&apos;]</span><br><span class="line">                # print &quot;accept-ranges&quot;, http.headers[&apos;accept-ranges&apos;]</span><br><span class="line">                # print &quot;content-type&quot;, http.headers[&apos;content-type&apos;]</span><br><span class="line">                #            print &quot;connection&quot;, http.headers[&apos;connection&apos;]</span><br><span class="line">                #            print &quot;server&quot;, http.headers[&apos;server&apos;]</span><br><span class="line">        except dpkt.dpkt.UnpackError:</span><br><span class="line">            print(&quot;Encounted an unpacking error&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for ptime, packet in sniffer:</span><br><span class="line">    try:</span><br><span class="line">        # process_packet(ptime, packet)</span><br><span class="line">        print_http_packet(ptime, packet)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        # print(e)</span><br><span class="line">        pass</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/python/">python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/python/">python</a>, <a href="/tags/wincap/">wincap</a>, <a href="/tags/net/">net</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/11/125_vs_cmd_start_dir/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/09/123_makefile_1/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/11/124_python+wincap/" data-title="使用python和wincap抓包" data-url="/2017/11/124_python+wincap/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/11/124_python+wincap/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/android/">android</a><small>4</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>8</small></li>
+  
+    <li><a href="/categories/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>5</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>12</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>4</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>关于我：<a href="/about">点这里</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
