@@ -219,6 +219,92 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-14T03:12:28.000Z"><a href="/2017/09/120_redefine_so_dynamic_symbols/">2017-09-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/120_redefine_so_dynamic_symbols/">修改so导出函数名称</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近有一个需求是将某so（无源码）的某些函数名称改掉。搜遍网络没有直接的解决方案，最后是综合多个地方的资料和建议及类似代码，自己弄出了个不通用的解决方案。</p>
+<p>首先，so没有源码，所以不可能直接修改导出函数，一开始的思路就是下面这两种解决方案：</p>
+<ol>
+<li>通过ida将so反编译成源码，然后再手动整理成可编译的代码，再去改。</li>
+<li>so是ELF格式的，直接以二进制方式修改这个ELF文件应该可以达到目的。</li>
+</ol>
+<p>以上两种方法中，1最彻底，实行完之后代码就是可维护可更新的了，以后加什么新功能或其它改动都可以。但我使用ida及Hex-ray插件生成c伪代码后看了看代码就放弃了。一个264KB的so，反编译出来了795KB的代码，这你敢信。。。 反编译出来的代码中大量的sub_xxx函数，还结合各种汇编代码，各种跳转，除了调用其它so以及自身的导出函数的名称是可见的，其它一概不可见。预计恢复难度较高，至少在一周的工作时间，所以暂时搁置了。</p>
+<p>然后就研究第2种修改ELF格式的方法，首先查找了一些资料如下：</p>
+<ul>
+<li><a href="http://oiwjee823.bkt.clouddn.com/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90.pdf" target="_blank" rel="external">ELF文件格式分析</a></li>
+<li><a href="https://docs.oracle.com/cd/E23824_01/html/819-0690/chapter6-73709.html" target="_blank" rel="external">String Table Section格式</a></li>
+<li><a href="http://www.cppblog.com/tqsheng/archive/2012/12/07/196107.aspx" target="_blank" rel="external">http://www.cppblog.com/tqsheng/archive/2012/12/07/196107.aspx</a></li>
+<li><a href="http://docs.oracle.com/cd/E26926_01/html/E25910/chapter6-48031.html#scrolltoc" target="_blank" rel="external">http://docs.oracle.com/cd/E26926_01/html/E25910/chapter6-48031.html#scrolltoc</a></li>
+</ul>
+<p>以及elf分析的相关工具：</p>
+<ul>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/readelf.html" target="_blank" rel="external">readelf elf文件格式分析</a></li>
+<li><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/objdump.html" target="_blank" rel="external">objdump 二进制文件分析</a></li>
+</ul>
+<p>也找到同样尝试修改导出函数名称的人，还有半成品代码：</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/20492225/how-to-rename-dynamic-symbols-in-arm-elf-so-file" target="_blank" rel="external">how-to-rename-dynamic-symbols-in-arm-elf-so-file</a></li>
+<li>(<a href="http://binutils.sourceware.narkive.com/fZHiSvNm/objcopy-redefine-dynamic-symbols" target="_blank" rel="external">http://binutils.sourceware.narkive.com/fZHiSvNm/objcopy-redefine-dynamic-symbols</a>)</li>
+</ul>
+<p>然后花了点时间熟悉了makefile及linux编译（没有使用Android Studio+NDK来实现，因为毕竟是工具类），再在github上一个<a href="https://github.com/BR903/ELFkickers" target="_blank" rel="external">elf工具集</a>的基础上增加了个redefine工具。</p>
+<p>看到这里,我假设你已经读了上面一些ELF相关资料,所以下面的解释对ELF相关术语不做详述。</p>
+<p>一开始很顺利，找到类型为<code>DYNSYM</code>的section，然后找到它对应的类型为<code>STRTAB</code>的section，然后直接取出整个section,遍历里面的所有字符串(都是以\0结尾，和c字符串一样),然后将字符串修改成新的字符串,目前只支持<strong>将长字符串替换成短</strong>的,然后把\0前未替换的部分前移（如果替换前后一样长就不用前移了），在后面多余的地方补0。</p>
+<p>替换完了后，使用dlsym加载发现找不到符号，然后就发现了* <a href="http://blog.csdn.net/gxd_506/article/details/38843567" target="_blank" rel="external">ELF格式可执行文件，更改符号名称要注意的地方</a>，所以又改进了代码，加上了rehash的步骤。</p>
+<p>然后测试修改用ndk生成的一个hellojni的示例后成功。但是在实际使用中发现了一个奇葩的问题，即比如原导出函数Java_com_<em>example</em> _test_TestJni_mprotect,被我替换成Java_com_<em>abcdef</em>_test_TestJni_mprotect，在加载时提示<code>dlopen failed: cannot locate symbol &quot;protect&quot; referenced by &quot;/data/app/com.xxxx.xxxx-2/lib/arm/libmxxxx_xxx.so&quot;</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4625619-93dd149a1320fa78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="dlopen failed: cannot locate symbol &quot;protect&quot; referenced by &quot;/data/app/com.xxxx.xxxx-2/lib/arm/libmxxxx_xxx.so&quot;"></p>
+<p>使用ida反编译修改后的so发现，有一个import function名为mprotect，在修改后变成了protect，再使用readelf查看section信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            00000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .note.gnu.build-i NOTE            00000114 000114 000024 00   A  0   0  4</span><br><span class="line">  [ 2] .hash             HASH            00000138 000138 002210 04   A  3   0  4</span><br><span class="line">  [ 3] .dynsym           DYNSYM          00002348 002348 0047b0 10   A  4   3  4</span><br><span class="line">  [ 4] .dynstr           STRTAB          00006af8 006af8 012751 00   A  0   0  1</span><br><span class="line">  [ 5] .gnu.version      VERSYM          0001924a 01924a 0008f6 02   A  3   0  2</span><br><span class="line">  [ 6] .gnu.version_r    VERNEED         00019b40 019b40 000040 00   A  4   2  4</span><br><span class="line">  [ 7] .rel.dyn          REL             00019b80 019b80 000250 08   A  3   0  4</span><br><span class="line">  [ 8] .rel.plt          REL             00019dd0 019dd0 000260 08  AI  3   9  4</span><br><span class="line">  [ 9] .plt              PROGBITS        0001a030 01a030 0003a4 04  AX  0   0  4</span><br><span class="line">  [10] .text             PROGBITS        0001a3d4 01a3d4 0180e0 00  AX  0   0  4</span><br><span class="line">  [11] .rodata           PROGBITS        000324b4 0324b4 0021ac 00   A  0   0  4</span><br><span class="line">  [12] .ARM.extab        PROGBITS        00034660 034660 003d24 00   A  0   0  4</span><br><span class="line">  [13] .ARM.exidx        ARM_EXIDX       00038384 038384 0025a0 00  AL 10   0  4</span><br><span class="line">  [14] .init_array       INIT_ARRAY      00040c74 040c74 00000c 00  WA  0   0  4</span><br><span class="line">  [15] .fini_array       FINI_ARRAY      00040c80 040c80 000008 00  WA  0   0  4</span><br><span class="line">  [16] .data.rel.ro      PROGBITS        00040c88 040c88 0000b8 00  WA  0   0  8</span><br><span class="line">  [17] .dynamic          DYNAMIC         00040d40 040d40 000128 08  WA  4   0  4</span><br><span class="line">  [18] .got              PROGBITS        00040e68 040e68 000194 04  WA  0   0  4</span><br><span class="line">  [19] .data             PROGBITS        00041000 041000 000070 00  WA  0   0  4</span><br><span class="line">  [20] .bss              NOBITS          00041070 041070 0029a4 00  WA  0   0  4</span><br><span class="line">  [21] .comment          PROGBITS        00000000 041070 000027 01  MS  0   0  1</span><br><span class="line">  [22] .ARM.attributes   ARM_ATTRIBUTES  00000000 041097 000031 00      0   0  1</span><br><span class="line">  [23] .shstrtab         STRTAB          00000000 0410c8 0000dd 00      0   0  1</span><br></pre></td></tr></table></figure></p>
+<p>其中 <code>[ 3] .dynsym</code>和<code>[17] .dynamic</code>都引用的是索引为4的<code>[ 4] .dynstr           STRTAB</code>。那么问题很明显了，应该是导入表和导出表共用了字符表，并且共用了同一个字符串，只不过索引不同。在修改函数名称时，因为是将example替换成了abcdef后，将后面的<code>_test_TestJni_mprotect</code>前移了1位，导致mprotect这个符号引用的name指向了protect。</p>
+<p>那么如果想解决这个问题，还得在修改字符表后，枚举所有引用了同一个字符表的section，并查看它里面的每一个符号引用的字符串是某是被修改并移位过的，也要修改它的st_name，然后保存。</p>
+<p>已经在这个问题上折腾了几天的我不想再继续倒腾了，所以就调整了下替换字符串的长度，把abcdef换成了abcdefg，这样的话所有符号的st_name索引都不会变化了。</p>
+<p>如果以后有机会，会把未完成的功能做完：</p>
+<ol>
+<li>支持短字符替换成长字符。</li>
+<li>替换字符串并移位后检查所有引用同一字符串的符号，修改其st_name。</li>
+<li>测试对于不同平台上的的so的兼容性。</li>
+<li>支持GCC编译出来的GNU_HASH(没有.hash段)的Section。</li>
+</ol>
+<p>最后附上代码：<a href="https://github.com/k1988/ELFkickers/tree/master/redefine" target="_blank" rel="external">https://github.com/k1988/ELFkickers/tree/master/redefine</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-08-18T07:12:28.000Z"><a href="/2017/08/119_ndk/">2017-08-18</a></time>
       
       
@@ -274,30 +360,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/118_spigot/">2017-08-03</a></time>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/117_java_asm/">2017-08-03</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/08/118_spigot/">Spigot编译流程</a></h1>
+    <h1 class="title"><a href="/2017/08/117_java_asm/">java的asm若干实践</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
-<li><a href="https://www.spigotmc.org/wiki/buildtools/">buildtools帮助文档</a></li>
-<li><a href="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar">BuildTool.jar下载地址</a></li>
+        <h1 id="一、前置知识、工具、代码库等"><a href="#一、前置知识、工具、代码库等" class="headerlink" title="一、前置知识、工具、代码库等"></a>一、前置知识、工具、代码库等</h1><ul>
+<li>jdk里的javap，用来反汇编class文件查看生成的字节码</li>
+<li><a href="http://asm.ow2.org/">org.objectweb.asm</a> 用来解析、修改、保存字节码的代码库</li>
+<li>fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)</li>
+<li>java的<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html">Instrumentation</a>，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。</li>
 </ul>
-<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>使用gitbash打开当前目录，输入<code>java -jar BuildTools.jar --rev 1.8</code>,这里的1.8可以替换成其它版本，如1.10,1.10.2等。</p>
-<h1 id="流程一，下载代码"><a href="#流程一，下载代码" class="headerlink" title="流程一，下载代码"></a>流程一，下载代码</h1><ul>
-<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/bukkit.git">bukkit</a> 到 <code>bukkit</code> 目录
+<h1 id="二、Instrumentation"><a href="#二、Instrumentation" class="headerlink" title="二、Instrumentation"></a>二、Instrumentation</h1><p>在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：<br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/08/118_spigot/#more" class="more-link">阅读全文</a>
+            <a href="/2017/08/117_java_asm/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -328,30 +414,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/117_java_asm/">2017-08-03</a></time>
+        <time datetime="2017-08-03T08:50:28.000Z"><a href="/2017/08/118_spigot/">2017-08-03</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/08/117_java_asm/">java的asm若干实践</a></h1>
+    <h1 class="title"><a href="/2017/08/118_spigot/">Spigot编译流程</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="一、前置知识、工具、代码库等"><a href="#一、前置知识、工具、代码库等" class="headerlink" title="一、前置知识、工具、代码库等"></a>一、前置知识、工具、代码库等</h1><ul>
-<li>jdk里的javap，用来反汇编class文件查看生成的字节码</li>
-<li><a href="http://asm.ow2.org/">org.objectweb.asm</a> 用来解析、修改、保存字节码的代码库</li>
-<li>fernflower.jar 用来批量将class文件反编译成java代码（当然idea也可以手动单个反编译)</li>
-<li>java的<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html">Instrumentation</a>，可以编写代码使用javaagent代理执行其它java文件，在代码里使用上面的asm库动态修改代码。也可以直接将所有字节保存，并加载其它class文件。</li>
+        <h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
+<li><a href="https://www.spigotmc.org/wiki/buildtools/">buildtools帮助文档</a></li>
+<li><a href="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar">BuildTool.jar下载地址</a></li>
 </ul>
-<h1 id="二、Instrumentation"><a href="#二、Instrumentation" class="headerlink" title="二、Instrumentation"></a>二、Instrumentation</h1><p>在代理jar包中MANIFEST.MF使用Premain-Class指定代理类，代理类需要有premain方法，此方法会在被代理的jar包的main执行前执行：<br>
+<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>使用gitbash打开当前目录，输入<code>java -jar BuildTools.jar --rev 1.8</code>,这里的1.8可以替换成其它版本，如1.10,1.10.2等。</p>
+<h1 id="流程一，下载代码"><a href="#流程一，下载代码" class="headerlink" title="流程一，下载代码"></a>流程一，下载代码</h1><ul>
+<li>克隆git代码<a href="https://hub.spigotmc.org/stash/scm/spigot/bukkit.git">bukkit</a> 到 <code>bukkit</code> 目录
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/08/117_java_asm/#more" class="more-link">阅读全文</a>
+            <a href="/2017/08/118_spigot/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -487,55 +573,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-04-20T03:20:28.000Z"><a href="/2017/04/114_android_studio_translate/">2017-04-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/04/114_android_studio_translate/">Android Studio：打包时出现xxx is not translated in xx</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在某项目里用到了友盟的SDK，在打正式包时，友盟sdk里的很多资源文件编译出错，报错信息如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error:(23) Error: &quot;com_facebook_like_button_not_liked&quot; is not translated in &quot;ar&quot; (Arabic), &quot;cs&quot; (Czech), &quot;de&quot; (German), &quot;es&quot; (Spanish), &quot;fi&quot; (Finnish), &quot;fr&quot; (French), &quot;he&quot; (Hebrew), &quot;it&quot; (Italian), &quot;iw&quot; (Hebrew), &quot;ja&quot; (Japanese), &quot;ko&quot; (Korean), &quot;nl&quot; (Dutch), &quot;pl&quot; (Polish), &quot;pt&quot; (Portuguese), &quot;pt-BR&quot; (Portuguese: Brazil), &quot;ro&quot; (Romanian), &quot;ru&quot; (Russian), &quot;zh&quot; (Chinese) [MissingTranslation]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>但其实最后apk也打出来了，虽然不知道为什么报错了还是能输出apk，但是还要想解决这个问题，经过搜索，找到以下解决方案。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/04/114_android_studio_translate/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -563,7 +600,7 @@
   
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
-    <li><a href="/categories/android/">android</a><small>4</small></li>
+    <li><a href="/categories/android/">android</a><small>5</small></li>
   
     <li><a href="/categories/java/">java</a><small>8</small></li>
   
