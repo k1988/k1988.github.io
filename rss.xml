@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-11-30T06:50:25.251Z</updated>
+  <updated>2017-12-01T10:19:28.852Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://baba.zhaoxiuyuan.com/2017/11/126_android_x86_houdini/"/>
     <id>http://baba.zhaoxiuyuan.com/2017/11/126_android_x86_houdini/</id>
     <published>2017-11-30T06:20:28.000Z</published>
-    <updated>2017-11-30T06:50:25.251Z</updated>
+    <updated>2017-12-01T10:19:28.852Z</updated>
     
     <content type="html">&lt;p&gt;在&lt;a href=&quot;http://blog.csdn.net/roland_sun/article/details/49735601中看到对于android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/roland_sun/article/details/49735601中看到对于android&lt;/a&gt; x86如何支持arm架构app的说明，但没有详细操作步骤，我这里经过摸索实操了一遍。&lt;/p&gt;
 &lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
@@ -48,6 +48,17 @@
 &lt;li&gt;adb shell后,执行&lt;code&gt;/system/lib/enable_nativebridge&lt;/code&gt;,执行结果最后一行显示的是houdini64 enabled。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;安装一个我的世界游戏试试，果然行了。&lt;/p&gt;
+&lt;p&gt;20171201：更新&lt;/p&gt;
+&lt;h2 id=&quot;android-x86-7-1-rc2&quot;&gt;&lt;a href=&quot;#android-x86-7-1-rc2&quot; class=&quot;headerlink&quot; title=&quot;android-x86-7.1-rc2&quot;&gt;&lt;/a&gt;android-x86-7.1-rc2&lt;/h2&gt;&lt;p&gt;在继续研究的过程中对于各版本的android-x86都进行了测试，其中4.4及5.1的都能正常安装houdini，但是启动游戏时都有各种问题导致崩溃。6.0及7.0的x86和x64版本均正常。&lt;br&gt;在各种尝试时，写了个快速脚本来处理安装houdini。这里拿安装android-x86-7.1-rc2的houdini举例：&lt;/p&gt;
+&lt;h3 id=&quot;环境-1&quot;&gt;&lt;a href=&quot;#环境-1&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;未FQ的Win10 64 Home版&lt;/li&gt;
+&lt;li&gt;VirtualBox 5.1&lt;/li&gt;
+&lt;li&gt;android-x86-7.1-rc2.iso(下载于：&lt;a href=&quot;http://bdownload.fosshub.com/programs/android-x86-7.1-rc2.iso&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bdownload.fosshub.com/programs/android-x86-7.1-rc2.iso&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;安装android-x86-7.1-rc2时设置了adb端口转发为127.0.0.1:8671&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4625619-da6e9db1182b964a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;安装步骤&quot;&gt;&lt;a href=&quot;#安装步骤&quot; class=&quot;headerlink&quot; title=&quot;安装步骤&quot;&gt;&lt;/a&gt;安装步骤&lt;/h3&gt;&lt;p&gt;在某目录建立bat文件，填入以下内容并执行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@rem 注意下面的地址和端口是虚拟机的地址和端口&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@set address=127.0.0.1:8671&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@adb connect %address%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@adb -s %address% pull /system/bin/enable_nativebridge  enable_nativebridge_raw&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@copy enable_nativebridge_raw enable_nativebridge&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@echo 请修改enable_nativebridge后按任意键将文件写回&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@pause&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@echo 以root权限重新连接，并写回enable_nativebridge文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;adb -s %address% root&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;adb connect %address%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;adb -s %address% push .\enable_nativebridge /system/bin/enable_nativebridge&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@echo 任意键开始执行enable_nativebridge&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@pause&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;在提示“请修改enable_nativebridge后按任意键将文件写回”时，用文本编辑工具打开pull回来的&lt;code&gt;enable_nativebridge&lt;/code&gt;文件，并且将里面的&lt;code&gt;goo.gl&lt;/code&gt;的链接（用短链接还原网站&lt;a href=&quot;http://bitly.co/，已FQ可跳过）解析出来并且改成真实链接如下，最好顺便把所有的`log&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bitly.co/，已FQ可跳过）解析出来并且改成真实链接如下，最好顺便把所有的`log&lt;/a&gt; -pe -thoudini &lt;code&gt;和&lt;/code&gt;log -pi -thoudini&lt;code&gt;改成&lt;/code&gt;echo`方便后面shell执行时看到结果 ：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;f [ -z &amp;quot;$1&amp;quot; ]; then&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if [ &amp;quot;`uname -m`&amp;quot; = &amp;quot;x86_64&amp;quot; ]; then&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		v=7_y&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		# http://goo.gl/SBU3is -&amp;gt; http://dl.android-x86.org/houdini.php?v=7_y&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		url=http://mirror.ddscentral.org/dl.android-x86.org/houdini/7_y/houdini.sfs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		v=7_x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		# http://goo.gl/0IJs40 =&amp;gt; http://dl.android-x86.org/houdini.php?v=7_x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		url=http://zebra-mirror.ddscentral.org/dl.android-x86.org/houdini/7_x/houdini.sfs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	fi&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	v=7_z&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	# http://goo.gl/FDrxVN -&amp;gt; http://dl.android-x86.org/houdini.php?v=7_z&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	url=http://mirror.ddscentral.org/dl.android-x86.org/houdini/7_z/houdini.sfs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;fi&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后回到批处理按任意键写回，再按任意键执行enable_nativebridge。&lt;br&gt;然后去android里把应用兼容性里的支持arm打开。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4625619-71c86ea216986355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -497,9 +508,9 @@
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
-      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
-    
       <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
     
   </entry>
   
@@ -559,9 +570,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
       <category term="asm" scheme="http://baba.zhaoxiuyuan.com/tags/asm/"/>
     
@@ -643,9 +654,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
   </entry>
   
@@ -695,9 +706,9 @@
       <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/categories/java/minecraft/"/>
     
     
-      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
-    
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
+    
+      <category term="minecraft" scheme="http://baba.zhaoxiuyuan.com/tags/minecraft/"/>
     
   </entry>
   
@@ -785,9 +796,9 @@
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
     
     
-      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
-    
       <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
+    
+      <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
     
   </entry>
   
