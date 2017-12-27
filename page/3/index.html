@@ -219,6 +219,81 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-05-03T08:50:28.000Z"><a href="/2017/05/115_android_randomaccessfile/">2017-05-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/05/115_android_randomaccessfile/">Android RandomAccessFile模式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在项目中发现同一个文件（约500M），在浏览器和别的下载工具上使用http协议下载速度能达5M+KB/s，而我们的app中只能到6、700+KB/s。一开始以为是没有使用多线程下载，或者某逻辑代码是耗时操作，经过多次对比实验和调试，发现将下载时写文件用的<code>RandomAccessFile</code>的构造函数中的参数<code>mode</code>由<code>rwd</code>改为<code>rw</code>即可。</p>
+<h3 id="RandomAccessFile的mode官方文档："><a href="#RandomAccessFile的mode官方文档：" class="headerlink" title="RandomAccessFile的mode官方文档："></a><code>RandomAccessFile</code>的<code>mode</code>官方文档：</h3><table>
+<thead>
+<tr>
+<th>Value</th>
+<th style="text-align:center">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“r”</td>
+<td style="text-align:center">for reading only. Invoking any of the write methods of the resulting object will cause an IOException.</td>
+</tr>
+<tr>
+<td>“rw”</td>
+<td style="text-align:center">Open for reading and writing. If the file does not already exist then an attempt will be made to create it.</td>
+</tr>
+<tr>
+<td>“rws”</td>
+<td style="text-align:center">Open for reading and writing, as with “rw”, and also require that every update to the file’s content or metadata be written synchronously to the underlying storage device.</td>
+</tr>
+<tr>
+<td>“rwd”</td>
+<td style="text-align:center">Open for reading and writing, as with “rw”, and also require that every update to the file’s content be written synchronously to the underlying storage device.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li><a href="http://blog.itpub.net/7437037/viewspace-977394/" target="_blank" rel="external">http://blog.itpub.net/7437037/viewspace-977394/</a></li>
+<li><a href="http://blog.csdn.net/attilax/article/details/50881526" target="_blank" rel="external">http://blog.csdn.net/attilax/article/details/50881526</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-04-20T03:20:28.000Z"><a href="/2017/04/114_android_studio_translate/">2017-04-20</a></time>
       
       
@@ -450,57 +525,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-02-03T12:00:28.000Z"><a href="/2017/02/109_NSIS3_system_call/">2017-02-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/02/109_NSIS3_system_call/">NSIS 3.0 System Call 失败问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>以前一直用的是NSIS 2.x，但这些版本的NSIS打出来的安装包没有加声明系统兼容性的manifest，也不好用软件在打好的安装包上加manifest，所以就换用了最新版本的NSIS 3.0。</p>
-<p>换用3.0后之前正常的一些System::Call “xxx:xxx”函数失效了。</p>
-<ul>
-<li>先怀疑NSIS 3.0的System插件有问题，换成2.x的System插件，也还是解决不了问题。并且未能找到System.dll的源码。并且IDA反编译之，也未发现两者有什么关于加载库的区别。
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/02/109_NSIS3_system_call/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -542,7 +566,7 @@
   
     <li><a href="/categories/windows/">windows</a><small>12</small></li>
   
-    <li><a href="/categories/开源项目/">开源项目</a><small>4</small></li>
+    <li><a href="/categories/开源项目/">开源项目</a><small>5</small></li>
   
     <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
   

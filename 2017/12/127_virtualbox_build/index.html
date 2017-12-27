@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>virtualbox编译记录 | k1988</title>
+  <meta name="author" content="赵海洋">
+  
+  <meta name="description" content="个人博客">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="virtualbox编译记录"/>
+  <meta property="og:site_name" content="k1988"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://k1988.github.com/rss.xml" title="k1988" type="application/rss+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">k1988</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+	<li> <a href="/rss.xml">RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-12-27T03:20:28.000Z"><a href="/2017/12/127_virtualbox_build/">2017-12-27</a></time>
+      
+      
+  
+    <h1 class="title">virtualbox编译记录</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://www.virtualbox.org/wiki/Windows%20build%20instructions" target="_blank" rel="external">https://www.virtualbox.org/wiki/Windows%20build%20instructions</a></li>
+<li><a href="https://www.cnblogs.com/findumars/p/5542973.html" target="_blank" rel="external">https://www.cnblogs.com/findumars/p/5542973.html</a></li>
+</ul>
+<h1 id="机器环境及之前已有库"><a href="#机器环境及之前已有库" class="headerlink" title="机器环境及之前已有库"></a>机器环境及之前已有库</h1><ul>
+<li>windows 10 x64</li>
+<li>Visual Studio 2015 Community 版本</li>
+<li>Windows Driver Development Kit (WDK) v7.1</li>
+<li>Qt5.7.1</li>
+<li>Python 2.7.8</li>
+<li>Nsis 3.0b1</li>
+<li>JDK7 JDK8</li>
+<li>zlib 在 D:\thridparty\zlib</li>
+<li>VirtualBox 69891版本</li>
+</ul>
+<h1 id="下载工具和库"><a href="#下载工具和库" class="headerlink" title="下载工具和库"></a>下载工具和库</h1><h2 id="下载Virtualbox推荐的链接"><a href="#下载Virtualbox推荐的链接" class="headerlink" title="下载Virtualbox推荐的链接"></a>下载Virtualbox推荐的链接</h2><ul>
+<li><a href="http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/rubenvb/gcc-4.5-release/x86_64-w64-mingw32-gcc-4.5.4-release-win64_rubenvb.7z/download" target="_blank" rel="external">mingw64</a>下载解压到<code>D:\projects\virtualbox\mingw64</code><a id="more"></a>
+<h3 id="mingw32"><a href="#mingw32" class="headerlink" title="mingw32"></a>mingw32</h3>以下文件都解压<code>D:\projects\virtualbox\mingw32</code></li>
+<li><a href="http://prdownloads.sf.net/mingw/gcc-core-3.3.3-20040217-1.tar.gz?download" target="_blank" rel="external">GCC 3.3.3</a></li>
+<li><a href="http://prdownloads.sf.net/mingw/gcc-g++-3.3.3-20040217-1.tar.gz?download" target="_blank" rel="external">GCC-g++ 3.3.3</a></li>
+<li><a href="http://prdownloads.sf.net/mingw/mingw-runtime-3.8.tar.gz?download" target="_blank" rel="external">MinGW Runtime</a> 此版本编译报错，应该下载更新版本，如mingwrt-3.22.4。</li>
+<li><a href="http://prdownloads.sf.net/mingw/w32api-3.5.tar.gz?download" target="_blank" rel="external">W32API</a></li>
+<li><a href="http://prdownloads.sf.net/mingw/binutils-2.13.90-20021006-2.tar.gz?download" target="_blank" rel="external">Binutils</a>。此版本windres会报错，应该下载更新版本，如<a href="https://sourceforge.net/projects/mingw/files/MinGW/Base/binutils/binutils-2.28/binutils-2.28-1-mingw32-bin.tar.xz/download" target="_blank" rel="external">binutils-2.28</a></li>
+</ul>
+<h3 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a><a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">openssl</a></h3><p>其实下Light版本应该就够了</p>
+<ul>
+<li>openssl 64 <a href="https://slproweb.com/download/Win64OpenSSL-1_1_0g.exe" target="_blank" rel="external">https://slproweb.com/download/Win64OpenSSL-1_1_0g.exe</a></li>
+<li>openssl 32 <a href="https://slproweb.com/download/Win32OpenSSL-1_1_0g.exe" target="_blank" rel="external">https://slproweb.com/download/Win32OpenSSL-1_1_0g.exe</a></li>
+</ul>
+<h3 id="其它库"><a href="#其它库" class="headerlink" title="其它库"></a>其它库</h3><ul>
+<li>libxml2 virtualbox已含</li>
+<li>zlib virtualbox已含</li>
+<li>其它可选库都不要</li>
+</ul>
+<h1 id="check-out代码"><a href="#check-out代码" class="headerlink" title="check out代码"></a>check out代码</h1><ul>
+<li>下载 <a href="https://github.com/svn2github/virtualbox.git" target="_blank" rel="external">https://github.com/svn2github/virtualbox.git</a> 到 D:\projects\virtualbox,则D:\projects\virtualbox\trunk是virtualBox代码目录。</li>
+<li>在virtualBox代码目录中下载<br><a href="http://svn.netlabs.org/repos/kbuild/trunk/kBuild" target="_blank" rel="external">http://svn.netlabs.org/repos/kbuild/trunk/kBuild</a></li>
+<li>下载curl代码库 <a href="https://github.com/curl/curl.git" target="_blank" rel="external">https://github.com/curl/curl.git</a> 至D:\thridparty\curl。VirtualBox推荐的下载地址<a href="http://curl.haxx.se/download.html中找不到windows版本的devel包，只好自己编译，编译步骤参考：http://blog.csdn.net/alger_magic/article/details/52584579" target="_blank" rel="external">http://curl.haxx.se/download.html中找不到windows版本的devel包，只好自己编译，编译步骤参考：http://blog.csdn.net/alger_magic/article/details/52584579</a></li>
+</ul>
+<h2 id="编译curl"><a href="#编译curl" class="headerlink" title="编译curl"></a>编译curl</h2><p>将以下指令保存到curl根目录的批处理文件中，并执行:</p>
+<p><code>build_dll.bat</code></p>
+<pre><code>@echo off
+@cd winbuild
+@echo 正在使用release模式编译libcurl<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    @nmake /f Makefile.vc WITH_DEVEL=D:\VC_INCLUDE\OpenSSL-Win32 WITH_ZLIB=D:\thridparty\zlib mode=dll VC=14 WITH_SSL=dll ENABLE_IDN=no RTLIBCFG=dll DEBUG=no MACHINE=x86</span><br><span class="line">    @REM @echo on</span><br><span class="line">    @cd ..</span><br><span class="line"></span><br><span class="line">`build_dll_x64.bat`</span><br><span class="line"></span><br><span class="line">    @echo off</span><br><span class="line">    @cd winbuild</span><br><span class="line">    @echo 正在使用release模式编译libcurl</span><br></pre></td></tr></table></figure>
+
+@nmake /f Makefile.vc WITH_DEVEL=D:\VC_INCLUDE\OpenSSL-Win64 WITH_ZLIB=D:\thridparty\zlib mode=dll VC=14 WITH_SSL=dll ENABLE_IDN=no RTLIBCFG=dll DEBUG=no MACHINE=x64
+@REM @echo on
+@cd ..
+</code></pre><p>编译输出在</p>
+<ul>
+<li>D:\thridparty\curl\builds\libcurl-vc14-x64-release-dll-ssl-dll-ipv6-sspi</li>
+<li>D:\thridparty\curl\builds\libcurl-vc14-x86-release-dll-ssl-dll-ipv6-sspi</li>
+</ul>
+<p>因为virtualbox查找curl的lib和dll时只在指定目录查找，所以还需要将他们子目录下的bin和lib目录里的文件拷贝到父级目录。</p>
+<h2 id="编译Virtulbox"><a href="#编译Virtulbox" class="headerlink" title="编译Virtulbox"></a>编译Virtulbox</h2><h3 id="LocalConfig-kmk"><a href="#LocalConfig-kmk" class="headerlink" title="LocalConfig.kmk"></a>LocalConfig.kmk</h3><p>代码根目录新建文件LocalConfig.kmk，内容：</p>
+<pre><code>VBOX_WITH_ADDITIONS=
+
+VBOX_WITH_ADDITIONS_PACKING=
+#Don&apos;t build + package the VirtualBox Guest Additions. If only VBOX_WITH_ADDITIONS= is specified then the Guest Additions are not built but the VBoxGuestAdditions.iso file is expected to be present in the &apos;out\win.ARCH\release\bin\additions&apos; directory.
+
+VBOX_ONLY_ADDITIONS=1
+#Build the Guest Additions exclusively.
+
+VBOX_WITH_VALIDATIONKIT=
+#Don&apos;t build + package the VirtualBox validation kit. The validation kit is not part of the final .msi package anyway.
+
+VBOX_WITH_WEBSERVICES=
+#Don&apos;t build + package the webservices API server.
+
+VBOX_WITHOUT_HARDENING=1
+
+VBOX_INF2CAT=D:\WinDDK\7600.16385.1\bin\selfsign\Inf2Cat.exe
+VBOX_PATH_SIGN_TOOLS=D:\WinDDK\7600.16385.1\bin\amd64\SignTool.exe
+
+# 以下的我不用，只是机器上有，就放上来
+VBOX_PATH_NSIS=D:\Program Files\NSIS
+VBOX_ZIP=D:\VC_INCLUDE\GetGnuWin32\gnuwin32\bin\zip.exe
+VBOX_PATH_WISUMINFO=D:\projects\Microsoft SDKs\Windows\v7.1\Samples\sysmgmt\msi\scripts\WiSumInf.vbs
+VBOX_MKISOFS=C:\Program Files (x86)\VMware\VMware Workstation\mkisofs.exe
+</code></pre><h3 id="configure-vbs"><a href="#configure-vbs" class="headerlink" title="configure.vbs"></a>configure.vbs</h3><p>configure.vbs中修改代码</p>
+<pre><code>if   (InStr(1, g_strShellOutput, &quot;Version 16.&quot;) &lt;= 0) _
+And (InStr(1, g_strShellOutput, &quot;Version 17.&quot;) &lt;= 0) then
+    MsgError &quot;The Visual C++ compiler we found (&apos;&quot; &amp; strPathVC &amp; &quot;&apos;) isn&apos;t 10.0 or 11.0. Check the build requirements.&quot;
+    exit sub
+end if
+</code></pre><p>为</p>
+<pre><code>if   (InStr(1, g_strShellOutput, &quot;Version 16.&quot;) &lt;= 0) _
+    And (InStr(1, g_strShellOutput, &quot;Version 17.&quot;) &lt;= 0) _
+    And (InStr(1, g_strShellOutput, &quot;Version 18.&quot;) &lt;= 0) _
+    And (InStr(1, g_strShellOutput, &quot;19.00&quot;) &lt;= 0) then
+    MsgError &quot;Check Version failed: The Visual C++ compiler we found (&apos;&quot; &amp; strPathVC &amp; &quot;&apos;) isn&apos;t 10.0 - 14.0. Check the build requirements.&quot;
+    exit sub
+end if
+</code></pre><p>用来支持vs2015</p>
+<h3 id="build-bat"><a href="#build-bat" class="headerlink" title="build.bat"></a>build.bat</h3><p>根目录新建build_x64.bat:</p>
+<pre><code>@echo off
+set cur_dir= %~dp0%
+call D:\projects\virtualbox\kBuild\envwin.cmd
+
+cscript %cur_dir%configure.vbs --with-vc=&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0&quot; --with-MinGW-w64=D:\projects\virtualbox\mingw64 --with-SDK=&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A&quot; --with-DDK=D:\VC_INCLUDE\Windows\WinDDK  --with-Qt5=E:\Qt\Qt5.7.1\5.7\msvc2015_64 --with-python=D:\Python27 --with-libcurl32=D:\thridparty\curl\builds\libcurl-vc14-x86-release-dll-ssl-dll-ipv6-sspi --with-libcurl=D:\thridparty\curl\builds\libcurl-vc14-x64-release-dll-ssl-dll-ipv6-sspi --with-openssl32=&quot;D:\VC_INCLUDE\OpenSSL-Win32&quot; --with-openssl=&quot;D:\VC_INCLUDE\OpenSSL-Win32&quot; --disable-SDL --target-arch=amd64   
+pause
+</code></pre><p>执行之，然后再在命令行中分别执行：</p>
+<pre><code>env
+kmk
+</code></pre><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="kmk-Invalid-number-“ev”-Stop"><a href="#kmk-Invalid-number-“ev”-Stop" class="headerlink" title="kmk: * Invalid number “ev”.  Stop."></a>kmk: <em>*</em> Invalid number “ev”.  Stop.</h2><p>执行kmk后，出现这个问题，然后我无论是切换virtualbox的版本还是切换kbuild的版本，最后安装了vs2010版本。结果还是报这个错误。<br>最后挨个文件夹执行kmk，最后发现在<code>virtualbox\trunk\src\recompiler</code>中kmk提示这个错误。<br>打开这个目录的Makefile.kmk后搜索ev，只搜索到<code>DVBOX_SVN_REV</code>，就想起来既然makefile中使用到了svn版本号，而我用的这个库又是git的，那问题会不会出现在svn版本号生成的地方。后面又在kmk输出的out\revision.kmk里发现了<code>export VBOX_SVN_REV=ev</code>这样一来问题就很明显了。我只需要在生成svn版本号的地方改一下代码即可，但是手改config.kmk中的svn版本号分析实在是太烦了，所以就直接在LocalConfig.kmk中添加一行<code>VBOX_SVN_REV=69807</code>即可解决。</p>
+<h2 id="找不到"><a href="#找不到" class="headerlink" title="找不到 "></a>找不到 <k kldr.h=""></k></h2><p>在<code>D:\projects\virtualbox\trunk\src\VBox\Runtime\common\ldr\ldrkStuff.cpp</code>中有<code>#include &lt;k/kLdr.h&gt;</code>，但是代码库里没有。在老版本的<a href="http://virtualbox-ose.sourcearchive.com/documentation/3.2.0-dfsg/files.html" target="_blank" rel="external">文件列表</a>里倒是能找到。<br>最后没办法，先屏蔽掉它吧。在<code>LocalConfig.kmk</code>中添加一行<code>IPRT_WITH_KSTUFF=</code>这样<code>D:\projects\virtualbox\trunk\src\VBox\Runtime\Makefile.kmk</code>中就不会包含<code>kdrkStuff.cpp</code>了。</p>
+<pre><code>ifdef IPRT_WITH_KSTUFF
+RuntimeR3_SOURCES += \
+    common/ldr/ldrkStuff.cpp
+endif
+</code></pre><p>后面发现，可以从<a href="http://www.virtualbox.org/svn/kstuff-mirror下载kstuff的源码，所以这个又能编译的过" target="_blank" rel="external">http://www.virtualbox.org/svn/kstuff-mirror下载kstuff的源码，所以这个又能编译的过</a>    </p>
+<h2 id="spu-dispatch-table-h"><a href="#spu-dispatch-table-h" class="headerlink" title="spu_dispatch_table.h"></a>spu_dispatch_table.h</h2><blockquote>
+<p>D:\projects\virtualbox\trunk\src\VBox\GuestHost\OpenGL\include\cr_spu.h(16) : fatal error C1083: 无法打开包括文件:“spu_dispatch_table.h”: No such file or directory    </p>
+</blockquote>
+<p>查看MakeFile发现D:\projects\virtualbox\trunk\src\VBox\Additions\common\crOpenGL\Makefile.kmk中用到D:\projects\virtualbox\trunk\src\VBox\GuestHost\OpenGL\Makefile.kmk中生成的spu_dispatch_table.h。而OpenGL\Makefile.kmk还没有执行。</p>
+<p>并且在<a href="https://www.virtualbox.org/wiki/Windows%20build%20instructions中有提到：" target="_blank" rel="external">https://www.virtualbox.org/wiki/Windows%20build%20instructions中有提到：</a><br>This step will fail for a 64-bit (amd64) target if the Guest Additions are part of the build process (which is the default, disable by adding VBOX_WITH_ADDITIONS= and VBOX_WITH_ADDITIONS_PACKING= to LocalConfig.kmk, see below). It will complain about a dependency to VBoxOGL* libraries in out\win.x86\release\bin\additions. In that case, create the 32-bit Guest Additions by executing。</p>
+<p>所以，先在LocalConfig.kmk中加入 VBOX_WITH_ADDITIONS= and VBOX_WITH_ADDITIONS_PACKING= 跳过addtions的编译</p>
+<h2 id="无法解析的外部符号-isprint"><a href="#无法解析的外部符号-isprint" class="headerlink" title="无法解析的外部符号 isprint"></a>无法解析的外部符号 isprint</h2><p>用2015编译过程中，大量的link错误，报错都是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin2c.obj : error LNK2019: 无法解析的外部符号 isprint，该符号在函数 main 中被引用</span><br><span class="line">bin2c.obj : error LNK2019: 无法解析的外部符号 __acrt_iob_func，该符号在函数 main 中被引用</span><br><span class="line">bin2c.obj : error LNK2019: 无法解析的外部符号 fclose，该符号在函数 main 中被引用</span><br></pre></td></tr></table></figure></p>
+<p>报错的程序太多，构建脚本又太复杂，经过摸索使用bin2c这个cpp来突破,bin2c不依赖于其它virtualbox或三方库代码，单独使用命令行cl即可编译生成出exe。</p>
+<p>经研究，virtualbox在编译命令行中加入了<code>-Zl</code>,于是用cl -Zl bin2c.c 编译，果然直接失败，但输出obj后在link时添加c运行时库能成功。</p>
+<pre><code>// -Zl https://msdn.microsoft.com/zh-cn/library/f1tbxcxh.aspx。 ps：-Zl这是小写L，不是数字1.
+// 可以使用 /Zl 来编译打算放入库中的 .obj 文件。 虽然省略库名只为单个 .obj 文件节省了少量空间，但在包含许多对象模块的库中节省的总空间是很多的。
+cl.exe  -Zl -Fobin2c.obj bin2c.c
+然后使用 link.exe bin2c.obj libcmt.lib 可以链接通过。
+</code></pre><p>但从Config.kmk中看到，编译时还是带上了libcmt.lib的，比如：</p>
+<pre><code>VBoxRT_LIBS.win.x86 = \
+    $(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/oldnames.lib \
+    $(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/libcmt.lib \
+    $(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/libcpmt.lib
+</code></pre><p>但还是链接，从日志文件中提取出来最后的line命令行，并且精简如下：<code>link.exe /NOD bin2c.obj libcmt.lib</code>,其中去掉这个<code>/NOD</code>就会链接成功。msdn上并没有该选项，仅有一个<code>/NODEFAULTLIB     在解析外部引用时忽略所有（或指定的）默认库。</code>,通过实验它们两是效果相等的。</p>
+<p>但同样是添加了/NOD选项，用vs2010编译就不会失败，而用2015就失败。只好先去掉/NOD这个选项。</p>
+<h2 id="kmk-builtin-kDepObj-删除sanity-c相关文件失败"><a href="#kmk-builtin-kDepObj-删除sanity-c相关文件失败" class="headerlink" title="kmk_builtin_kDepObj 删除sanity-c相关文件失败"></a>kmk_builtin_kDepObj 删除sanity-c相关文件失败</h2><pre><code>kmk: *** [D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj] Error 512 (0x200)
+The failing command:
+@kmk_builtin_kDepObj -f -s -q -o D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj.dep -t D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj
+kmk: *** Deleting file `D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj&apos;
+kmk: *** Waiting for unfinished jobs....
+kmk: *** Exiting with status 2
+
+vs2015下才有此bug，原因未知，先换用2010继续编译
+</code></pre><h1 id="资源编译失败"><a href="#资源编译失败" class="headerlink" title="资源编译失败"></a>资源编译失败</h1><pre><code>D:/projects/virtualbox/mingw32/bin/windres: unknown format type `D:/projects/virtualbox/trunk/include&apos;
+D:/projects/virtualbox/mingw32/bin/windres: supported formats: rc res coff
+
+原始命令行：
+
+D:/projects/virtualbox/mingw32/bin/windres    -ID:/projects/virtualbox/trunk/include -ID:/projects/virtualbox/trunk/out_vs2010 -IC:/PROGRA~2/MICROS~1/Windows/v7.1A/Include -IC:/PROGRA~2/MICROS~4.0/VC/include     -DVBOX_SVN_REV=69891     -DVBOX_SVN_REV_MOD_5K=19891     D:/projects/virtualbox/trunk/src/recompiler/VBoxREM.rc D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxREMImp/VBoxREMRes.o
+</code></pre><p>查看windres的帮助，发现下载的virtualbox推荐mingw32里的windres是GNU windres (GNU Binutils) 2.25，-I参数不是输入文件，而是指格式。</p>
+<pre><code>Usage: D:\projects\virtualbox\mingw32\bin\windres.exe [option(s)] [input-file] [output-file]
+ The options are:
+  -i --input=&lt;file&gt;            Name input file
+  -o --output=&lt;file&gt;           Name output file
+  -I --input-format=&lt;format&gt;   Specify input format
+  -O --output-format=&lt;format&gt;  Specify output format    
+</code></pre><p>再查看其它几个windres发现是<code>-I --input-format=&lt;format&gt;   Specify input format</code>，于是就从其它地方找了windres替换掉这个。</p>
+<h2 id="dllwrap-exe-报错-undefined-reference-to-dyn-tls-init-callback’-1"><a href="#dllwrap-exe-报错-undefined-reference-to-dyn-tls-init-callback’-1" class="headerlink" title="dllwrap.exe 报错 undefined reference to `__dyn_tls_init_callback’ 1"></a>dllwrap.exe 报错 undefined reference to `__dyn_tls_init_callback’ 1</h2><pre><code>/mingw/lib/dllcrt2.o(.text+0xd1): undefined reference to `__dyn_tls_init_callback` 1
+
+# 命令行是
+D:/projects/virtualbox/mingw32/bin/dllwrap.exe  -s                         --dllname=D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxREM32.dll --output-exp=D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxREM32.exp --output-lib=D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxREM32.a  --def D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxREMImp/VBoxREMWin.def  D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxRecompiler.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/cpu-exec.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/exec.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/translate-all.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/host-utils.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/cutils.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/tcg-runtime.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/tcg/tcg.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/tcg/tcg-dyngen.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/fpu/softfloat-native.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/target-i386/op_helper.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/target-i386/helper.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/target-i386/translate.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxREMImp/VBoxREMRes.o  -LD:/projects/virtualbox/mingw32/lib   D:/projects/virtualbox/trunk/out_vs2010/lib/VBoxVMM.lib   D:/projects/virtualbox/trunk/out_vs2010/lib/VBoxRT.lib
+</code></pre><p>神奇的是，去掉-LD:/projects/virtualbox/mingw32/lib或者将目录改成我原来的D:/Mingw/lib就能正常生成dll。所以我觉得是virtualbox推荐的mingwruntime有问题，所以我去下载了<code>mingwrt-3.22.4</code>版本，也能正常编译。</p>
+<h2 id="QT“void-thiscall-UISnapshotPane-void-”转换为“const-char-”"><a href="#QT“void-thiscall-UISnapshotPane-void-”转换为“const-char-”" class="headerlink" title="QT“void (__thiscall UISnapshotPane:: )(void)”转换为“const char ”"></a>QT“void (__thiscall UISnapshotPane::<em> )(void)”转换为“const char </em>”</h2><pre><code>D:\projects\virtualbox\trunk\src\VBox\Frontends\VirtualBox\src\selector\UISnapshotPane.cpp(1273) : error C2664: “QAction *QToolBar::addAction(const QIcon &amp;,const QString &amp;,const QObject *,const char *)”: 不能将参数 4 从“void (__thiscall UISnapshotPane::* )(void)”转换为“const char *”
+        没有使该转换得以执行的上下文
+</code></pre><p>事实证明一开始偷懒下载的Qt5.5.1不支持virtualbox使用的头文件,Qt5.6.x之后有Q_QDOC宏包括起来的几个头文件。于是下载5.6.2版本重新编译。这里不能下载5.7.x版本，因为5.7.x版本的不支持vs2010编译了。</p>
+<p>在config.kmk中的第5933行中发现还有对VBOX_WITH_ORACLE_QT宏的判断，这个宏最终编译QT这些DLL的virtualBox版本。但我没有搞懂(也没有时间)怎么才能像官网版本那样编译出来Qt5CoreVBox.dll、Qt5GuiVBox.dll、Qt5OpenGLVBox.dll、Qt5PrintSupportVBox.dll、Qt5WidgetsVBox.dll、Qt5WinExtrasVBox.dll这几个文件。</p>
+<h2 id="src-libs-xpcom18a4-python-gen-python-deps-py-No-Python-development-package-found"><a href="#src-libs-xpcom18a4-python-gen-python-deps-py-No-Python-development-package-found" class="headerlink" title="src/libs/xpcom18a4/python/gen_python_deps.py: No Python development package found!"></a>src/libs/xpcom18a4/python/gen_python_deps.py: No Python development package found!</h2><pre><code>其实virtualbox已经能运行了，但是在研究VBoxFB时使用了新的宏，编译时提示错误。
+kmk.exe VBOX_WITH_VBOXFB=1 VBOX_WITH_XPCOM=1
+</code></pre><p>  但看具体代码，似乎VBoxFB在非win系统下使用的。所以这个就跳过了。</p>
+<h1 id="安装启动"><a href="#安装启动" class="headerlink" title="安装启动"></a>安装启动</h1><p>解决以上bug后，编译都顺利通过，然后我还继续使用vs2010编译了64位的qt。然后编译了64位的virtualbox。</p>
+<p>然后将编译中用到的libcurl和openssl相关dll放到bin目录。 libcrypto-1_1-x64.dll、libcurl.dll、libssl-1_1-x64.dll，还有QT相关的6个dll，Qt5Core.dll、Qt5Gui.dll、Qt5OpenGL.dll、Qt5PrintSupport.dll、Qt5Widgets.dll、Qt5WinExtras.dll。然后各种程序启动不报错，但是启动还没有效果。</p>
+<p>需要按照官网上build instructions网页上的说法： </p>
+<ol>
+<li>需要先注册com进程，以管理员权限运行：comregister.cmd。</li>
+<li>loadall.cmd 安装驱动，但驱动(.sys结尾的7个文件)需要先签名。</li>
+<li>然后就能启动VirtualBox.exe了。</li>
+</ol>
+<h2 id="SUPInstall-exe-error-installation-failed-rc-VERR-UNRESOLVED-ERROR"><a href="#SUPInstall-exe-error-installation-failed-rc-VERR-UNRESOLVED-ERROR" class="headerlink" title="SUPInstall.exe: error: installation failed. rc=VERR_UNRESOLVED_ERROR"></a>SUPInstall.exe: error: installation failed. rc=VERR_UNRESOLVED_ERROR</h2><p>在第2步安装驱动时，提示：</p>
+<pre><code>+ D:/projects/virtualbox/out_vs2010_x64/bin/SUPInstall.exe
+SUPInstall.exe: error: installation failed. rc=VERR_UNRESOLVED_ERROR
+</code></pre><p>将所有驱动文件生成对应的cat文件，并且将cat和sys签名即可。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/开源项目/">开源项目</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/windows/">windows</a>, <a href="/tags/tool/">tool</a>, <a href="/tags/system/">system</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2017/11/126_android_x86_houdini/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<section id="comment">
+
+<!-- 多说评论框 start 
+	<div class="ds-thread" data-thread-key="/2017/12/127_virtualbox_build/" data-title="virtualbox编译记录" data-url="/2017/12/127_virtualbox_build/"></div>
+ 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次)
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"k1988"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+ 多说公共JS代码 end -->
+
+
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "/2017/12/127_virtualbox_build/",
+    productKey: "b620f52b70014fd3846484e50b7f9867",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:baba.zhaoxiuyuan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/C/">C++</a><small>4</small></li>
+  
+    <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
+  
+    <li><a href="/categories/android/">android</a><small>5</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>8</small></li>
+  
+    <li><a href="/categories/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/categories/java/minecraft/">minecraft</a><small>5</small></li>
+  
+    <li><a href="/categories/net/">net</a><small>2</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/windows/">windows</a><small>12</small></li>
+  
+    <li><a href="/categories/开源项目/">开源项目</a><small>5</small></li>
+  
+    <li><a href="/categories/未分类/">未分类</a><small>0</small></li>
+  
+    <li><a href="/categories/系统-工具/">系统/工具</a><small>10</small></li>
+  
+    <li><a href="/categories/软件/">软件</a><small>3</small></li>
+  
+    <li><a href="/categories/随笔/">随笔</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本体：赵海洋</li>
+<li>二次元：k1988 | 赵大海</li>
+<li>现状：大蓝鲸某IT公司研发部经理</li>
+<li>QQ 号：1811132352</li>
+<li>关于我：<a href="/about">点这里</a></li>
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1196349092&verifier=d3636f5c&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/k1988/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">k1988</a> 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/k1988" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

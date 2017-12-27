@@ -5,7 +5,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="http://baba.zhaoxiuyuan.com/"/>
-  <updated>2017-12-01T10:19:28.852Z</updated>
+  <updated>2017-12-27T03:36:03.254Z</updated>
   <id>http://baba.zhaoxiuyuan.com/</id>
   
   <author>
@@ -14,6 +14,225 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>virtualbox编译记录</title>
+    <link href="http://baba.zhaoxiuyuan.com/2017/12/127_virtualbox_build/"/>
+    <id>http://baba.zhaoxiuyuan.com/2017/12/127_virtualbox_build/</id>
+    <published>2017-12-27T03:20:28.000Z</published>
+    <updated>2017-12-27T03:36:03.254Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;参考文档&quot;&gt;&lt;a href=&quot;#参考文档&quot; class=&quot;headerlink&quot; title=&quot;参考文档&quot;&gt;&lt;/a&gt;参考文档&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Windows%20build%20instructions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.virtualbox.org/wiki/Windows%20build%20instructions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/findumars/p/5542973.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.cnblogs.com/findumars/p/5542973.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;机器环境及之前已有库&quot;&gt;&lt;a href=&quot;#机器环境及之前已有库&quot; class=&quot;headerlink&quot; title=&quot;机器环境及之前已有库&quot;&gt;&lt;/a&gt;机器环境及之前已有库&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;windows 10 x64&lt;/li&gt;
+&lt;li&gt;Visual Studio 2015 Community 版本&lt;/li&gt;
+&lt;li&gt;Windows Driver Development Kit (WDK) v7.1&lt;/li&gt;
+&lt;li&gt;Qt5.7.1&lt;/li&gt;
+&lt;li&gt;Python 2.7.8&lt;/li&gt;
+&lt;li&gt;Nsis 3.0b1&lt;/li&gt;
+&lt;li&gt;JDK7 JDK8&lt;/li&gt;
+&lt;li&gt;zlib 在 D:\thridparty\zlib&lt;/li&gt;
+&lt;li&gt;VirtualBox 69891版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;下载工具和库&quot;&gt;&lt;a href=&quot;#下载工具和库&quot; class=&quot;headerlink&quot; title=&quot;下载工具和库&quot;&gt;&lt;/a&gt;下载工具和库&lt;/h1&gt;&lt;h2 id=&quot;下载Virtualbox推荐的链接&quot;&gt;&lt;a href=&quot;#下载Virtualbox推荐的链接&quot; class=&quot;headerlink&quot; title=&quot;下载Virtualbox推荐的链接&quot;&gt;&lt;/a&gt;下载Virtualbox推荐的链接&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/rubenvb/gcc-4.5-release/x86_64-w64-mingw32-gcc-4.5.4-release-win64_rubenvb.7z/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mingw64&lt;/a&gt;下载解压到&lt;code&gt;D:\projects\virtualbox\mingw64&lt;/code&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;mingw32&quot;&gt;&lt;a href=&quot;#mingw32&quot; class=&quot;headerlink&quot; title=&quot;mingw32&quot;&gt;&lt;/a&gt;mingw32&lt;/h3&gt;以下文件都解压&lt;code&gt;D:\projects\virtualbox\mingw32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://prdownloads.sf.net/mingw/gcc-core-3.3.3-20040217-1.tar.gz?download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCC 3.3.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://prdownloads.sf.net/mingw/gcc-g++-3.3.3-20040217-1.tar.gz?download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCC-g++ 3.3.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://prdownloads.sf.net/mingw/mingw-runtime-3.8.tar.gz?download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MinGW Runtime&lt;/a&gt; 此版本编译报错，应该下载更新版本，如mingwrt-3.22.4。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://prdownloads.sf.net/mingw/w32api-3.5.tar.gz?download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;W32API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://prdownloads.sf.net/mingw/binutils-2.13.90-20021006-2.tar.gz?download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Binutils&lt;/a&gt;。此版本windres会报错，应该下载更新版本，如&lt;a href=&quot;https://sourceforge.net/projects/mingw/files/MinGW/Base/binutils/binutils-2.28/binutils-2.28-1-mingw32-bin.tar.xz/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;binutils-2.28&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;openssl&quot;&gt;&lt;a href=&quot;#openssl&quot; class=&quot;headerlink&quot; title=&quot;openssl&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://slproweb.com/products/Win32OpenSSL.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;openssl&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;其实下Light版本应该就够了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;openssl 64 &lt;a href=&quot;https://slproweb.com/download/Win64OpenSSL-1_1_0g.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://slproweb.com/download/Win64OpenSSL-1_1_0g.exe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;openssl 32 &lt;a href=&quot;https://slproweb.com/download/Win32OpenSSL-1_1_0g.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://slproweb.com/download/Win32OpenSSL-1_1_0g.exe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;其它库&quot;&gt;&lt;a href=&quot;#其它库&quot; class=&quot;headerlink&quot; title=&quot;其它库&quot;&gt;&lt;/a&gt;其它库&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;libxml2 virtualbox已含&lt;/li&gt;
+&lt;li&gt;zlib virtualbox已含&lt;/li&gt;
+&lt;li&gt;其它可选库都不要&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;check-out代码&quot;&gt;&lt;a href=&quot;#check-out代码&quot; class=&quot;headerlink&quot; title=&quot;check out代码&quot;&gt;&lt;/a&gt;check out代码&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;下载 &lt;a href=&quot;https://github.com/svn2github/virtualbox.git&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/svn2github/virtualbox.git&lt;/a&gt; 到 D:\projects\virtualbox,则D:\projects\virtualbox\trunk是virtualBox代码目录。&lt;/li&gt;
+&lt;li&gt;在virtualBox代码目录中下载&lt;br&gt;&lt;a href=&quot;http://svn.netlabs.org/repos/kbuild/trunk/kBuild&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://svn.netlabs.org/repos/kbuild/trunk/kBuild&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载curl代码库 &lt;a href=&quot;https://github.com/curl/curl.git&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/curl/curl.git&lt;/a&gt; 至D:\thridparty\curl。VirtualBox推荐的下载地址&lt;a href=&quot;http://curl.haxx.se/download.html中找不到windows版本的devel包，只好自己编译，编译步骤参考：http://blog.csdn.net/alger_magic/article/details/52584579&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://curl.haxx.se/download.html中找不到windows版本的devel包，只好自己编译，编译步骤参考：http://blog.csdn.net/alger_magic/article/details/52584579&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;编译curl&quot;&gt;&lt;a href=&quot;#编译curl&quot; class=&quot;headerlink&quot; title=&quot;编译curl&quot;&gt;&lt;/a&gt;编译curl&lt;/h2&gt;&lt;p&gt;将以下指令保存到curl根目录的批处理文件中，并执行:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;build_dll.bat&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@echo off
+@cd winbuild
+@echo 正在使用release模式编译libcurl&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;    @nmake /f Makefile.vc WITH_DEVEL=D:\VC_INCLUDE\OpenSSL-Win32 WITH_ZLIB=D:\thridparty\zlib mode=dll VC=14 WITH_SSL=dll ENABLE_IDN=no RTLIBCFG=dll DEBUG=no MACHINE=x86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @REM @echo on&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @cd ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`build_dll_x64.bat`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @echo off&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @cd winbuild&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @echo 正在使用release模式编译libcurl&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+@nmake /f Makefile.vc WITH_DEVEL=D:\VC_INCLUDE\OpenSSL-Win64 WITH_ZLIB=D:\thridparty\zlib mode=dll VC=14 WITH_SSL=dll ENABLE_IDN=no RTLIBCFG=dll DEBUG=no MACHINE=x64
+@REM @echo on
+@cd ..
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编译输出在&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;D:\thridparty\curl\builds\libcurl-vc14-x64-release-dll-ssl-dll-ipv6-sspi&lt;/li&gt;
+&lt;li&gt;D:\thridparty\curl\builds\libcurl-vc14-x86-release-dll-ssl-dll-ipv6-sspi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因为virtualbox查找curl的lib和dll时只在指定目录查找，所以还需要将他们子目录下的bin和lib目录里的文件拷贝到父级目录。&lt;/p&gt;
+&lt;h2 id=&quot;编译Virtulbox&quot;&gt;&lt;a href=&quot;#编译Virtulbox&quot; class=&quot;headerlink&quot; title=&quot;编译Virtulbox&quot;&gt;&lt;/a&gt;编译Virtulbox&lt;/h2&gt;&lt;h3 id=&quot;LocalConfig-kmk&quot;&gt;&lt;a href=&quot;#LocalConfig-kmk&quot; class=&quot;headerlink&quot; title=&quot;LocalConfig.kmk&quot;&gt;&lt;/a&gt;LocalConfig.kmk&lt;/h3&gt;&lt;p&gt;代码根目录新建文件LocalConfig.kmk，内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;VBOX_WITH_ADDITIONS=
+
+VBOX_WITH_ADDITIONS_PACKING=
+#Don&amp;apos;t build + package the VirtualBox Guest Additions. If only VBOX_WITH_ADDITIONS= is specified then the Guest Additions are not built but the VBoxGuestAdditions.iso file is expected to be present in the &amp;apos;out\win.ARCH\release\bin\additions&amp;apos; directory.
+
+VBOX_ONLY_ADDITIONS=1
+#Build the Guest Additions exclusively.
+
+VBOX_WITH_VALIDATIONKIT=
+#Don&amp;apos;t build + package the VirtualBox validation kit. The validation kit is not part of the final .msi package anyway.
+
+VBOX_WITH_WEBSERVICES=
+#Don&amp;apos;t build + package the webservices API server.
+
+VBOX_WITHOUT_HARDENING=1
+
+VBOX_INF2CAT=D:\WinDDK\7600.16385.1\bin\selfsign\Inf2Cat.exe
+VBOX_PATH_SIGN_TOOLS=D:\WinDDK\7600.16385.1\bin\amd64\SignTool.exe
+
+# 以下的我不用，只是机器上有，就放上来
+VBOX_PATH_NSIS=D:\Program Files\NSIS
+VBOX_ZIP=D:\VC_INCLUDE\GetGnuWin32\gnuwin32\bin\zip.exe
+VBOX_PATH_WISUMINFO=D:\projects\Microsoft SDKs\Windows\v7.1\Samples\sysmgmt\msi\scripts\WiSumInf.vbs
+VBOX_MKISOFS=C:\Program Files (x86)\VMware\VMware Workstation\mkisofs.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;configure-vbs&quot;&gt;&lt;a href=&quot;#configure-vbs&quot; class=&quot;headerlink&quot; title=&quot;configure.vbs&quot;&gt;&lt;/a&gt;configure.vbs&lt;/h3&gt;&lt;p&gt;configure.vbs中修改代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if   (InStr(1, g_strShellOutput, &amp;quot;Version 16.&amp;quot;) &amp;lt;= 0) _
+And (InStr(1, g_strShellOutput, &amp;quot;Version 17.&amp;quot;) &amp;lt;= 0) then
+    MsgError &amp;quot;The Visual C++ compiler we found (&amp;apos;&amp;quot; &amp;amp; strPathVC &amp;amp; &amp;quot;&amp;apos;) isn&amp;apos;t 10.0 or 11.0. Check the build requirements.&amp;quot;
+    exit sub
+end if
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if   (InStr(1, g_strShellOutput, &amp;quot;Version 16.&amp;quot;) &amp;lt;= 0) _
+    And (InStr(1, g_strShellOutput, &amp;quot;Version 17.&amp;quot;) &amp;lt;= 0) _
+    And (InStr(1, g_strShellOutput, &amp;quot;Version 18.&amp;quot;) &amp;lt;= 0) _
+    And (InStr(1, g_strShellOutput, &amp;quot;19.00&amp;quot;) &amp;lt;= 0) then
+    MsgError &amp;quot;Check Version failed: The Visual C++ compiler we found (&amp;apos;&amp;quot; &amp;amp; strPathVC &amp;amp; &amp;quot;&amp;apos;) isn&amp;apos;t 10.0 - 14.0. Check the build requirements.&amp;quot;
+    exit sub
+end if
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;用来支持vs2015&lt;/p&gt;
+&lt;h3 id=&quot;build-bat&quot;&gt;&lt;a href=&quot;#build-bat&quot; class=&quot;headerlink&quot; title=&quot;build.bat&quot;&gt;&lt;/a&gt;build.bat&lt;/h3&gt;&lt;p&gt;根目录新建build_x64.bat:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@echo off
+set cur_dir= %~dp0%
+call D:\projects\virtualbox\kBuild\envwin.cmd
+
+cscript %cur_dir%configure.vbs --with-vc=&amp;quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0&amp;quot; --with-MinGW-w64=D:\projects\virtualbox\mingw64 --with-SDK=&amp;quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A&amp;quot; --with-DDK=D:\VC_INCLUDE\Windows\WinDDK  --with-Qt5=E:\Qt\Qt5.7.1\5.7\msvc2015_64 --with-python=D:\Python27 --with-libcurl32=D:\thridparty\curl\builds\libcurl-vc14-x86-release-dll-ssl-dll-ipv6-sspi --with-libcurl=D:\thridparty\curl\builds\libcurl-vc14-x64-release-dll-ssl-dll-ipv6-sspi --with-openssl32=&amp;quot;D:\VC_INCLUDE\OpenSSL-Win32&amp;quot; --with-openssl=&amp;quot;D:\VC_INCLUDE\OpenSSL-Win32&amp;quot; --disable-SDL --target-arch=amd64   
+pause
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;执行之，然后再在命令行中分别执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;env
+kmk
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;h2 id=&quot;kmk-Invalid-number-“ev”-Stop&quot;&gt;&lt;a href=&quot;#kmk-Invalid-number-“ev”-Stop&quot; class=&quot;headerlink&quot; title=&quot;kmk: * Invalid number “ev”.  Stop.&quot;&gt;&lt;/a&gt;kmk: &lt;em&gt;*&lt;/em&gt; Invalid number “ev”.  Stop.&lt;/h2&gt;&lt;p&gt;执行kmk后，出现这个问题，然后我无论是切换virtualbox的版本还是切换kbuild的版本，最后安装了vs2010版本。结果还是报这个错误。&lt;br&gt;最后挨个文件夹执行kmk，最后发现在&lt;code&gt;virtualbox\trunk\src\recompiler&lt;/code&gt;中kmk提示这个错误。&lt;br&gt;打开这个目录的Makefile.kmk后搜索ev，只搜索到&lt;code&gt;DVBOX_SVN_REV&lt;/code&gt;，就想起来既然makefile中使用到了svn版本号，而我用的这个库又是git的，那问题会不会出现在svn版本号生成的地方。后面又在kmk输出的out\revision.kmk里发现了&lt;code&gt;export VBOX_SVN_REV=ev&lt;/code&gt;这样一来问题就很明显了。我只需要在生成svn版本号的地方改一下代码即可，但是手改config.kmk中的svn版本号分析实在是太烦了，所以就直接在LocalConfig.kmk中添加一行&lt;code&gt;VBOX_SVN_REV=69807&lt;/code&gt;即可解决。&lt;/p&gt;
+&lt;h2 id=&quot;找不到&quot;&gt;&lt;a href=&quot;#找不到&quot; class=&quot;headerlink&quot; title=&quot;找不到 &quot;&gt;&lt;/a&gt;找不到 &lt;k kldr.h=&quot;&quot;&gt;&lt;/k&gt;&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;D:\projects\virtualbox\trunk\src\VBox\Runtime\common\ldr\ldrkStuff.cpp&lt;/code&gt;中有&lt;code&gt;#include &amp;lt;k/kLdr.h&amp;gt;&lt;/code&gt;，但是代码库里没有。在老版本的&lt;a href=&quot;http://virtualbox-ose.sourcearchive.com/documentation/3.2.0-dfsg/files.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文件列表&lt;/a&gt;里倒是能找到。&lt;br&gt;最后没办法，先屏蔽掉它吧。在&lt;code&gt;LocalConfig.kmk&lt;/code&gt;中添加一行&lt;code&gt;IPRT_WITH_KSTUFF=&lt;/code&gt;这样&lt;code&gt;D:\projects\virtualbox\trunk\src\VBox\Runtime\Makefile.kmk&lt;/code&gt;中就不会包含&lt;code&gt;kdrkStuff.cpp&lt;/code&gt;了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ifdef IPRT_WITH_KSTUFF
+RuntimeR3_SOURCES += \
+    common/ldr/ldrkStuff.cpp
+endif
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;后面发现，可以从&lt;a href=&quot;http://www.virtualbox.org/svn/kstuff-mirror下载kstuff的源码，所以这个又能编译的过&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.virtualbox.org/svn/kstuff-mirror下载kstuff的源码，所以这个又能编译的过&lt;/a&gt;    &lt;/p&gt;
+&lt;h2 id=&quot;spu-dispatch-table-h&quot;&gt;&lt;a href=&quot;#spu-dispatch-table-h&quot; class=&quot;headerlink&quot; title=&quot;spu_dispatch_table.h&quot;&gt;&lt;/a&gt;spu_dispatch_table.h&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;D:\projects\virtualbox\trunk\src\VBox\GuestHost\OpenGL\include\cr_spu.h(16) : fatal error C1083: 无法打开包括文件:“spu_dispatch_table.h”: No such file or directory    &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;查看MakeFile发现D:\projects\virtualbox\trunk\src\VBox\Additions\common\crOpenGL\Makefile.kmk中用到D:\projects\virtualbox\trunk\src\VBox\GuestHost\OpenGL\Makefile.kmk中生成的spu_dispatch_table.h。而OpenGL\Makefile.kmk还没有执行。&lt;/p&gt;
+&lt;p&gt;并且在&lt;a href=&quot;https://www.virtualbox.org/wiki/Windows%20build%20instructions中有提到：&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.virtualbox.org/wiki/Windows%20build%20instructions中有提到：&lt;/a&gt;&lt;br&gt;This step will fail for a 64-bit (amd64) target if the Guest Additions are part of the build process (which is the default, disable by adding VBOX_WITH_ADDITIONS= and VBOX_WITH_ADDITIONS_PACKING= to LocalConfig.kmk, see below). It will complain about a dependency to VBoxOGL* libraries in out\win.x86\release\bin\additions. In that case, create the 32-bit Guest Additions by executing。&lt;/p&gt;
+&lt;p&gt;所以，先在LocalConfig.kmk中加入 VBOX_WITH_ADDITIONS= and VBOX_WITH_ADDITIONS_PACKING= 跳过addtions的编译&lt;/p&gt;
+&lt;h2 id=&quot;无法解析的外部符号-isprint&quot;&gt;&lt;a href=&quot;#无法解析的外部符号-isprint&quot; class=&quot;headerlink&quot; title=&quot;无法解析的外部符号 isprint&quot;&gt;&lt;/a&gt;无法解析的外部符号 isprint&lt;/h2&gt;&lt;p&gt;用2015编译过程中，大量的link错误，报错都是：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bin2c.obj : error LNK2019: 无法解析的外部符号 isprint，该符号在函数 main 中被引用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bin2c.obj : error LNK2019: 无法解析的外部符号 __acrt_iob_func，该符号在函数 main 中被引用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bin2c.obj : error LNK2019: 无法解析的外部符号 fclose，该符号在函数 main 中被引用&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;报错的程序太多，构建脚本又太复杂，经过摸索使用bin2c这个cpp来突破,bin2c不依赖于其它virtualbox或三方库代码，单独使用命令行cl即可编译生成出exe。&lt;/p&gt;
+&lt;p&gt;经研究，virtualbox在编译命令行中加入了&lt;code&gt;-Zl&lt;/code&gt;,于是用cl -Zl bin2c.c 编译，果然直接失败，但输出obj后在link时添加c运行时库能成功。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// -Zl https://msdn.microsoft.com/zh-cn/library/f1tbxcxh.aspx。 ps：-Zl这是小写L，不是数字1.
+// 可以使用 /Zl 来编译打算放入库中的 .obj 文件。 虽然省略库名只为单个 .obj 文件节省了少量空间，但在包含许多对象模块的库中节省的总空间是很多的。
+cl.exe  -Zl -Fobin2c.obj bin2c.c
+然后使用 link.exe bin2c.obj libcmt.lib 可以链接通过。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但从Config.kmk中看到，编译时还是带上了libcmt.lib的，比如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;VBoxRT_LIBS.win.x86 = \
+    $(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/oldnames.lib \
+    $(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/libcmt.lib \
+    $(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/libcpmt.lib
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但还是链接，从日志文件中提取出来最后的line命令行，并且精简如下：&lt;code&gt;link.exe /NOD bin2c.obj libcmt.lib&lt;/code&gt;,其中去掉这个&lt;code&gt;/NOD&lt;/code&gt;就会链接成功。msdn上并没有该选项，仅有一个&lt;code&gt;/NODEFAULTLIB     在解析外部引用时忽略所有（或指定的）默认库。&lt;/code&gt;,通过实验它们两是效果相等的。&lt;/p&gt;
+&lt;p&gt;但同样是添加了/NOD选项，用vs2010编译就不会失败，而用2015就失败。只好先去掉/NOD这个选项。&lt;/p&gt;
+&lt;h2 id=&quot;kmk-builtin-kDepObj-删除sanity-c相关文件失败&quot;&gt;&lt;a href=&quot;#kmk-builtin-kDepObj-删除sanity-c相关文件失败&quot; class=&quot;headerlink&quot; title=&quot;kmk_builtin_kDepObj 删除sanity-c相关文件失败&quot;&gt;&lt;/a&gt;kmk_builtin_kDepObj 删除sanity-c相关文件失败&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;kmk: *** [D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj] Error 512 (0x200)
+The failing command:
+@kmk_builtin_kDepObj -f -s -q -o D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj.dep -t D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj
+kmk: *** Deleting file `D:/projects/virtualbox/trunk/out/obj/RuntimeBldProg/common/misc/sanity-c.obj&amp;apos;
+kmk: *** Waiting for unfinished jobs....
+kmk: *** Exiting with status 2
+
+vs2015下才有此bug，原因未知，先换用2010继续编译
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;资源编译失败&quot;&gt;&lt;a href=&quot;#资源编译失败&quot; class=&quot;headerlink&quot; title=&quot;资源编译失败&quot;&gt;&lt;/a&gt;资源编译失败&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;D:/projects/virtualbox/mingw32/bin/windres: unknown format type `D:/projects/virtualbox/trunk/include&amp;apos;
+D:/projects/virtualbox/mingw32/bin/windres: supported formats: rc res coff
+
+原始命令行：
+
+D:/projects/virtualbox/mingw32/bin/windres    -ID:/projects/virtualbox/trunk/include -ID:/projects/virtualbox/trunk/out_vs2010 -IC:/PROGRA~2/MICROS~1/Windows/v7.1A/Include -IC:/PROGRA~2/MICROS~4.0/VC/include     -DVBOX_SVN_REV=69891     -DVBOX_SVN_REV_MOD_5K=19891     D:/projects/virtualbox/trunk/src/recompiler/VBoxREM.rc D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxREMImp/VBoxREMRes.o
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看windres的帮助，发现下载的virtualbox推荐mingw32里的windres是GNU windres (GNU Binutils) 2.25，-I参数不是输入文件，而是指格式。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Usage: D:\projects\virtualbox\mingw32\bin\windres.exe [option(s)] [input-file] [output-file]
+ The options are:
+  -i --input=&amp;lt;file&amp;gt;            Name input file
+  -o --output=&amp;lt;file&amp;gt;           Name output file
+  -I --input-format=&amp;lt;format&amp;gt;   Specify input format
+  -O --output-format=&amp;lt;format&amp;gt;  Specify output format    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再查看其它几个windres发现是&lt;code&gt;-I --input-format=&amp;lt;format&amp;gt;   Specify input format&lt;/code&gt;，于是就从其它地方找了windres替换掉这个。&lt;/p&gt;
+&lt;h2 id=&quot;dllwrap-exe-报错-undefined-reference-to-dyn-tls-init-callback’-1&quot;&gt;&lt;a href=&quot;#dllwrap-exe-报错-undefined-reference-to-dyn-tls-init-callback’-1&quot; class=&quot;headerlink&quot; title=&quot;dllwrap.exe 报错 undefined reference to `__dyn_tls_init_callback’ 1&quot;&gt;&lt;/a&gt;dllwrap.exe 报错 undefined reference to `__dyn_tls_init_callback’ 1&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;/mingw/lib/dllcrt2.o(.text+0xd1): undefined reference to `__dyn_tls_init_callback` 1
+
+# 命令行是
+D:/projects/virtualbox/mingw32/bin/dllwrap.exe  -s                         --dllname=D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxREM32.dll --output-exp=D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxREM32.exp --output-lib=D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxREM32.a  --def D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxREMImp/VBoxREMWin.def  D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/VBoxRecompiler.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/cpu-exec.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/exec.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/translate-all.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/host-utils.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/cutils.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/tcg-runtime.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/tcg/tcg.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/tcg/tcg-dyngen.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/fpu/softfloat-native.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/target-i386/op_helper.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/target-i386/helper.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxRemPrimary/target-i386/translate.o D:/projects/virtualbox/trunk/out_vs2010/obj/VBoxREMImp/VBoxREMRes.o  -LD:/projects/virtualbox/mingw32/lib   D:/projects/virtualbox/trunk/out_vs2010/lib/VBoxVMM.lib   D:/projects/virtualbox/trunk/out_vs2010/lib/VBoxRT.lib
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;神奇的是，去掉-LD:/projects/virtualbox/mingw32/lib或者将目录改成我原来的D:/Mingw/lib就能正常生成dll。所以我觉得是virtualbox推荐的mingwruntime有问题，所以我去下载了&lt;code&gt;mingwrt-3.22.4&lt;/code&gt;版本，也能正常编译。&lt;/p&gt;
+&lt;h2 id=&quot;QT“void-thiscall-UISnapshotPane-void-”转换为“const-char-”&quot;&gt;&lt;a href=&quot;#QT“void-thiscall-UISnapshotPane-void-”转换为“const-char-”&quot; class=&quot;headerlink&quot; title=&quot;QT“void (__thiscall UISnapshotPane:: )(void)”转换为“const char ”&quot;&gt;&lt;/a&gt;QT“void (__thiscall UISnapshotPane::&lt;em&gt; )(void)”转换为“const char &lt;/em&gt;”&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;D:\projects\virtualbox\trunk\src\VBox\Frontends\VirtualBox\src\selector\UISnapshotPane.cpp(1273) : error C2664: “QAction *QToolBar::addAction(const QIcon &amp;amp;,const QString &amp;amp;,const QObject *,const char *)”: 不能将参数 4 从“void (__thiscall UISnapshotPane::* )(void)”转换为“const char *”
+        没有使该转换得以执行的上下文
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;事实证明一开始偷懒下载的Qt5.5.1不支持virtualbox使用的头文件,Qt5.6.x之后有Q_QDOC宏包括起来的几个头文件。于是下载5.6.2版本重新编译。这里不能下载5.7.x版本，因为5.7.x版本的不支持vs2010编译了。&lt;/p&gt;
+&lt;p&gt;在config.kmk中的第5933行中发现还有对VBOX_WITH_ORACLE_QT宏的判断，这个宏最终编译QT这些DLL的virtualBox版本。但我没有搞懂(也没有时间)怎么才能像官网版本那样编译出来Qt5CoreVBox.dll、Qt5GuiVBox.dll、Qt5OpenGLVBox.dll、Qt5PrintSupportVBox.dll、Qt5WidgetsVBox.dll、Qt5WinExtrasVBox.dll这几个文件。&lt;/p&gt;
+&lt;h2 id=&quot;src-libs-xpcom18a4-python-gen-python-deps-py-No-Python-development-package-found&quot;&gt;&lt;a href=&quot;#src-libs-xpcom18a4-python-gen-python-deps-py-No-Python-development-package-found&quot; class=&quot;headerlink&quot; title=&quot;src/libs/xpcom18a4/python/gen_python_deps.py: No Python development package found!&quot;&gt;&lt;/a&gt;src/libs/xpcom18a4/python/gen_python_deps.py: No Python development package found!&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;其实virtualbox已经能运行了，但是在研究VBoxFB时使用了新的宏，编译时提示错误。
+kmk.exe VBOX_WITH_VBOXFB=1 VBOX_WITH_XPCOM=1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  但看具体代码，似乎VBoxFB在非win系统下使用的。所以这个就跳过了。&lt;/p&gt;
+&lt;h1 id=&quot;安装启动&quot;&gt;&lt;a href=&quot;#安装启动&quot; class=&quot;headerlink&quot; title=&quot;安装启动&quot;&gt;&lt;/a&gt;安装启动&lt;/h1&gt;&lt;p&gt;解决以上bug后，编译都顺利通过，然后我还继续使用vs2010编译了64位的qt。然后编译了64位的virtualbox。&lt;/p&gt;
+&lt;p&gt;然后将编译中用到的libcurl和openssl相关dll放到bin目录。 libcrypto-1_1-x64.dll、libcurl.dll、libssl-1_1-x64.dll，还有QT相关的6个dll，Qt5Core.dll、Qt5Gui.dll、Qt5OpenGL.dll、Qt5PrintSupport.dll、Qt5Widgets.dll、Qt5WinExtras.dll。然后各种程序启动不报错，但是启动还没有效果。&lt;/p&gt;
+&lt;p&gt;需要按照官网上build instructions网页上的说法： &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;需要先注册com进程，以管理员权限运行：comregister.cmd。&lt;/li&gt;
+&lt;li&gt;loadall.cmd 安装驱动，但驱动(.sys结尾的7个文件)需要先签名。&lt;/li&gt;
+&lt;li&gt;然后就能启动VirtualBox.exe了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;SUPInstall-exe-error-installation-failed-rc-VERR-UNRESOLVED-ERROR&quot;&gt;&lt;a href=&quot;#SUPInstall-exe-error-installation-failed-rc-VERR-UNRESOLVED-ERROR&quot; class=&quot;headerlink&quot; title=&quot;SUPInstall.exe: error: installation failed. rc=VERR_UNRESOLVED_ERROR&quot;&gt;&lt;/a&gt;SUPInstall.exe: error: installation failed. rc=VERR_UNRESOLVED_ERROR&lt;/h2&gt;&lt;p&gt;在第2步安装驱动时，提示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ D:/projects/virtualbox/out_vs2010_x64/bin/SUPInstall.exe
+SUPInstall.exe: error: installation failed. rc=VERR_UNRESOLVED_ERROR
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将所有驱动文件生成对应的cat文件，并且将cat和sys签名即可。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;参考文档&quot;&gt;&lt;a href=&quot;#参考文档&quot; class=&quot;headerlink&quot; title=&quot;参考文档&quot;&gt;&lt;/a&gt;参考文档&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Windows%20build%20instructions&quot;&gt;https://www.virtualbox.org/wiki/Windows%20build%20instructions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/findumars/p/5542973.html&quot;&gt;https://www.cnblogs.com/findumars/p/5542973.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;机器环境及之前已有库&quot;&gt;&lt;a href=&quot;#机器环境及之前已有库&quot; class=&quot;headerlink&quot; title=&quot;机器环境及之前已有库&quot;&gt;&lt;/a&gt;机器环境及之前已有库&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;windows 10 x64&lt;/li&gt;
+&lt;li&gt;Visual Studio 2015 Community 版本&lt;/li&gt;
+&lt;li&gt;Windows Driver Development Kit (WDK) v7.1&lt;/li&gt;
+&lt;li&gt;Qt5.7.1&lt;/li&gt;
+&lt;li&gt;Python 2.7.8&lt;/li&gt;
+&lt;li&gt;Nsis 3.0b1&lt;/li&gt;
+&lt;li&gt;JDK7 JDK8&lt;/li&gt;
+&lt;li&gt;zlib 在 D:\thridparty\zlib&lt;/li&gt;
+&lt;li&gt;VirtualBox 69891版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;下载工具和库&quot;&gt;&lt;a href=&quot;#下载工具和库&quot; class=&quot;headerlink&quot; title=&quot;下载工具和库&quot;&gt;&lt;/a&gt;下载工具和库&lt;/h1&gt;&lt;h2 id=&quot;下载Virtualbox推荐的链接&quot;&gt;&lt;a href=&quot;#下载Virtualbox推荐的链接&quot; class=&quot;headerlink&quot; title=&quot;下载Virtualbox推荐的链接&quot;&gt;&lt;/a&gt;下载Virtualbox推荐的链接&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/rubenvb/gcc-4.5-release/x86_64-w64-mingw32-gcc-4.5.4-release-win64_rubenvb.7z/download&quot;&gt;mingw64&lt;/a&gt;下载解压到&lt;code&gt;D:\projects\virtualbox\mingw64&lt;/code&gt;
+    
+    </summary>
+    
+      <category term="开源项目" scheme="http://baba.zhaoxiuyuan.com/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="windows" scheme="http://baba.zhaoxiuyuan.com/tags/windows/"/>
+    
+      <category term="tool" scheme="http://baba.zhaoxiuyuan.com/tags/tool/"/>
+    
+      <category term="system" scheme="http://baba.zhaoxiuyuan.com/tags/system/"/>
+    
+  </entry>
   
   <entry>
     <title>Android-X86集成houdini(Arm兼容工具)</title>
@@ -508,9 +727,9 @@
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
     
-      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
-    
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
     
   </entry>
   
@@ -796,9 +1015,9 @@
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/categories/android/"/>
     
     
-      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
-    
       <category term="android" scheme="http://baba.zhaoxiuyuan.com/tags/android/"/>
+    
+      <category term="android studio" scheme="http://baba.zhaoxiuyuan.com/tags/android-studio/"/>
     
   </entry>
   
@@ -1008,48 +1227,6 @@
     
     
       <category term="java" scheme="http://baba.zhaoxiuyuan.com/tags/java/"/>
-    
-      <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/tags/bugs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>那些想哭的bug（一）</title>
-    <link href="http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/"/>
-    <id>http://baba.zhaoxiuyuan.com/2017/01/108_human_bug_1/</id>
-    <published>2017-01-03T12:00:28.000Z</published>
-    <updated>2017-08-04T01:45:45.821Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某天在查找其它问题/添加新的功能/优化代码/睡觉时，突然发现/想到根本原因之后，简直想哭。。问题可能出现在一个很不起眼/一扫而过/觉得100%不会有问题的地方。&lt;/p&gt;
-&lt;p&gt;今天就遇到一个这样的bug，无语的让我想专门开个类别存放这类bug。&lt;/p&gt;
-&lt;p&gt;前提条件是这样的，主程序A在运行过程中，会从服务器上拉取一些推(la)荐(ji)信(guang)息(gao),然后在不同的条件下启动程序B来显示。A和B都经常多年多个版本的迭代，加了不同类型的广告，有2种最常用的是：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;弹窗推荐：A启动后，拉取推荐信息，下载资源，指定时间点或指定分钟数后，启动B在右下角弹窗推荐我们软件中的游戏。&lt;/li&gt;
-&lt;li&gt;托盘推荐：A启动后，拉取推荐信息，下载资源，指定时间点或指定分钟数后，启动B在在托盘区域弹窗显示个图标，点击后打开我们软件中的游戏。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;有一个版本，boss看到别的程序经常在退出后还会再弹出一个窗口来推荐信息（如免费版本的winrar），就拍板添加了个功能： A启动后，拉取推荐信息，下载资源，在 &lt;strong&gt;A程序退出后&lt;/strong&gt;居中显示一张图片（有关闭按钮，倒计时），用户点击图片后打开我们推荐的网址。&lt;/p&gt;
-&lt;p&gt;我们的各种推荐的到达率都是有数据统计的，点击转换率也是有数据统计的，但这个功能上线后发现居然有 &lt;em&gt;50%左右&lt;/em&gt; 的用户请求了广告，但是没有显示出来退出广告。于是乎各种分析A程序的流程（推荐信息是否拉取失败，信息解析是否可能失败，需要显示的图片资源是否可能失败，启动B程序是否可能失败，是否有安全软件拦截）、统计服务器的统计代码、统计分析服务器的代码都没有发现原因；在测试部门测试、复测时也没有发现请求了广告但是退出时不显示的问题。&lt;/p&gt;
-&lt;p&gt;在其它广告的数据中，也偶有丢失个10%左右的情况，但这种50%级别的丢失，实在是难以想像哪儿出了问题，百思不得其解后，也只能先暂停掉这个类型的推荐信息。然后几个月过去了，这事儿就抛在脑后了。&lt;/p&gt;
-&lt;h1 id=&quot;神之复现&quot;&gt;&lt;a href=&quot;#神之复现&quot; class=&quot;headerlink&quot; title=&quot;神之复现&quot;&gt;&lt;/a&gt;神之复现&lt;/h1&gt;&lt;p&gt;在今天，因为有个产品，我们将A和B复制并改动出了C和D，然后在走测试流程。有一个测试在测试时向我汇报，她机器上的这种类型的推荐信息偶尔不显示。&lt;br&gt;由于程序员普遍的自负心理，我想我就是A和B简单的复制，稍微改动成的C和D，怎么可能这个功能有问题呢，肯定是测试她自己在测试环境上配置错了，或者某些条件不满足。然后很不耐烦地过去瞅瞅状况，经过她几次反复的演示，我觉得至少在她那儿是有些什么情况，确实是有不显示的问题。&lt;br&gt;先一一排除掉A的信息拉取（WireShark抓包没有问题）正常，资源下载正常（资源目录里有图片），配置后台中的其它信息也一一验证是合法的，然后用 &lt;code&gt;ProcMon.exe&lt;/code&gt; 监控发现不显示广告时，D程序都是创建后很快就退出了。&lt;/p&gt;
-&lt;p&gt;于是将命令行拷贝到我测试机上，然后用VS Debug运行，发现一切又很正常。&lt;/p&gt;
-&lt;h1 id=&quot;神之谜底&quot;&gt;&lt;a href=&quot;#神之谜底&quot; class=&quot;headerlink&quot; title=&quot;神之谜底&quot;&gt;&lt;/a&gt;神之谜底&lt;/h1&gt;&lt;p&gt;经过几分钟的测试，在Debug和Release、及发行版本的行为对比，发现了一处代码是问题的根源。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;在B的入口处：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// 查找A程序主窗口&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	HWND hWnd = FindWindow(A程序主窗口类名, A程序标题);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (!hWnd)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifndef _DEBUG&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return FALSE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif // _DEBUG&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;因为之前的广告的行为基本上都是A启动B，B就单独存在，当用户点击推荐信息时，将动作发送给A，让A来执行。如果A不存在了，就使用命令行启动A来处理。&lt;br&gt;但新加的那个退出推荐的逻辑是，在A的主窗口的&lt;code&gt;OnClose&lt;/code&gt;事件里启动B程序来显示广告信息，但执行顺序存在随机性，有可能是B先启动，然后走到FindWindow，也有可能是A程序的窗口先OnDestory掉，B再走到FindWindow。所以，在所有的用户环境那边，就出现了50%左右的丢失率（如果两边的执行代码区别再大一些，可能是别的百分比）。&lt;/p&gt;
-&lt;p&gt;而解决办法显而易见，退出推荐时根本不需要检测A窗口是否存在，后续的用户行为反应也是不需要再启动A来执行的。在if (!hWnd) 条件中再加上广告类型的判断即可解决。&lt;/p&gt;
-&lt;h1 id=&quot;迷之羞愧&quot;&gt;&lt;a href=&quot;#迷之羞愧&quot; class=&quot;headerlink&quot; title=&quot;迷之羞愧&quot;&gt;&lt;/a&gt;迷之羞愧&lt;/h1&gt;&lt;p&gt;如果倒着看这个博客，一定会嗤之以鼻：如此简单的问题都找不到。 但反想一下，这个bug是一个随机现象，且不能稳定重现，且bug触发的原因隐藏在多年表现正常的的代码中，这都导致了问题没有很快的解决（ &lt;em&gt;甩锅干脆利落&lt;/em&gt;）。&lt;/p&gt;
-&lt;p&gt;其实嘛，经过多年的项目经验，确实印证了一句话 &lt;strong&gt;事出反常必有妖&lt;/strong&gt;，就是当用户出现了不正常的情况，虽然大部分情况下会不由自主的指责别人使用方法不对，但往确实是自己的程序出现了或多或少的考虑不周或者是隐藏的问题导致的。只不过，有些bug换种使用流程和环境就绕过去了（比如：万能的重启），有些bug总是会在不经意间蹦出来咬你一口。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;在这些年公司和个人的项目中，有些bug在没有找到根本原因之前，会觉得真的是不可思议，各种排除各种测试都未解决或干脆就未复现。&lt;br&gt;但是当某天在查找其它问题/添加新的功能/优化代码/睡觉时，突然发现/想到根本原因之后，简直想哭。。问题可能出现在一个很不起眼/一扫而过/觉得100%不会有问题的地方。&lt;/p&gt;
-&lt;p&gt;今天就遇到一个这样的bug，无语的让我想专门开个类别存放这类bug。&lt;/p&gt;
-&lt;p&gt;前提条件是这样的，主程序A在运行过程中，会从服务器上拉取一些推(la)荐(ji)信(guang)息(gao),然后在不同的条件下启动程序B来显示。A和B都经常多年多个版本的迭代，加了不同类型的广告，有2种最常用的是：&lt;br&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://baba.zhaoxiuyuan.com/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
       <category term="bugs" scheme="http://baba.zhaoxiuyuan.com/tags/bugs/"/>
     
