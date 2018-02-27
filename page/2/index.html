@@ -219,6 +219,55 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-28T06:12:28.000Z"><a href="/2017/09/122_vs_cmd_win10_sdk/">2017-09-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/122_vs_cmd_win10_sdk/">Visual Studio 2017 / 2015 命令行编译 找不到 stdlib.h 的问题</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>上周折腾了下VS不能使用XP系统工具集（如：vc140_xp）编译的问题，原因是不知道为何以前安装的windows SDK 8 不完整，但是单独安装winsdk 8.0的话安装包又崩溃退出，包括用vs2015和vs2017修复都修复不成功。</p>
+<p>所以最后是彻底卸载了vs2015、vs2017后依次再重装解决问题。<br>结果本周在mingw+msvc编译某项目时就报出了错误<code>fatal error C1083: 无法打开包括文件: “stdio.h”: No such file or directory</code>。<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/09/122_vs_cmd_win10_sdk/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-14T03:12:28.000Z"><a href="/2017/09/121_mingw_record/">2017-09-14</a></time>
       
       
@@ -503,54 +552,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-06-28T08:50:28.000Z"><a href="/2017/06/116_mc_code/">2017-06-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/06/116_mc_code/">mc的部分代码研究</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="minecraft-server"><a href="#minecraft-server" class="headerlink" title="minecraft server"></a>minecraft server</h1><p>spigot服务器代码中，net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo用来序列化玩家配置文件GameProfile给客户端的。<br>某次由于服务器返回的格式不符合要求，导致在使用了某种道具后导致了某个服务器崩溃。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/06/116_mc_code/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -579,6 +580,8 @@
     <li><a href="/categories/net/P2P/">P2P</a><small>2</small></li>
   
     <li><a href="/categories/android/">android</a><small>5</small></li>
+  
+    <li><a href="/categories/c/">c++</a><small>1</small></li>
   
     <li><a href="/categories/java/">java</a><small>8</small></li>
   
